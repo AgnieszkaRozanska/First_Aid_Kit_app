@@ -3,6 +3,7 @@ package com.example.agnieszka.ar_apteczka
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_first_and_kit.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -33,6 +34,9 @@ class firstAndKit : AppCompatActivity() {
             var Activity2: Intent = Intent(applicationContext, All_Medicines::class.java)
             startActivity(Activity2)
         }
+
+
+
 
     }
 }

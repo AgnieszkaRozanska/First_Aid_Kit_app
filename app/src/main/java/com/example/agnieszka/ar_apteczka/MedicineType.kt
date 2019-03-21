@@ -22,7 +22,7 @@ class MedicineType {
     var kindMedicineType: KindMedicineType
     var name:String
     var description:String
-    var unitInStrck:Int
+    var unitInStock:Int
 
     constructor(iDMedicine: String, name: String,kind: KindMedicineType , description: String, unitInStock: Int){
 
@@ -30,7 +30,7 @@ class MedicineType {
         this.name=name;
         this.kindMedicineType=kind;
         this.description=description;
-        this.unitInStrck=unitInStock;
+        this.unitInStock=unitInStock;
 
 
     }

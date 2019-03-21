@@ -14,20 +14,18 @@ class Add_Medicine_FirstAidKit : AppCompatActivity() {
 
 
 
-        MedSaveButton.setOnClickListener {
+        /*
+               val dbhelper = SQLConector(applicationContext)
+               val db = dbhelper.writableDatabase
+               val save_info_Toast = Toast.makeText(applicationContext, "Lek został dodany", Toast.LENGTH_SHORT)
 
-            if(Med_Name_editText.length()>0) intent.putExtra("name", Med_Name_editText.text)
-            else Toast.makeText(applicationContext,"Proszę podać nazwę leku", Toast.LENGTH_SHORT)
 
-            if(Med_Kind_editText.length()>0)
-                intent.putExtra("haslo", Med_Kind_editText.text)
-            else Toast.makeText(applicationContext,"Proszę podać rodzaj leku", Toast.LENGTH_SHORT)
+               if (intent.hasExtra("medname")) MedicineName_cardView.setText(intent.getStringExtra("medname"))
+               if (intent.hasExtra("medkind")) Kind_cardView.setText(intent.getStringExtra("medkind"))
+               if (intent.hasExtra("medcount")) Count_cardView.setText(intent.getStringExtra("medcount"))
+               if (intent.hasExtra("meddescription")) Description_cardView.setText(intent.getStringExtra("meddescription"))
 
-            if(Med_Count_editText.length()>0)
-                intent.putExtra("email", Med_Count_editText.text)
-            else Toast.makeText(applicationContext,"Proszę podać ilość", Toast.LENGTH_SHORT)
-
-        }
+               */
 
 
 

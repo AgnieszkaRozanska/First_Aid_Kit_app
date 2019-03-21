@@ -19,25 +19,25 @@ android:background="@drawable/menu">
     />
     <Button
             android:background="@drawable/ateczkaprzycisk"
-            android:layout_width="113dp"
-            android:layout_height="133dp"
+            android:layout_width="119dp"
+            android:layout_height="141dp"
             android:id="@+id/Button_FirstAidKit"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="208dp"
+            android:layout_marginTop="248dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="64dp"/>
+            android:layout_marginStart="52dp"/>
 
     <Button android:id="@+id/Button_YourAllMedicines"
             android:background="@drawable/twojelekiprzycisk"
-            android:layout_width="103dp"
-            android:layout_height="134dp"
+            android:layout_width="114dp"
+            android:layout_height="141dp"
             app:layout_constraintStart_toEndOf="@+id/Button_FirstAidKit"
             android:layout_marginStart="56dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="64dp"
-            android:layout_marginTop="208dp"
+            android:layout_marginTop="248dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.567"/>
 
 
 
