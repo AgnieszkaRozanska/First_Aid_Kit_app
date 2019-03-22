@@ -7,11 +7,11 @@ class MedicineType {
 
     enum class KindMedicineType{
 
-        tabletka_okragła,
+        tabletka_okragla,
         tabletka_owalna,
         kapsułka,
         krople,
-        maść,
+        masc,
         inhalator,
         zastrzyk,
         czopek
@@ -19,12 +19,13 @@ class MedicineType {
     }
 
     var iDMedicine:String
-    var kindMedicineType: KindMedicineType
+    //var kindMedicineType: KindMedicineType
+    var kindMedicineType:String
     var name:String
     var description:String
     var unitInStock:Int
 
-    constructor(iDMedicine: String, name: String,kind: KindMedicineType , description: String, unitInStock: Int){
+    constructor(iDMedicine: String, name: String,kind: String , description: String, unitInStock: Int){
 
         this.iDMedicine=iDMedicine;
         this.name=name;
@@ -34,7 +35,7 @@ class MedicineType {
 
 
     }
-    constructor( name: String,kind: KindMedicineType , description: String, unitInStock: Int) : this(UUID.randomUUID().toString(), name, kind, description, unitInStock){
+    constructor( name: String,kind: String , description: String, unitInStock: Int) : this(UUID.randomUUID().toString(), name, kind, description, unitInStock){
 
     }
 

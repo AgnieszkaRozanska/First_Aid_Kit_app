@@ -10,23 +10,53 @@ import android.provider.BaseColumns
 
 //-----------------------Opis tabeli----------------
 
-    val DATABASE_NAME = "FirstAidKit.db"
-    val TABLE_NAME = "Medicine"
-    val COL_1_1 = "Name"
-    val COL_2_1 = "MedicineType"
-    val COL_3_1 = "UnitInStock"
-    val COL_4_1 = "Description"
-    val COL_5_1 = "IDMedicine"
+    //stałe opisjace nasza tabele, nazwy i kolumny
+  const  val DATABASE_NAME = "FirstAidKit.db"
 
-    val TABLE_NAME2 = "MedicineOnce"
-    val COL_1_2 = "Day"
-    val COL_2_2 = "TimeOfDay" //pora dnia
-    val COL_3_2 = "Dose"
-    val COL_4_2 = "BeforeAfterMeal"
-    val COL_5_2 = "HourReminders"
-    val COL_6_2 = "DescriptionReminder"
-    val COL_7_2 = "IDMedicine"
-    val COL_8_2 = "ID"
+    const val MEDICINE_TABLE_NAME = "Medicine"
+    const val NAME = "Name"
+    const val MEDICINE_TYPE = "MedicineType"
+    const val UNIT_IN_STOCK = "UnitInStock"
+    const val DESCRIPTION = "Description"
+    const val ID_MEDICINE = "IDMedicine"
+
+    const val MEDICINE_ONCE_TABLE_NAME = "MedicineOnce"
+    const val DAY = "Day"
+    const val TIME_OF_DAY = "TimeOfDay"
+    const val DOSE = "Dose"
+    const val BEFORE_AFTER_MEAL = "BeforeAfterMeal"
+    const val HOUR_REMINDERS = "HourReminders"
+    const val DESCRIPTION_REMINDER = "DescriptionReminder"
+    const val ID_MEDICINEONCE = "IDMedicine"
+    const val ID = "ID"
+
+
+//-----------------------Podstawowe komendy SQL-------
+
+    const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
+                 ID_MEDICINE + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+             NAME + " TEXT NOT NULL,"+
+             MEDICINE_TYPE + " TEXT NOT NULL," +
+             UNIT_IN_STOCK + " INTEGER NOT NULL," +
+             DESCRIPTION + " TEXT);")
+
+
+const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_ONCE_TABLE_NAME + " (" +
+        ID_MEDICINEONCE + " INTEGER PRIMARY KEY," +
+        ID + " INTEGER NOT NULL,"+
+        DAY + " TEXT NOT NULL," +
+        UNIT_IN_STOCK + " INTEGER NOT NULL," +
+        TIME_OF_DAY + " TEXT NOT NULL,"+
+        DOSE +" INTEGER NOT NULL,"+
+        BEFORE_AFTER_MEAL +" TEXT NOT NULL,"+
+        HOUR_REMINDERS +" TEXT,"+
+        DESCRIPTION_REMINDER +" TEXT);")
+
+const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS " + MEDICINE_TABLE_NAME
+
+const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS "  + MEDICINE_ONCE_TABLE_NAME
+
+
 
 
 //Klasa ta będzie służyła do tworznia bazy danych i niezbędnych tabel
@@ -37,44 +67,69 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
     //-----------------------Podstawowe komendy SQL-------
 
     //metoda tworzy nam naszą baze danych z tabelą Medicine i MedicineOnce
-    override fun onCreate(db: SQLiteDatabase?) {
-
-        db?.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_NAME ( Name TEXT NOT NULL, MedicineType INTEGER NOT NULL,UnitInStock INTEGER NOT NULL, description TEXT, iDMedicine INTEGER PRIMARY KEY AUTOINCREMENT )")
-        db?.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_NAME2 (Day TEXT NOT NULL, TimeOfDay INTEGER NOT NULL, Dose INTEGER NOT NULL, BeforeAfterMeal INTEGER NOT NULL, HourReminders TEXT, DescriptionReminder TEXT, IDMedicine INTEGER, ID INTEGER PRIMARY KEY AUTOINCREMENT)")
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(SQL_CREATE_TABLE_MEDICINE)
+        db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
-        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME ")
-        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME2 ")
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL(SQL_DELETE_TABLE_MEDICINE)
+        db.execSQL(SQL_DELETE_TABLE_MEDICINE_ONCE)
         onCreate(db)
     }
 
     //-------------------------------------------------------
 
-    fun addMedicine(name: String, medicineType: String, unitInStock: Int, description: String ):Boolean?
+    fun addMedicine(name: String, medicineType: String, unitInStock: Int, description: String ):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
-        cv.put(COL_1_1, name)
-        cv.put(COL_2_1, medicineType)
-        cv.put(COL_3_1, unitInStock)
-        cv.put(COL_4_1, description)
+        cv.put(NAME, name)
+        cv.put(MEDICINE_TYPE, medicineType)
+        cv.put(UNIT_IN_STOCK, unitInStock)
+        cv.put(DESCRIPTION, description)
 
-        val result= db.insert(TABLE_NAME, null, cv)
-
+        val result= db.insert(MEDICINE_TABLE_NAME, null, cv)
+        db.close()
         return !result.equals(-1)
     }
 
-    fun getAllMedicineTypes():Cursor{
-        val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+    fun getAllMedicineTypes(): ArrayList<MedicineType>
+    {
+       // val db=this.writableDatabase
+      //  return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+
+        val medicine_All_List= ArrayList<MedicineType>()
+        val db= readableDatabase
+        //val query="SELECT * FROM $TABLE_NAME"
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do{
+                    var name=cursor.getString(cursor.getColumnIndex(NAME))
+                    var medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
+                    var unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
+                    var description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                    //var id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
+
+                val med=MedicineType( name, medicineType, description, unitInStock.toInt())
+                medicine_All_List.add(med)
+                }while (cursor.moveToNext())
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return medicine_All_List
     }
 
     fun getMedicineOnce(id:String):Cursor
     {
         val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME WHERE ID=?", arrayOf(id), null)
+
+        return db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE ID=?", arrayOf(id), null)
 
     }
 
@@ -82,16 +137,16 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
     {
         val db=this.writableDatabase
         val cv= ContentValues()
-        cv.put(COL_3_1, unitInStock)
+        cv.put(UNIT_IN_STOCK, unitInStock)
 
-        db.update(TABLE_NAME, cv, "ID=?", arrayOf(id))
+        db.update(MEDICINE_TABLE_NAME, cv, "ID=?", arrayOf(id))
         return  true
     }
 
     fun removeMedicineType(id: String):Int?
     {
         val db=this.writableDatabase
-        return db.delete(TABLE_NAME, "ID=?", arrayOf(id))
+        return db.delete(MEDICINE_TABLE_NAME, "ID=?", arrayOf(id))
     }
 
 
@@ -100,35 +155,35 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
     {
         val db=this.writableDatabase
         val cv = ContentValues()
-        cv.put(COL_1_2, day)
-        cv.put(COL_2_2, timeOfDay)
-        cv.put(COL_3_2, dose)
-        cv.put(COL_4_2, beforeAfterMeal)
-        cv.put(COL_5_2, hourReminders)
-        cv.put(COL_6_2, iDMedicine)  //?
-        cv.put(COL_7_2, iD)          //?
+        cv.put(DAY, day)
+        cv.put(TIME_OF_DAY, timeOfDay)
+        cv.put(DOSE, dose)
+        cv.put(BEFORE_AFTER_MEAL, beforeAfterMeal)
+        cv.put(HOUR_REMINDERS, hourReminders)
+        cv.put(ID_MEDICINEONCE, iDMedicine)  //?
+        cv.put(ID, iD)          //?
 
-        val result= db.insert(TABLE_NAME2, null, cv)
+        val result= db.insert(MEDICINE_ONCE_TABLE_NAME, null, cv)
 
         return !result.equals(-1)
     }
 
     fun getAllTakeMedicineOccurs():Cursor{
         val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME2", null)
+        return db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
     }
 
     fun getTakeMedicineOccursOnce(id:String):Cursor
     {
         val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $TABLE_NAME WHERE ID=?", arrayOf(id), null)
+        return db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE ID=?", arrayOf(id), null)
 
     }
 
     fun removeTakeMedicineOccour(id: String):Int?
     {
         val db=this.writableDatabase
-        return db.delete(TABLE_NAME2, "ID=?", arrayOf(id))
+        return db.delete(MEDICINE_ONCE_TABLE_NAME, "ID=?", arrayOf(id))
     }
 
 
