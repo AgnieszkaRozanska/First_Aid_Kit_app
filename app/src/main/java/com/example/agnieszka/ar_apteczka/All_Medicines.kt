@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import kotlinx.android.synthetic.main.activity_all__medicines.*
 import kotlinx.android.synthetic.main.activity_first_and_kit.*
 
 class All_Medicines : AppCompatActivity() {
@@ -13,41 +14,39 @@ class All_Medicines : AppCompatActivity() {
         setContentView(R.layout.activity_all__medicines)
 
 
-        Button_Powrot.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do MENU
-
-            var Activity3: Intent = Intent(applicationContext, firstAndKit::class.java)
-            startActivity(Activity3)
-        }
-
 
     }
-/*
+
+
     override fun onResume() {
         super.onResume()
 
         //inicializowanie bazy danyh
-        val sqlConector = SQLConector(applicationContext)
+        val sqlConector = SQLConector(this)
         val db = sqlConector.writableDatabase
 
+        val  medicines_list=sqlConector.getAllMedicineTypes()
 
-        val cursor= db.query(TABLE_NAME,
+
+
+/*
+        val cursor = db.query(
+            MEDICINE_TABLE_NAME,
             null, null, null,
-            null, null, null)
+            null, null, null
+        )
 
         val medicines_list = ArrayList<MedicineType>()
-        if(cursor.count>0){
+       if (cursor.count > 0) {
             cursor.moveToFirst()
-            while (!cursor.isAfterLast)
-            {
-                val medicine= MedicineType("", "", "", 0)
-                medicine.name=cursor.getInt(0)
-                medicine.kindMedicineType= cursor.getInt(1)
-                medicine.unitInStock=cursor.getInt(2)
-                medicine.description=cursor.getInt(3)
-                medicine.idMedicine=cursor.getInt(4)
+            while (!cursor.isAfterLast) {
+                val name=cursor.getString(1)
+                val  kindMedicineType = cursor.getString(2)
+                val unitInStock = cursor.getInt(3)
+                val description = cursor.getString(4)
+                val iDMedicine = cursor.getString(0)
 
-
+                val medicine = MedicineType(name, kindMedicineType, description, unitInStock)
 
                 medicines_list.add(medicine)
                 cursor.moveToNext()
@@ -55,15 +54,15 @@ class All_Medicines : AppCompatActivity() {
             }
         }
         cursor.close()
-
-        .layoutManager= GridLayoutManager(applicationContext, 2)
-        recyler_view.adapter= CardViewAdapter(applicationContext, db, notes)
+*/
+        recyler_view_med.layoutManager = GridLayoutManager(applicationContext, 2)
+        recyler_view_med.adapter = card_view_All_Medicines(applicationContext, db, medicines_list)
 
 
 
 
     }
 
-    */
+
 
 }

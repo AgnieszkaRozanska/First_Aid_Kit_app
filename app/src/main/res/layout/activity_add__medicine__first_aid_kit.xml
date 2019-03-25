@@ -80,4 +80,7 @@ android:background="@drawable/twojaapteczkadodajlek">
             android:layout_gravity="center_vertical"
             android:onClick="AddMed"
     />
+
+
+
 </android.support.constraint.ConstraintLayout>

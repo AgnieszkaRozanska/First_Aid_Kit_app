@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".card_view_All_Medicines">
         </activity>
+        <activity android:name=".Add_TakeMedicineOccour">
+        </activity>
     </application>
 
 </manifest>
