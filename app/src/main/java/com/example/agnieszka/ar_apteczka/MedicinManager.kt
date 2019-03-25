@@ -51,7 +51,7 @@ class MedicinManager {
         {
         }
 
-        fun isMedTypeUsed( medicineType:MedicineType):Boolean
+        fun isMedTypeUsed( medicineTypeList:MedicineType):Boolean
         {
 
         }

@@ -1,17 +1,14 @@
 package com.example.agnieszka.ar_apteczka
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
+import android.widget.TextView
 
 // to jest mój Adapter tak naprawde, tylko nazywa sie tak
-class card_view_All_Medicines(context: Context, val db: SQLiteDatabase, var medicineType: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>()
+class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>()
 {
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
@@ -21,51 +18,37 @@ class card_view_All_Medicines(context: Context, val db: SQLiteDatabase, var medi
     }
 
     override fun getItemCount(): Int {
-        val cursor= db.query(
-            MEDICINE_TABLE_NAME, null,
-            null, null,
-            null, null, null)
-
-        val countofrows= cursor.count
-
-        cursor.close()
-        return countofrows
+        return medicineTypeList.count()
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
+        holder.medName.setText(medicineTypeList.elementAt(position).name)
+        holder.medKind.setText(medicineTypeList.elementAt(position).kindMedicineType)
+        holder.medCount.setText(medicineTypeList.elementAt(position).unitInStock.toString())
+        holder.medDescription.setText(medicineTypeList.elementAt(position).description)
+    }
 // ----------- Elementy pojedynczego leku--------------
 
-        val cardView_note = holder.view.Medicine_cardView
-        val medName= holder.view.MedicineName_cardView
-        val medKind= holder.view.Kind_cardView
-        val medCount= holder.view.Count_cardView
-        val medDescription= holder.view.Description_cardView
-        val context:Context = holder.view.context
+
 
 
         //------------------------------------------------------
 
 
-        medName.setText(medicineType[holder.adapterPosition].name)
-        medKind.setText(medicineType[holder.adapterPosition].kindMedicineType)
-        medCount.setText(medicineType[holder.adapterPosition].unitInStock)
-        medDescription.setText(medicineType[holder.adapterPosition].description)
-
         //----------------- Wczytanie treści -----------------------------------
-        val cursor= db.query(MEDICINE_TABLE_NAME, null,
-            ID_MEDICINE + "=?", arrayOf(holder.adapterPosition.plus(1).toString()),
-        null, null, null)
-
-        if(cursor.moveToNext())
-        {
-
-            medName.setText(cursor.getString(1))
-            medKind.setText(cursor.getString(2))
-            medCount.setText(cursor.getString(3))
-            medDescription.setText(cursor.getString(4))
-
-        }
+//        val cursor= db.query(MEDICINE_TABLE_NAME, null,
+//            ID_MEDICINE + "=?", arrayOf(holder.adapterPosition.plus(1).toString()),
+//        null, null, null)
+//
+//        if(cursor.moveToNext())
+//        {
+//
+//            medName.setText(cursor.getString(1))
+//            medKind.setText(cursor.getString(2))
+//            medCount.setText(cursor.getString(3))
+//            medDescription.setText(cursor.getString(4))
+//
+//        }
         // ---------------- Edycja leku po kliknięciu w nią ---------------
     /*    cardView_note.setOnClickListener{
             val intent_edit = Intent(context, Details_activity::class.java)
@@ -113,8 +96,6 @@ class card_view_All_Medicines(context: Context, val db: SQLiteDatabase, var medi
 
  */
 
-    }
-
 }
 
 // ---------------- Edycja Leku po kliknięciu na Lek ---------------
@@ -124,4 +105,17 @@ class card_view_All_Medicines(context: Context, val db: SQLiteDatabase, var medi
 // ---------------- Gdy przytrzymamy Lek to usuwamy go  ---------------
 
 
-class MyViewHolder(val view: View):RecyclerView.ViewHolder(view)
+class MyViewHolder : RecyclerView.ViewHolder {
+    var medName : TextView
+    var medKind : TextView
+    var medCount : TextView
+    var medDescription : TextView
+
+    constructor(view : View) : super(view) {
+        //cardView_note = view.findViewById(R.id.car)
+        medName = view.findViewById(R.id.MedicineName_cardView)
+        medKind= view.findViewById(R.id.Kind_cardView)
+        medCount= view.findViewById(R.id.Count_cardView)
+        medDescription= view.findViewById(R.id.Description_cardView)
+    }
+}
