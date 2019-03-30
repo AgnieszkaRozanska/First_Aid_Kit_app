@@ -25,7 +25,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="22dp"
+                    android:textSize="28dp"
                     android:ems="10"
                     android:id="@+id/MedicineName_cardView"
                     android:hint="Nazwa leku"
@@ -41,23 +41,19 @@
                     android:ems="10"
                     android:id="@+id/Kind_cardView"
                     android:ellipsize="end"
-                    android:layout_marginBottom="5dp"
                     android:textAlignment="viewStart" android:lines="2"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:hint="Ilość sztuk"
                     android:textSize="18sp"
                     android:ems="10"
                     android:id="@+id/Count_cardView"
                     android:ellipsize="end"
-                    android:layout_marginBottom="5dp"
                     android:textAlignment="viewStart" android:lines="2"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:hint="Opis"
                     android:textSize="18sp"
                     android:ems="10"

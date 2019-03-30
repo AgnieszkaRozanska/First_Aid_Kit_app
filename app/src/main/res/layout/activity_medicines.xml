@@ -10,8 +10,8 @@ android:background="@drawable/twojeleki">
 
 
     <Button android:background="@drawable/dodajlekprzyisk"
-            android:layout_width="104dp"
-            android:layout_height="153dp"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
             android:id="@+id/Button_Take_Med_Occur"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="196dp"
@@ -20,8 +20,8 @@ android:background="@drawable/twojeleki">
 
     <Button android:id="@+id/Button_All_Med_Drugs"
             android:background="@drawable/wszystkielekiprzycisk"
-            android:layout_width="111dp"
-            android:layout_height="153dp"
+            android:layout_width="135dp"
+            android:layout_height="180dp"
             app:layout_constraintStart_toEndOf="@+id/Button_Take_Med_Occur"
             android:layout_marginStart="56dp"
             app:layout_constraintEnd_toEndOf="parent"
