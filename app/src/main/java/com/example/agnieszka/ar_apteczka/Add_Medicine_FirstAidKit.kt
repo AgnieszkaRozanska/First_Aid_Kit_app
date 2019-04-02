@@ -29,9 +29,6 @@ class Add_Medicine_FirstAidKit : AppCompatActivity() {
             val count: String = Med_Count_editText.text.toString()
             val description: String = Med_Description_editText.text.toString()
 
-
-
-
             val ifsuccess= dbHelper.addMedicine(name, kind, count.toInt(), description)
 
             if(ifsuccess)
@@ -44,23 +41,6 @@ class Add_Medicine_FirstAidKit : AppCompatActivity() {
 
 
         }
-
-
-        /*
-
-               val save_info_Toast = Toast.makeText(applicationContext, "Lek został dodany", Toast.LENGTH_SHORT)
-
-
-               if (intent.hasExtra("medname")) MedicineName_cardView.setText(intent.getStringExtra("medname"))
-               if (intent.hasExtra("medkind")) Kind_cardView.setText(intent.getStringExtra("medkind"))
-               if (intent.hasExtra("medcount")) Count_cardView.setText(intent.getStringExtra("medcount"))
-               if (intent.hasExtra("meddescription")) Description_cardView.setText(intent.getStringExtra("meddescription"))
-
-               */
-
-
-
-
     }
 
 
