@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".Add_TakeMedicineOccur_2">
         </activity>
+        <activity android:name=".Update_Count_of_Medicines">
+        </activity>
     </application>
 
 </manifest>

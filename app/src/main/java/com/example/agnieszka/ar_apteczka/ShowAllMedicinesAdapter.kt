@@ -32,52 +32,51 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
         // ---------------- Edycja leku po kliknięciu w nią ---------------
         val cardView_medicine = holder.view.Medicine_cardView
-        /*   val context:Context = holder.view.context
+           val context:Context = holder.view.context
 
         cardView_medicine.setOnClickListener {
+            val dbHelper = SQLConector(context)
             val intent_edit = Intent(context, Add_Medicine_FirstAidKit::class.java)
+            //val intent_edit = Intent(context, Update_Count_of_Medicines::class.java)
             val Med_Name_edit=medicineTypeList[holder.adapterPosition].name
             val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType
             val Med_Count_edit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
             val Med_Description_edit= medicineTypeList[holder.adapterPosition].description
 
-            //val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine.toString()
+            val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine
 
             intent_edit.putExtra("name", Med_Name_edit)
             intent_edit.putExtra("kind", Med_Kind_edit)
             intent_edit.putExtra("count", Med_Count_edit)
             intent_edit.putExtra("description", Med_Description_edit)
 
-           // intent_edit.putExtra("IDMedicine", id_edit)
+           intent_edit.putExtra("IDMedicine", id_edit)
 
             context.startActivity(intent_edit)
         }
 
-         */
+
         //  }
 
 
         // ---------------- Gdy przytrzymamy lek to ja usuwamy ---------------------------
-        /*   cardView_medicine.setOnLongClickListener(object : View.OnLongClickListener {
-            override fun onLongClick(v: View?): Boolean {
+         /*  cardView_medicine.setOnLongClickListener(object : View.OnLongClickListener {
+               override fun onLongClick(v: View?): Boolean {
+                   db.delete(MEDICINE_TABLE_NAME, ID_MEDICINE + "=?",
+                       arrayOf(medicineTypeList[holder.adapterPosition].iDMedicine.toString()))
 
-                val ifsuccess= dbHelper.addMedicine(name, kind, count.toInt(), description)
+                   // narzedzie do zarzadzania wyswetlanymi elementami
+                   medicineTypeList.removeAt(holder.adapterPosition)
+                   notifyItemRemoved(holder.adapterPosition)
 
-                if(ifsuccess)
-                {
-                    Toast.makeText(applicationContext, "Lek został dodany", Toast.LENGTH_SHORT).show()
-
-                    var Activity: Intent = Intent(applicationContext, firstAndKit::class.java)
-                    startActivity(Activity)
-                }
-                // narzedzie do zarzadzania wyswetlanymi elementami
-                medicineTypeList.removeAt(holder.adapterPosition)
-                notifyItemRemoved(holder.adapterPosition)
-
+                   return true
             }
-        }
-*/
+
+        })
+
+        */
     }
+
 }
 // ---------------- Edycja Leku po kliknięciu na Lek ---------------
 //-----------------    Update ilości sztuk leków     -----------------
