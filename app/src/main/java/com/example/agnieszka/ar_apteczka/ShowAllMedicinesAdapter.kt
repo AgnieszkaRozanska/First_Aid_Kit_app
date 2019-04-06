@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.AddMedicineFirstAidKit
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 
@@ -36,28 +35,24 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
         cardView_medicine.setOnClickListener {
             val dbHelper = SQLConector(context)
-            val intent_edit = Intent(context, AddMedicineFirstAidKit::class.java)
-            //val intent_edit = Intent(context, Update_Count_of_Medicines::class.java)
+            //val intent_edit = Intent(context, AddMedicineFirstAidKit::class.java)
+            val intent_edit = Intent(context, UpdateCountofMedicines::class.java)
             val Med_Name_edit=medicineTypeList[holder.adapterPosition].name
-            val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType
+            //val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType
             val Med_Count_edit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
-            val Med_Description_edit= medicineTypeList[holder.adapterPosition].description
+            //val Med_Description_edit= medicineTypeList[holder.adapterPosition].description
 
             val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine
 
             intent_edit.putExtra("name", Med_Name_edit)
-            intent_edit.putExtra("kind", Med_Kind_edit)
+            //intent_edit.putExtra("kind", Med_Kind_edit)
             intent_edit.putExtra("count", Med_Count_edit)
-            intent_edit.putExtra("description", Med_Description_edit)
+            //intent_edit.putExtra("description", Med_Description_edit)
 
            intent_edit.putExtra("IDMedicine", id_edit)
 
             context.startActivity(intent_edit)
         }
-
-
-        //  }
-
 
         // ---------------- Gdy przytrzymamy lek to ja usuwamy ---------------------------
          /*  cardView_medicine.setOnLongClickListener(object : View.OnLongClickListener {
@@ -72,9 +67,9 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
                    return true
             }
 
-        })
+        }) */
 
-        */
+
     }
 
 }

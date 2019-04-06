@@ -13,9 +13,6 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all__medicines)
-
-
-
     }
 
 
@@ -28,16 +25,7 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
 
         val  medicines_list=sqlConector.getAllMedicineTypes()
 
-
-
         recyler_view_med.layoutManager = LinearLayoutManager(this)
         recyler_view_med.adapter = card_view_All_Medicines(this, medicines_list)
-
-
-
-
     }
-
-
-
 }

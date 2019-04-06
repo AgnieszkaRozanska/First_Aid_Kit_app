@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
+import java.util.*
 
 class AddMedicineFirstAidKit : AppCompatActivity() {
 
@@ -15,21 +16,22 @@ class AddMedicineFirstAidKit : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
 
-        if (intent.hasExtra("name")) Med_Name_editText.setText(intent.getStringExtra("name"))
-        if (intent.hasExtra("kind")) Med_Kind_editText.setText(intent.getStringExtra("kind"))
-        if (intent.hasExtra("count")) Med_Count_editText.setText(intent.getStringExtra("count"))
-        if (intent.hasExtra("description")) Med_Description_editText.setText(intent.getStringExtra("description"))
+        //if (intent.hasExtra("name")) Med_Name_editText.setText(intent.getStringExtra("name"))
+       // if (intent.hasExtra("kind")) Med_Kind_editText.setText(intent.getStringExtra("kind"))
+       // if (intent.hasExtra("count")) Med_Count_editText.setText(intent.getStringExtra("count"))
+        //if (intent.hasExtra("description")) Med_Description_editText.setText(intent.getStringExtra("description"))
 
     }
 
         fun AddMed(view: View){
             val dbHelper = SQLConector(this)
+            val id= UUID.randomUUID().toString()
             val name: String = Med_Name_editText.text.toString()
             val kind: String = Med_Kind_editText.text.toString()
             val count: String = Med_Count_editText.text.toString()
             val description: String = Med_Description_editText.text.toString()
 
-            val ifsuccess= dbHelper.addMedicine(name, kind, count.toInt(), description)
+            val ifsuccess= dbHelper.addMedicine(id, name, kind, count.toInt(), description)
 
             if(ifsuccess)
             {

@@ -33,7 +33,7 @@ import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineTy
 //-----------------------Podstawowe komendy SQL-------
 
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
-                 ID_MEDICINE + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                 ID_MEDICINE + " TEXT PRIMARY KEY," +
              NAME + " TEXT NOT NULL,"+
              MEDICINE_TYPE + " TEXT NOT NULL," +
              UNIT_IN_STOCK + " INTEGER NOT NULL," +
@@ -51,9 +51,9 @@ const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDI
         HOUR_REMINDERS +" TEXT,"+
         DESCRIPTION_REMINDER +" TEXT);")
 
-const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS " + MEDICINE_TABLE_NAME
+const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
 
-const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS "  + MEDICINE_ONCE_TABLE_NAME
+const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
 
 
 
@@ -79,10 +79,11 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     //-------------------------------------------------------
 
-    fun addMedicine(name: String, medicineType: String, unitInStock: Int, description: String ):Boolean
+    fun addMedicine(id:String, name: String, medicineType: String, unitInStock: Int, description: String ):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
+        cv.put(ID_MEDICINE, id)
         cv.put(NAME, name)
         cv.put(MEDICINE_TYPE, medicineType)
         cv.put(UNIT_IN_STOCK, unitInStock)
@@ -107,6 +108,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             if(cursor.moveToNext())
             {
                 do{
+                    var id= cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
                     var name=cursor.getString(cursor.getColumnIndex(NAME))
                     var medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
                     var unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
@@ -114,10 +116,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
                     //var id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
 
                 val med= MedicineType(
+                    id,
                     name,
                     medicineType,
                     description,
                     unitInStock.toInt()
+
                 )
                 medicine_All_List.add(med)
                 }while (cursor.moveToNext())
@@ -139,12 +143,19 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun updateMedicineTypeDoses(id:String, unitInStock: Int):Boolean
     {
-        val db=this.writableDatabase
-        val cv= ContentValues()
-        cv.put(UNIT_IN_STOCK, unitInStock)
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            cv.put(UNIT_IN_STOCK, unitInStock)
 
-        db.update(MEDICINE_TABLE_NAME, cv, "ID=?", arrayOf(id))
-        return  true
+            db.update(MEDICINE_TABLE_NAME, cv, "IDMedicine =?", arrayOf(id))
+            db.close()
+            return true
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
     }
 
     fun removeMedicineType(id: String):Int?
