@@ -5,16 +5,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddTakeMedicineOccour">
+        tools:context=".TakeMedicineOccur.AddTakeMedicineOccour">
 
     <RadioGroup
-            android:layout_width="150dp"
-            android:layout_height="135dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
             android:id="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"
-            android:layout_marginTop="92dp"
-            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_Dose_EditText">
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/chooseAfterBeforeMeal_MedOccur_const"
+            app:layout_constraintStart_toStartOf="parent">
         <RadioButton
                 android:text="Przed posiłkiem"
                 android:layout_width="match_parent"
@@ -41,47 +41,43 @@
             android:layout_height="45dp"
             android:id="@+id/Add_Med_Occour_Medicine_Spinner"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="28dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/chooseMedOccur_const"/>
 
     <EditText android:id="@+id/Add_Med_Occour_Dose_EditText"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="49dp"
               app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginTop="28dp"
-              app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_Medicine_Spinner"
-              android:backgroundTint="@color/colorPrimary"/>
+              android:backgroundTint="@color/colorPrimary" android:layout_marginTop="16dp"
+              app:layout_constraintTop_toBottomOf="@+id/chooseDose_MedOccur_const"/>
 
     <RadioGroup
-            android:layout_width="150dp"
-            android:layout_height="138dp"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:orientation="horizontal"
             android:id="@+id/Add_Med_Occour_TimeOfDay_radioGroup"
-            app:layout_constraintHorizontal_bias="0.553"
-            android:layout_marginTop="92dp"
-            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_Dose_EditText">
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/chooseTimeOfDay_MedOccur_const">
+        <RadioButton
+                android:text="Rano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/RadioButton_Morning"
+                android:layout_weight="1" android:textColor="@color/colorAccent" android:textStyle="bold"/>
         <RadioButton
                 android:text="Popołudnie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/RadioButton_Afternoon"
                 android:layout_weight="1" android:backgroundTint="@color/colorPrimary"
-                android:textColor="@color/colorPrimary" android:textStyle="bold"/>
-        <RadioButton
-                android:text="Rano"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/RadioButton_Morning"
-                android:layout_weight="1" android:textColor="@color/colorPrimary" android:textStyle="bold"/>
+                android:textColor="@color/colorAccent" android:textStyle="bold"/>
         <RadioButton
                 android:text="Wieczór"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/RadioButton_Evening"
-                android:layout_weight="1" android:textColor="@color/colorPrimary" android:textStyle="bold"/>
+                android:layout_weight="1" android:textColor="@color/colorAccent" android:textStyle="bold"/>
     </RadioGroup>
     <Button
             android:background="@drawable/ikonastrzalka"
@@ -89,7 +85,47 @@
             android:layout_height="100dp"
             android:id="@+id/Add_Med_Occour_Next_Button"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="148dp"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="156dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"/>
+    <TextView
+            android:text="@string/chooseMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseMedOccur_const"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="@string/chooseDose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseDose_MedOccur_const"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_Medicine_Spinner"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="@string/chooseTimeOfDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseTimeOfDay_MedOccur_const"
+            android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_Dose_EditText" android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="@string/chooseAterBeforeMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseAfterBeforeMeal_MedOccur_const"
+            android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_TimeOfDay_radioGroup"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="4dp"/>
 </android.support.constraint.ConstraintLayout>

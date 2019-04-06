@@ -1,6 +1,6 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
 
-import android.provider.ContactsContract
+import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
 import java.util.*
 
 class TakeMedicineOccur {
@@ -8,12 +8,12 @@ class TakeMedicineOccur {
 
     //public DateTime DataTime { get; }
     var day: Date
-    var timeOfDay:TimeOfDay
+    var timeOfDay: TimeOfDay
     var dose:Int
-    var beforeAfterMeal:BeforeAfterMeal
+    var beforeAfterMeal: BeforeAfterMeal
     var hourReminders:Date
     var descriptionReminder:String
-    var medicineType:MedicineType
+    var medicineType: MedicineType
     var iD:String;
 
     enum class TimeOfDay
@@ -33,7 +33,7 @@ class TakeMedicineOccur {
     }
 
 
-    constructor(day:Date , timeOfDay:TimeOfDay , dose:Int, beforeAfterMeal:BeforeAfterMeal , hourReminders:Date,descriptionReminder:String , medicineType:MedicineType, id:String )
+    constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType, id:String )
     {
         this.day=day
         this.timeOfDay=timeOfDay
@@ -46,7 +46,7 @@ class TakeMedicineOccur {
 
     }
 
-  constructor(day:Date , timeOfDay:TimeOfDay , dose:Int, beforeAfterMeal:BeforeAfterMeal , hourReminders:Date,descriptionReminder:String , medicineType:MedicineType )
+  constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType)
           :this(day, timeOfDay, dose, beforeAfterMeal, hourReminders, descriptionReminder, medicineType, UUID.randomUUID().toString())
 
 }

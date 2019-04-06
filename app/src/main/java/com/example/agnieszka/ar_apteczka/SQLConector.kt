@@ -1,12 +1,11 @@
 package com.example.agnieszka.ar_apteczka
 
-import android.content.ClipDescription
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.provider.BaseColumns
+import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
 
 //-----------------------Opis tabeli----------------
 
@@ -114,7 +113,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
                     var description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
                     //var id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
 
-                val med=MedicineType( name, medicineType, description, unitInStock.toInt())
+                val med= MedicineType(
+                    name,
+                    medicineType,
+                    description,
+                    unitInStock.toInt()
+                )
                 medicine_All_List.add(med)
                 }while (cursor.moveToNext())
             }

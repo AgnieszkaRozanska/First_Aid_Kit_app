@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 
 import java.util.*
 

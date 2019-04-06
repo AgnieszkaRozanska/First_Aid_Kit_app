@@ -1,12 +1,12 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.card_view_All_Medicines
 import kotlinx.android.synthetic.main.activity_all__medicines.*
-import kotlinx.android.synthetic.main.activity_first_and_kit.*
 
 class AllMedicinesRecyclerView : AppCompatActivity() {
 

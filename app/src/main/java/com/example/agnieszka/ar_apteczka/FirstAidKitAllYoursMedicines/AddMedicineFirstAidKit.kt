@@ -1,10 +1,12 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 
 class AddMedicineFirstAidKit : AppCompatActivity() {
@@ -12,8 +14,6 @@ class AddMedicineFirstAidKit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
-
-        //var list_of_items = arrayOf("Item 1", "Item 2", "Item 3")
 
         if (intent.hasExtra("name")) Med_Name_editText.setText(intent.getStringExtra("name"))
         if (intent.hasExtra("kind")) Med_Kind_editText.setText(intent.getStringExtra("kind"))
@@ -41,6 +41,7 @@ class AddMedicineFirstAidKit : AppCompatActivity() {
 
 
         }
+
     }
 
 

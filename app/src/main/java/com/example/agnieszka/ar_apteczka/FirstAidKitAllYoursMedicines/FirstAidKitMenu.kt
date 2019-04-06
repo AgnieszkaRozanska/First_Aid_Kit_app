@@ -1,8 +1,10 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.agnieszka.ar_apteczka.Menu
+import com.example.agnieszka.ar_apteczka.R
 import kotlinx.android.synthetic.main.activity_first_and_kit.*
 
 class FirstAidKitMenu : AppCompatActivity() {

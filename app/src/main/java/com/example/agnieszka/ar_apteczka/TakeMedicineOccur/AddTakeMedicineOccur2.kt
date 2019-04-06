@@ -1,7 +1,8 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.agnieszka.ar_apteczka.R
 
 class AddTakeMedicineOccur2 : AppCompatActivity() {
 
