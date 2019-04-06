@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_add__take_medicine_occour.*
 
-class Add_TakeMedicineOccour : AppCompatActivity() {
+class AddTakeMedicineOccour : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +14,7 @@ class Add_TakeMedicineOccour : AppCompatActivity() {
         Add_Med_Occour_Next_Button.setOnClickListener {
             // tworzymy aktywnosc ze przeskoczy do MENU
 
-            var Activity: Intent = Intent(applicationContext, Add_TakeMedicineOccur_2::class.java)
+            var Activity: Intent = Intent(applicationContext, AddTakeMedicineOccur2::class.java)
             startActivity(Activity)
         }
     }

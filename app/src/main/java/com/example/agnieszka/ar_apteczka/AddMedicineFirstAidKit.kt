@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 
-class Add_Medicine_FirstAidKit : AppCompatActivity() {
+class AddMedicineFirstAidKit : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class Add_Medicine_FirstAidKit : AppCompatActivity() {
             {
                 Toast.makeText(applicationContext, "Lek został dodany", Toast.LENGTH_SHORT).show()
 
-                var Activity: Intent = Intent(applicationContext, firstAndKit::class.java)
+                var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
                 startActivity(Activity)
             }
 

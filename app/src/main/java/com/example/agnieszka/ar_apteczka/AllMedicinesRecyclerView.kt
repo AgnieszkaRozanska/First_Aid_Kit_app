@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_all__medicines.*
 import kotlinx.android.synthetic.main.activity_first_and_kit.*
 
-class All_Medicines : AppCompatActivity() {
+class AllMedicinesRecyclerView : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

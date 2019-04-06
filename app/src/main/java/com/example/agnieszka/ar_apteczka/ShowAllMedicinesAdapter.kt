@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import com.example.agnieszka.ar_apteczka.R.id.Medicine_cardView
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 
 class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {
@@ -36,7 +34,7 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
         cardView_medicine.setOnClickListener {
             val dbHelper = SQLConector(context)
-            val intent_edit = Intent(context, Add_Medicine_FirstAidKit::class.java)
+            val intent_edit = Intent(context, AddMedicineFirstAidKit::class.java)
             //val intent_edit = Intent(context, Update_Count_of_Medicines::class.java)
             val Med_Name_edit=medicineTypeList[holder.adapterPosition].name
             val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType

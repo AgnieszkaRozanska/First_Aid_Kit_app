@@ -18,19 +18,19 @@
         </activity>
         <activity android:name=".Menu">
         </activity>
-        <activity android:name=".firstAndKit">
+        <activity android:name=".FirstAidKitMenu">
         </activity>
         <activity android:name=".Medicines">
         </activity>
-        <activity android:name=".Add_Medicine_FirstAidKit">
+        <activity android:name=".AddMedicineFirstAidKit">
         </activity>
-        <activity android:name=".All_Medicines">
+        <activity android:name=".AllMedicinesRecyclerView">
         </activity>
         <activity android:name=".card_view_All_Medicines">
         </activity>
-        <activity android:name=".Add_TakeMedicineOccour">
+        <activity android:name=".AddTakeMedicineOccour">
         </activity>
-        <activity android:name=".Add_TakeMedicineOccur_2">
+        <activity android:name=".AddTakeMedicineOccur2">
         </activity>
         <activity android:name=".Update_Count_of_Medicines">
         </activity>
