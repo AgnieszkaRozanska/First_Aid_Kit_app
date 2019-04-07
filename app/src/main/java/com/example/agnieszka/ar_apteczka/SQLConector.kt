@@ -96,12 +96,9 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun getAllMedicineTypes(): ArrayList<MedicineType>
     {
-       // val db=this.writableDatabase
-      //  return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
-
         val medicine_All_List= ArrayList<MedicineType>()
         val db= readableDatabase
-        //val query="SELECT * FROM $TABLE_NAME"
+
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME", null)
         if(cursor!= null)
         {
@@ -113,7 +110,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
                     var medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
                     var unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
                     var description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
-                    //var id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
+
 
                 val med= MedicineType(
                     id,
@@ -153,8 +150,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             return true
         }
         catch (e: Exception) {
-            e.printStackTrace()
-            return false
+           e.printStackTrace()
+           return false
         }
     }
 

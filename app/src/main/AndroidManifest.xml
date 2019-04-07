@@ -32,7 +32,7 @@
         </activity>
         <activity android:name=".TakeMedicineOccur.AddTakeMedicineOccur2">
         </activity>
-        <activity android:name=".UpdateCountofMedicines">
+        <activity android:name=".FirstAidKitAllYoursMedicines.UpdateCountofMedicines">
         </activity>
     </application>
 

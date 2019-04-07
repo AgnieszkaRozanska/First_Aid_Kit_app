@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UpdateCountofMedicines">
+        tools:context=".FirstAidKitAllYoursMedicines.UpdateCountofMedicines">
     <TextView android:layout_width="match_parent"
               android:layout_height="50dp"
               android:id="@+id/Update_Count_of_Med_Name"
@@ -18,7 +18,7 @@
     <EditText android:layout_width="match_parent"
               android:layout_height="48dp"
               android:background="@drawable/prostokat"
-              android:hint="Wpisz nową ilość lekarst"
+
               android:textAlignment="center"
               app:layout_constraintEnd_toEndOf="parent"
               android:id="@+id/Update_Count_of_Med_Count"
