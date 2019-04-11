@@ -155,10 +155,18 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         }
     }
 
-    fun removeMedicineType(id: String):Int?
+    fun removeMedicineType(id: String): Boolean
     {
-        val db=this.writableDatabase
-        return db.delete(MEDICINE_TABLE_NAME, "ID=?", arrayOf(id))
+        try{
+            val db=this.writableDatabase
+             db.delete(MEDICINE_TABLE_NAME, ID_MEDICINE + "=?", arrayOf(id))
+            db.close()
+            return true
+        }
+        catch (e: Exception) {
+             e.printStackTrace()
+             return false
+}
     }
 
 

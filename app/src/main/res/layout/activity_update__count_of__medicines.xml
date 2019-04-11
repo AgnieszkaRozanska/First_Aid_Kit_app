@@ -18,7 +18,6 @@
     <EditText android:layout_width="match_parent"
               android:layout_height="48dp"
               android:background="@drawable/prostokat"
-
               android:textAlignment="center"
               app:layout_constraintEnd_toEndOf="parent"
               android:id="@+id/Update_Count_of_Med_Count"

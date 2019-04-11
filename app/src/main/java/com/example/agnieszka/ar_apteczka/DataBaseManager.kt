@@ -1,10 +1,18 @@
 package com.example.agnieszka.ar_apteczka
 
-class DataBaseManager {
+import android.app.Application
+import android.content.Context
+import android.content.pm.ApplicationInfo
+import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
 
-    //var sQLiteConnector = SQLiteConnector()
+public class DataBaseManager {
+
+    constructor(context : Context) {
+        sQLiteConnector = SQLConector(context)
+    }
+
+    var sQLiteConnector : SQLConector
      val adress= "BazaDanych_1lek.db"
-
 
 
     fun DataBaseManager() {
@@ -35,15 +43,18 @@ class DataBaseManager {
 //
     }
 
-    fun UpdateMedicineTypeDoses() {
+    fun UpdateMedicineTypeDoses(id:String, unitInStock:Int) {
 
 // funkcja na razie jest w SQLConector
+        sQLiteConnector.updateMedicineTypeDoses(id, unitInStock)
+
+
     }
 
 
-    fun RemoveMedicineType() {
+    fun RemoveMedicineType(medicinetoRemove:MedicineType) {
 
-// funkcja na razie jest w SQLConector
+        sQLiteConnector.removeMedicineType(medicinetoRemove.iDMedicine)
     }
 
     fun GetAllTakeMedicineOccurs() {

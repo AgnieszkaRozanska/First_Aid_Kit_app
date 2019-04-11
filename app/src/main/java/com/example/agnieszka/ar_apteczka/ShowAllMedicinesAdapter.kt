@@ -2,11 +2,14 @@ package com.example.agnieszka.ar_apteczka
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.FirstAidKitMenu
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.UpdateCountofMedicines
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
@@ -49,32 +52,37 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
             context.startActivity(intent_edit)
         }
 
-        // ---------------- Gdy przytrzymamy lek to ja usuwamy ---------------------------
-         /*  cardView_medicine.setOnLongClickListener(object : View.OnLongClickListener {
+        // ---------------- Gdy przytrzymamy lek to go usuwamy ---------------------------
+         cardView_medicine.setOnLongClickListener(object : View.OnLongClickListener {
                override fun onLongClick(v: View?): Boolean {
-                   db.delete(MEDICINE_TABLE_NAME, ID_MEDICINE + "=?",
-                       arrayOf(medicineTypeList[holder.adapterPosition].iDMedicine.toString()))
+                   val dbHelper = SQLConector(context)
+                   val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine
+
+                  val ifsuccess = dbHelper.removeMedicineType(id_edit)
+
+                /*   if(ifsuccess)
+                   {
+                       Toast.makeText(applicationContext, "Lek został zaktualizowany", Toast.LENGTH_SHORT).show()
+
+                       var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
+                       startActivity(Activity)
+                   }
+                   */
+
 
                    // narzedzie do zarzadzania wyswetlanymi elementami
-                   medicineTypeList.removeAt(holder.adapterPosition)
-                   notifyItemRemoved(holder.adapterPosition)
+                   //medicineTypeList.removeAt(holder.adapterPosition)
+                   //notifyItemRemoved(holder.adapterPosition)
 
                    return true
             }
 
-        }) */
+        })
 
 
     }
 
 }
-
-// ---------------- Edycja Leku po kliknięciu na Lek ---------------
-//-----------------    Update ilości sztuk leków     -----------------
-
-
-// ---------------- Gdy przytrzymamy Lek to usuwamy go  ---------------
-
 
 class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView= view.findViewById(R.id.MedicineName_cardView)

@@ -20,8 +20,8 @@ class TakeMedicineOccur {
     {
         rano,
         poludnie,
-        wieczor,
-        noc
+        wieczor
+
     }
 
     enum class BeforeAfterMeal
