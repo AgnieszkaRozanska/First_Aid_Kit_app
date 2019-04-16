@@ -60,19 +60,13 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
                   val ifsuccess = dbHelper.removeMedicineType(id_edit)
 
-                /*   if(ifsuccess)
+                   if(ifsuccess)
                    {
-                       Toast.makeText(applicationContext, "Lek został zaktualizowany", Toast.LENGTH_SHORT).show()
-
-                       var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
-                       startActivity(Activity)
+                       Toast.makeText(context, "Lek został usunięty", Toast.LENGTH_SHORT).show()
+                        //arrayOf(medicineTypeList[])
+                       medicineTypeList.removeAt(holder.adapterPosition)
+                       notifyItemRemoved(holder.adapterPosition)
                    }
-                   */
-
-
-                   // narzedzie do zarzadzania wyswetlanymi elementami
-                   //medicineTypeList.removeAt(holder.adapterPosition)
-                   //notifyItemRemoved(holder.adapterPosition)
 
                    return true
             }
