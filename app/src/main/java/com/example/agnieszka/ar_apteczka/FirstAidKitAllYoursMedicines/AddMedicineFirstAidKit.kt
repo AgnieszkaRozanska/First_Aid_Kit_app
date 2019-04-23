@@ -17,10 +17,6 @@ class AddMedicineFirstAidKit : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
 
-        //if (intent.hasExtra("name")) Med_Name_editText.setText(intent.getStringExtra("name"))
-       // if (intent.hasExtra("kind")) Med_Kind_editText.setText(intent.getStringExtra("kind"))
-       // if (intent.hasExtra("count")) Med_Count_editText.setText(intent.getStringExtra("count"))
-        //if (intent.hasExtra("description")) Med_Description_editText.setText(intent.getStringExtra("description"))
 
     }
 

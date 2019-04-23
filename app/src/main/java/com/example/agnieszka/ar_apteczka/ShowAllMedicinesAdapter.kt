@@ -73,8 +73,26 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
         })
 
+     /*   cardView_medicine.Button_Remove_Medicine.setOnClickListener {
+            val dbHelper = SQLConector(context)
+            val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine
+
+            val ifsuccess = dbHelper.removeMedicineType(id_edit)
+
+            if(ifsuccess)
+            {
+                Toast.makeText(context, "Lek został usunięty", Toast.LENGTH_SHORT).show()
+                //arrayOf(medicineTypeList[])
+                medicineTypeList.removeAt(holder.adapterPosition)
+                notifyItemRemoved(holder.adapterPosition)
+            }
+
+        }
+*/
 
     }
+
+
 
 }
 

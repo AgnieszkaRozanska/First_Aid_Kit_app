@@ -12,11 +12,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:cardCornerRadius="10dp" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.017">
+            app:cardCornerRadius="10dp"
+            app:layout_constraintVertical_bias="0.0" >
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="376dp"
@@ -31,21 +30,24 @@
                     android:hint="Nazwa leku"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/colorPrimary"
+                    android:paddingLeft="10dp" android:paddingTop="5dp"/>
             <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:hint="Rodzaj"
+                    android:paddingLeft="10dp"
                     android:textSize="18sp"
                     android:ems="10"
                     android:id="@+id/Kind_cardView"
                     android:ellipsize="end"
                     android:textAlignment="viewStart" android:lines="2"/>
             <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Ilość sztuk"
+                    android:paddingLeft="10dp"
                     android:textSize="18sp"
                     android:ems="10"
                     android:id="@+id/Count_cardView"
@@ -55,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Opis"
+                    android:paddingLeft="10dp"
                     android:textSize="18sp"
                     android:ems="10"
                     android:id="@+id/Description_cardView"
@@ -62,8 +65,9 @@
                     android:layout_marginBottom="5dp"
                     android:textAlignment="viewStart" android:lines="2"/>
 
+
         </LinearLayout>
-   </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>

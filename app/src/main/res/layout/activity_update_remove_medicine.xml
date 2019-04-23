@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/menu"
+        tools:context=".UpdateRemoveMedicine">
+
+    <TextView
+            android:hint="Medicine Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UpdateRemoveMedicine_MedicineName"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="92dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+    <TextView
+            android:hint="Medicine kind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateRemoveMedicine_MedicineKind"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/UpdateRemoveMedicine_MedicineName"
+            android:layout_marginStart="40dp" app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:hint="Medicine Count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateRemoveMedicine_MedicineCount"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveMedicine_MedicineKind"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:hint="Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateRemoveMedicine_MedicineDescription"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveMedicine_MedicineCount"/>
+    <Button
+            android:layout_width="130dp"
+            android:layout_height="137dp"
+            android:background="@drawable/removemed"
+            android:id="@+id/Button_RemoveMedicine"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="164dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_UpdateMedicine"
+            android:layout_marginEnd="8dp"/>
+    <Button
+            android:layout_width="130dp"
+            android:layout_height="137dp"
+            android:background="@drawable/updatemed"
+            android:id="@+id/button_UpdateMedicine"
+            android:layout_marginBottom="164dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="48dp"/>
+
+</android.support.constraint.ConstraintLayout>
