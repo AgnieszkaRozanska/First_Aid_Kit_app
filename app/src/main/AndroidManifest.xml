@@ -34,7 +34,7 @@
         </activity>
         <activity android:name=".FirstAidKitAllYoursMedicines.UpdateCountofMedicines">
         </activity>
-        <activity android:name=".UpdateRemoveMedicine">
+        <activity android:name=".FirstAidKitAllYoursMedicines.UpdateRemoveMedicine">
         </activity>
     </application>
 
