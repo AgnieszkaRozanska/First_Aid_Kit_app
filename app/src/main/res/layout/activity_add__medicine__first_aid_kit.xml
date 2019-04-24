@@ -19,7 +19,7 @@ android:background="@drawable/twojaapteczkadodajlek">
             android:layout_marginStart="16dp"/>
 
     <EditText android:layout_width="match_parent"
-              android:layout_height="48dp"
+              android:layout_height="49dp"
               android:background="@drawable/prostokat"
               android:hint="Wpisz nazwę leku"
               android:textAlignment="center"
@@ -51,7 +51,7 @@ android:background="@drawable/twojaapteczkadodajlek">
               app:layout_constraintEnd_toEndOf="parent"
               android:id="@+id/Med_Count_editText"
               android:layout_marginTop="44dp"
-              app:layout_constraintTop_toBottomOf="@+id/Med_Kind_editText"/>
+              app:layout_constraintTop_toBottomOf="@+id/Med_Kind_editText" android:inputType="numberDecimal"/>
 
     <EditText android:layout_width="match_parent"
               android:layout_height="48dp"
@@ -77,7 +77,30 @@ android:background="@drawable/twojaapteczkadodajlek">
             android:layout_gravity="center_vertical"
             android:onClick="AddMed"
     />
-
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Med_Name_editText"
+            android:id="@+id/warm_informations_MedName"
+            android:hint="Musisz podać nazwę leku"
+            android:visibility="visible" android:padding="3dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/warm_informations_MedKind"
+            android:hint="Musisz podać rodzaj leku"
+            android:visibility="visible" android:padding="3dp"
+            app:layout_constraintTop_toBottomOf="@+id/Med_Kind_editText"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/warm_informations_MedCount"
+            android:hint="Musisz podać ilość posiadanych sztuk"
+            android:visibility="visible" android:padding="3dp"
+            app:layout_constraintTop_toBottomOf="@+id/Med_Count_editText"/>
 
 
 </android.support.constraint.ConstraintLayout>

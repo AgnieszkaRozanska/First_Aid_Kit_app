@@ -32,10 +32,10 @@ class UpdateRemoveMedicine : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Czy jesteś pewien!")
             builder.setMessage("Czy chcesz usunąć ten lek?")
-            builder.setPositiveButton("Yes", {dialog: DialogInterface, which: Int ->
+            builder.setPositiveButton("Tak", {dialog: DialogInterface, which: Int ->
                 Remove_medicine()
             })
-            builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+            builder.setNegativeButton("Nie", { dialogInterface: DialogInterface, i: Int -> })
             builder.show()
 
         }
