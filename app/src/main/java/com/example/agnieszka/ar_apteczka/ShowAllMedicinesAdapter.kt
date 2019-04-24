@@ -30,8 +30,8 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.medName.setText(medicineTypeList.elementAt(position).name)
         holder.medKind.setText(medicineTypeList.elementAt(position).kindMedicineType)
-        holder.medCount.setText(medicineTypeList.elementAt(position).unitInStock.toString())
-        holder.medDescription.setText(medicineTypeList.elementAt(position).description)
+        //holder.medCount.setText(medicineTypeList.elementAt(position).unitInStock.toString())
+       // holder.medDescription.setText(medicineTypeList.elementAt(position).description)
 
 
         // ---------------- Edycja leku po kliknięciu w nią ---------------
@@ -103,8 +103,8 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView= view.findViewById(R.id.MedicineName_cardView)
     var medKind : TextView = view.findViewById(R.id.Kind_cardView)
-    var medCount : TextView= view.findViewById(R.id.Count_cardView)
-    var medDescription : TextView= view.findViewById(R.id.Description_cardView)
+    //var medCount : TextView= view.findViewById(R.id.Count_cardView)
+    //var medDescription : TextView= view.findViewById(R.id.Description_cardView)
 
 
 }

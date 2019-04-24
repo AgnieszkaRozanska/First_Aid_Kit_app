@@ -59,24 +59,24 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@+id/updateRemoveMedicine_MedicineCount"/>
     <Button
-            android:layout_width="130dp"
-            android:layout_height="137dp"
+            android:layout_width="155dp"
+            android:layout_height="168dp"
             android:background="@drawable/removemed"
             android:id="@+id/Button_RemoveMedicine"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="44dp"
-            android:layout_marginBottom="164dp"
+            android:layout_marginBottom="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_UpdateMedicine"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.272"/>
     <Button
-            android:layout_width="130dp"
-            android:layout_height="137dp"
+            android:layout_width="152dp"
+            android:layout_height="164dp"
             android:background="@drawable/updatemed"
             android:id="@+id/button_UpdateMedicine"
-            android:layout_marginBottom="164dp"
+            android:layout_marginBottom="144dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="48dp"/>
+            android:layout_marginEnd="36dp"/>
 
 </android.support.constraint.ConstraintLayout>

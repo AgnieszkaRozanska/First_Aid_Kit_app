@@ -1,8 +1,10 @@
 package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
@@ -26,7 +28,16 @@ class UpdateRemoveMedicine : AppCompatActivity() {
         }
 
         Button_RemoveMedicine.setOnClickListener {
-            Remove_medicine()
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Czy jesteś pewien!")
+            builder.setMessage("Czy chcesz usunąć ten lek?")
+            builder.setPositiveButton("Yes", {dialog: DialogInterface, which: Int ->
+                Remove_medicine()
+            })
+            builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+            builder.show()
+
         }
 
 
@@ -49,7 +60,7 @@ class UpdateRemoveMedicine : AppCompatActivity() {
     }
 
     fun Remove_medicine(){
-        val intent_remove = Intent(applicationContext, AllMedicinesRecyclerView::class.java)
+        val intent_remove = Intent(applicationContext, FirstAidKitMenu::class.java)
         val dbHelper = SQLConector(applicationContext)
         var id_to_remove_med:String=""
         if (intent.hasExtra("IDMedicine"))  id_to_remove_med= intent.getStringExtra("IDMedicine")
