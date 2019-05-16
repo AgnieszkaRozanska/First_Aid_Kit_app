@@ -130,6 +130,28 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return medicine_All_List
     }
 
+    fun getMedListOfName(): ArrayList<String>
+    {
+        val medicine_Name_All_List= ArrayList<String>()
+        val db= readableDatabase
+
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do{
+                    var name=cursor.getString(cursor.getColumnIndex(NAME))
+                    medicine_Name_All_List.add(name)
+                }while (cursor.moveToNext())
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return medicine_Name_All_List
+    }
+
     fun getMedicineOnce(id:String):Cursor
     {
         val db=this.writableDatabase
@@ -206,19 +228,5 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return db.delete(MEDICINE_ONCE_TABLE_NAME, "ID=?", arrayOf(id))
     }
 
-
-
-
-    /*
-    GetAllMedicineTypes           ok
-    AddMedicineType              ok
-    UpdateMedicineTypeDoses      ok
-    RemoveMedicineType            ok
-    GetAllTakeMedicineOccurs  -------
-    AddTakeMedicineOccour        ---
-    RemoveTakeMedicineOccour    ------
-
-
-     */
 
 }

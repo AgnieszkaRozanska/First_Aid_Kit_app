@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AR_Apteczka</string>
     <string name="chooseMed">Proszę wybrać lek z apteczki</string>
-    <string name="chooseDose">Proszę wpisać dawkę leku</string>
+    <string name="chooseDose">Proszę wpisać zażywaną dawkę leku</string>
     <string name="chooseTimeOfDay">Proszę wybrać porę dnia</string>
     <string name="chooseAterBeforeMeal">Proszę wpisać porę posiłku</string>
     <string name="choosehourReminder">Proszę wpisać godzinę przypomnienia</string>
