@@ -29,5 +29,12 @@ class Menu : AppCompatActivity() {
             startActivity(Activity3)
         }
 
+
+
+    }
+
+    override fun onBackPressed() {
+        var Activity: Intent = Intent(applicationContext, MainActivity::class.java)
+        startActivity(Activity)
     }
 }

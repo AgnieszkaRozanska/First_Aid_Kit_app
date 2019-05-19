@@ -25,6 +25,12 @@ class UpdateCountofMedicines : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        var Activity: Intent = Intent(applicationContext, UpdateRemoveMedicine::class.java)
+        startActivity(Activity)
+    }
+
+
     fun UprageMed(id:String) {
 
         val dbHelper = SQLConector(this)

@@ -33,6 +33,12 @@ class AddMedicineFirstAidKit : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
+        startActivity(Activity)
+    }
+
+
         fun AddMed(view: View){
             val dbHelper = SQLConector(this)
             val id= UUID.randomUUID().toString()

@@ -18,6 +18,12 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
+        startActivity(Activity)
+    }
+
+
     override fun onResume() {
         super.onResume()
 

@@ -43,6 +43,12 @@ class UpdateRemoveMedicine : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        var Activity: Intent = Intent(applicationContext, AllMedicinesRecyclerView::class.java)
+        startActivity(Activity)
+    }
+
+
     fun Download_Data(){
         val intent_edit = Intent(applicationContext, UpdateCountofMedicines::class.java)
         val Med_Name_Count_edit=UpdateRemoveMedicine_MedicineName.text
