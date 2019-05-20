@@ -7,16 +7,20 @@ class TakeMedicineOccur {
 
 
     //public DateTime DataTime { get; }
-    var day: Date
-    var timeOfDay: TimeOfDay
+    //var day: Date
+    var day: String
+    //var timeOfDay: TimeOfDay
+    var timeOfDay: String
     var dose:Int
-    var beforeAfterMeal: BeforeAfterMeal
-    var hourReminders:Date
+    //var beforeAfterMeal: BeforeAfterMeal
+    var beforeAfterMeal: String
+    var hourReminders:String
     var descriptionReminder:String
-    var medicineType: MedicineType
+    //var medicineType: MedicineType
+    var medicineType: String
     var iD:String;
 
-    enum class TimeOfDay
+ /*   enum class TimeOfDay
     {
         rano,
         poludnie,
@@ -31,9 +35,9 @@ class TakeMedicineOccur {
         po_Posilku;
 
     }
+*/
 
-
-    constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType, id:String )
+    constructor(id:String, medicineType: String,dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String,  hourReminders:String, descriptionReminder:String )
     {
         this.day=day
         this.timeOfDay=timeOfDay
@@ -46,7 +50,7 @@ class TakeMedicineOccur {
 
     }
 
-  constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType)
+ /* constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType)
           :this(day, timeOfDay, dose, beforeAfterMeal, hourReminders, descriptionReminder, medicineType, UUID.randomUUID().toString())
-
+*/
 }

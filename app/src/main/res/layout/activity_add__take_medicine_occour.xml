@@ -41,7 +41,7 @@
             android:layout_height="45dp"
             android:id="@+id/Add_Med_Occour_Medicine_Spinner"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/chooseMedOccur_const"/>
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/chooseMedOccur_const"/>
 
     <EditText android:id="@+id/Add_Med_Occour_Dose_EditText"
               android:layout_width="match_parent"
@@ -80,15 +80,16 @@
                 android:layout_weight="1" android:textColor="@color/colorAccent" android:textStyle="bold"/>
     </RadioGroup>
     <Button
-            android:background="@drawable/ikonastrzalka"
+            android:background="@drawable/remindericon"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="136dp"
             android:id="@+id/Add_Med_Occour_Next_Button"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="156dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"/>
+            android:layout_marginEnd="52dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"
+            app:layout_constraintVertical_bias="0.25"/>
     <TextView
             android:text="@string/chooseMed"
             android:layout_width="wrap_content"
@@ -128,4 +129,14 @@
             android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_TimeOfDay_radioGroup"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="4dp"/>
+    <Button
+            android:layout_width="117dp"
+            android:layout_height="156dp"
+            android:background="@drawable/savicon"
+            android:id="@+id/Button_Save_TakeMedOccur" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/Add_Med_Occour_BeforeAfterMeal_radioGroup"
+            app:layout_constraintEnd_toStartOf="@+id/Add_Med_Occour_Next_Button" android:layout_marginEnd="8dp"
+             android:onClick="addMedOccur"/>
 </android.support.constraint.ConstraintLayout>

@@ -20,14 +20,15 @@ import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineTy
     const val ID_MEDICINE = "IDMedicine"
 
     const val MEDICINE_ONCE_TABLE_NAME = "MedicineOnce"
-    const val DAY = "Day"
-    const val TIME_OF_DAY = "TimeOfDay"
-    const val DOSE = "Dose"
-    const val BEFORE_AFTER_MEAL = "BeforeAfterMeal"
-    const val HOUR_REMINDERS = "HourReminders"
-    const val DESCRIPTION_REMINDER = "DescriptionReminder"
     const val ID_MEDICINEONCE = "IDMedicine"
     const val ID = "ID"
+    const val DOSE = "Dose"
+    const val TIME_OF_DAY = "TimeOfDay"
+    const val BEFORE_AFTER_MEAL = "BeforeAfterMeal"
+    const val DAY = "Day"
+    const val HOUR_REMINDERS = "HourReminders"
+    const val DESCRIPTION_REMINDER = "DescriptionReminder"
+
 
 
 //-----------------------Podstawowe komendy SQL-------
@@ -41,15 +42,14 @@ import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineTy
 
 
 const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_ONCE_TABLE_NAME + " (" +
-        ID_MEDICINEONCE + " INTEGER PRIMARY KEY," +
-        ID + " INTEGER NOT NULL,"+
-        DAY + " TEXT NOT NULL," +
-        UNIT_IN_STOCK + " INTEGER NOT NULL," +
-        TIME_OF_DAY + " TEXT NOT NULL,"+
-        DOSE +" INTEGER NOT NULL,"+
-        BEFORE_AFTER_MEAL +" TEXT NOT NULL,"+
-        HOUR_REMINDERS +" TEXT,"+
-        DESCRIPTION_REMINDER +" TEXT);")
+        ID_MEDICINEONCE + " TEXT PRIMARY KEY," +
+        ID + " TEXT NOT NULL," +
+        DOSE + " INTEGER NOT NULL," +
+        TIME_OF_DAY + " TEXT NOT NULL," +
+        BEFORE_AFTER_MEAL +" TEXT NOT NULL," +
+        DAY + " TEXT," +
+        HOUR_REMINDERS + " TEXT," +
+        DESCRIPTION_REMINDER + " TEXT);")
 
 const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
 
@@ -152,6 +152,24 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return medicine_Name_All_List
     }
 
+    fun getId(MedName:String): String
+    {
+
+        var id:String
+        val db = this.writableDatabase
+
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE NAME=?", arrayOf(MedName),null)
+        id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
+
+        cursor.close()
+        db.close()
+        return id
+
+
+    }
+
+
+
     fun getMedicineOnce(id:String):Cursor
     {
         val db=this.writableDatabase
@@ -179,34 +197,35 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun removeMedicineType(id: String): Boolean
     {
-        try{
+        try {
             val db=this.writableDatabase
-             db.delete(MEDICINE_TABLE_NAME, ID_MEDICINE + "=?", arrayOf(id))
+            db.delete(MEDICINE_TABLE_NAME, "$ID_MEDICINE=?", arrayOf(id))
             db.close()
-            return true
         }
         catch (e: Exception) {
              e.printStackTrace()
              return false
-}
+        }
+
+        return true
     }
 
-
-
-    fun addTakeMedicineOccour(day: String, timeOfDay: String, dose: Int, beforeAfterMeal: String, hourReminders : String, iDMedicine: String, iD: String ):Boolean?
+    fun addTakeMedicineOccour(iDMedicine: String,iD: String, dose: Int,timeOfDay: String,  beforeAfterMeal: String, day: String,  hourReminders : String, descriptionReminder : String ):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
-        cv.put(DAY, day)
-        cv.put(TIME_OF_DAY, timeOfDay)
+        cv.put(ID_MEDICINEONCE, iDMedicine)
+        cv.put(ID, iD)
         cv.put(DOSE, dose)
+        cv.put(TIME_OF_DAY, timeOfDay)
         cv.put(BEFORE_AFTER_MEAL, beforeAfterMeal)
+        cv.put(DAY, day)
         cv.put(HOUR_REMINDERS, hourReminders)
-        cv.put(ID_MEDICINEONCE, iDMedicine)  //?
-        cv.put(ID, iD)          //?
+        cv.put(DESCRIPTION_REMINDER,descriptionReminder )
+
 
         val result= db.insert(MEDICINE_ONCE_TABLE_NAME, null, cv)
-
+        db.close()
         return !result.equals(-1)
     }
 
