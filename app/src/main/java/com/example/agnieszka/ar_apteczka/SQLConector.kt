@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
+import com.example.agnieszka.ar_apteczka.TakeMedicineOccur.TakeMedicineOccur
 
 //-----------------------Opis tabeli----------------
 
@@ -229,9 +230,50 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return !result.equals(-1)
     }
 
-    fun getAllTakeMedicineOccurs():Cursor{
-        val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
+    fun getAllTakeMedicineOccurs():ArrayList<TakeMedicineOccur>{
+
+        val takeMedicineOccur_All_List= ArrayList<TakeMedicineOccur>()
+        val db= readableDatabase
+
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do{
+                    var id_takeMedOccur= cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
+                    var id_med= cursor.getString(cursor.getColumnIndex(ID))
+                    var dose= cursor.getString(cursor.getColumnIndex(DOSE))
+                    var time_of_day=cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
+                    var before_after_meal=cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
+                    var day=cursor.getString(cursor.getColumnIndex(DAY))
+                    var hour_reminder=cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
+                    var description=cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
+
+
+                    val takMedOccur= TakeMedicineOccur(
+                        id_takeMedOccur,
+                        id_med,
+                        dose.toInt(),
+                        time_of_day,
+                        before_after_meal,
+                        day,
+                        hour_reminder,
+                        description
+
+
+                    )
+                    takeMedicineOccur_All_List.add(takMedOccur)
+                }while (cursor.moveToNext())
+            }
+        }
+
+        cursor.close()
+        db.close()
+        return takeMedicineOccur_All_List
+
+
+
     }
 
     fun getTakeMedicineOccursOnce(id:String):Cursor

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/Take_Medicine_Occur_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintVertical_bias="0.0" tools:layout_editor_absoluteX="0dp"
+            tools:ignore="MissingConstraints">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="376dp"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                        android:layout_width="203dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="28dp"
+                        android:ems="10"
+                        android:id="@+id/MedicineName_cardView"
+                        android:hint="Nazwa leku"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:textColor="@color/colorPrimary"
+                        android:paddingLeft="10dp" android:paddingTop="5dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:hint="Dawka"
+                        android:paddingLeft="10dp"
+                        android:textSize="18sp"
+                        android:ems="10"
+                        android:id="@+id/MedicineDose_cardView"
+                        android:ellipsize="end"
+                        android:textAlignment="viewStart" android:lines="2"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Pora dnia"
+                    android:paddingLeft="10dp"
+                    android:textSize="18sp"
+                    android:ems="10"
+                    android:id="@+id/MedicineTimeofDay_cardView"
+                    android:ellipsize="end"
+                    android:textAlignment="viewStart" android:lines="2"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="Pora posiłku"
+                    android:paddingLeft="10dp"
+                    android:textSize="18sp"
+                    android:ems="10"
+                    android:id="@+id/MedicineMeal_cardView"
+                    android:ellipsize="end"
+                    android:textAlignment="viewStart" android:lines="2"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</android.support.constraint.ConstraintLayout>

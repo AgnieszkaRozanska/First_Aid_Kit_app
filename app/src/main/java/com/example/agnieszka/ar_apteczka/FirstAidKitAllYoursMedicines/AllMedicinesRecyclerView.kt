@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
 import com.example.agnieszka.ar_apteczka.card_view_All_Medicines
@@ -27,7 +26,7 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        //inicializowanie bazy danyh
+
         val sqlConector = SQLConector(this)
         val db = sqlConector.writableDatabase
 

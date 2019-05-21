@@ -3,6 +3,7 @@ package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.MainActivity
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
@@ -16,22 +17,16 @@ class FirstAidKitMenu : AppCompatActivity() {
 
 
         Button_Powrot.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do MENU
-
             var Activity3: Intent = Intent(applicationContext, Menu::class.java)
             startActivity(Activity3)
         }
 
         Button_Add_Med_toFAidK.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do drugiego okna
-
             var Activity1: Intent = Intent(applicationContext, AddMedicineFirstAidKit::class.java)
             startActivity(Activity1)
         }
 
         Button_All_Med_INFaidK.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do drugiego okna
-
             var Activity2: Intent = Intent(applicationContext, AllMedicinesRecyclerView::class.java)
             startActivity(Activity2)
         }

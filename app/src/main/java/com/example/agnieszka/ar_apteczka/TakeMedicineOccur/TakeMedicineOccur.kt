@@ -20,6 +20,7 @@ class TakeMedicineOccur {
     var medicineType: String
     var iD:String;
 
+
  /*   enum class TimeOfDay
     {
         rano,
@@ -50,7 +51,5 @@ class TakeMedicineOccur {
 
     }
 
- /* constructor(day:Date, timeOfDay: TimeOfDay, dose:Int, beforeAfterMeal: BeforeAfterMeal, hourReminders:Date, descriptionReminder:String, medicineType: MedicineType)
-          :this(day, timeOfDay, dose, beforeAfterMeal, hourReminders, descriptionReminder, medicineType, UUID.randomUUID().toString())
-*/
+
 }

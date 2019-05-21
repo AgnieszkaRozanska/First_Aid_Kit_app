@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import kotlinx.android.synthetic.main.activity_medicines.*
@@ -25,6 +26,15 @@ class MedicinesMenu : AppCompatActivity() {
             var Activity2:Intent = Intent(applicationContext,AddTakeMedicineOccour::class.java)
             startActivity(Activity2)
         }
+
+
+        Button_All_Med_Drugs.setOnClickListener {
+            var activity= Intent(this, AllTakeMedicineOccurRecyclerView::class.java)
+           // Toast.makeText(applicationContext, "Weszliśmy", Toast.LENGTH_LONG).show()
+           startActivity(activity)
+        }
+
+
 
     }
 }

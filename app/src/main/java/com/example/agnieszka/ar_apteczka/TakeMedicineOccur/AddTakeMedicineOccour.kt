@@ -17,7 +17,7 @@ class AddTakeMedicineOccour : AppCompatActivity() {
     private var timeOfDay:CharSequence ?= null
     private var beforeAfterMeal:CharSequence ?= null
     private var spinner: Spinner ?= null
-
+    private var id_MedType: String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +53,14 @@ class AddTakeMedicineOccour : AppCompatActivity() {
         startActivity(activity)
     }
 
+
+
+
     fun addMedOccur(view: View){
         val dbHelper = SQLConector(this)
         val id= UUID.randomUUID().toString()
        // val id_MedType= dbHelper.getId(spinner!!.selectedItem.toString())
-        val id_MedType="Medicine Type"
+       id_MedType= spinner!!.getSelectedItem().toString();
         val dose = Add_Med_Occour_Dose_EditText.text.toString()
         val data =""
         val hourReminders= ""
@@ -73,7 +76,7 @@ class AddTakeMedicineOccour : AppCompatActivity() {
         }
         else{
 
-            val success= dbHelper.addTakeMedicineOccour(id, id_MedType, dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder )
+            val success= dbHelper.addTakeMedicineOccour(id, id_MedType.toString(), dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder )
 
             if(success)
             {

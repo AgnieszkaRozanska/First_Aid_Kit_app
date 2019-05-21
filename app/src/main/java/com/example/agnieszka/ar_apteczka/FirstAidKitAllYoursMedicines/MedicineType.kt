@@ -35,9 +35,7 @@ class MedicineType {
 
 
     }
-  // constructor( name: String,kind: String , description: String, unitInStock: Int) : this(UUID.randomUUID().toString(), name, kind, description, unitInStock){
-//
-  // }
+
 
 
 }
