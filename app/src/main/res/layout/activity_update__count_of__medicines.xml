@@ -23,7 +23,8 @@
               android:id="@+id/Update_Count_of_Med_Count"
               android:layout_marginTop="44dp"
               android:layout_gravity="center_vertical"
-              app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name"/>
+              app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name"
+              android:inputType="numberDecimal"/>
 
     <Button
             android:background="@drawable/przyciskzapisz"

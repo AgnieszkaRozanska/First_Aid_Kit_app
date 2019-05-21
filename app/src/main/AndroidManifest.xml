@@ -38,6 +38,8 @@
         </activity>
         <activity android:name=".TakeMedicineOccur.AllTakeMedicineOccurRecyclerView">
         </activity>
+        <activity android:name=".TakeMedicineOccur.UpdateRemoveMenuTakeMedicinOccur">
+        </activity>
     </application>
 
 </manifest>

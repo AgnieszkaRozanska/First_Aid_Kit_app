@@ -31,17 +31,4 @@ android:background="@drawable/twojaapteczkabg">
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.514"/>
 
-    <Button android:id="@+id/Button_Powrot"
-            android:background="@drawable/powrot"
-            android:layout_width="190dp"
-            android:layout_height="90dp"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Button_All_Med_INFaidK"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="40dp"
-            app:layout_constraintVertical_bias="0.84"/>
-
 </android.support.constraint.ConstraintLayout>

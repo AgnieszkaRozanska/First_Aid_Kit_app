@@ -87,32 +87,6 @@ class AddTakeMedicineOccour : AppCompatActivity() {
             }
         }
 
-
-
-
     }
-
-
-  /*  fun Next(){
-
-        val id= UUID.randomUUID().toString()
-        val dose: String = Add_Med_Occour_Dose_EditText.text.toString()
-        val radiobuttonId: Int = Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId
-        val timeOfTheDay : TakeMedicineOccur.TimeOfDay
-
-
-
-        when (radiobuttonId) {
-            findViewById<RadioButton>(R.id.RadioButton_Morning).id -> timeOfTheDay = TakeMedicineOccur.TimeOfDay.rano
-            findViewById<RadioButton>(R.id.RadioButton_Afternoon).id -> timeOfTheDay = TakeMedicineOccur.TimeOfDay.poludnie
-            findViewById<RadioButton>(R.id.RadioButton_Evening).id -> timeOfTheDay = TakeMedicineOccur.TimeOfDay.wieczor
-            else -> timeOfTheDay = TakeMedicineOccur.TimeOfDay.rano
-        }
-
-        Toast.makeText(applicationContext, timeOfTheDay.toString(), Toast.LENGTH_LONG).show()
-
-
-    }
-*/
 
 }

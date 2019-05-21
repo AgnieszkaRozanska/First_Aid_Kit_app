@@ -374,6 +374,21 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
+    fun removeTakeMedicineOccur(id: String): Boolean
+    {
+        try {
+            val db=this.writableDatabase
+            db.delete(MEDICINE_ONCE_TABLE_NAME, "$ID_MEDICINE=?", arrayOf(id))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+
+        return true
+    }
+
 
     fun getTakeMedicineOccursOnce(id:String):Cursor
     {
@@ -382,11 +397,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     }
 
-    fun removeTakeMedicineOccour(id: String):Int?
-    {
-        val db=this.writableDatabase
-        return db.delete(MEDICINE_ONCE_TABLE_NAME, "ID=?", arrayOf(id))
-    }
+
 
 
 }

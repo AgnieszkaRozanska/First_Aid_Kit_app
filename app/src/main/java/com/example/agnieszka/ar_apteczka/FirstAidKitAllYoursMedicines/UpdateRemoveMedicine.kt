@@ -17,13 +17,13 @@ class UpdateRemoveMedicine : AppCompatActivity() {
         setContentView(R.layout.activity_update_remove_medicine)
 
         if (intent.hasExtra("name")) UpdateRemoveMedicine_MedicineName.setText(intent.getStringExtra("name"))
-        if (intent.hasExtra("count")) updateRemoveMedicine_MedicineCount.setText(intent.getStringExtra("count"))
-        if (intent.hasExtra("kind")) updateRemoveMedicine_MedicineKind.setText(intent.getStringExtra("kind"))
-        if (intent.hasExtra("description")) updateRemoveMedicine_MedicineDescription.setText(intent.getStringExtra("description"))
+        if (intent.hasExtra("count")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.setText(intent.getStringExtra("count"))
+        if (intent.hasExtra("kind")) updateRemoveTakeMedicineOccur_Dose.setText(intent.getStringExtra("kind"))
+        if (intent.hasExtra("description")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.setText(intent.getStringExtra("description"))
 
 
 
-        button_UpdateMedicine.setOnClickListener {
+        button_UpdateDoseTakeMedicineOccur.setOnClickListener {
             Download_Data()
         }
 
@@ -52,7 +52,7 @@ class UpdateRemoveMedicine : AppCompatActivity() {
     fun Download_Data(){
         val intent_edit = Intent(applicationContext, UpdateCountofMedicines::class.java)
         val Med_Name_Count_edit=UpdateRemoveMedicine_MedicineName.text
-        val Med_Count_Count_edit= updateRemoveMedicine_MedicineCount.text
+        val Med_Count_Count_edit= updateRemoveTakeMedicineOccur_MedicineTimeofDay.text
 
         var id:String=""
         if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
@@ -77,9 +77,6 @@ class UpdateRemoveMedicine : AppCompatActivity() {
         if(ifsuccess)
         {
             Toast.makeText(applicationContext, "Lek został usunięty", Toast.LENGTH_SHORT).show()
-            //arrayOf(medicineTypeList[])
-            //medicineTypeList.removeAt(holder.adapterPosition)
-            //notifyItemRemoved(holder.adapterPosition)
         }
         startActivity(intent_remove)
     }

@@ -16,11 +16,7 @@ class MedicinesMenu : AppCompatActivity() {
         setContentView(R.layout.activity_medicines)
 
 
-        Button_Back.setOnClickListener {
 
-            var Activity1: Intent = Intent(applicationContext, Menu::class.java)
-            startActivity(Activity1)
-        }
 
         Button_Add_Take_Med_Occur.setOnClickListener {
             var Activity2:Intent = Intent(applicationContext,AddTakeMedicineOccour::class.java)
@@ -30,12 +26,8 @@ class MedicinesMenu : AppCompatActivity() {
 
         Button_All_Med_Drugs.setOnClickListener {
             var activity= Intent(this, AllTakeMedicineOccurRecyclerView::class.java)
-           // Toast.makeText(applicationContext, "Weszliśmy", Toast.LENGTH_LONG).show()
            startActivity(activity)
         }
-
-
-
     }
 
     override fun onBackPressed() {
