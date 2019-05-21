@@ -37,4 +37,10 @@ class MedicinesMenu : AppCompatActivity() {
 
 
     }
+
+    override fun onBackPressed() {
+        var activity = Intent(applicationContext, Menu::class.java)
+        startActivity(activity)
+    }
+
 }

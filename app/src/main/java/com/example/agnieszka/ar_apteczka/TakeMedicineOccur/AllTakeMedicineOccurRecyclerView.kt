@@ -28,11 +28,21 @@ class AllTakeMedicineOccurRecyclerView : AppCompatActivity() {
 
 
         val sqlConector = SQLConector(this)
+        val  take_medicines_occur_listMORNING=sqlConector.getAllTakeMedicineOccursinMorning()
+        val  take_medicines_occur_listMIDDAY=sqlConector.getAllTakeMedicineOccursinMidday()
+        val  take_medicines_occur_listEVENING=sqlConector.getAllTakeMedicineOccursinEvening()
 
-        val  take_medicines_occur_list=sqlConector.getAllTakeMedicineOccurs()
+        recyler_view_All_take_MedOccurMorning.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
+        recyler_view_All_take_MedOccurMorning.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listMORNING)
 
-        recyler_view_All_take_MedOccur.layoutManager=LinearLayoutManager(this)
-        recyler_view_All_take_MedOccur.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_list)
+
+        recyler_view_All_take_MedOccurMidday.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
+        recyler_view_All_take_MedOccurMidday.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listMIDDAY)
+
+
+        recyler_view_All_take_MedOccurEvening.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
+        recyler_view_All_take_MedOccurEvening.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listEVENING)
+
 
     }
 

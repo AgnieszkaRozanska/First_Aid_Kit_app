@@ -26,7 +26,7 @@ class card_view_All_TakeMedicinesOccur(context: Context, var takeMedicineOccurLi
     override fun onBindViewHolder(holder: MyViewHolderTakeMedOccur, position: Int) {
         holder.medName.setText(takeMedicineOccurList.elementAt(position).medicineType)
         holder.medDose.setText("Dawka:       "+takeMedicineOccurList.elementAt(position).dose.toString())
-        holder.medTimeOfDay.setText("Pora dnia zażycia:    "+takeMedicineOccurList.elementAt(position).timeOfDay)
+        //holder.medTimeOfDay.setText("Pora dnia zażycia:    "+takeMedicineOccurList.elementAt(position).timeOfDay)
         holder.medAfterBeforeMeal.setText(takeMedicineOccurList.elementAt(position).beforeAfterMeal)
 
 
@@ -49,7 +49,7 @@ class card_view_All_TakeMedicinesOccur(context: Context, var takeMedicineOccurLi
 class MyViewHolderTakeMedOccur(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView = view.findViewById(R.id.MedicineName_cardView)
     var medDose: TextView = view.findViewById(R.id.MedicineDose_cardView)
-    var medTimeOfDay : TextView = view.findViewById(R.id.MedicineTimeofDay_cardView)
+   // var medTimeOfDay : TextView = view.findViewById(R.id.MedicineTimeofDay_cardView)
     var medAfterBeforeMeal: TextView = view.findViewById(R.id.MedicineMeal_cardView)
 
 
