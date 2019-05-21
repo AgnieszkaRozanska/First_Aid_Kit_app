@@ -5,31 +5,31 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/updatedosebackground"
         tools:context=".FirstAidKitAllYoursMedicines.UpdateCountofMedicines">
-    <TextView android:layout_width="match_parent"
+    <TextView android:layout_width="277dp"
               android:layout_height="50dp"
               android:id="@+id/Update_Count_of_Med_Name"
-              android:layout_marginTop="28dp"
+              android:layout_marginTop="128dp"
               app:layout_constraintTop_toTopOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginEnd="8dp" android:textSize="24sp" android:textColor="@color/colorPrimary"
-              android:textAlignment="center"/>
+              android:textSize="24sp" android:textColor="@color/colorPrimary"
+              android:textAlignment="center"
+              app:layout_constraintStart_toStartOf="parent" android:textStyle="bold"/>
 
-    <EditText android:layout_width="match_parent"
+    <EditText android:layout_width="231dp"
               android:layout_height="48dp"
               android:background="@drawable/prostokat"
               android:textAlignment="center"
               app:layout_constraintEnd_toEndOf="parent"
               android:id="@+id/Update_Count_of_Med_Count"
-              android:layout_marginTop="44dp"
               android:layout_gravity="center_vertical"
-              app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name"
-              android:inputType="numberDecimal"/>
+              android:inputType="numberDecimal" android:layout_marginEnd="76dp" android:layout_marginTop="44dp"
+              app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
     <Button
-            android:background="@drawable/przyciskzapisz"
-            android:layout_width="210dp"
-            android:layout_height="80dp"
+            android:background="@drawable/savicon"
+            android:layout_width="134dp"
+            android:layout_height="176dp"
             android:id="@+id/Update_Count_of_Med_Update"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,6 +40,21 @@
             android:layout_gravity="center_vertical"
 
             app:layout_constraintVertical_bias="0.926"/>
+    <TextView
+            android:text="Wpisz nową ilość tabletek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" android:textSize="18sp"
+            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name"
+            android:layout_marginStart="88dp" app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"/>
+    <ImageView
+            android:layout_width="85dp"
+            android:layout_height="87dp" app:srcCompat="@drawable/icondrugs"
+            android:id="@+id/imageView3" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginTop="76dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Update_Count_of_Med_Name" android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
 
 
 </android.support.constraint.ConstraintLayout>

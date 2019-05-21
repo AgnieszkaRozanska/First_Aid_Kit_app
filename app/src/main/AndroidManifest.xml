@@ -40,6 +40,8 @@
         </activity>
         <activity android:name=".TakeMedicineOccur.UpdateRemoveMenuTakeMedicinOccur">
         </activity>
+        <activity android:name=".TakeMedicineOccur.UpdateDoseTakeMedicineOccur">
+        </activity>
     </application>
 
 </manifest>

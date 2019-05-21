@@ -389,6 +389,23 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
+    fun updateTakeMedicineOccurDoses(id:String, unitInStock: Int):Boolean
+    {
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            cv.put(DOSE, unitInStock)
+
+            db.update(MEDICINE_ONCE_TABLE_NAME, cv, "IDMedicine =?", arrayOf(id))
+            db.close()
+            return true
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+    }
+
 
     fun getTakeMedicineOccursOnce(id:String):Cursor
     {

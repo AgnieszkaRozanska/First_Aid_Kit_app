@@ -36,7 +36,9 @@ class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
 
         }
 
-
+        button_UpdateDoseTakeMedicineOccur.setOnClickListener {
+            Download_Data_UpdateDose()
+        }
 
     }
 
@@ -45,6 +47,21 @@ class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         startActivity(activity)
     }
 
+    fun Download_Data_UpdateDose(){
+        val intent_edit = Intent(applicationContext, UpdateDoseTakeMedicineOccur::class.java)
+        val Med_Name_Dose_edit=UpdateRemoveTakeMedicineOccur_MedicineName.text
+        val Med_Dose_Dose_edit= updateRemoveTakeMedicineOccur_Dose.text
+
+        var id_toUpdateDose:String=""
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  id_toUpdateDose= intent.getStringExtra("IDMedicine_TakeOccur")
+
+
+        intent_edit.putExtra("nameMedTakeOcur", Med_Name_Dose_edit)
+        intent_edit.putExtra("Dose", Med_Dose_Dose_edit)
+        intent_edit.putExtra("IDMedicine_TakeOccur", id_toUpdateDose)
+        startActivity(intent_edit)
+
+    }
 
     fun Remove_takemedicineOccur(){
         val intent_remove = Intent(applicationContext, AllTakeMedicineOccurRecyclerView::class.java)
@@ -61,6 +78,5 @@ class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         }
         startActivity(intent_remove)
     }
-
 
 }
