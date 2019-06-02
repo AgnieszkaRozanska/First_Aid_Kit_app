@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.TakeMedicineOccur.MedicinesMenu
+import com.example.agnieszka.ar_apteczka.TakeMedicineOccur.ActivityMedicinesMenu
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class Menu : AppCompatActivity() {
@@ -25,7 +25,7 @@ class Menu : AppCompatActivity() {
         Button_YourAllMedicines.setOnClickListener {
             // tworzymy aktywnosc ze przeskoczy do drugiego okna
 
-            var Activity3: Intent = Intent(applicationContext, MedicinesMenu::class.java)
+            var Activity3: Intent = Intent(applicationContext, ActivityMedicinesMenu::class.java)
             startActivity(Activity3)
         }
 

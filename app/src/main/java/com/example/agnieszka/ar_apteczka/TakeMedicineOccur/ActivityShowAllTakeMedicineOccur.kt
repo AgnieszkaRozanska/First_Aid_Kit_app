@@ -9,7 +9,7 @@ import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_all_take_medicine_occur_recycler_view.*
 
 
-class AllTakeMedicineOccurRecyclerView : AppCompatActivity() {
+class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,30 +18,23 @@ class AllTakeMedicineOccurRecyclerView : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        var activity = Intent(applicationContext, MedicinesMenu::class.java)
+        val activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
         startActivity(activity)
     }
 
 
     override fun onResume() {
         super.onResume()
-
-
         val sqlConector = SQLConector(this)
-        val  take_medicines_occur_listMORNING=sqlConector.getAllTakeMedicineOccursinMorning()
-        val  take_medicines_occur_listMIDDAY=sqlConector.getAllTakeMedicineOccursinMidday()
-        val  take_medicines_occur_listEVENING=sqlConector.getAllTakeMedicineOccursinEvening()
-
+        val  takeMedicinesOccurListMORNING=sqlConector.getAllTakeMedicineOccursinMorning()
+        val  takeMedicinesOccurListMIDDAY=sqlConector.getAllTakeMedicineOccursinMidday()
+        val  takeMedicinesOccurListEVENING=sqlConector.getAllTakeMedicineOccursinEvening()
         recyler_view_All_take_MedOccurMorning.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
-        recyler_view_All_take_MedOccurMorning.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listMORNING)
-
-
+        recyler_view_All_take_MedOccurMorning.adapter=ShowAllTakeMedicinesOccurAdapter(this, takeMedicinesOccurListMORNING)
         recyler_view_All_take_MedOccurMidday.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
-        recyler_view_All_take_MedOccurMidday.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listMIDDAY)
-
-
+        recyler_view_All_take_MedOccurMidday.adapter=ShowAllTakeMedicinesOccurAdapter(this, takeMedicinesOccurListMIDDAY)
         recyler_view_All_take_MedOccurEvening.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
-        recyler_view_All_take_MedOccurEvening.adapter=card_view_All_TakeMedicinesOccur(this, take_medicines_occur_listEVENING)
+        recyler_view_All_take_MedOccurEvening.adapter=ShowAllTakeMedicinesOccurAdapter(this, takeMedicinesOccurListEVENING)
 
 
     }

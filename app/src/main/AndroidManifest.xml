@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".FirstAidKitAllYoursMedicines.ActivityFirstAidKitMenu">
         </activity>
-        <activity android:name=".TakeMedicineOccur.MedicinesMenu">
+        <activity android:name=".TakeMedicineOccur.ActivityMedicinesMenu">
         </activity>
         <activity android:name=".FirstAidKitAllYoursMedicines.ActivityAddMedicineFirstAidKit">
         </activity>
@@ -28,19 +28,19 @@
         </activity>
         <activity android:name=".card_view_All_Medicines">
         </activity>
-        <activity android:name=".TakeMedicineOccur.AddTakeMedicineOccour">
+        <activity android:name=".TakeMedicineOccur.ActivityAddTakeMedicineOccour">
         </activity>
-        <activity android:name=".TakeMedicineOccur.AddTakeMedicineOccur2">
+        <activity android:name=".TakeMedicineOccur.ActivityAddReminder">
         </activity>
         <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateCountofMedicines">
         </activity>
         <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateRemoveMedicine">
         </activity>
-        <activity android:name=".TakeMedicineOccur.AllTakeMedicineOccurRecyclerView">
+        <activity android:name=".TakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
         </activity>
         <activity android:name=".TakeMedicineOccur.UpdateRemoveMenuTakeMedicinOccur">
         </activity>
-        <activity android:name=".TakeMedicineOccur.UpdateDoseTakeMedicineOccur">
+        <activity android:name=".TakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
         </activity>
     </application>
 

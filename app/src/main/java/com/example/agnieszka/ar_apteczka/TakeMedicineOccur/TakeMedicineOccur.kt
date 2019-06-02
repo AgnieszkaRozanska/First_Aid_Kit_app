@@ -6,37 +6,15 @@ import java.util.*
 class TakeMedicineOccur {
 
 
-    //public DateTime DataTime { get; }
-    //var day: Date
     var day: String
-    //var timeOfDay: TimeOfDay
     var timeOfDay: String
     var dose:Int
-    //var beforeAfterMeal: BeforeAfterMeal
     var beforeAfterMeal: String
     var hourReminders:String
     var descriptionReminder:String
-    //var medicineType: MedicineType
     var medicineType: String
     var iD:String;
 
-
- /*   enum class TimeOfDay
-    {
-        rano,
-        poludnie,
-        wieczor
-
-    }
-
-    enum class BeforeAfterMeal
-    {
-        przed_Posilkiem,
-        w_Trakcie_Posilku,
-        po_Posilku;
-
-    }
-*/
 
     constructor(id:String, medicineType: String,dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String,  hourReminders:String, descriptionReminder:String )
     {

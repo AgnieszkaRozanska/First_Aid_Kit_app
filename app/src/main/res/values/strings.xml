@@ -17,4 +17,14 @@
     <string name="AlertDialogYes">Tak</string>
     <string name="AlertDialogNo">Nie</string>
     <string name="AttentionToRemoveMedicine">Lek został usunięty</string>
+    <string name="TakeMedOccurAttention">Uwaga!</string>
+    <string name="TakeMedOccurInformation">Uzupełnij brakujące dane!</string>
+    <string name="TakeMedOccurBack">Wróć</string>
+    <string name="TakeMedOccurMedAdded">Lek został dodany</string>
+    <string name="DoseUpdateInformation">Dawka została zaktualizowana</string>
+    <string name="RemoveTakeMedOccurAlertTitle">Czy jesteś pewien!</string>
+    <string name="AlertDialogMessage">Czy chcesz usunąć ten lek?</string>
+    <string name="AlertDialogRemoveTakeMedOccurYes">Tak</string>
+    <string name="AlertDialogRemoveTakeMedOccurNo">Nie</string>
+    <string name="UpdateRemoveMenuRemoveAttention">Lek został usunięty</string>
 </resources>

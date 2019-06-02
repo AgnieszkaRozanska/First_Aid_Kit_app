@@ -16,67 +16,68 @@ class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_remove_menu_take_medicin_occur)
 
-
-        if (intent.hasExtra("nameTakeOccur")) UpdateRemoveTakeMedicineOccur_MedicineName.setText(intent.getStringExtra("nameTakeOccur"))
-        if (intent.hasExtra("dose")) updateRemoveTakeMedicineOccur_Dose.setText(intent.getStringExtra("dose"))
-        if (intent.hasExtra("timeOfDay")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.setText(intent.getStringExtra("timeOfDay"))
-        if (intent.hasExtra("afterBeforeMeal")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.setText(intent.getStringExtra("afterBeforeMeal"))
-
+        setData()
 
         Button_RemoveTakeMedicineOccur.setOnClickListener {
-
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Czy jesteś pewien!")
-            builder.setMessage("Czy chcesz usunąć ten lek?")
-            builder.setPositiveButton("Tak", { dialog: DialogInterface, which: Int ->
-                Remove_takemedicineOccur()
-            })
-            builder.setNegativeButton("Nie", { dialogInterface: DialogInterface, i: Int -> })
-            builder.show()
-
+            alertDialogRemoveTakeMedOccur()
         }
 
         button_UpdateDoseTakeMedicineOccur.setOnClickListener {
-            Download_Data_UpdateDose()
+            downloadDataUpdateDose()
         }
 
     }
 
     override fun onBackPressed() {
-        var activity: Intent = Intent(applicationContext, AllTakeMedicineOccurRecyclerView::class.java)
+        val activity = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         startActivity(activity)
     }
 
-    fun Download_Data_UpdateDose(){
-        val intent_edit = Intent(applicationContext, UpdateDoseTakeMedicineOccur::class.java)
-        val Med_Name_Dose_edit=UpdateRemoveTakeMedicineOccur_MedicineName.text
-        val Med_Dose_Dose_edit= updateRemoveTakeMedicineOccur_Dose.text
+    private fun setData(){
+        if (intent.hasExtra("nameTakeOccur")) UpdateRemoveTakeMedicineOccur_MedicineName.text = intent.getStringExtra("nameTakeOccur")
+        if (intent.hasExtra("dose")) updateRemoveTakeMedicineOccur_Dose.text = intent.getStringExtra("dose")
+        if (intent.hasExtra("timeOfDay")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.text = intent.getStringExtra("timeOfDay")
+        if (intent.hasExtra("afterBeforeMeal")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("afterBeforeMeal")
+    }
 
-        var id_toUpdateDose:String=""
-        if (intent.hasExtra("IDMedicine_TakeOccur"))  id_toUpdateDose= intent.getStringExtra("IDMedicine_TakeOccur")
+    private fun alertDialogRemoveTakeMedOccur(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.RemoveTakeMedOccurAlertTitle))
+        builder.setMessage(getString(R.string.AlertDialogMessage))
+        builder.setPositiveButton(getString(R.string.AlertDialogRemoveTakeMedOccurYes)) { dialog: DialogInterface, which: Int ->
+            removeTakemedicineOccur()
+        }
+        builder.setNegativeButton(getString(R.string.AlertDialogRemoveTakeMedOccurNo)) { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
 
-
-        intent_edit.putExtra("nameMedTakeOcur", Med_Name_Dose_edit)
-        intent_edit.putExtra("Dose", Med_Dose_Dose_edit)
-        intent_edit.putExtra("IDMedicine_TakeOccur", id_toUpdateDose)
-        startActivity(intent_edit)
+    private fun downloadDataUpdateDose(){
+        val intentEdit = Intent(applicationContext, ActivityUpdateDoseTakeMedicineOccur::class.java)
+        val medNameDoseEdit=UpdateRemoveTakeMedicineOccur_MedicineName.text
+        val medDoseDoseEdit= updateRemoveTakeMedicineOccur_Dose.text
+        var idToUpdateDose=""
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idToUpdateDose= intent.getStringExtra("IDMedicine_TakeOccur")
+        intentEdit.putExtra("nameMedTakeOcur", medNameDoseEdit)
+        intentEdit.putExtra("Dose", medDoseDoseEdit)
+        intentEdit.putExtra("IDMedicine_TakeOccur", idToUpdateDose)
+        startActivity(intentEdit)
 
     }
 
-    fun Remove_takemedicineOccur(){
-        val intent_remove = Intent(applicationContext, AllTakeMedicineOccurRecyclerView::class.java)
+    private fun removeTakemedicineOccur(){
+        val intentRemove = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         val dbHelper = SQLConector(applicationContext)
-        var id_to_remove_takemedoccu:String=""
-        if (intent.hasExtra("IDMedicine_TakeOccur"))  id_to_remove_takemedoccu= intent.getStringExtra("IDMedicine_TakeOccur")
+        var idToRemoveTakemedoccu=""
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idToRemoveTakemedoccu= intent.getStringExtra("IDMedicine_TakeOccur")
 
-        val ifsuccess = dbHelper.removeTakeMedicineOccur(id_to_remove_takemedoccu)
+        val success = dbHelper.removeTakeMedicineOccur(idToRemoveTakemedoccu)
 
 
-        if(ifsuccess)
+        if(success)
         {
-            Toast.makeText(applicationContext, "Lek został usunięty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.UpdateRemoveMenuRemoveAttention), Toast.LENGTH_SHORT).show()
         }
-        startActivity(intent_remove)
+        startActivity(intentRemove)
     }
 
 }
