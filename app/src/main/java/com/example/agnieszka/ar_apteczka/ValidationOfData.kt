@@ -5,12 +5,12 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
 
-fun ValidationDataSoThatTheAreNotZero(textedit: EditText, warm_informations: TextView)
+fun validationDataSoThatTheAreNotZero(textedit: EditText, warm_informations: TextView)
 {
     textedit.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
             if (textedit.length()==0){
-                warm_informations.setText("To pole nie może być puste!")
+                warm_informations.text = "To pole nie może być puste!"
                 warm_informations.visibility= TextView.VISIBLE
             }
         }
@@ -18,7 +18,7 @@ fun ValidationDataSoThatTheAreNotZero(textedit: EditText, warm_informations: Tex
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if (textedit.length()<1){
-                warm_informations.setText("To pole nie może być puste!")
+                warm_informations.text = "To pole nie może być puste!"
                 warm_informations.visibility= TextView.VISIBLE            }
             else{
                 warm_informations.visibility= TextView.INVISIBLE

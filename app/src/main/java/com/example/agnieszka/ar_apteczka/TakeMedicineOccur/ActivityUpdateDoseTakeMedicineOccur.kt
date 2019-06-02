@@ -23,10 +23,7 @@ class ActivityUpdateDoseTakeMedicineOccur : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        val activity = Intent(applicationContext, UpdateRemoveMenuTakeMedicinOccur::class.java)
-        startActivity(activity)
-    }
+    
 
     private fun uprageTakeMedOccurDoses(id:String) {
 

@@ -15,26 +15,18 @@ class Menu : AppCompatActivity() {
 
 
         Button_FirstAidKit.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do drugiego okna
-
-            var Activity2: Intent = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-            startActivity(Activity2)
+            val activityToFirstAidKit = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+            startActivity(activityToFirstAidKit)
         }
-
 
         Button_YourAllMedicines.setOnClickListener {
-            // tworzymy aktywnosc ze przeskoczy do drugiego okna
-
-            var Activity3: Intent = Intent(applicationContext, ActivityMedicinesMenu::class.java)
-            startActivity(Activity3)
+            val activityToMEdicinesMenu = Intent(applicationContext, ActivityMedicinesMenu::class.java)
+            startActivity(activityToMEdicinesMenu)
         }
-
-
-
     }
 
     override fun onBackPressed() {
-        var Activity: Intent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(Activity)
+        val activity = Intent(applicationContext, MainActivity::class.java)
+        startActivity(activity)
     }
 }

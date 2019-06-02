@@ -2,7 +2,6 @@ package com.example.agnieszka.ar_apteczka
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
@@ -56,17 +55,10 @@ const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME
 
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
 
-
-
-
-//Klasa ta będzie służyła do tworznia bazy danych i niezbędnych tabel
 class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 1)
 {
 
 
-    //-----------------------Podstawowe komendy SQL-------
-
-    //metoda tworzy nam naszą baze danych z tabelą Medicine i MedicineOnce
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_TABLE_MEDICINE)
         db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
@@ -77,8 +69,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_ONCE)
         onCreate(db)
     }
-
-    //-------------------------------------------------------
 
     fun addMedicine(id:String, name: String, medicineType: String, unitInStock: Int, description: String ):Boolean
     {
@@ -97,7 +87,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun getAllMedicineTypes(): ArrayList<MedicineType>
     {
-        val medicine_All_List= ArrayList<MedicineType>()
+        val medicineAllList= ArrayList<MedicineType>()
         val db= readableDatabase
 
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME", null)
@@ -106,11 +96,11 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             if(cursor.moveToNext())
             {
                 do{
-                    var id= cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
-                    var name=cursor.getString(cursor.getColumnIndex(NAME))
-                    var medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
-                    var unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
-                    var description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                    val id= cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
+                    val name=cursor.getString(cursor.getColumnIndex(NAME))
+                    val medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
+                    val unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
+                    val description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
 
 
                 val med= MedicineType(
@@ -121,19 +111,19 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
                     unitInStock.toInt()
 
                 )
-                medicine_All_List.add(med)
+                medicineAllList.add(med)
                 }while (cursor.moveToNext())
             }
         }
 
         cursor.close()
         db.close()
-        return medicine_All_List
+        return medicineAllList
     }
 
     fun getMedListOfName(): ArrayList<String>
     {
-        val medicine_Name_All_List= ArrayList<String>()
+        val medicineNameAllList= ArrayList<String>()
         val db= readableDatabase
 
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME", null)
@@ -142,41 +132,15 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             if(cursor.moveToNext())
             {
                 do{
-                    var name=cursor.getString(cursor.getColumnIndex(NAME))
-                    medicine_Name_All_List.add(name)
+                    val name=cursor.getString(cursor.getColumnIndex(NAME))
+                    medicineNameAllList.add(name)
                 }while (cursor.moveToNext())
             }
         }
 
         cursor.close()
         db.close()
-        return medicine_Name_All_List
-    }
-
-    fun getId(MedName:String): String
-    {
-
-        var id:String
-        val db = this.writableDatabase
-
-        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE NAME=?", arrayOf(MedName),null)
-        id=cursor.getString(cursor.getColumnIndex(ID_MEDICINE))
-
-        cursor.close()
-        db.close()
-        return id
-
-
-    }
-
-
-
-    fun getMedicineOnce(id:String):Cursor
-    {
-        val db=this.writableDatabase
-
-        return db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE ID=?", arrayOf(id), null)
-
+        return medicineNameAllList
     }
 
     fun updateMedicineTypeDoses(id:String, unitInStock: Int):Boolean
@@ -232,7 +196,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun getAllTakeMedicineOccursinMorning():ArrayList<TakeMedicineOccur>{
 
-        val takeMedicineOccur_All_List= ArrayList<TakeMedicineOccur>()
+        val takeMedicineOccurAllList= ArrayList<TakeMedicineOccur>()
         val db= readableDatabase
 
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
@@ -242,31 +206,31 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             {
 
                 do {
-                    var id_takeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
-                    var id_med = cursor.getString(cursor.getColumnIndex(ID))
-                    var dose = cursor.getString(cursor.getColumnIndex(DOSE))
-                    var time_of_day = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
-                    var before_after_meal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
-                    var day = cursor.getString(cursor.getColumnIndex(DAY))
-                    var hour_reminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
-                    var description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
+                    val idtakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
+                    val idmed = cursor.getString(cursor.getColumnIndex(ID))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
+                    val beforeAfterMeal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
+                    val day = cursor.getString(cursor.getColumnIndex(DAY))
+                    val hourReminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
+                    val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
 
-                    if(time_of_day=="Rano")
+                    if(timeOfDay=="Rano")
                     {
                     val takMedOccur = TakeMedicineOccur(
-                        id_takeMedOccur,
-                        id_med,
+                        idtakeMedOccur,
+                        idmed,
                         dose.toInt(),
-                        time_of_day,
-                        before_after_meal,
+                        timeOfDay,
+                        beforeAfterMeal,
                         day,
-                        hour_reminder,
+                        hourReminder,
                         description
 
 
                     )
 
-                    takeMedicineOccur_All_List.add(takMedOccur)
+                    takeMedicineOccurAllList.add(takMedOccur)
                 }
                 }while (cursor.moveToNext())
             }
@@ -274,13 +238,13 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         cursor.close()
         db.close()
-        return takeMedicineOccur_All_List
+        return takeMedicineOccurAllList
 
     }
 
     fun getAllTakeMedicineOccursinMidday():ArrayList<TakeMedicineOccur>{
 
-        val takeMedicineOccur_All_List= ArrayList<TakeMedicineOccur>()
+        val takeMedicineOccurAllList= ArrayList<TakeMedicineOccur>()
         val db= readableDatabase
 
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
@@ -290,31 +254,31 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             {
 
                 do {
-                    var id_takeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
-                    var id_med = cursor.getString(cursor.getColumnIndex(ID))
-                    var dose = cursor.getString(cursor.getColumnIndex(DOSE))
-                    var time_of_day = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
-                    var before_after_meal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
-                    var day = cursor.getString(cursor.getColumnIndex(DAY))
-                    var hour_reminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
-                    var description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
+                    val idTakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
+                    val idMed = cursor.getString(cursor.getColumnIndex(ID))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
+                    val beforeAfterMeal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
+                    val day = cursor.getString(cursor.getColumnIndex(DAY))
+                    val hourReminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
+                    val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
 
-                    if(time_of_day=="Popołudnie")
+                    if(timeOfDay=="Popołudnie")
                     {
                         val takMedOccur = TakeMedicineOccur(
-                            id_takeMedOccur,
-                            id_med,
+                            idTakeMedOccur,
+                            idMed,
                             dose.toInt(),
-                            time_of_day,
-                            before_after_meal,
+                            timeOfDay,
+                            beforeAfterMeal,
                             day,
-                            hour_reminder,
+                            hourReminder,
                             description
 
 
                         )
 
-                        takeMedicineOccur_All_List.add(takMedOccur)
+                        takeMedicineOccurAllList.add(takMedOccur)
                     }
                 }while (cursor.moveToNext())
             }
@@ -322,13 +286,13 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         cursor.close()
         db.close()
-        return takeMedicineOccur_All_List
+        return takeMedicineOccurAllList
 
     }
 
     fun getAllTakeMedicineOccursinEvening():ArrayList<TakeMedicineOccur>{
 
-        val takeMedicineOccur_All_List= ArrayList<TakeMedicineOccur>()
+        val takeMedicineOccurAllList= ArrayList<TakeMedicineOccur>()
         val db= readableDatabase
 
         val cursor=db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
@@ -338,31 +302,31 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             {
 
                 do {
-                    var id_takeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
-                    var id_med = cursor.getString(cursor.getColumnIndex(ID))
-                    var dose = cursor.getString(cursor.getColumnIndex(DOSE))
-                    var time_of_day = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
-                    var before_after_meal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
-                    var day = cursor.getString(cursor.getColumnIndex(DAY))
-                    var hour_reminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
-                    var description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
+                    val idTakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
+                    val idMed = cursor.getString(cursor.getColumnIndex(ID))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
+                    val beforeAfterMeal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
+                    val day = cursor.getString(cursor.getColumnIndex(DAY))
+                    val hourReminder = cursor.getString(cursor.getColumnIndex(HOUR_REMINDERS))
+                    val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION_REMINDER))
 
-                    if(time_of_day=="Wieczór")
+                    if(timeOfDay=="Wieczór")
                     {
                         val takMedOccur = TakeMedicineOccur(
-                            id_takeMedOccur,
-                            id_med,
+                            idTakeMedOccur,
+                            idMed,
                             dose.toInt(),
-                            time_of_day,
-                            before_after_meal,
+                            timeOfDay,
+                            beforeAfterMeal,
                             day,
-                            hour_reminder,
+                            hourReminder,
                             description
 
 
                         )
 
-                        takeMedicineOccur_All_List.add(takMedOccur)
+                        takeMedicineOccurAllList.add(takMedOccur)
                     }
                 }while (cursor.moveToNext())
             }
@@ -370,7 +334,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
 
         cursor.close()
         db.close()
-        return takeMedicineOccur_All_List
+        return takeMedicineOccurAllList
 
     }
 
@@ -405,16 +369,5 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             return false
         }
     }
-
-
-    fun getTakeMedicineOccursOnce(id:String):Cursor
-    {
-        val db=this.writableDatabase
-        return db.rawQuery("SELECT * FROM $MEDICINE_TABLE_NAME WHERE ID=?", arrayOf(id), null)
-
-    }
-
-
-
 
 }

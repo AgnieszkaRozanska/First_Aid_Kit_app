@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
-        val cardView_Medicine = layoutInflater.inflate(R.layout.activity_card_view__all__medicines, viewGroup, false)
-        return MyViewHolder(cardView_Medicine)
+        val cardViewMedicine = layoutInflater.inflate(R.layout.activity_card_view__all__medicines, viewGroup, false)
+        return MyViewHolder(cardViewMedicine)
 
     }
 
@@ -24,30 +24,28 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.medName.setText(medicineTypeList.elementAt(position).name)
-        holder.medKind.setText(medicineTypeList.elementAt(position).kindMedicineType)
+        holder.medName.text = medicineTypeList.elementAt(position).name
+        holder.medKind.text = medicineTypeList.elementAt(position).kindMedicineType
 
 
-
-        // ---------------- Edycja leku po kliknięciu w nią ---------------
-        val cardView_medicine = holder.view.Medicine_cardView
+        val cardViewmedicine = holder.view.Medicine_cardView
            val context:Context = holder.view.context
 
-        cardView_medicine.setOnClickListener {
+        cardViewmedicine.setOnClickListener {
 
-            val intent_edit = Intent(context, ActivityUpdateRemoveMedicine::class.java)
-            val Med_Name_edit=medicineTypeList[holder.adapterPosition].name
-            val Med_Count_edit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
-            val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType
-            val Med_Description_edit= medicineTypeList[holder.adapterPosition].description
-            val id_edit= medicineTypeList[holder.adapterPosition].iDMedicine
+            val intentEdit = Intent(context, ActivityUpdateRemoveMedicine::class.java)
+            val medNameEdit=medicineTypeList[holder.adapterPosition].name
+            val medCountEdit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
+            val medKindEdit= medicineTypeList[holder.adapterPosition].kindMedicineType
+            val medDescriptionEdit= medicineTypeList[holder.adapterPosition].description
+            val idEdit= medicineTypeList[holder.adapterPosition].iDMedicine
 
-            intent_edit.putExtra("name", Med_Name_edit)
-            intent_edit.putExtra("count", Med_Count_edit)
-            intent_edit.putExtra("IDMedicine", id_edit)
-            intent_edit.putExtra("kind", Med_Kind_edit)
-            intent_edit.putExtra("description", Med_Description_edit)
-            context.startActivity(intent_edit)
+            intentEdit.putExtra("name", medNameEdit)
+            intentEdit.putExtra("count", medCountEdit)
+            intentEdit.putExtra("IDMedicine", idEdit)
+            intentEdit.putExtra("kind", medKindEdit)
+            intentEdit.putExtra("description", medDescriptionEdit)
+            context.startActivity(intentEdit)
         }
     }
 }

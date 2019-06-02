@@ -10,7 +10,7 @@ import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_update_remove_menu_take_medicin_occur.*
 
-class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
+class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,10 +69,7 @@ class UpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         val dbHelper = SQLConector(applicationContext)
         var idToRemoveTakemedoccu=""
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idToRemoveTakemedoccu= intent.getStringExtra("IDMedicine_TakeOccur")
-
         val success = dbHelper.removeTakeMedicineOccur(idToRemoveTakemedoccu)
-
-
         if(success)
         {
             Toast.makeText(applicationContext, getString(R.string.UpdateRemoveMenuRemoveAttention), Toast.LENGTH_SHORT).show()

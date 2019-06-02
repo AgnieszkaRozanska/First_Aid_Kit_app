@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_update__count_of__medicines.*
+import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
 
 class ActivityUpdateCountofMedicines : AppCompatActivity() {
 
@@ -14,26 +15,12 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update__count_of__medicines)
 
-        val id=setData()
+        val id =setData()
 
         Update_Count_of_Med_Update.setOnClickListener {
             uprageMed(id)
         }
     }
-
-    override fun onBackPressed() {
-        var activity = Intent(applicationContext, ActivityUpdateRemoveMedicine::class.java)
-        startActivity(activity)
-    }
-
-    private fun setData():String{
-        if (intent.hasExtra("name")) Update_Count_of_Med_Name.text = intent.getStringExtra("name")
-        if (intent.hasExtra("count")) Update_Count_of_Med_Count.setText(intent.getStringExtra("count"))
-        var id=""
-        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
-        return  id
-    }
-
 
 
     private fun uprageMed(id:String) {
@@ -52,4 +39,15 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
             startActivity(activity)
         }
     }
+
+    private fun setData():String{
+        if (intent.hasExtra("name")) Update_Count_of_Med_Name.text = intent.getStringExtra("name")
+        if (intent.hasExtra("count")) Update_Count_of_Med_Count.setText(intent.getStringExtra("count"))
+        var id=""
+        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
+
+        return id
+    }
+
+
 }

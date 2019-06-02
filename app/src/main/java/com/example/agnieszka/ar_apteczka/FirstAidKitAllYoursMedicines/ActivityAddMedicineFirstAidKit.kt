@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
-import com.example.agnieszka.ar_apteczka.ValidationDataSoThatTheAreNotZero
+import com.example.agnieszka.ar_apteczka.validationDataSoThatTheAreNotZero
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 import java.util.*
 
@@ -19,9 +19,9 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
 
-        ValidationDataSoThatTheAreNotZero(Med_Name_editText, warm_informations_MedName)
-        ValidationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
-        ValidationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
+        validationDataSoThatTheAreNotZero(Med_Name_editText, warm_informations_MedName)
+        validationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
+        validationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
 
     }
 

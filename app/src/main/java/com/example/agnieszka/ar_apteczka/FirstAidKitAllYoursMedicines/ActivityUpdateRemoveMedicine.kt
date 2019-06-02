@@ -27,8 +27,9 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
             alertDialog()
         }
 
-
     }
+
+
 
     override fun onBackPressed() {
         var activity = Intent(applicationContext, ActivityShowAllMedicines::class.java)
@@ -86,4 +87,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         }
         startActivity(intentRemove)
     }
+
+
 }

@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".TakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
         </activity>
-        <activity android:name=".TakeMedicineOccur.UpdateRemoveMenuTakeMedicinOccur">
+        <activity android:name=".TakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
         </activity>
         <activity android:name=".TakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
         </activity>

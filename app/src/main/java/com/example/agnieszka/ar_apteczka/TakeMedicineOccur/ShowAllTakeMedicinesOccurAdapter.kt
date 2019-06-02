@@ -48,7 +48,7 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
 
         cardViewMedicine.setOnClickListener {
 
-            val intentEdit = Intent(context, UpdateRemoveMenuTakeMedicinOccur::class.java)
+            val intentEdit = Intent(context, ActivityUpdateRemoveMenuTakeMedicinOccur::class.java)
             val medTakOccurNameEdit=takeMedicineOccurList[holder.adapterPosition].medicineType
             val medTakeOccurDoseEdit= takeMedicineOccurList[holder.adapterPosition].dose.toString()
             val medTakeOccurTimeofDayEdit= takeMedicineOccurList[holder.adapterPosition].timeOfDay
