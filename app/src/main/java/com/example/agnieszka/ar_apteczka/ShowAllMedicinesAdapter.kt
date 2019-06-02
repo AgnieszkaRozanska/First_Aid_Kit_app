@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.UpdateRemoveMedicine
+import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.ActivityUpdateRemoveMedicine
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 
 class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {
@@ -35,7 +35,7 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
         cardView_medicine.setOnClickListener {
 
-            val intent_edit = Intent(context, UpdateRemoveMedicine::class.java)
+            val intent_edit = Intent(context, ActivityUpdateRemoveMedicine::class.java)
             val Med_Name_edit=medicineTypeList[holder.adapterPosition].name
             val Med_Count_edit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
             val Med_Kind_edit= medicineTypeList[holder.adapterPosition].kindMedicineType

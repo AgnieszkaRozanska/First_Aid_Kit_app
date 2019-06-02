@@ -18,13 +18,13 @@
         </activity>
         <activity android:name=".Menu">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.FirstAidKitMenu">
+        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityFirstAidKitMenu">
         </activity>
         <activity android:name=".TakeMedicineOccur.MedicinesMenu">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.AddMedicineFirstAidKit">
+        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityAddMedicineFirstAidKit">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.AllMedicinesRecyclerView">
+        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityShowAllMedicines">
         </activity>
         <activity android:name=".card_view_All_Medicines">
         </activity>
@@ -32,9 +32,9 @@
         </activity>
         <activity android:name=".TakeMedicineOccur.AddTakeMedicineOccur2">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.UpdateCountofMedicines">
+        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateCountofMedicines">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.UpdateRemoveMedicine">
+        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateRemoveMedicine">
         </activity>
         <activity android:name=".TakeMedicineOccur.AllTakeMedicineOccurRecyclerView">
         </activity>

@@ -9,7 +9,7 @@ import com.example.agnieszka.ar_apteczka.SQLConector
 import com.example.agnieszka.ar_apteczka.card_view_All_Medicines
 import kotlinx.android.synthetic.main.activity_all__medicines.*
 
-class AllMedicinesRecyclerView : AppCompatActivity() {
+class ActivityShowAllMedicines : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +18,8 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        var Activity: Intent = Intent(applicationContext, FirstAidKitMenu::class.java)
-        startActivity(Activity)
+        var activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+        startActivity(activity)
     }
 
 
@@ -28,14 +28,14 @@ class AllMedicinesRecyclerView : AppCompatActivity() {
 
 
         val sqlConector = SQLConector(this)
-        val db = sqlConector.writableDatabase
+        sqlConector.writableDatabase
 
-        val  medicines_list=sqlConector.getAllMedicineTypes()
+        val  medicinesList=sqlConector.getAllMedicineTypes()
 
 
 
         recyler_view_med.layoutManager = LinearLayoutManager(this)
-        recyler_view_med.adapter = card_view_All_Medicines(this, medicines_list)
+        recyler_view_med.adapter = card_view_All_Medicines(this, medicinesList)
 
 
     }

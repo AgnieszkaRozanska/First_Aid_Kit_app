@@ -19,7 +19,6 @@ class MedicineType {
     }
 
     var iDMedicine:String
-    //var kindMedicineType: KindMedicineType
     var kindMedicineType:String
     var name:String
     var description:String
@@ -35,7 +34,4 @@ class MedicineType {
 
 
     }
-
-
-
 }

@@ -6,5 +6,15 @@
     <string name="chooseAterBeforeMeal">Proszę wpisać porę posiłku</string>
     <string name="choosehourReminder">Proszę wpisać godzinę przypomnienia</string>
     <string name="chooseReminder">Ustaw przypomniene</string>
-
+    <string name="attention">Uwaga!</string>
+    <string name="attentiontoAddMedicine">Uwaga</string>
+    <string name="fillTheData">Uzupełnij brakujące dane!</string>
+    <string name="back">Wróć</string>
+    <string name="infortionMedicinWasAdded">Lek został dodany</string>
+    <string name="attentionToUpdateMedicine">Lek został zaktualizowany</string>
+    <string name="AlertDialogAttentionAreYouSure">Czy jesteś pewien!</string>
+    <string name="AlertDialogQuestion">Czy chcesz usunąć ten lek?</string>
+    <string name="AlertDialogYes">Tak</string>
+    <string name="AlertDialogNo">Nie</string>
+    <string name="AttentionToRemoveMedicine">Lek został usunięty</string>
 </resources>
