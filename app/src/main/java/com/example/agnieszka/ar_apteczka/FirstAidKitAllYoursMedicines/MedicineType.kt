@@ -4,20 +4,6 @@ import java.util.*
 
 class MedicineType {
 
-
-    enum class KindMedicineType{
-
-        tabletka_okragla,
-        tabletka_owalna,
-        kapsułka,
-        krople,
-        masc,
-        inhalator,
-        zastrzyk,
-        czopek
-
-    }
-
     var iDMedicine:String
     var kindMedicineType:String
     var name:String

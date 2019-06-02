@@ -14,10 +14,7 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update__count_of__medicines)
 
-        if (intent.hasExtra("name")) Update_Count_of_Med_Name.text = intent.getStringExtra("name")
-        if (intent.hasExtra("count")) Update_Count_of_Med_Count.setText(intent.getStringExtra("count"))
-        var id=""
-        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
+        val id=setData()
 
         Update_Count_of_Med_Update.setOnClickListener {
             uprageMed(id)
@@ -28,6 +25,15 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         var activity = Intent(applicationContext, ActivityUpdateRemoveMedicine::class.java)
         startActivity(activity)
     }
+
+    private fun setData():String{
+        if (intent.hasExtra("name")) Update_Count_of_Med_Name.text = intent.getStringExtra("name")
+        if (intent.hasExtra("count")) Update_Count_of_Med_Count.setText(intent.getStringExtra("count"))
+        var id=""
+        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
+        return  id
+    }
+
 
 
     private fun uprageMed(id:String) {
