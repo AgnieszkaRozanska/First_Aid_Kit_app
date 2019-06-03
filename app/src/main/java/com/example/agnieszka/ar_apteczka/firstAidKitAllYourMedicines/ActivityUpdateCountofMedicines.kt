@@ -1,8 +1,10 @@
 package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
@@ -27,15 +29,24 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         val dbHelper = SQLConector(this)
         val count = Update_Count_of_Med_Count.text.toString()
 
-
-        val success= dbHelper.updateMedicineTypeDoses(id, count.toInt())
-
-        if(success)
+        if( count.isEmpty())
         {
-            Toast.makeText(applicationContext, getString(R.string.attentionToUpdateMedicine), Toast.LENGTH_SHORT).show()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
+            builder.setMessage(getString(R.string.UpdateCountMedicinesMessageAlert))
+            builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
 
-            var activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-            startActivity(activity)
+            builder.show()
+        }
+        else {
+            val success = dbHelper.updateMedicineTypeDoses(id, count.toInt())
+            if (success) {
+                Toast.makeText(applicationContext, getString(R.string.attentionToUpdateMedicine), Toast.LENGTH_SHORT)
+                    .show()
+
+                var activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+                startActivity(activity)
+            }
         }
     }
 

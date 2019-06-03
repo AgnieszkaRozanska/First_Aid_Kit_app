@@ -27,3 +27,4 @@ fun validationDataSoThatTheAreNotZero(textedit: EditText, warm_informations: Tex
 
     })
 }
+

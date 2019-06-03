@@ -38,4 +38,6 @@
     <string name="ActivityAddMedicineNameInformation">Musisz podać nazwę leku</string>
     <string name="ActivityAddMedicineKidInformation">Musisz podać rodzaj leku</string>
     <string name="ActivityAddMedicineActiveDose">Podaj dawkę czynną</string>
+    <string name="UpdateCountMedicinesTitleAlert">Niepoprawne dane</string>
+    <string name="UpdateCountMedicinesMessageAlert">Podaj prawidłową liczbę</string>
 </resources>
