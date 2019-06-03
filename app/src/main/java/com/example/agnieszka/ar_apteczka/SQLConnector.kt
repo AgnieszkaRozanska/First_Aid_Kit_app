@@ -18,6 +18,7 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
     const val UNIT_IN_STOCK = "UnitInStock"
     const val DESCRIPTION = "Description"
     const val ID_MEDICINE = "IDMedicine"
+    const val ACTIVEDOSE = "ActiveDose"
 
     const val MEDICINE_ONCE_TABLE_NAME = "MedicineOnce"
     const val ID_MEDICINEONCE = "IDMedicine"
@@ -38,7 +39,8 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
              NAME + " TEXT NOT NULL,"+
              MEDICINE_TYPE + " TEXT NOT NULL," +
              UNIT_IN_STOCK + " INTEGER NOT NULL," +
-             DESCRIPTION + " TEXT);")
+            DESCRIPTION + " TEXT," +
+            ACTIVEDOSE + " TEXT);")
 
 
 const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_ONCE_TABLE_NAME + " (" +
@@ -80,6 +82,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         cv.put(MEDICINE_TYPE, medicine.kindMedicineType)
         cv.put(UNIT_IN_STOCK, medicine.unitInStock)
         cv.put(DESCRIPTION, medicine.description)
+        cv.put(ACTIVEDOSE, medicine.activedoses)
 
         val result= db.insert(MEDICINE_TABLE_NAME, null, cv)
         db.close()
@@ -102,14 +105,15 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
                     val medicineType=cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
                     val unitInStock=cursor.getString(cursor.getColumnIndex(UNIT_IN_STOCK))
                     val description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                    val activeDose = cursor.getString(cursor.getColumnIndex(ACTIVEDOSE))
 
                     val med= MedicineType(
                     id,
                     name,
                     medicineType,
                     description,
-                    unitInStock.toInt()
-
+                    unitInStock.toInt(),
+                    activeDose
                 )
                 medicineAllList.add(med)
                 }while (cursor.moveToNext())
@@ -133,7 +137,9 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
             {
                 do{
                     val name=cursor.getString(cursor.getColumnIndex(NAME))
-                    medicineNameAllList.add(name)
+                    val activeDose = cursor.getString(cursor.getColumnIndex(ACTIVEDOSE))
+                    val fullName : String=name + " "+ activeDose
+                    medicineNameAllList.add(fullName)
                 }while (cursor.moveToNext())
             }
         }

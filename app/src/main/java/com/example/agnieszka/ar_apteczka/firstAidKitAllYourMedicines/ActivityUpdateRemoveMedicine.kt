@@ -28,13 +28,10 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
 
     }
 
-
-
     override fun onBackPressed() {
         var activity = Intent(applicationContext, ActivityShowAllMedicines::class.java)
         startActivity(activity)
     }
-
 
     private fun downloadData(){
         val intentEdit = Intent(applicationContext, ActivityUpdateCountofMedicines::class.java)
@@ -57,7 +54,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("count")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.text = intent.getStringExtra("count")
         if (intent.hasExtra("kind")) updateRemoveTakeMedicineOccur_Dose.text = intent.getStringExtra("kind")
         if (intent.hasExtra("description")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("description")
-
     }
 
     private fun alertDialog(){
@@ -79,13 +75,10 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
 
         val success = dbHelper.removeMedicineType(idToRemoveMed)
 
-
         if(success)
         {
             Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()
         }
         startActivity(intentRemove)
     }
-
-
 }

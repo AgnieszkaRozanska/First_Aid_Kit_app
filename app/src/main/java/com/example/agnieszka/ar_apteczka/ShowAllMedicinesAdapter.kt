@@ -24,7 +24,10 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.medName.text = medicineTypeList.elementAt(position).name
+        val medNameEdit=medicineTypeList[holder.adapterPosition].name
+        val activeDose = medicineTypeList[holder.adapterPosition].activedoses
+        val fullname= "$medNameEdit $activeDose"
+        holder.medName.text = fullname
         holder.medKind.text = medicineTypeList.elementAt(position).kindMedicineType
 
 
@@ -35,12 +38,14 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 
             val intentEdit = Intent(context, ActivityUpdateRemoveMedicine::class.java)
             val medNameEdit=medicineTypeList[holder.adapterPosition].name
+            val activeDose = medicineTypeList[holder.adapterPosition].activedoses
             val medCountEdit= medicineTypeList[holder.adapterPosition].unitInStock.toString()
             val medKindEdit= medicineTypeList[holder.adapterPosition].kindMedicineType
             val medDescriptionEdit= medicineTypeList[holder.adapterPosition].description
             val idEdit= medicineTypeList[holder.adapterPosition].iDMedicine
+            val fullname= "$medNameEdit $activeDose"
 
-            intentEdit.putExtra("name", medNameEdit)
+            intentEdit.putExtra("name", fullname)
             intentEdit.putExtra("count", medCountEdit)
             intentEdit.putExtra("IDMedicine", idEdit)
             intentEdit.putExtra("kind", medKindEdit)
@@ -53,7 +58,4 @@ class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<
 class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView= view.findViewById(R.id.MedicineName_cardView)
     var medKind : TextView = view.findViewById(R.id.Kind_cardView)
-
-
-
 }

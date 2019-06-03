@@ -13,9 +13,6 @@ class ActivityFirstAidKitMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_and_kit)
 
-
-
-
         Button_Add_Med_toFAidK.setOnClickListener {
             var acivity = Intent(applicationContext, ActivityAddMedicineFirstAidKit::class.java)
             startActivity(acivity)

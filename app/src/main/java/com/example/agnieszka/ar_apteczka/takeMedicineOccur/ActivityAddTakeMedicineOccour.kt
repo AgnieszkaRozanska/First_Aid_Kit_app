@@ -40,8 +40,8 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
         Add_Med_Occour_BeforeAfterMeal_radioGroup.setOnCheckedChangeListener { group, checkedId ->
 
-            val beforeAfetrMealRG : RadioButton= findViewById(checkedId)
-            beforeAfterMeal=beforeAfetrMealRG.text
+            val beforeAfterMeal : RadioButton= findViewById(checkedId)
+            this.beforeAfterMeal = beforeAfterMeal.text
         }
     }
 

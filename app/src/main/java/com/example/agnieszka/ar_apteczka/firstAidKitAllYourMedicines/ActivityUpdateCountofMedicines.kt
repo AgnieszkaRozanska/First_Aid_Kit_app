@@ -17,12 +17,12 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         val id =setData()
 
         Update_Count_of_Med_Update.setOnClickListener {
-            uprageMed(id)
+            upgradeMed(id)
         }
     }
 
 
-    private fun uprageMed(id:String) {
+    private fun upgradeMed(id:String) {
 
         val dbHelper = SQLConector(this)
         val count = Update_Count_of_Med_Count.text.toString()

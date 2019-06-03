@@ -38,6 +38,7 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
             val kind: String = Med_Kind_editText.text.toString()
             val count: String = Med_Count_editText.text.toString()
             val description: String = Med_Description_editText.text.toString()
+            val activedosestext:String = Med_Active_Dose_editText.text.toString()
 
             if(name.isEmpty() || kind.isEmpty() || count.isEmpty())
             {
@@ -49,7 +50,7 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
                 builder.show()
             }
             else{
-                val medicine = MedicineType(id, name, kind, description, count.toInt())
+                val medicine = MedicineType(id, name, kind, description, count.toInt(), activedosestext)
                 val success= dbHelper.addMedicine(medicine)
 
                 if(success)
