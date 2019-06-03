@@ -27,4 +27,7 @@
     <string name="AlertDialogRemoveTakeMedOccurYes">Tak</string>
     <string name="AlertDialogRemoveTakeMedOccurNo">Nie</string>
     <string name="UpdateRemoveMenuRemoveAttention">Lek został usunięty</string>
+    <string name="Morning">Rano</string>
+    <string name="Midday">Popołudnie</string>
+    <string name="Evening">Wieczór</string>
 </resources>

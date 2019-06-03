@@ -1,7 +1,4 @@
-package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
-
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
-import java.util.*
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur
 
 class TakeMedicineOccur {
 

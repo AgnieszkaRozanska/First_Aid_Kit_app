@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

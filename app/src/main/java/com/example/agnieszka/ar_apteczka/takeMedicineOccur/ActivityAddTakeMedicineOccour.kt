@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -78,7 +78,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         else{
 
             val takeMedOccur= TakeMedicineOccur(id,id_MedType.toString(), dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder  )
-            val success= dbHelper.addTakeMedicineOccour(takeMedOccur)
+            val success= dbHelper.addTakeMedicineOccur(takeMedOccur)
 
             if(success)
             {

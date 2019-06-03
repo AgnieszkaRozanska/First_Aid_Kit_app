@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/updatedosebackground"
-        tools:context=".TakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
+        tools:context=".takeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
 
     <ImageView
             android:layout_width="106dp"

@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.MedicineType
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.ActivityUpdateRemoveMedicine
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityUpdateRemoveMedicine
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 
 class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {

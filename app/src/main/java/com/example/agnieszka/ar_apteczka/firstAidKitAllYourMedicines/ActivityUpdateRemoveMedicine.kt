@@ -1,11 +1,10 @@
-package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
 
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.view.View
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector

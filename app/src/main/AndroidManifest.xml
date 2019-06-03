@@ -18,29 +18,29 @@
         </activity>
         <activity android:name=".Menu">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityFirstAidKitMenu">
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityFirstAidKitMenu">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityMedicinesMenu">
+        <activity android:name=".takeMedicineOccur.ActivityMedicinesMenu">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityAddMedicineFirstAidKit">
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityAddMedicineFirstAidKit">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityShowAllMedicines">
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityShowAllMedicines">
         </activity>
         <activity android:name=".card_view_All_Medicines">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityAddTakeMedicineOccour">
+        <activity android:name=".takeMedicineOccur.ActivityAddTakeMedicineOccour">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityAddReminder">
+        <activity android:name=".takeMedicineOccur.ActivityAddReminder">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateCountofMedicines">
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityUpdateCountofMedicines">
         </activity>
-        <activity android:name=".FirstAidKitAllYoursMedicines.ActivityUpdateRemoveMedicine">
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityUpdateRemoveMedicine">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
+        <activity android:name=".takeMedicineOccur.ActivityShowAllTakeMedicineOccur">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
+        <activity android:name=".takeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
         </activity>
-        <activity android:name=".TakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
+        <activity android:name=".takeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
         </activity>
     </application>
 

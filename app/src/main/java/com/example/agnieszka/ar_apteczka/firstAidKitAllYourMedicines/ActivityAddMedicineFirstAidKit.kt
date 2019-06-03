@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
 
 import android.content.DialogInterface
 import android.content.Intent

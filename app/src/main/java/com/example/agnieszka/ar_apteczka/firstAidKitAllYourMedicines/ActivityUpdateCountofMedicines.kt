@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.SQLConector
 import kotlinx.android.synthetic.main.activity_update__count_of__medicines.*
-import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
 
 class ActivityUpdateCountofMedicines : AppCompatActivity() {
 

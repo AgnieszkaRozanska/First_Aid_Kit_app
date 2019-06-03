@@ -3,8 +3,8 @@ package com.example.agnieszka.ar_apteczka
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.agnieszka.ar_apteczka.FirstAidKitAllYoursMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.TakeMedicineOccur.ActivityMedicinesMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class Menu : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.TakeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur
 
 import android.content.Intent
 import android.os.Bundle
@@ -26,9 +26,9 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val sqlConector = SQLConector(this)
-        val  takeMedicinesOccurListMORNING=sqlConector.getAllTakeMedicineOccursinMorning()
-        val  takeMedicinesOccurListMIDDAY=sqlConector.getAllTakeMedicineOccursinMidday()
-        val  takeMedicinesOccurListEVENING=sqlConector.getAllTakeMedicineOccursinEvening()
+        val  takeMedicinesOccurListMORNING=sqlConector.getAllTakeMedicineOccur(getString(R.string.Morning))
+        val  takeMedicinesOccurListMIDDAY=sqlConector.getAllTakeMedicineOccur(getString(R.string.Midday))
+        val  takeMedicinesOccurListEVENING=sqlConector.getAllTakeMedicineOccur(getString(R.string.Evening))
         recyler_view_All_take_MedOccurMorning.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
         recyler_view_All_take_MedOccurMorning.adapter=ShowAllTakeMedicinesOccurAdapter(this, takeMedicinesOccurListMORNING)
         recyler_view_All_take_MedOccurMidday.layoutManager=LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
