@@ -37,7 +37,20 @@
     <string name="ActivityAddMedicineWriteDescription">Opis</string>
     <string name="ActivityAddMedicineNameInformation">Musisz podać nazwę leku</string>
     <string name="ActivityAddMedicineKidInformation">Musisz podać rodzaj leku</string>
-    <string name="ActivityAddMedicineActiveDose">Podaj dawkę czynną</string>
+    <string name="ActivityAddMedicineActiveDose">Podaj dawkę czynną w mg</string>
     <string name="UpdateCountMedicinesTitleAlert">Niepoprawne dane</string>
     <string name="UpdateCountMedicinesMessageAlert">Podaj prawidłową liczbę</string>
+    <string name="ActivityMorningMedicines">Leki poranne</string>
+    <string name="ActivityAfternoonMedicines">Leki popołudniowe</string>
+    <string name="ActivityEveningMedicines">Leki wieczorne</string>
+    <string name="ActivityCardViewMdicineName">Nazwa leku</string>
+    <string name="ActivityCardViewMedicineKind">Rodzaj</string>
+    <string name="ActivityUpdateCountMedicinesInfromation">Wpisz nową ilość tabletek</string>
+    <string name="ActivityUpdateDoseMedInformation">Wpisz nową dawkę leku</string>
+    <string name="ActivityDose">Dawka</string>
+    <string name="ActivityTimeOfDay">Pora posiłku</string>
+    <string name="ActivityDosetoTakeText">Zażywana dawka tabletek</string>
+    <string name="ActivityTimeDay">Pora dnia</string>
+    <string name="ActivityNoDescrpition">Brak opisu</string>
+    <string name="ActivityInformationAbotCountMedicine">Ilość posiadanych sztuk</string>
 </resources>
