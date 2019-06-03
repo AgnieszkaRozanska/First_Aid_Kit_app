@@ -49,7 +49,8 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
                 builder.show()
             }
             else{
-                val success= dbHelper.addMedicine(id, name, kind, count.toInt(), description)
+                val medicine = MedicineType(id, name, kind, description, count.toInt())
+                val success= dbHelper.addMedicine(medicine)
 
                 if(success)
                 {

@@ -77,7 +77,8 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         }
         else{
 
-            val success= dbHelper.addTakeMedicineOccour(id, id_MedType.toString(), dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder )
+            val takeMedOccur= TakeMedicineOccur(id,id_MedType.toString(), dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder  )
+            val success= dbHelper.addTakeMedicineOccour(takeMedOccur)
 
             if(success)
             {

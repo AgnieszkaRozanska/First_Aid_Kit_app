@@ -70,15 +70,16 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         onCreate(db)
     }
 
-    fun addMedicine(id:String, name: String, medicineType: String, unitInStock: Int, description: String ):Boolean
+
+    fun addMedicine(medicine: MedicineType ):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
-        cv.put(ID_MEDICINE, id)
-        cv.put(NAME, name)
-        cv.put(MEDICINE_TYPE, medicineType)
-        cv.put(UNIT_IN_STOCK, unitInStock)
-        cv.put(DESCRIPTION, description)
+        cv.put(ID_MEDICINE, medicine.iDMedicine)
+        cv.put(NAME, medicine.name)
+        cv.put(MEDICINE_TYPE, medicine.kindMedicineType)
+        cv.put(UNIT_IN_STOCK, medicine.unitInStock)
+        cv.put(DESCRIPTION, medicine.description)
 
         val result= db.insert(MEDICINE_TABLE_NAME, null, cv)
         db.close()
@@ -175,18 +176,18 @@ class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, nul
         return true
     }
 
-    fun addTakeMedicineOccour(iDMedicine: String,iD: String, dose: Int,timeOfDay: String,  beforeAfterMeal: String, day: String,  hourReminders : String, descriptionReminder : String ):Boolean
+    fun addTakeMedicineOccour(takeMedOccur: TakeMedicineOccur):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
-        cv.put(ID_MEDICINEONCE, iDMedicine)
-        cv.put(ID, iD)
-        cv.put(DOSE, dose)
-        cv.put(TIME_OF_DAY, timeOfDay)
-        cv.put(BEFORE_AFTER_MEAL, beforeAfterMeal)
-        cv.put(DAY, day)
-        cv.put(HOUR_REMINDERS, hourReminders)
-        cv.put(DESCRIPTION_REMINDER,descriptionReminder )
+        cv.put(ID_MEDICINEONCE, takeMedOccur.iD)
+        cv.put(ID, takeMedOccur.medicineType)
+        cv.put(DOSE, takeMedOccur.dose)
+        cv.put(TIME_OF_DAY, takeMedOccur.timeOfDay)
+        cv.put(BEFORE_AFTER_MEAL, takeMedOccur.beforeAfterMeal)
+        cv.put(DAY, takeMedOccur.day)
+        cv.put(HOUR_REMINDERS, takeMedOccur.hourReminders)
+        cv.put(DESCRIPTION_REMINDER,takeMedOccur.descriptionReminder )
 
 
         val result= db.insert(MEDICINE_ONCE_TABLE_NAME, null, cv)
