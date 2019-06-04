@@ -9,8 +9,8 @@
 android:background="@drawable/twojaapteczkadodajlek">
 
 
-    <EditText android:layout_width="344dp"
-              android:layout_height="43dp"
+    <EditText android:layout_width="@dimen/widthOfEditTextAddMedicine"
+              android:layout_height="@dimen/heightOfEditTextAddMedicine"
               android:background="@drawable/prostokat"
               android:hint="@string/ActivityAddMedicineActiveDose"
               android:textAlignment="center"
@@ -18,7 +18,7 @@ android:background="@drawable/twojaapteczkadodajlek">
               android:id="@+id/Med_Active_Dose_editText"
               app:layout_constraintStart_toStartOf="parent"
               android:layout_gravity="center_vertical" android:layout_marginTop="15dp"
-              app:layout_constraintTop_toBottomOf="@+id/warm_informations_MedName"/>
+              app:layout_constraintTop_toBottomOf="@+id/warm_informations_MedName" android:inputType="numberDecimal"/>
     <ImageView
             android:layout_width="189dp"
             android:layout_height="48dp"
@@ -28,8 +28,8 @@ android:background="@drawable/twojaapteczkadodajlek">
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"/>
 
-    <EditText android:layout_width="344dp"
-              android:layout_height="43dp"
+    <EditText android:layout_width="@dimen/widthOfEditTextAddMedicine"
+              android:layout_height="@dimen/heightOfEditTextAddMedicine"
               android:background="@drawable/prostokat"
               android:hint="@string/ActivityAddMedicineWriteMedName"
               android:textAlignment="center"
@@ -41,8 +41,8 @@ android:background="@drawable/twojaapteczkadodajlek">
               android:id="@+id/Med_Name_editText"
               android:gravity="center"/>
 
-    <EditText android:layout_width="344dp"
-              android:layout_height="43dp"
+    <EditText android:layout_width="@dimen/widthOfEditTextAddMedicine"
+              android:layout_height="@dimen/heightOfEditTextAddMedicine"
               android:background="@drawable/prostokat"
               android:hint="@string/ActivityAddMedcineAddKind"
               android:textAlignment="center"
@@ -52,8 +52,8 @@ android:background="@drawable/twojaapteczkadodajlek">
               android:layout_gravity="center_vertical"
               android:layout_marginTop="15dp" app:layout_constraintTop_toBottomOf="@+id/InformationActiveDose"/>
 
-    <EditText android:layout_width="344dp"
-              android:layout_height="43dp"
+    <EditText android:layout_width="@dimen/widthOfEditTextAddMedicine"
+              android:layout_height="@dimen/heightOfEditTextAddMedicine"
               android:background="@drawable/prostokat"
               android:hint="@string/ActivityAddMedicineWriteCount"
               android:textAlignment="center"
@@ -64,8 +64,8 @@ android:background="@drawable/twojaapteczkadodajlek">
               android:inputType="numberDecimal" android:layout_marginTop="15dp"
               app:layout_constraintTop_toBottomOf="@+id/warm_informations_MedKind"/>
 
-    <EditText android:layout_width="344dp"
-              android:layout_height="43dp"
+    <EditText android:layout_width="@dimen/widthOfEditTextAddMedicine"
+              android:layout_height="@dimen/heightOfEditTextAddMedicine"
               android:background="@drawable/prostokat"
               android:hint="@string/ActivityAddMedicineWriteDescription"
               android:textAlignment="center"

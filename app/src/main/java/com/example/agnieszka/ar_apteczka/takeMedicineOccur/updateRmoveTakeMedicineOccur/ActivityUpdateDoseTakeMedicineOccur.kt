@@ -29,23 +29,27 @@ class ActivityUpdateDoseTakeMedicineOccur : AppCompatActivity() {
     private fun uprageTakeMedOccurDoses(id:String) {
         val dbHelper = SQLConector(this)
         val count = UpdateDose_TakeMedicineOccur_Dose.text.toString()
-        if( count.isEmpty())
+        if( count.isEmpty() || count.toInt()==0)
         {
+
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
             builder.setMessage(getString(R.string.UpdateCountMedicinesMessageAlert))
             builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
             builder.show()
         }
-        else {
+        else
+        {
             val success = dbHelper.updateTakeMedicineOccurDoses(id, count.toInt())
-            if (success) {
+            if (success)
+            {
                 Toast.makeText(applicationContext, getString(R.string.DoseUpdateInformation), Toast.LENGTH_SHORT).show()
                 val activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
                 startActivity(activity)
             }
         }
     }
+
 
     private fun setData(): String{
         if (intent.hasExtra("nameMedTakeOcur")) UpdateDose_TakeMedicineOccur_MedicineName.text = intent.getStringExtra("nameMedTakeOcur")

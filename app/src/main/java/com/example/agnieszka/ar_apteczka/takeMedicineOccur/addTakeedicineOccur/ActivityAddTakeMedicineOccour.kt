@@ -70,7 +70,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         val hourReminders= ""
         val descriptionReminder=""
 
-        if(dose.isNullOrEmpty()  || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1) {
+        if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.TakeMedOccurAttention))
             builder.setMessage(getString(R.string.TakeMedOccurInformation))

@@ -30,13 +30,13 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         val dbHelper = SQLConector(this)
         val count = Update_Count_of_Med_Count.text.toString()
 
-        if( count.isEmpty())
+        if( count.isEmpty() || count.toInt()==0)
         {
+
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
             builder.setMessage(getString(R.string.UpdateCountMedicinesMessageAlert))
             builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
-
             builder.show()
         }
         else {
