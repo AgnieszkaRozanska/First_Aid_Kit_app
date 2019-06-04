@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/updatedosebackground"
-        tools:context=".takeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
+        tools:context=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
 
     <ImageView
             android:layout_width="106dp"
@@ -34,10 +34,15 @@
             android:text="@string/ActivityUpdateDoseMedInformation"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:id="@+id/textViewconst" android:textStyle="bold"
-            android:textSize="18sp" android:textColor="@android:color/darker_gray" android:layout_marginTop="68dp"
+            android:id="@+id/textViewconst"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="68dp"
             app:layout_constraintTop_toBottomOf="@+id/UpdateDose_TakeMedicineOccur_MedicineName"
-            android:layout_marginStart="96dp" app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginStart="96dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_gravity="center_vertical"/>
 
 
     <EditText android:layout_width="231dp"
@@ -46,19 +51,22 @@
               android:textAlignment="center"
               app:layout_constraintEnd_toEndOf="parent"
               android:id="@+id/UpdateDose_TakeMedicineOccur_Dose"
+              android:inputType="numberDecimal"
+              app:layout_constraintStart_toStartOf="parent"
               android:layout_gravity="center_vertical"
-              android:inputType="numberDecimal" android:layout_marginEnd="76dp" android:layout_marginTop="44dp"
+              android:layout_marginTop="44dp"
               app:layout_constraintTop_toBottomOf="@+id/textViewconst"
-              android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintHorizontal_bias="1.0"/>
+              app:layout_constraintHorizontal_bias="0.562"/>
 
     <Button
             android:layout_width="142dp"
             android:layout_height="184dp"
             android:background="@drawable/savicon"
             android:id="@+id/Button_SaveUpdateDose_TakeMedOccur" android:layout_marginBottom="28dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="144dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/UpdateDose_TakeMedicineOccur_Dose"
             app:layout_constraintVertical_bias="1.0"/>

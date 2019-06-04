@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.addMedicine
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,7 +8,9 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.validationDataSoThatTheAreNotZero
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 import java.util.*
@@ -26,8 +28,8 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-        startActivity(activity)
+        val activityGoToMenu = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+        startActivity(activityGoToMenu)
     }
 
 
@@ -50,7 +52,14 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
                 builder.show()
             }
             else{
-                val medicine = MedicineType(id, name, kind, description, count.toInt(), activedosestext)
+                val medicine = MedicineType(
+                    id,
+                    name,
+                    kind,
+                    description,
+                    count.toInt(),
+                    activedosestext
+                )
                 val success= dbHelper.addMedicine(medicine)
 
                 if(success)

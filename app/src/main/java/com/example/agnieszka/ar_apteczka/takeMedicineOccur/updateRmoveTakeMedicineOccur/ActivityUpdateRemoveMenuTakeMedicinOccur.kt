@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.takeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur.updateRmoveTakeMedicineOccur
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,7 +7,8 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_update_remove_menu_take_medicin_occur.*
 
 class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {

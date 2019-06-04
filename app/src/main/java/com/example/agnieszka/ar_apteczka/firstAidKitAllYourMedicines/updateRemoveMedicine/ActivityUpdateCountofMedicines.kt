@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.updateRemoveMedicine
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,7 +7,8 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
 import kotlinx.android.synthetic.main.activity_update__count_of__medicines.*
 
 class ActivityUpdateCountofMedicines : AppCompatActivity() {
@@ -44,8 +45,8 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
                 Toast.makeText(applicationContext, getString(R.string.attentionToUpdateMedicine), Toast.LENGTH_SHORT)
                     .show()
 
-                var activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-                startActivity(activity)
+                var activityGoToMenu = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+                startActivity(activityGoToMenu)
             }
         }
     }
@@ -55,7 +56,6 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         if (intent.hasExtra("count")) Update_Count_of_Med_Count.setText(intent.getStringExtra("count"))
         var id=""
         if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
-
         return id
     }
 

@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.takeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur
 import kotlinx.android.synthetic.main.card_view_all_tak_medicines_occur.view.*
 
 
@@ -16,7 +18,9 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolderTakeMedOccur {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
         val cardViewTakeMedicineOccur = layoutInflater.inflate(R.layout.card_view_all_tak_medicines_occur, viewGroup, false)
-        return MyViewHolderTakeMedOccur(cardViewTakeMedicineOccur)
+        return MyViewHolderTakeMedOccur(
+            cardViewTakeMedicineOccur
+        )
 
     }
 

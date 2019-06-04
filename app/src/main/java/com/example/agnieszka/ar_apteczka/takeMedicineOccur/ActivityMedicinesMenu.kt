@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_medicines.*
 
 class ActivityMedicinesMenu : AppCompatActivity() {
@@ -14,7 +16,8 @@ class ActivityMedicinesMenu : AppCompatActivity() {
         setContentView(R.layout.activity_medicines)
 
         Button_Add_Take_Med_Occur.setOnClickListener {
-            val activityToAddMedOccur = Intent(applicationContext,ActivityAddTakeMedicineOccour::class.java)
+            val activityToAddMedOccur = Intent(applicationContext,
+                ActivityAddTakeMedicineOccour::class.java)
             startActivity(activityToAddMedOccur)
         }
 

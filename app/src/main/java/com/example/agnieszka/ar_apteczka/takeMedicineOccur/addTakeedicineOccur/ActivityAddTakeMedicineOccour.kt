@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.takeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur.addTakeedicineOccur
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,7 +8,10 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.*
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.ActivityAddReminder
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_add__take_medicine_occour.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -77,7 +80,16 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         }
         else{
 
-            val takeMedOccur= TakeMedicineOccur(id,id_MedType.toString(), dose.toInt(), timeOfDay.toString(), beforeAfterMeal.toString(), data , hourReminders,descriptionReminder  )
+            val takeMedOccur= TakeMedicineOccur(
+                id,
+                id_MedType.toString(),
+                dose.toInt(),
+                timeOfDay.toString(),
+                beforeAfterMeal.toString(),
+                data,
+                hourReminders,
+                descriptionReminder
+            )
             val success= dbHelper.addTakeMedicineOccur(takeMedOccur)
 
             if(success)

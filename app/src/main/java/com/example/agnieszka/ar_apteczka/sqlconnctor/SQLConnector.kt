@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.sqlconnctor
 
 import android.content.ContentValues
 import android.content.Context
@@ -35,10 +35,10 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 //-----------------------Podstawowe komendy SQL-------
 
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
-                 ID_MEDICINE + " TEXT PRIMARY KEY," +
-             NAME + " TEXT NOT NULL,"+
-             MEDICINE_TYPE + " TEXT NOT NULL," +
-             UNIT_IN_STOCK + " INTEGER NOT NULL," +
+            ID_MEDICINE + " TEXT PRIMARY KEY," +
+            NAME + " TEXT NOT NULL,"+
+            MEDICINE_TYPE + " TEXT NOT NULL," +
+            UNIT_IN_STOCK + " INTEGER NOT NULL," +
             DESCRIPTION + " TEXT," +
             ACTIVEDOSE + " TEXT);")
 
@@ -57,7 +57,8 @@ const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME
 
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
 
-class SQLConector(context: Context):SQLiteOpenHelper(context, DATABASE_NAME, null, 1)
+class SQLConector(context: Context):SQLiteOpenHelper(context,
+    DATABASE_NAME, null, 1)
 {
 
 

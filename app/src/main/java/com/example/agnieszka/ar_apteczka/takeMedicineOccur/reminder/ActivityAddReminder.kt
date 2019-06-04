@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.takeMedicineOccur
+package com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,6 @@ class ActivityAddReminder : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add__take_medicine_occur_2)
+        setContentView(R.layout.activity_add__reminder)
     }
 }

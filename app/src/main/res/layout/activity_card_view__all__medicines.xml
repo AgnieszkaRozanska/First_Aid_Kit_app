@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".card_view_All_Medicines">
+        tools:context=".firstAidKitAllYourMedicines.adapter.card_view_All_Medicines">
 
     <android.support.v7.widget.CardView
             android:id="@+id/Medicine_cardView"

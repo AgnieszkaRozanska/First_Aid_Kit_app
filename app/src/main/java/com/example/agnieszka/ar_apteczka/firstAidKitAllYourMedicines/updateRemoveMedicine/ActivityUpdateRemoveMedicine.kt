@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.updateRemoveMedicine
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.SQLConector
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
 
 class ActivityUpdateRemoveMedicine : AppCompatActivity() {
@@ -29,8 +31,8 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        var activity = Intent(applicationContext, ActivityShowAllMedicines::class.java)
-        startActivity(activity)
+        val activityGoToShowAllMedicines = Intent(applicationContext, ActivityShowAllMedicines::class.java)
+        startActivity(activityGoToShowAllMedicines)
     }
 
     private fun downloadData(){
@@ -74,7 +76,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
 
         val success = dbHelper.removeMedicineType(idToRemoveMed)
-
         if(success)
         {
             Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()

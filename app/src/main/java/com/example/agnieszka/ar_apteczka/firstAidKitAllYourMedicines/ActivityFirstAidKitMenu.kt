@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.addMedicine.ActivityAddMedicineFirstAidKit
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import kotlinx.android.synthetic.main.activity_first_and_kit.*
 
 class ActivityFirstAidKitMenu : AppCompatActivity() {
@@ -14,20 +16,20 @@ class ActivityFirstAidKitMenu : AppCompatActivity() {
         setContentView(R.layout.activity_first_and_kit)
 
         Button_Add_Med_toFAidK.setOnClickListener {
-            var acivity = Intent(applicationContext, ActivityAddMedicineFirstAidKit::class.java)
-            startActivity(acivity)
+            val acivityGoToAddMedicine = Intent(applicationContext, ActivityAddMedicineFirstAidKit::class.java)
+            startActivity(acivityGoToAddMedicine)
         }
 
         Button_All_Med_INFaidK.setOnClickListener {
-            var activity2 = Intent(applicationContext, ActivityShowAllMedicines::class.java)
-            startActivity(activity2)
+            val activityGoToShowAllMedicines = Intent(applicationContext, ActivityShowAllMedicines::class.java)
+            startActivity(activityGoToShowAllMedicines)
         }
 
     }
 
     override fun onBackPressed() {
-        var activity = Intent(applicationContext, Menu::class.java)
-        startActivity(activity)
+        val activityGoToMenu = Intent(applicationContext, Menu::class.java)
+        startActivity(activityGoToMenu)
     }
 
 }

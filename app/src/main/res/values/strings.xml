@@ -53,4 +53,7 @@
     <string name="ActivityTimeDay">Pora dnia</string>
     <string name="ActivityNoDescrpition">Brak opisu</string>
     <string name="ActivityInformationAbotCountMedicine">Ilość posiadanych sztuk</string>
+    <string name="ActivityActiveDoseInformation">Możesz podać dawke czynną</string>
+    <string name="ActivityDescriptionInformation">Możesz podać opis</string>
+    <string name="ActivityAllYourMedicineTitle">Wszystkie twoje leki</string>
 </resources>
