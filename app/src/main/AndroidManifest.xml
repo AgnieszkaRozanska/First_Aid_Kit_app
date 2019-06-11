@@ -26,8 +26,6 @@
         </activity>
         <activity android:name=".firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines">
         </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.adapter.card_view_All_Medicines">
-        </activity>
         <activity android:name=".takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour">
         </activity>
         <activity android:name=".takeMedicineOccur.reminder.ActivityAddReminder">

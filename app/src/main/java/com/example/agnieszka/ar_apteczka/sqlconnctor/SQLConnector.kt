@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 
-//-----------------------Opis tabeli----------------
-
-    //stałe opisjace nasza tabele, nazwy i kolumny
   const  val DATABASE_NAME = "FirstAidKit.db"
 
     const val MEDICINE_TABLE_NAME = "Medicine"
@@ -30,9 +27,6 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
     const val HOUR_REMINDERS = "HourReminders"
     const val DESCRIPTION_REMINDER = "DescriptionReminder"
 
-
-
-//-----------------------Podstawowe komendy SQL-------
 
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
@@ -60,8 +54,6 @@ const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_
 class SQLConector(context: Context):SQLiteOpenHelper(context,
     DATABASE_NAME, null, 1)
 {
-
-
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_TABLE_MEDICINE)
         db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
@@ -108,19 +100,11 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val description=cursor.getString(cursor.getColumnIndex(DESCRIPTION))
                     val activeDose = cursor.getString(cursor.getColumnIndex(ACTIVEDOSE))
 
-                    val med= MedicineType(
-                    id,
-                    name,
-                    medicineType,
-                    description,
-                    unitInStock.toInt(),
-                    activeDose
-                )
+                    val med= MedicineType(id,name,medicineType,description,unitInStock.toInt(),activeDose)
                 medicineAllList.add(med)
                 }while (cursor.moveToNext())
             }
         }
-
         cursor.close()
         db.close()
         return medicineAllList
@@ -139,7 +123,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 do{
                     val name=cursor.getString(cursor.getColumnIndex(NAME))
                     val activeDose = cursor.getString(cursor.getColumnIndex(ACTIVEDOSE))
-                    val fullName : String=name + " "+ activeDose
+                    val fullName= "$name $activeDose"
                     medicineNameAllList.add(fullName)
                 }while (cursor.moveToNext())
             }
@@ -179,7 +163,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
              e.printStackTrace()
              return false
         }
-
         return true
     }
 
@@ -225,22 +208,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
                     if(timeOfDay==time)
                     {
-                        val takMedOccur = TakeMedicineOccur(
-                            idtakeMedOccur,
-                            idmed,
-                            dose.toInt(),
-                            timeOfDay,
-                            beforeAfterMeal,
-                            day,
-                            hourReminder,
-                            description
-                        )
+                        val takMedOccur = TakeMedicineOccur(idtakeMedOccur,idmed,dose.toInt(),timeOfDay,beforeAfterMeal,day,hourReminder, description)
                         takeMedicineOccurAllList.add(takMedOccur)
                     }
                 }while (cursor.moveToNext())
             }
         }
-
         cursor.close()
         db.close()
         return takeMedicineOccurAllList
@@ -258,7 +231,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             e.printStackTrace()
             return false
         }
-
         return true
     }
 

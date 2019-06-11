@@ -12,7 +12,7 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.updateRemov
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
 
-class card_view_All_Medicines(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {
+class ShowAllMedicinesAdapter(context: Context, var medicineTypeList: ArrayList<MedicineType>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
         val cardViewMedicine = layoutInflater.inflate(R.layout.activity_card_view__all__medicines, viewGroup, false)

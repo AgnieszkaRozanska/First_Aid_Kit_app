@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.adapter.card_view_All_Medicines
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.adapter.ShowAllMedicinesAdapter
 import kotlinx.android.synthetic.main.activity_all__medicines.*
 
 class ActivityShowAllMedicines : AppCompatActivity() {
@@ -32,7 +32,7 @@ class ActivityShowAllMedicines : AppCompatActivity() {
         val  medicinesList=sqlConector.getAllMedicineTypes()
 
         recyler_view_med.layoutManager = LinearLayoutManager(this)
-        recyler_view_med.adapter = card_view_All_Medicines(this, medicinesList)
+        recyler_view_med.adapter = ShowAllMedicinesAdapter(this, medicinesList)
 
 
     }
