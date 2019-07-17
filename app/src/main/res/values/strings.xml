@@ -56,4 +56,8 @@
     <string name="ActivityActiveDoseInformation">Możesz podać dawke czynną</string>
     <string name="ActivityDescriptionInformation">Możesz podać opis</string>
     <string name="ActivityAllYourMedicineTitle">Wszystkie twoje leki</string>
+    <string name="informAboutMediciesToshowMoreInformations">Naciśij a lek, aby edytować</string>
+    <string name="notificationCount_information">Podaj ilość leku poniżej której zostaie zgłoszone powiadomienie
+    </string>
+    <string name="NotificationSuccessToast">Dodano lek oraz powiadomienie o małej ilości leku</string>
 </resources>

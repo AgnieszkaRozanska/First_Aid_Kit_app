@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Toast
+import com.example.agnieszka.ar_apteczka.NotificationOfSmallAmountOfTheDrug
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
@@ -71,6 +72,41 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
                 }
             }
         }
+
+    fun downloadData(view: View) {
+
+        val id = UUID.randomUUID().toString()
+        val name: String = Med_Name_editText.text.toString()
+        val kind: String = Med_Kind_editText.text.toString()
+        val count: String = Med_Count_editText.text.toString()
+        val description: String = Med_Description_editText.text.toString()
+        val activedosestext: String = Med_Active_Dose_editText.text.toString()
+
+        if(name.isEmpty() || kind.isEmpty() || count.isEmpty())
+        {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.attentiontoAddMedicine))
+            builder.setMessage(getString(R.string.fillTheData))
+            builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
+
+            builder.show()
+        } else{
+            val activityToAddNotificatioCount = Intent(applicationContext, NotificationOfSmallAmountOfTheDrug::class.java)
+
+
+            activityToAddNotificatioCount.putExtra("idMEd", id)
+            activityToAddNotificatioCount.putExtra("name", name)
+            activityToAddNotificatioCount.putExtra("kind", kind)
+            activityToAddNotificatioCount.putExtra("count", count)
+            activityToAddNotificatioCount.putExtra("description", description)
+            activityToAddNotificatioCount.putExtra("activeDoses", activedosestext)
+
+            startActivity(activityToAddNotificatioCount)
+        }
+
+
+
+    }
 
     }
 

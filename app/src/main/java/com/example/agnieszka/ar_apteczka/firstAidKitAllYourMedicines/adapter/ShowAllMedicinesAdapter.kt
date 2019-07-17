@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.R.color.red
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateRemoveMedicine
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import kotlinx.android.synthetic.main.activity_card_view__all__medicines.view.*
@@ -27,10 +28,13 @@ class ShowAllMedicinesAdapter(context: Context, var medicineTypeList: ArrayList<
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val medNameEdit=medicineTypeList[holder.adapterPosition].name
         val activeDose = medicineTypeList[holder.adapterPosition].activedoses
+        val medicineCount = medicineTypeList[holder.adapterPosition].unitInStock
         val fullname= "$medNameEdit $activeDose"
         holder.medName.text = fullname
         holder.medKind.text = medicineTypeList.elementAt(position).kindMedicineType
+        holder.medCount.text = "Ilość sztuk leku  $medicineCount"
 
+        changeColorOfTextOfCountMedicine(medicineCount, holder)
 
         val cardViewmedicine = holder.view.Medicine_cardView
            val context:Context = holder.view.context
@@ -59,4 +63,17 @@ class ShowAllMedicinesAdapter(context: Context, var medicineTypeList: ArrayList<
 class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView= view.findViewById(R.id.MedicineName_cardView)
     var medKind : TextView = view.findViewById(R.id.Kind_cardView)
+    var medCount : TextView = view.findViewById(R.id.Cout_cardView)
+}
+
+
+private fun changeColorOfTextOfCountMedicine(unitIStock: Int, holder: MyViewHolder){
+
+    if(unitIStock<=10){
+        holder.medCount.setBackgroundResource(R.color.red)
+    }else if (unitIStock in 11..20) {
+        holder.medCount.setBackgroundResource(R.color.yellow)
+    } else {
+        holder.medCount.setBackgroundResource(R.color.green)
+    }
 }

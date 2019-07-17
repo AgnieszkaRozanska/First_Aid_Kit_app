@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 
   const  val DATABASE_NAME = "FirstAidKit.db"
@@ -28,6 +29,12 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
     const val DESCRIPTION_REMINDER = "DescriptionReminder"
 
 
+    const val NOTIFICATION_MED_COUNT_TABLE_NAME = "NotificationMedCount"
+    const val ID_NOTIFICATION = "IDNotification"
+    const val ID_MEDICINE_NOTIFICATION = "IDMedicineNotification"
+    const val AMOUNT_MED_BELOW_TO_ALARM = "AmountMedBelowToAlarm"
+
+
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
             NAME + " TEXT NOT NULL,"+
@@ -47,9 +54,16 @@ const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDI
         HOUR_REMINDERS + " TEXT," +
         DESCRIPTION_REMINDER + " TEXT);")
 
+const val SQL_CREATE_TABLE_MED_NOTIFICATION = ("CREATE TABLE IF NOT EXISTS "  + NOTIFICATION_MED_COUNT_TABLE_NAME + " (" +
+        ID_NOTIFICATION + " TEXT PRIMARY KEY," +
+        ID_MEDICINE_NOTIFICATION + " TEXT NOT NULL,"+
+        AMOUNT_MED_BELOW_TO_ALARM + " INTEGER NOT NULL);")
+
 const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
 
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
+
+const val SQL_DELETE_TABLE_MEDICINE_NOTIFICATION = "DROP TABLE IF EXISTS $NOTIFICATION_MED_COUNT_TABLE_NAME"
 
 class SQLConector(context: Context):SQLiteOpenHelper(context,
     DATABASE_NAME, null, 1)
@@ -57,11 +71,13 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_TABLE_MEDICINE)
         db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
+        db.execSQL(SQL_CREATE_TABLE_MED_NOTIFICATION)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(SQL_DELETE_TABLE_MEDICINE)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_ONCE)
+        db.execSQL(SQL_DELETE_TABLE_MEDICINE_NOTIFICATION)
         onCreate(db)
     }
 
@@ -250,4 +266,21 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
         return true
     }
+
+    fun addNotification(notification: NotificationAmountMed ):Boolean
+    {
+        val db=this.writableDatabase
+        val cv = ContentValues()
+        cv.put(ID_NOTIFICATION, notification.iDNotification)
+        cv.put(ID_MEDICINE_NOTIFICATION, notification.iDMedicineNotification)
+        cv.put(AMOUNT_MED_BELOW_TO_ALARM, notification.AmountBelowToAlarm)
+
+
+        val result= db.insert(NOTIFICATION_MED_COUNT_TABLE_NAME, null, cv)
+        db.close()
+        return !result.equals(-1)
+    }
+
+
+
 }

@@ -36,9 +36,12 @@
         </activity>
         <activity android:name=".takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
         </activity>
-        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
+        <activity
+                android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
         </activity>
         <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
+        </activity>
+        <activity android:name=".NotificationOfSmallAmountOfTheDrug">
         </activity>
     </application>
 
