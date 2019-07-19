@@ -60,4 +60,5 @@
     <string name="notificationCount_information">Podaj ilość leku poniżej której zostaie zgłoszone powiadomienie
     </string>
     <string name="NotificationSuccessToast">Dodano lek oraz powiadomienie o małej ilości leku</string>
+    <string name="TitleNotificationAmoundMed">Mała ilość lekarstw</string>
 </resources>

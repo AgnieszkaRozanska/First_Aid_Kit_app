@@ -1,11 +1,19 @@
 package com.example.agnieszka.ar_apteczka
 
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import kotlinx.android.synthetic.main.activity_menu.*
+import java.lang.StringBuilder
 
 class Menu : AppCompatActivity() {
 
@@ -23,10 +31,54 @@ class Menu : AppCompatActivity() {
             val activityToMEdicinesMenu = Intent(applicationContext, ActivityMedicinesMenu::class.java)
             startActivity(activityToMEdicinesMenu)
         }
+
+
+        createNotification()
+
+
     }
 
     override fun onBackPressed() {
         val activity = Intent(applicationContext, MainActivity::class.java)
         startActivity(activity)
     }
+
+
+   private fun createNotification(){
+
+       lateinit var notificationManager : NotificationManager
+       lateinit var notificationChannel: NotificationChannel
+       lateinit var builder: Notification.Builder
+       val channelID = "com.example.agnieszka.ar_apteczka"
+       val description = "Test notification"
+
+       notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+       val intent = Intent(this, LauncherActivity::class.java)
+       val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           notificationChannel = NotificationChannel(channelID, description, NotificationManager.IMPORTANCE_HIGH)
+           notificationChannel.enableLights(true)
+           notificationChannel.lightColor = Color.GREEN
+           notificationChannel.enableVibration(true)
+           notificationManager.createNotificationChannel(notificationChannel)
+
+           builder = Notification.Builder(this, channelID)
+               .setContentTitle(getString(R.string.TitleNotificationAmoundMed))
+               .setContentText("Text Notification")
+               .setSmallIcon(R.drawable.pills)
+               .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.attention))
+               .setContentIntent(pendingIntent)
+       }else{
+           builder = Notification.Builder(this)
+               .setContentTitle(getString(R.string.TitleNotificationAmoundMed))
+               .setContentText("Text Notification")
+               .setSmallIcon(R.drawable.pills)
+               .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.attention))
+               .setContentIntent(pendingIntent)
+       }
+        notificationManager.notify(1234, builder.build())
+   }
+
 }

@@ -281,6 +281,9 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return !result.equals(-1)
     }
 
+    fun downloadMedsForLowAmountNotification(){
+
+    }
 
 
 }
