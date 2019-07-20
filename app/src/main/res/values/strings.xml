@@ -61,4 +61,10 @@
     </string>
     <string name="NotificationSuccessToast">Dodano lek oraz powiadomienie o małej ilości leku</string>
     <string name="TitleNotificationAmoundMed">Mała ilość lekarstw</string>
+    <string name="alertNotificationBackTitle">Czy na pewno chcesz cofnąć</string>
+    <string name="alertNotificationBackMessage">Jeżel cofniesz zostanie zapisany lek, ale bez powiadomienia o małej
+        ilości leku
+    </string>
+    <string name="ToastMedicineAddedWithoutNotification">Lek został dodany, bez powiadomienia o małej ilości leku
+    </string>
 </resources>

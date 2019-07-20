@@ -1,12 +1,14 @@
-package com.example.agnieszka.ar_apteczka
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.widget.Toast
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.NotificationAmountMed
+import com.example.agnieszka.ar_apteczka.Menu
+import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import kotlinx.android.synthetic.main.activity_notification_of_small_amount_of_the_drug.*
 import java.util.*
@@ -22,6 +24,25 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
             saveNotification()
         }
 
+    }
+
+    override fun onBackPressed() {
+        alertDialog()
+    }
+
+    private fun alertDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.alertNotificationBackTitle))
+        builder.setMessage(getString(R.string.alertNotificationBackMessage))
+        builder.setPositiveButton(getString(R.string.AlertDialogYes)) { dialog: DialogInterface, which: Int ->
+            saveMed()
+            val activityGoToMenu = Intent(applicationContext, Menu::class.java)
+            startActivity(activityGoToMenu)
+            Toast.makeText(applicationContext, getString(R.string.ToastMedicineAddedWithoutNotification), Toast.LENGTH_LONG).show()
+
+        }
+        builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
     }
 
 
@@ -76,5 +97,7 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         }
 
        }
+
+
 
 }

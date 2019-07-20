@@ -281,9 +281,73 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return !result.equals(-1)
     }
 
-    fun downloadMedsForLowAmountNotification(){
+    fun getAllNotificationsAboutAmount(): ArrayList<NotificationAmountMed>
+    {
+        val notificationsAllList= ArrayList<NotificationAmountMed>()
+        val db= readableDatabase
 
+        val cursor=db.rawQuery("SELECT * FROM $NOTIFICATION_MED_COUNT_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do{
+                    val idNotification= cursor.getString(cursor.getColumnIndex(ID_NOTIFICATION))
+                    val idMedicineNotification=cursor.getString(cursor.getColumnIndex(ID_MEDICINE_NOTIFICATION))
+                    val amountNotification=cursor.getString(cursor.getColumnIndex(AMOUNT_MED_BELOW_TO_ALARM))
+
+
+                    val notification= NotificationAmountMed(idNotification, idMedicineNotification, amountNotification.toInt())
+                    notificationsAllList.add(notification)
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return notificationsAllList
     }
 
+
+    fun downloadMedsForLowAmountNotification(): ArrayList<String>{
+
+        var listOfMed : ArrayList<String> = ArrayList()
+        var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
+        var notificationslist : ArrayList<NotificationAmountMed> = getAllNotificationsAboutAmount()
+
+        for (i:NotificationAmountMed in notificationslist){
+
+            for (j:MedicineType in medicineTypeList){
+
+                if(i.iDMedicineNotification == j.iDMedicine){
+                    if(i.AmountBelowToAlarm>= j.unitInStock){
+
+                        var med_Count = "\n"+ j.name + ": liczba tabletek: " + j.unitInStock
+                        listOfMed.add(med_Count)
+                    }
+                }else{
+                    if(j.unitInStock<=0){
+                        var med_Count = "\n" + j.name + ": liczba tabletek: " + j.unitInStock
+                        listOfMed.add(med_Count)
+                    }
+                }
+
+            }
+        }
+        return  listOfMed
+    }
+
+    fun removeNotificationAboutAmountMedicine(id: String): Boolean
+    {
+        try {
+            val db=this.writableDatabase
+            db.delete(NOTIFICATION_MED_COUNT_TABLE_NAME, "$ID_MEDICINE_NOTIFICATION=?", arrayOf(id))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+        return true
+    }
 
 }

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.NotificationCompat
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.lang.StringBuilder
@@ -32,8 +33,10 @@ class Menu : AppCompatActivity() {
             startActivity(activityToMEdicinesMenu)
         }
 
-
-        createNotification()
+        var textNotification=createTextToNotification()
+        if(!textNotification.isEmpty()){
+            createNotification()
+        }
 
 
     }
@@ -50,12 +53,15 @@ class Menu : AppCompatActivity() {
        lateinit var notificationChannel: NotificationChannel
        lateinit var builder: Notification.Builder
        val channelID = "com.example.agnieszka.ar_apteczka"
-       val description = "Test notification"
+       val description = " description"
+
+       var textNotification=createTextToNotification()
 
        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
        val intent = Intent(this, LauncherActivity::class.java)
        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
 
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
            notificationChannel = NotificationChannel(channelID, description, NotificationManager.IMPORTANCE_HIGH)
@@ -66,19 +72,31 @@ class Menu : AppCompatActivity() {
 
            builder = Notification.Builder(this, channelID)
                .setContentTitle(getString(R.string.TitleNotificationAmoundMed))
-               .setContentText("Text Notification")
+               .setContentText(textNotification.toString())
                .setSmallIcon(R.drawable.pills)
+               .setShowWhen(true)
                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.attention))
                .setContentIntent(pendingIntent)
+               .setStyle(Notification.BigTextStyle().bigText(textNotification.toString()))
+
        }else{
            builder = Notification.Builder(this)
                .setContentTitle(getString(R.string.TitleNotificationAmoundMed))
-               .setContentText("Text Notification")
+               .setContentText(textNotification.toString())
                .setSmallIcon(R.drawable.pills)
+               .setShowWhen(true)
                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.attention))
                .setContentIntent(pendingIntent)
        }
         notificationManager.notify(1234, builder.build())
    }
+
+    fun createTextToNotification() :ArrayList<String>{
+
+        val dbHelper = SQLConector(this)
+        var textNotification = dbHelper.downloadMedsForLowAmountNotification()
+
+        return  textNotification
+    }
 
 }

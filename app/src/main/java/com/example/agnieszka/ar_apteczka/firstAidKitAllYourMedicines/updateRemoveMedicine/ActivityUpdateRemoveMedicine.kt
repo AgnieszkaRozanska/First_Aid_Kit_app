@@ -76,6 +76,7 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
 
         val success = dbHelper.removeMedicineType(idToRemoveMed)
+        val successRemoveNotification = dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
         if(success)
         {
             Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()
