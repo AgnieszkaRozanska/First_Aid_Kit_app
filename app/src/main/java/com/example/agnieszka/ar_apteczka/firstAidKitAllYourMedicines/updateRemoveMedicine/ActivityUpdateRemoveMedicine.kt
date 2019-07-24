@@ -25,7 +25,17 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         }
 
         Button_RemoveMedicine.setOnClickListener {
-            alertDialog()
+            alertDialogRemoveMedicine()
+        }
+
+        Button_RemoveNotification.setOnClickListener {
+
+            if(updateRemoveMedicieNotification.text.isEmpty()){
+                alertDialogLackNotification()
+            } else{
+                alertDialogRemoveNotification()
+            }
+
         }
 
     }
@@ -56,9 +66,17 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("count")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.text = intent.getStringExtra("count")
         if (intent.hasExtra("kind")) updateRemoveTakeMedicineOccur_Dose.text = intent.getStringExtra("kind")
         if (intent.hasExtra("description")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("description")
+
+        var id=""
+        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
+        val dbHelper = SQLConector(applicationContext)
+        var amount :String= dbHelper.takeNotificatioMedCount(id)
+        if(!amount.isEmpty()) updateRemoveMedicieNotification.text=amount + " tabletek"
+        else updateRemoveMedicieNotification.text=amount
+
     }
 
-    private fun alertDialog(){
+    private fun alertDialogRemoveMedicine(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.AlertDialogAttentionAreYouSure))
         builder.setMessage(getString(R.string.AlertDialogQuestion))
@@ -76,11 +94,48 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
 
         val success = dbHelper.removeMedicineType(idToRemoveMed)
-        val successRemoveNotification = dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
+        dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
         if(success)
         {
             Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()
         }
         startActivity(intentRemove)
     }
+
+    private fun alertDialogRemoveNotification(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.AlertDialogAttentionAreYouSure))
+        builder.setMessage("Czy chcesz usunąć przypomnienie")
+        builder.setPositiveButton(getString(R.string.AlertDialogYes)) { dialog: DialogInterface, which: Int ->
+            removeNotification()
+        }
+        builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    private fun removeNotification(){
+       val intentRemove = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+       val dbHelper = SQLConector(applicationContext)
+       var idToRemoveMed=""
+       if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
+
+        val success = dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
+        if(success)
+        {
+            Toast.makeText(applicationContext, "Usunięto przypomnienie", Toast.LENGTH_SHORT).show()
+        }
+        startActivity(intentRemove)
+    }
+
+
+    private fun alertDialogLackNotification(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Nie można usunąć przypomnienia")
+        builder.setMessage("Ten lek nie posiada przypomnienia")
+        builder.setNeutralButton("Wróć"){_,_ ->
+
+        }
+        builder.show()
+    }
+
 }

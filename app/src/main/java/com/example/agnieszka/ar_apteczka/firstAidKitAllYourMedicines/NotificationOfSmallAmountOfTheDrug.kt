@@ -20,8 +20,13 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         setContentView(R.layout.activity_notification_of_small_amount_of_the_drug)
 
         NotificationCount_SaveButton.setOnClickListener {
-            saveMed()
-            saveNotification()
+
+            var alarmUnitInStock= Notification_UnitInStock.text.toString()
+            if(alarmUnitInStock.isEmpty() || alarmUnitInStock.toInt()<=0 ) alertDialogNullAmout()
+            else {
+                saveMed()
+                saveNotification()
+            }
         }
 
     }
@@ -81,22 +86,33 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         val idNotification= UUID.randomUUID().toString()
         var alarmUnitInStock= Notification_UnitInStock.text.toString().toInt()
 
-        val notification = NotificationAmountMed(
-            idNotification,
-            idMed,
-            alarmUnitInStock
-        )
-        val dbHelper = SQLConector(this)
-        val success= dbHelper.addNotification(notification)
 
-        if(success)
-        {
-            Toast.makeText(applicationContext, getString(R.string.NotificationSuccessToast), Toast.LENGTH_LONG).show()
-            val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-            startActivity(activity)
-        }
+            val notification = NotificationAmountMed(
+                idNotification,
+                idMed,
+                alarmUnitInStock
+            )
+            val dbHelper = SQLConector(this)
+            val success = dbHelper.addNotification(notification)
+
+            if (success) {
+                Toast.makeText(applicationContext, getString(R.string.NotificationSuccessToast), Toast.LENGTH_LONG)
+                    .show()
+                val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+                startActivity(activity)
+            }
 
        }
+
+    private fun alertDialogNullAmout(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Uzupełnij brakujące dane")
+        builder.setMessage("Podaj ilość tabetkek poniżej których ma nastąpić powiadomienie")
+        builder.setNeutralButton("Wróć"){_,_ ->
+
+        }
+        builder.show()
+    }
 
 
 

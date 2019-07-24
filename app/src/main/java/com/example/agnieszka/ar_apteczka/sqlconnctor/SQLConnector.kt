@@ -350,4 +350,24 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun takeNotificatioMedCount(id: String) :String{
+
+        val query = "SELECT * FROM $NOTIFICATION_MED_COUNT_TABLE_NAME WHERE $ID_MEDICINE_NOTIFICATION =  \"$id\""
+
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(query, null)
+        var amount: String =""
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst()
+           amount = cursor.getString(cursor.getColumnIndex(AMOUNT_MED_BELOW_TO_ALARM))
+            cursor.close()
+        }
+
+        db.close()
+        return amount
+
+
+    }
+
 }
