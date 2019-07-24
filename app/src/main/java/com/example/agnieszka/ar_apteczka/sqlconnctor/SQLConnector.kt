@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.NotificationAmountMed
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 
   const  val DATABASE_NAME = "FirstAidKit.db"
@@ -267,7 +267,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
-    fun addNotification(notification: NotificationAmountMed ):Boolean
+    fun addNotification(notification: NotificationAmountMed):Boolean
     {
         val db=this.writableDatabase
         val cv = ContentValues()
@@ -297,7 +297,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val amountNotification=cursor.getString(cursor.getColumnIndex(AMOUNT_MED_BELOW_TO_ALARM))
 
 
-                    val notification= NotificationAmountMed(idNotification, idMedicineNotification, amountNotification.toInt())
+                    val notification=
+                        NotificationAmountMed(
+                            idNotification,
+                            idMedicineNotification,
+                            amountNotification.toInt()
+                        )
                     notificationsAllList.add(notification)
                 }while (cursor.moveToNext())
             }
@@ -314,7 +319,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
         var notificationslist : ArrayList<NotificationAmountMed> = getAllNotificationsAboutAmount()
 
-        for (i:NotificationAmountMed in notificationslist){
+        for (i: NotificationAmountMed in notificationslist){
 
             for (j:MedicineType in medicineTypeList){
 
@@ -366,8 +371,24 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
         db.close()
         return amount
-
-
     }
+
+    fun updateNotificationAmount(id:String, amountMedToAlarm: Int):Boolean
+    {
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            cv.put(AMOUNT_MED_BELOW_TO_ALARM, amountMedToAlarm)
+            db.update(NOTIFICATION_MED_COUNT_TABLE_NAME, cv, "IDMedicineNotification =?", arrayOf(id))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+
+        return true
+    }
+
 
 }

@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification.AddUpdateNotification
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
 
@@ -35,7 +36,9 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
             } else{
                 alertDialogRemoveNotification()
             }
-
+        }
+        Button_addUNotificatio.setOnClickListener {
+            addUpdateNotifcation()
         }
 
     }
@@ -137,5 +140,23 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         }
         builder.show()
     }
+
+    private fun addUpdateNotifcation(){
+        var id=""
+        var whichAction = ""
+        val intentEdit = Intent(applicationContext, AddUpdateNotification::class.java)
+        val medNameNotification=UpdateRemoveMedicine_MedicineName.text
+        if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
+        if(updateRemoveMedicieNotification.text.isEmpty()) whichAction ="ADD"
+         else whichAction = "UPDATE"
+
+        intentEdit.putExtra("IDMedicine", id)
+        intentEdit.putExtra("name", medNameNotification)
+        intentEdit.putExtra("whichAction", whichAction)
+
+        startActivity(intentEdit)
+
+    }
+
 
 }

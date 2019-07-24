@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.Toast
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.NotificationOfSmallAmountOfTheDrug
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification.NotificationOfSmallAmountOfTheDrug
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu

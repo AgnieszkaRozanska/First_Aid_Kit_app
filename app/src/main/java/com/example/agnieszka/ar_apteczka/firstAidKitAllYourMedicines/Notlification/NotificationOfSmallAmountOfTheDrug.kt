@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,7 +8,8 @@ import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import kotlinx.android.synthetic.main.activity_notification_of_small_amount_of_the_drug.*
 import java.util.*
@@ -87,11 +88,12 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         var alarmUnitInStock= Notification_UnitInStock.text.toString().toInt()
 
 
-            val notification = NotificationAmountMed(
-                idNotification,
-                idMed,
-                alarmUnitInStock
-            )
+            val notification =
+                NotificationAmountMed(
+                    idNotification,
+                    idMed,
+                    alarmUnitInStock
+                )
             val dbHelper = SQLConector(this)
             val success = dbHelper.addNotification(notification)
 

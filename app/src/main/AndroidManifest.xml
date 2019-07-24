@@ -41,7 +41,9 @@
         </activity>
         <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
         </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.NotificationOfSmallAmountOfTheDrug">
+        <activity android:name=".firstAidKitAllYourMedicines.Notlification.NotificationOfSmallAmountOfTheDrug">
+        </activity>
+        <activity android:name=".firstAidKitAllYourMedicines.Notlification.AddUpdateNotification">
         </activity>
     </application>
 
