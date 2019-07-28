@@ -10,10 +10,12 @@ class TakeMedicineOccur {
     var hourReminders:String
     var descriptionReminder:String
     var medicineType: String
-    var iD:String;
+    var iD:String
 
 
-    constructor(id:String, medicineType: String,dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String,  hourReminders:String, descriptionReminder:String )
+
+
+    constructor(id:String, medicineType: String, dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String,  hourReminders:String, descriptionReminder:String)
     {
         this.day=day
         this.timeOfDay=timeOfDay
@@ -23,6 +25,8 @@ class TakeMedicineOccur {
         this.descriptionReminder=descriptionReminder
         this.medicineType=medicineType;
         this.iD=id
+
+
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -65,7 +65,7 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         var count=""
         if (intent.hasExtra("count"))  count= intent.getStringExtra("count")
         var activedose=""
-        if (intent.hasExtra("activedosestext"))  activedose= intent.getStringExtra("activedosestext")
+        if (intent.hasExtra("activeDoses"))  activedose= intent.getStringExtra("activeDoses")
 
 
         val dbHelper = SQLConector(this)

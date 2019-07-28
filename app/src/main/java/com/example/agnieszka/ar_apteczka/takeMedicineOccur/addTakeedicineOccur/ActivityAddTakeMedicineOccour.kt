@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.*
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.ActivityAddReminder
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
@@ -15,6 +16,10 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_add__take_medicine_occour.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.widget.ArrayAdapter
+
+
+
 
 class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
@@ -27,9 +32,10 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__take_medicine_occour)
         val dbHelper = SQLConector(applicationContext)
-        val medicinesListNamesOfMed= dbHelper.getMedListOfName()
-
+        val medicinesListNamesOfMed = dbHelper.getMedListOfName()
         setSpinner(medicinesListNamesOfMed)
+
+
 
         Add_Med_Occour_Next_Button.setOnClickListener {
             val activity = Intent(applicationContext, ActivityAddReminder::class.java)
@@ -42,7 +48,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         }
 
         Add_Med_Occour_BeforeAfterMeal_radioGroup.setOnCheckedChangeListener { group, checkedId ->
-
             val beforeAfterMeal : RadioButton= findViewById(checkedId)
             this.beforeAfterMeal = beforeAfterMeal.text
         }
@@ -64,11 +69,13 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
     fun addMedOccur(view: View){ //Nie usuwac, bo wysypuje aplikacje !!!!
         val dbHelper = SQLConector(this)
         val id= UUID.randomUUID().toString()
-       id_MedType= spinner!!.selectedItem.toString()
+        //id_MedType= spinner!!.selectedItem.toString()
+        val choosenMed= spinner!!.selectedItem.toString()
         val dose = Add_Med_Occour_Dose_EditText.text.toString()
         val data =""
         val hourReminders= ""
         val descriptionReminder=""
+        val id_MedType = dbHelper.getMedicieID(choosenMed)
 
         if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1) {
             val builder = AlertDialog.Builder(this)
@@ -82,7 +89,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
             val takeMedOccur= TakeMedicineOccur(
                 id,
-                id_MedType.toString(),
+                choosenMed,
                 dose.toInt(),
                 timeOfDay.toString(),
                 beforeAfterMeal.toString(),

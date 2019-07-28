@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification
+package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification
 
 class NotificationAmountMed {
 

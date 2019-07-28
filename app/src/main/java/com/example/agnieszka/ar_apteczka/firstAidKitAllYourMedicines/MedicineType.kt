@@ -16,4 +16,17 @@ class MedicineType {
         this.unitInStock = unitInStock
         this.activedoses = activedose
     }
+
+    override fun toString(): String = name + " " + activedoses
+
+/*
+    fun getItemId(): String {
+        return iDMedicine
+    }
+
+    fun getItemName() : String{
+        return name + " " + activedoses
+    }
+*/
+
 }

@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification.AddUpdateNotification
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.AddUpdateNotification
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
 
@@ -18,19 +18,14 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_remove_medicine)
-
         setVaues()
-
         button_UpdateDoseTakeMedicineOccur.setOnClickListener {
             downloadData()
         }
-
         Button_RemoveMedicine.setOnClickListener {
             alertDialogRemoveMedicine()
         }
-
         Button_RemoveNotification.setOnClickListener {
-
             if(updateRemoveMedicieNotification.text.isEmpty()){
                 alertDialogLackNotification()
             } else{

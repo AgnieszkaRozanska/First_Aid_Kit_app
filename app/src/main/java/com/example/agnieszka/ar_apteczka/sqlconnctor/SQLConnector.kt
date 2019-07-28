@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.Notlification.NotificationAmountMed
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
 
   const  val DATABASE_NAME = "FirstAidKit.db"
@@ -53,6 +53,7 @@ const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDI
         DAY + " TEXT," +
         HOUR_REMINDERS + " TEXT," +
         DESCRIPTION_REMINDER + " TEXT);")
+
 
 const val SQL_CREATE_TABLE_MED_NOTIFICATION = ("CREATE TABLE IF NOT EXISTS "  + NOTIFICATION_MED_COUNT_TABLE_NAME + " (" +
         ID_NOTIFICATION + " TEXT PRIMARY KEY," +
@@ -139,7 +140,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 do{
                     val name=cursor.getString(cursor.getColumnIndex(NAME))
                     val activeDose = cursor.getString(cursor.getColumnIndex(ACTIVEDOSE))
-                    val fullName= "$name $activeDose"
+                    val kind = cursor.getString(cursor.getColumnIndex(MEDICINE_TYPE))
+                    val fullName= "$name $activeDose $kind"
                     medicineNameAllList.add(fullName)
                 }while (cursor.moveToNext())
             }
@@ -148,6 +150,18 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cursor.close()
         db.close()
         return medicineNameAllList
+    }
+
+    fun getMedicieID(choosenMedicine : String): String
+    {
+        var idResult : String = ""
+        var MedicieTEMP = ""
+        var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
+        for (i:MedicineType in medicineTypeList) {
+            MedicieTEMP=i.name + " " + i.activedoses + " " + i.kindMedicineType
+            if(MedicieTEMP==choosenMedicine) idResult = i.iDMedicine
+        }
+        return idResult
     }
 
     fun updateMedicineTypeDoses(id:String, unitInStock: Int):Boolean
@@ -182,6 +196,20 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun checkIfDrugAlreadyExists(name : String, activeDose : String) : Boolean{
+        var result = false
+        var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
+        for (i: MedicineType in medicineTypeList) {
+            if(i.name == name){
+                if(i.activedoses ==activeDose){
+                    result = true
+                }
+            }
+        }
+
+        return result
+    }
+
     fun addTakeMedicineOccur(takeMedOccur: TakeMedicineOccur):Boolean
     {
         val db=this.writableDatabase
@@ -195,12 +223,10 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cv.put(HOUR_REMINDERS, takeMedOccur.hourReminders)
         cv.put(DESCRIPTION_REMINDER,takeMedOccur.descriptionReminder )
 
-
         val result= db.insert(MEDICINE_ONCE_TABLE_NAME, null, cv)
         db.close()
         return !result.equals(-1)
     }
-
 
     fun getAllTakeMedicineOccur(time : String):ArrayList<TakeMedicineOccur>{
 
@@ -249,6 +275,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
         return true
     }
+
 
     fun updateTakeMedicineOccurDoses(id:String, unitInStock: Int):Boolean
     {
@@ -326,12 +353,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 if(i.iDMedicineNotification == j.iDMedicine){
                     if(i.AmountBelowToAlarm>= j.unitInStock){
 
-                        var med_Count = "\n"+ j.name + ": liczba tabletek: " + j.unitInStock
+                        var med_Count = "\n"+ j.name+ " " + j.activedoses + ": liczba tabletek: " + j.unitInStock
                         listOfMed.add(med_Count)
                     }
                 }else{
                     if(j.unitInStock<=0){
-                        var med_Count = "\n" + j.name + ": liczba tabletek: " + j.unitInStock
+                        var med_Count = "\n" + j.name + " " + j.activedoses + ": liczba tabletek: " + j.unitInStock
                         listOfMed.add(med_Count)
                     }
                 }
