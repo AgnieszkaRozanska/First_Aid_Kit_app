@@ -19,12 +19,12 @@
             app:layout_constraintStart_toStartOf="parent">
         <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
 
             <TextView
-                    android:layout_width="203dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="20dp"
@@ -38,10 +38,10 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:hint="@string/ActivityDose"
                     android:paddingLeft="10dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:ems="10"
                     android:id="@+id/MedicineDose_cardView"
                     android:ellipsize="end"
@@ -50,10 +50,10 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:hint="@string/ActivityTimeOfDay"
                     android:paddingLeft="10dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:ems="10"
                     android:id="@+id/MedicineMeal_cardView"
                     android:ellipsize="end"

@@ -2,33 +2,24 @@ package com.example.agnieszka.ar_apteczka.takeMedicineOccur
 
 class TakeMedicineOccur {
 
-
-    var day: String
-    var timeOfDay: String
-    var dose:Int
-    var beforeAfterMeal: String
-    var hourReminders:String
-    var descriptionReminder:String
-    var medicineType: String
     var iD:String
+    var iD_MedicineType : String
+    var medicineType_Name: String
+    var dose:Int
+    var timeOfDay: String
+    var beforeAfterMeal: String
+    var date: String
 
 
-
-
-    constructor(id:String, medicineType: String, dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String,  hourReminders:String, descriptionReminder:String)
+    constructor(id: String, idMedicineType:String, medicineType: String, dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String)
     {
-        this.day=day
-        this.timeOfDay=timeOfDay
-        this.dose=dose
-        this.beforeAfterMeal=beforeAfterMeal
-        this.hourReminders=hourReminders
-        this.descriptionReminder=descriptionReminder
-        this.medicineType=medicineType;
         this.iD=id
-
-
+        this.iD_MedicineType = idMedicineType
+        this.medicineType_Name=medicineType
+        this.dose=dose
+        this.timeOfDay=timeOfDay
+        this.beforeAfterMeal=beforeAfterMeal
+        this.date=day
 
     }
-
-
 }

@@ -11,8 +11,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.NotificationCompat
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.lang.StringBuilder
 
@@ -42,7 +44,7 @@ class Menu : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val activity = Intent(applicationContext, MainActivity::class.java)
+        val activity = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         startActivity(activity)
     }
 

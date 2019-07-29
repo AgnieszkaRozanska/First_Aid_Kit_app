@@ -29,7 +29,7 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
     }
 
     override fun onBindViewHolder(holder: MyViewHolderTakeMedOccur, position: Int) {
-        holder.medName.text = takeMedicineOccurList.elementAt(position).medicineType
+        holder.medName.text = takeMedicineOccurList.elementAt(position).medicineType_Name
         holder.medDose.text = "Dawka:       "+takeMedicineOccurList.elementAt(position).dose.toString()
         holder.medAfterBeforeMeal.text = takeMedicineOccurList.elementAt(position).beforeAfterMeal
 
@@ -53,7 +53,7 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
         cardViewMedicine.setOnClickListener {
 
             val intentEdit = Intent(context, ActivityUpdateRemoveMenuTakeMedicinOccur::class.java)
-            val medTakOccurNameEdit=takeMedicineOccurList[holder.adapterPosition].medicineType
+            val medTakOccurNameEdit=takeMedicineOccurList[holder.adapterPosition].medicineType_Name
             val medTakeOccurDoseEdit= takeMedicineOccurList[holder.adapterPosition].dose.toString()
             val medTakeOccurTimeofDayEdit= takeMedicineOccurList[holder.adapterPosition].timeOfDay
             val medTakeOccurBeforAfterMealEdit= takeMedicineOccurList[holder.adapterPosition].beforeAfterMeal

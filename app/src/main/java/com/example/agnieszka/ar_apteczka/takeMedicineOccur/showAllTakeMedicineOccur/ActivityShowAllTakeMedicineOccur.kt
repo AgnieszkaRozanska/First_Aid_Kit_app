@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.adapter.ShowAllTakeMedicinesOccurAdapter
 import kotlinx.android.synthetic.main.activity_all_take_medicine_occur_recycler_view.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
@@ -16,6 +19,14 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_take_medicine_occur_recycler_view)
+
+        takeTodayDate()
+
+        button_GoToFirstAidKit.setOnClickListener {
+            val activity = Intent(applicationContext, Menu::class.java)
+            startActivity(activity)
+        }
+
     }
 
 
@@ -49,11 +60,15 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
                 this,
                 takeMedicinesOccurListEVENING
             )
-
-
     }
 
+    private fun takeTodayDate(){
+        val current = LocalDateTime.now()
+        val formatDate = DateTimeFormatter.ofPattern("dd.MM.yyy")
 
+        TextView_Data_Today.text=current.format(formatDate)
+
+    }
 
 }
 
