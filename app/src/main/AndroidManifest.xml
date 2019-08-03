@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,7 +34,7 @@
         </activity>
         <activity android:name=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateRemoveMedicine">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
         </activity>
         <activity
                 android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
@@ -44,6 +44,8 @@
         <activity android:name=".firstAidKitAllYourMedicines.notlification.NotificationOfSmallAmountOfTheDrug">
         </activity>
         <activity android:name=".firstAidKitAllYourMedicines.notlification.AddUpdateNotification">
+        </activity>
+        <activity android:name=".todaysMedicines.ShowAllTodaysMedicines">
         </activity>
     </application>
 

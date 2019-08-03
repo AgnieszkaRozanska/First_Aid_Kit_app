@@ -8,10 +8,10 @@ class TakeMedicineOccur {
     var dose:Int
     var timeOfDay: String
     var beforeAfterMeal: String
-    var date: String
+    var dateStart: String
+    var dateEnd: String
 
-
-    constructor(id: String, idMedicineType:String, medicineType: String, dose:Int, timeOfDay: String,  beforeAfterMeal: String,  day:String)
+    constructor(id: String, idMedicineType:String, medicineType: String, dose:Int, timeOfDay: String,  beforeAfterMeal: String,  dateStart:String, dateEnd:String )
     {
         this.iD=id
         this.iD_MedicineType = idMedicineType
@@ -19,7 +19,7 @@ class TakeMedicineOccur {
         this.dose=dose
         this.timeOfDay=timeOfDay
         this.beforeAfterMeal=beforeAfterMeal
-        this.date=day
-
+        this.dateStart=dateStart
+        this.dateEnd=dateEnd
     }
 }

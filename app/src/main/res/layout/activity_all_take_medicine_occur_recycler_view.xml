@@ -71,34 +71,14 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
     />
     <TextView
-            android:text="Leki na dziś"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView_Iformation_const "
-            android:textColor="@color/colorPrimary" android:textStyle="bold" android:textSize="26sp"
-            android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView" android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"/>
-    <TextView
-            android:text="TextView"
-            android:hint="Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TextView_Data_Today" android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Iformation_const " android:layout_marginTop="12dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView" android:layout_marginStart="8dp"
-            android:layout_marginEnd="17dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"/>
-    <Button
-            android:layout_width="199dp"
-            android:layout_height="71dp"
-            android:id="@+id/button_GoToFirstAidKit"
-            android:background="@drawable/buttongotofirstaidkit" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyler_view_All_take_MedOccurEvening"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+            android:text="Wszytskie twoje leki"
+            android:layout_width="147dp"
+            android:layout_height="76dp"
+            android:id="@+id/textView_Topis_const" android:textSize="24sp"
+            android:textAlignment="center" android:textColor="@color/colorPrimary" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/TextiewMorning"
+            android:layout_marginBottom="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView" android:layout_marginStart="8dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

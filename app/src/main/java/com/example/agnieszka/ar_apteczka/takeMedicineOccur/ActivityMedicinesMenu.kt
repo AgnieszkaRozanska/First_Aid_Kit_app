@@ -15,15 +15,15 @@ class ActivityMedicinesMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medicines)
 
-        Button_Add_Take_Med_Occur.setOnClickListener {
-            val activityToAddMedOccur = Intent(applicationContext,
-                ActivityAddTakeMedicineOccour::class.java)
-            startActivity(activityToAddMedOccur)
+        Button_AddTakeMedOccur_addMedToTake.setOnClickListener {
+            val activityToAddMedicieOccur = Intent(applicationContext, ActivityAddTakeMedicineOccour::class.java)
+            startActivity(activityToAddMedicieOccur)
+
         }
 
 
         Button_All_Med_Drugs.setOnClickListener {
-            val activityshowAllMeds= Intent(this, ActivityShowAllTakeMedicineOccur::class.java)
+            val activityshowAllMeds= Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
            startActivity(activityshowAllMeds)
         }
     }

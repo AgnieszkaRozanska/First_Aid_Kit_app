@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
@@ -25,14 +26,24 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
     const val DOSE = "Dose"
     const val TIME_OF_DAY = "TimeOfDay"
     const val BEFORE_AFTER_MEAL = "BeforeAfterMeal"
-    const val DATE = "Date"
-
+    const val DATE_START = "DateStart"
+    const val DATE_END = "DateEnd"
 
     const val NOTIFICATION_MED_COUNT_TABLE_NAME = "NotificationMedCount"
     const val ID_NOTIFICATION = "IDNotification"
     const val ID_MEDICINE_NOTIFICATION = "IDMedicineNotification"
     const val AMOUNT_MED_BELOW_TO_ALARM = "AmountMedBelowToAlarm"
 
+    const val MEDICINES_TO_TAKE_TABLE_NAME = "MedicinesToTake"
+    const val ID_MEDICINES_TO_TAKE = "IdMedicinesToTake"
+    const val ID_TAKE_MED_OCCUR = "IdTakeMedOccur"
+    const val ID_MEDICINE_TYPE = "IdMedicinesType"
+    const val NAME_MED_TO_TAKE = "MedicinesToTakeName"
+    const val DOSE_MED_TO_TAKE  = "DoseMTT"
+    const val TIME_OF_DAY_MED_TO_TAKE = "TimeOfDayMTT"
+    const val WHEN_MEAL_MED_TO_TAKE  = "AfterBeforeMealMTT"
+    const val DATE_MED_TO_TAKE  = "DateMedToTake"
+    const val IF_MED_WAS_TAKEN = "IfMedWasTaken"
 
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
@@ -50,7 +61,8 @@ const val SQL_CREATE_TABLE_MEDICINE_ONE = ("CREATE TABLE IF NOT EXISTS "  + MEDI
         DOSE + " INTEGER NOT NULL," +
         TIME_OF_DAY + " TEXT NOT NULL," +
         BEFORE_AFTER_MEAL +" TEXT NOT NULL," +
-        DATE+ " TEXT NOT NULL);")
+        DATE_START +" TEXT NOT NULL," +
+        DATE_END + " TEXT NOT NULL);")
 
 
 const val SQL_CREATE_TABLE_MED_NOTIFICATION = ("CREATE TABLE IF NOT EXISTS "  + NOTIFICATION_MED_COUNT_TABLE_NAME + " (" +
@@ -58,11 +70,22 @@ const val SQL_CREATE_TABLE_MED_NOTIFICATION = ("CREATE TABLE IF NOT EXISTS "  + 
         ID_MEDICINE_NOTIFICATION + " TEXT NOT NULL,"+
         AMOUNT_MED_BELOW_TO_ALARM + " INTEGER NOT NULL);")
 
+ const val SQL_CREATE_TABLE_MEDICINES_TO_TAKE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINES_TO_TAKE_TABLE_NAME + " (" +
+        ID_MEDICINES_TO_TAKE + " TEXT PRIMARY KEY," +
+        ID_TAKE_MED_OCCUR + " TEXT NOT NULL," +
+        ID_MEDICINE_TYPE + " TEXT NOT NULL," +
+        NAME_MED_TO_TAKE + " TEXT NOT NULL," +
+        DOSE_MED_TO_TAKE + " INTEGER NOT NULL," +
+        TIME_OF_DAY_MED_TO_TAKE + " TEXT NOT NULL," +
+        WHEN_MEAL_MED_TO_TAKE +" TEXT NOT NULL," +
+        DATE_MED_TO_TAKE +" TEXT NOT NULL," +
+        IF_MED_WAS_TAKEN + " TEXT NOT NULL);")
+
+
 const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
-
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
-
 const val SQL_DELETE_TABLE_MEDICINE_NOTIFICATION = "DROP TABLE IF EXISTS $NOTIFICATION_MED_COUNT_TABLE_NAME"
+const val SQL_DELETE_TABLE_MEDICINE_TO_TAKE = "DROP TABLE IF EXISTS $MEDICINES_TO_TAKE_TABLE_NAME"
 
 class SQLConector(context: Context):SQLiteOpenHelper(context,
     DATABASE_NAME, null, 1)
@@ -71,12 +94,14 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.execSQL(SQL_CREATE_TABLE_MEDICINE)
         db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
         db.execSQL(SQL_CREATE_TABLE_MED_NOTIFICATION)
+        db.execSQL(SQL_CREATE_TABLE_MEDICINES_TO_TAKE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(SQL_DELETE_TABLE_MEDICINE)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_ONCE)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_NOTIFICATION)
+        db.execSQL(SQL_DELETE_TABLE_MEDICINE_TO_TAKE)
         onCreate(db)
     }
 
@@ -218,8 +243,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cv.put(DOSE, takeMedOccur.dose)
         cv.put(TIME_OF_DAY, takeMedOccur.timeOfDay)
         cv.put(BEFORE_AFTER_MEAL, takeMedOccur.beforeAfterMeal)
-        cv.put(DATE, takeMedOccur.date)
-
+        cv.put(DATE_START, takeMedOccur.dateStart)
+        cv.put(DATE_END, takeMedOccur.dateEnd)
 
         val result= db.insert(MEDICINE_ONCE_TABLE_NAME, null, cv)
         db.close()
@@ -243,12 +268,12 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val dose = cursor.getString(cursor.getColumnIndex(DOSE))
                     val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
                     val beforeAfterMeal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
-                    val date = cursor.getString(cursor.getColumnIndex(DATE))
-
+                    val dateStart = cursor.getString(cursor.getColumnIndex(DATE_START))
+                    val dateEnd = cursor.getString(cursor.getColumnIndex(DATE_END))
 
                     if(timeOfDay==time)
                     {
-                        val takMedOccur = TakeMedicineOccur(idtakeMedOccur,idMedicineType,idmed,dose.toInt(),timeOfDay,beforeAfterMeal,date)
+                        val takMedOccur = TakeMedicineOccur(idtakeMedOccur,idMedicineType,idmed,dose.toInt(),timeOfDay,beforeAfterMeal,dateStart, dateEnd)
                         takeMedicineOccurAllList.add(takMedOccur)
                     }
                 }while (cursor.moveToNext())
@@ -320,8 +345,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val idNotification= cursor.getString(cursor.getColumnIndex(ID_NOTIFICATION))
                     val idMedicineNotification=cursor.getString(cursor.getColumnIndex(ID_MEDICINE_NOTIFICATION))
                     val amountNotification=cursor.getString(cursor.getColumnIndex(AMOUNT_MED_BELOW_TO_ALARM))
-
-
                     val notification=
                         NotificationAmountMed(
                             idNotification,
@@ -360,7 +383,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                         listOfMed.add(med_Count)
                     }
                 }
-
             }
         }
         return  listOfMed
@@ -415,5 +437,24 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+
+    fun addMedicineToTake(medicineToTake: MedicineToTake):Boolean
+    {
+        val db=this.writableDatabase
+        val cv = ContentValues()
+        cv.put(ID_MEDICINES_TO_TAKE, medicineToTake.iD)
+        cv.put(ID_TAKE_MED_OCCUR, medicineToTake.iDTakeMedOccur)
+        cv.put(ID_MEDICINE_TYPE, medicineToTake.iD_MedicineType)
+        cv.put(NAME_MED_TO_TAKE, medicineToTake.nameMedToTake)
+        cv.put(DOSE_MED_TO_TAKE, medicineToTake.doseMedToTake)
+        cv.put(TIME_OF_DAY_MED_TO_TAKE, medicineToTake.timeOfDayMedToTake)
+        cv.put(WHEN_MEAL_MED_TO_TAKE, medicineToTake.WhenMedToTake)
+        cv.put(DATE_MED_TO_TAKE, medicineToTake.dateSMedToTake)
+        cv.put(IF_MED_WAS_TAKEN, medicineToTake.ifMedWasTaken)
+
+        val result= db.insert(MEDICINES_TO_TAKE_TABLE_NAME, null, cv)
+        db.close()
+        return !result.equals(-1)
+    }
 
 }

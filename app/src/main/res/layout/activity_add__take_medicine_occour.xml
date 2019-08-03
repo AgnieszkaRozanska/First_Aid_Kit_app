@@ -132,14 +132,13 @@
             android:layout_width="106dp"
             android:layout_height="144dp"
             android:background="@drawable/savicon"
-
             android:id="@+id/Button_Save_TakeMedOccur"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="10dp"
             app:layout_constraintEnd_toStartOf="@+id/Add_Med_Occour_Next_Button" android:layout_marginEnd="8dp"
             android:onClick="addMedOccur"
             app:layout_constraintHorizontal_bias="0.685"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="8dp"/>
     <TextView
             android:text="Wybierz datę oraz okres zażywania lekarstwa"
             android:layout_width="wrap_content"
@@ -155,41 +154,25 @@
     <Button
             android:layout_width="107dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button_ChooseDate_TakeMedOccur"
-            android:layout_marginTop="13dp" app:layout_constraintTop_toBottomOf="@+id/ChooseDate_const"
-            app:layout_constraintEnd_toStartOf="@+id/HowMayDays_const"
-            android:layout_marginEnd="36dp" app:layout_constraintBottom_toTopOf="@+id/Button_Save_TakeMedOccur"
+            android:id="@+id/button_ChooseDate_Start"
             android:fontFamily="sans-serif-condensed" android:textAllCaps="false"
-            android:text="Wybierz datę" android:textColor="@android:color/holo_blue_dark"/>
+            android:text="Wybierz datę" android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/ChooseDate_const" android:layout_marginEnd="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/Add_Med_Occour_Next_Button"
+            app:layout_constraintVertical_bias="1.0"/>
     <TextView
             android:text="Od"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="23dp"
+            android:layout_height="22dp"
             android:id="@+id/textView9" android:textSize="18sp"
-            android:textColor="@android:color/holo_blue_dark" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/ChooseDate_const" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/button_ChooseDate_TakeMedOccur"
-            app:layout_constraintBottom_toTopOf="@+id/Button_Save_TakeMedOccur"/>
-    <TextView
-            android:text="Przez ile dni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/HowMayDays_const" android:textSize="17sp"
             android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/ChooseDate_const"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/EditText_ChooseHowMayDays"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/Add_Med_Occour_Next_Button"/>
-    <EditText
-            android:layout_width="67dp"
-            android:layout_height="42dp"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/EditText_ChooseHowMayDays"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_ChooseDate_Start" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/ChooseDate_const"
-            android:layout_marginBottom="19dp"
-            app:layout_constraintBottom_toTopOf="@+id/Add_Med_Occour_Next_Button"/>
+            app:layout_constraintBottom_toTopOf="@+id/Button_Save_TakeMedOccur"/>
+
+
 </android.support.constraint.ConstraintLayout>

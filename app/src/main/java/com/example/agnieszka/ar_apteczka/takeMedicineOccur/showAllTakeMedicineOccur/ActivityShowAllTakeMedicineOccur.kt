@@ -9,7 +9,10 @@ import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.adapter.ShowAllTakeMedicinesOccurAdapter
+import com.facebook.stetho.Stetho
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import kotlinx.android.synthetic.main.activity_all_take_medicine_occur_recycler_view.*
+import okhttp3.OkHttpClient
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -20,12 +23,9 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_take_medicine_occur_recycler_view)
 
-        takeTodayDate()
+        setStetho()
+        //takeTodayDate()
 
-        button_GoToFirstAidKit.setOnClickListener {
-            val activity = Intent(applicationContext, Menu::class.java)
-            startActivity(activity)
-        }
 
     }
 
@@ -62,12 +62,19 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
             )
     }
 
-    private fun takeTodayDate(){
-        val current = LocalDateTime.now()
-        val formatDate = DateTimeFormatter.ofPattern("dd.MM.yyy")
+   // private fun takeTodayDate(){
+     //   val current = LocalDateTime.now()
+      //  val formatDate = DateTimeFormatter.ofPattern("dd.MM.yyy")
 
-        TextView_Data_Today.text=current.format(formatDate)
+      //  TextView_Data_Today.text=current.format(formatDate)
 
+   // }
+
+    private fun setStetho(){
+        Stetho.initializeWithDefaults(this)
+        OkHttpClient.Builder()
+            .addNetworkInterceptor(StethoInterceptor())
+            .build()
     }
 
 }
