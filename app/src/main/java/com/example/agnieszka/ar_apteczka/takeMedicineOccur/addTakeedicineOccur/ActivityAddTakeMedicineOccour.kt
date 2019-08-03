@@ -6,6 +6,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import com.example.agnieszka.ar_apteczka.R
@@ -31,15 +33,14 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
     private var spinner: Spinner ?= null
 
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__take_medicine_occour)
         val dbHelper = SQLConector(applicationContext)
         val medicinesListNamesOfMed = dbHelper.getMedListOfName()
         setSpinner(medicinesListNamesOfMed)
+        validationData(button_ChooseDate_Start.text.toString(), editText_ForHowManyDays, textView_DateEnd)
+
 
         Add_Med_Occour_Next_Button.setOnClickListener {
             val activity = Intent(applicationContext, ActivityAddReminder::class.java)
@@ -62,6 +63,9 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
 
 
+
+
+
     }
 
     override fun onBackPressed() {
@@ -80,9 +84,9 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         val dbHelper = SQLConector(this)
         val choosenMed= spinner!!.selectedItem.toString()
         val dose = Add_Med_Occour_Dose_EditText.text.toString()
-        var dateStart =button_ChooseDate_Start.text
-        // var howManyDays = EditText_HowManyDays.text.toString()
-        //var dateEnd =setDataEnd(dateStart.toString(), howManyDays.toInt())
+        var dateStart =button_ChooseDate_Start.text.toString()
+        var howManyDays = editText_ForHowManyDays.text.toString()
+        var dateEnd =setDataEnd(dateStart, howManyDays.toInt())
         //var dateTodayString = setDataToday()
         //var dateDateStart=LocalDate.parse(dateStart)
         // var dateDateEnd=LocalDate.parse(dateEnd)
@@ -184,19 +188,17 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         builder.show()
     }
 
-    /*  private fun setDataEnd(dataStartString : String, howManyDays : Int) : String{
+      private fun setDataEnd(dataStartString : String, howManyDays : Int) : String{
           var dataEnd = ""
           if(dataStartString != "Wybierz datę") {
               var dateDate = LocalDate.parse(dataStartString)
-              var period = Period.of(0, 0, howManyDays)
+              var period = Period.of(0, 0, howManyDays-1)
               var modifiedDate = dateDate.plus(period)
               dataEnd = modifiedDate.toString()
-              textView_ChooseDate_End.text = dataEnd
-              //textView_ChooseDate_End.visibility= TextView.VISIBLE
-              //TextView_dateTo_info.visibility= TextView.VISIBLE
+              textView_DateEnd.text = dataEnd
           } else alertDialogNoDataStart()
           return dataEnd
-      } */
+      }
 
     private fun setDataToday() : String{
         val current = LocalDateTime.now()
@@ -253,6 +255,43 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         }, year, month, day)
         datePicker.show()
     }
+
+    fun validationData(dataStart : String, textedit: EditText, warm_informations: TextView)
+    {
+        textedit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (textedit.length()==0 && button_ChooseDate_Start.text.toString() == "Wybierz datę"){
+                    warm_informations.text = "Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową"
+                    warm_informations.visibility= TextView.VISIBLE
+                }
+                if(textedit.length()==0 && button_ChooseDate_Start.text.toString() != "Wybierz datę"){
+                    warm_informations.text = "Musisz wybrać okres brania aby obliczyć datę końcową"
+                    warm_informations.visibility= TextView.VISIBLE
+                }
+                if(textedit.length()!=0 && button_ChooseDate_Start.text.toString() == "Wybierz datę"){
+                    warm_informations.text = "Musisz wybrać datę początkową aby obliczyć datę końcową"
+                    warm_informations.visibility= TextView.VISIBLE
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (textedit.length()<1){
+                    warm_informations.text = "Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową"
+                    warm_informations.visibility= TextView.VISIBLE            }
+                else if(textedit.length()!=0 && button_ChooseDate_Start.text.toString() != "Wybierz datę"){
+                    warm_informations.text = setDataEnd(button_ChooseDate_Start.text.toString(), editText_ForHowManyDays.text.toString().toInt())
+                    warm_informations.visibility= TextView.VISIBLE
+                }
+                else{
+                    warm_informations.text = "Musisz wybrać datę początkową aby obliczyć datę końcową"
+                    warm_informations.visibility= TextView.VISIBLE
+                }
+            }
+
+        })
+    }
+
 
 
 }
