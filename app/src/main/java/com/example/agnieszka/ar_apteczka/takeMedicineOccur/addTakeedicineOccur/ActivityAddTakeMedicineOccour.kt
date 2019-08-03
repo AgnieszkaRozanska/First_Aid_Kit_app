@@ -62,9 +62,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         }
 
 
-
-
-
+        
 
     }
 
@@ -86,18 +84,12 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         val dose = Add_Med_Occour_Dose_EditText.text.toString()
         var dateStart =button_ChooseDate_Start.text.toString()
         var howManyDays = editText_ForHowManyDays.text.toString()
-        var dateEnd =setDataEnd(dateStart, howManyDays.toInt())
-        //var dateTodayString = setDataToday()
-        //var dateDateStart=LocalDate.parse(dateStart)
-        // var dateDateEnd=LocalDate.parse(dateEnd)
-        //var dateToday = LocalDate.parse(dateTodayString)
+        var dateEnd =textView_DateEnd.text.toString()
         val id_MedType = dbHelper.getMedicieID(choosenMed)
 
-        //if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" || howManyDays.isEmpty()) {
-        if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" ) {
+        if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" || dateEnd == "@string/InformationAboutDateAndDays" || howManyDays.isEmpty()) {
             alertDialogNoData()
-        }
-        // else if(dateToday>dateDateEnd) alertDialogWrongData()
+        } //else if(dateToday>dateDateEnd) alertDialogWrongData()
         else{
             val id= UUID.randomUUID().toString()
             val takeMedOccur= TakeMedicineOccur(
@@ -107,14 +99,14 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
                 dose.toInt(),
                 timeOfDay.toString(),
                 beforeAfterMeal.toString(),
-                dateStart.toString(),
-                "2019-10-10"
+                dateStart,
+                dateEnd
             )
             val success= dbHelper.addTakeMedicineOccur(takeMedOccur)
-
+            AddMediciesToTake(takeMedOccur)
             if(success)
             {
-                //AddMediciesToTake(takeMedOccur)
+
                 Toast.makeText(applicationContext, getString(R.string.TakeMedOccurMedAdded), Toast.LENGTH_SHORT).show()
 
                 var activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
@@ -207,10 +199,10 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         return dateTodayString.toString()
     }
 
-    /*   private fun AddMediciesToTake(takeMedicineOccour: TakeMedicineOccur){
+      private fun AddMediciesToTake(takeMedicineOccour: TakeMedicineOccur){
            val dbHelper = SQLConector(this)
            var date =button_ChooseDate_Start.text
-           var howManyDays = EditText_HowManyDays.text.toString()
+           var howManyDays = editText_ForHowManyDays.text.toString()
 
            repeat(howManyDays.toInt()){
 
@@ -233,28 +225,8 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
                date  = modifiedDate.toString()
            }
 
-       } */
+       }
 
-
-    private fun datePikerEnd(){
-        val c = Calendar.getInstance()
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
-        val year = c.get(Calendar.YEAR)
-        val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{
-                view, myear, mmonth, mday ->
-            //var date = "" + myear + "-" + (mmonth + 1) + "-" + mday
-            var monthString: String
-            var dayString: String
-            var yearString = myear.toString()
-            monthString = formatMonth(mmonth)
-            dayString=formatDays(mday)
-            var dataString = yearString+"-"+monthString+"-"+dayString
-            var dateDate= LocalDate.parse(dataString)
-            //textView_ChooseDate_End.text=dateDate.toString()
-        }, year, month, day)
-        datePicker.show()
-    }
 
     fun validationData(dataStart : String, textedit: EditText, warm_informations: TextView)
     {

@@ -67,4 +67,6 @@
     </string>
     <string name="ToastMedicineAddedWithoutNotification">Lek został dodany, bez powiadomienia o małej ilości leku
     </string>
+    <string name="InformationAboutDateAndDays">Wybierz datę oraz okres zażywania lekarstwa licząc od daty początkowej
+    </string>
 </resources>

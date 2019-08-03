@@ -140,7 +140,7 @@
             app:layout_constraintHorizontal_bias="0.685"
             android:layout_marginBottom="8dp"/>
     <TextView
-            android:text="Wybierz datę oraz okres zażywania lekarstwa licząc od daty początkowej"
+            android:text="@string/InformationAboutDateAndDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ChooseDate_const" android:textSize="18sp"
