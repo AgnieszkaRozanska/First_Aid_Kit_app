@@ -430,7 +430,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             e.printStackTrace()
             return false
         }
-
         return true
     }
 
@@ -496,8 +495,48 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return takeMedicineTodayAllList
     }
 
+    fun takingTheTodayMedicine(id:String):Boolean
+    {
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            cv.put(IF_MED_WAS_TAKEN, "Yes")
+            db.update(MEDICINES_TO_TAKE_TABLE_NAME, cv, "IdMedicinesToTake =?", arrayOf(id))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+        return true
+    }
 
+    fun getUnitInStock(idMedcieType : String) : Int{
+        var resultUnitInStock : Int = 1
+        var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
+        for (i:MedicineType in medicineTypeList) {
+            if(i.iDMedicine==idMedcieType) resultUnitInStock=i.unitInStock
+        }
+        return resultUnitInStock
 
+    }
+
+    fun reduceAmountOfDrugMedicineTypeByTheTakenDose(idMedcieType : String, dose : Int) : Boolean{
+        var currentAmountOfMedicine = getUnitInStock(idMedcieType)
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            var newUnitInStock= currentAmountOfMedicine - dose
+            cv.put(UNIT_IN_STOCK, newUnitInStock)
+            db.update(MEDICINE_TABLE_NAME, cv, "IDMedicine =?", arrayOf(idMedcieType))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+        return true
+    }
 
 
 }

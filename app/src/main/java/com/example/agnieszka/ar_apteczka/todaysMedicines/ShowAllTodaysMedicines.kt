@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.facebook.stetho.Stetho
@@ -20,14 +21,13 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         setContentView(R.layout.activity_show_all_todays_medicines)
         setTodayDate()
         setStetho()
+
+        button_GoToFirstAidKit.setOnClickListener {
+            val goToMenu = Intent(applicationContext, Menu::class.java)
+            startActivity(goToMenu)
+        }
+
     }
-
-    //override fun onBackPressed() {
-     //   val activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
-    //    startActivity(activity)
-   // }
-
-
     override fun onResume() {
         super.onResume()
         val sqlConector = SQLConector(this)
@@ -76,6 +76,10 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         var dateTodayString =current.format(formatDate)
         return dateTodayString.toString()
+    }
+
+    fun takeMedToday(){
+
     }
 
 
