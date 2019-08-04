@@ -7,6 +7,7 @@ import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.todaysMedicines.ShowAllTodaysMedicines
 import kotlinx.android.synthetic.main.activity_medicines.*
 
 class ActivityMedicinesMenu : AppCompatActivity() {
@@ -20,12 +21,17 @@ class ActivityMedicinesMenu : AppCompatActivity() {
             startActivity(activityToAddMedicieOccur)
 
         }
-
-
         Button_All_Med_Drugs.setOnClickListener {
             val activityshowAllMeds= Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
            startActivity(activityshowAllMeds)
         }
+
+        Button_ShowAllMedicinesToday.setOnClickListener {
+            val activityshowAllMedsToday= Intent(applicationContext, ShowAllTodaysMedicines::class.java)
+            startActivity(activityshowAllMedsToday)
+        }
+
+
     }
 
     override fun onBackPressed() {

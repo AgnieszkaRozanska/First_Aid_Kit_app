@@ -22,11 +22,6 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_take_medicine_occur_recycler_view)
-
-        setStetho()
-        //takeTodayDate()
-
-
     }
 
 
@@ -62,20 +57,6 @@ class ActivityShowAllTakeMedicineOccur : AppCompatActivity() {
             )
     }
 
-   // private fun takeTodayDate(){
-     //   val current = LocalDateTime.now()
-      //  val formatDate = DateTimeFormatter.ofPattern("dd.MM.yyy")
-
-      //  TextView_Data_Today.text=current.format(formatDate)
-
-   // }
-
-    private fun setStetho(){
-        Stetho.initializeWithDefaults(this)
-        OkHttpClient.Builder()
-            .addNetworkInterceptor(StethoInterceptor())
-            .build()
-    }
 
 }
 

@@ -61,9 +61,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
            datePikerStart()
         }
 
-
-        
-
     }
 
     override fun onBackPressed() {
