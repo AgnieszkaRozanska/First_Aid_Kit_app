@@ -298,6 +298,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
     fun removeTakeMedicineOccur(id: String): Boolean
     {
+
         try {
             val db=this.writableDatabase
             db.delete(MEDICINE_ONCE_TABLE_NAME, "$ID_MEDICINE=?", arrayOf(id))
@@ -510,6 +511,47 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return takeMedicineTodayAllList
     }
 
+    fun getAllTakeMedicinesTodayAllDrugs():ArrayList<MedicineToTake>{
+        val takeMedicineTodayAllList= ArrayList<MedicineToTake>()
+        val db= readableDatabase
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINES_TO_TAKE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do {
+                    val idTakeMedicinesToday = cursor.getString(cursor.getColumnIndex(ID_MEDICINES_TO_TAKE))
+                    val idtakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_TAKE_MED_OCCUR))
+                    val idMedicineType = cursor.getString(cursor.getColumnIndex(ID_MEDICINE_TYPE))
+                    val medName = cursor.getString(cursor.getColumnIndex(NAME_MED_TO_TAKE))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE_MED_TO_TAKE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY_MED_TO_TAKE))
+                    val whenbeforeAfterMeal = cursor.getString(cursor.getColumnIndex(WHEN_MEAL_MED_TO_TAKE))
+                    val dataToTake = cursor.getString(cursor.getColumnIndex(DATE_MED_TO_TAKE))
+                    val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
+
+                        val medicineToTakeToday = MedicineToTake(
+                            idTakeMedicinesToday,
+                            idtakeMedOccur,
+                            idMedicineType,
+                            medName,
+                            dose.toInt(),
+                            timeOfDay,
+                            whenbeforeAfterMeal,
+                            dataToTake,
+                            ifWasTaken
+                        )
+                        takeMedicineTodayAllList.add(medicineToTakeToday)
+
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return takeMedicineTodayAllList
+    }
+
+
     fun takingTheTodayMedicine(id:String):Boolean
     {
         try {
@@ -552,6 +594,43 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
         return true
     }
+
+    fun removeTakeTodayMedicie(idTakeMedOccur: String): Boolean {
+        val allMediciesToTake= getAllTakeMedicinesTodayAllDrugs()
+        for (i: MedicineToTake in allMediciesToTake) {
+
+            if(i.iDTakeMedOccur == idTakeMedOccur)
+            try {
+                val db = this.writableDatabase
+                db.delete(MEDICINES_TO_TAKE_TABLE_NAME, "$ID_TAKE_MED_OCCUR=?", arrayOf(idTakeMedOccur))
+                db.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return false
+            }
+        }
+            return true
+        }
+
+    fun updateTakeTodayMedicineDoses(idTakeMedOccur:String, unitInStock: Int):Boolean
+    {
+        val allMediciesToTake= getAllTakeMedicinesTodayAllDrugs()
+        for (i: MedicineToTake in allMediciesToTake) {
+            if (i.iDTakeMedOccur == idTakeMedOccur)
+                try {
+                    val db = this.writableDatabase
+                    val cv = ContentValues()
+                    cv.put(DOSE_MED_TO_TAKE, unitInStock)
+                    db.update(MEDICINES_TO_TAKE_TABLE_NAME, cv, "IdTakeMedOccur =?", arrayOf(idTakeMedOccur))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+        }
+        return true
+    }
+
 
 
 }

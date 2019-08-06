@@ -70,8 +70,9 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         val dbHelper = SQLConector(applicationContext)
         var idToRemoveTakemedoccu=""
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idToRemoveTakemedoccu= intent.getStringExtra("IDMedicine_TakeOccur")
-        val success = dbHelper.removeTakeMedicineOccur(idToRemoveTakemedoccu)
-        if(success)
+        val successRemoveMedOccur = dbHelper.removeTakeMedicineOccur(idToRemoveTakemedoccu)
+        val successRemoveTakeMed = dbHelper.removeTakeTodayMedicie(idToRemoveTakemedoccu)
+        if(successRemoveMedOccur && successRemoveTakeMed)
         {
             Toast.makeText(applicationContext, getString(R.string.UpdateRemoveMenuRemoveAttention), Toast.LENGTH_SHORT).show()
         }

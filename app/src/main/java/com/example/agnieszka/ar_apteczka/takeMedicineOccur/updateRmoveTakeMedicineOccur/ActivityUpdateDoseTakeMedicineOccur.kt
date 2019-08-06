@@ -40,8 +40,9 @@ class ActivityUpdateDoseTakeMedicineOccur : AppCompatActivity() {
         }
         else
         {
-            val success = dbHelper.updateTakeMedicineOccurDoses(id, count.toInt())
-            if (success)
+            val successUpdateTakeMedOccur = dbHelper.updateTakeMedicineOccurDoses(id, count.toInt())
+            val successUpdateAllTakeMed=dbHelper.updateTakeTodayMedicineDoses(id, count.toInt())
+            if (successUpdateTakeMedOccur && successUpdateAllTakeMed)
             {
                 Toast.makeText(applicationContext, getString(R.string.DoseUpdateInformation), Toast.LENGTH_SHORT).show()
                 val activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
