@@ -8,8 +8,11 @@ import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-  const  val DATABASE_NAME = "FirstAidKit.db"
+const  val DATABASE_NAME = "FirstAidKit.db"
 
     const val MEDICINE_TABLE_NAME = "Medicine"
     const val NAME = "Name"
@@ -269,8 +272,19 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val dateStart = cursor.getString(cursor.getColumnIndex(DATE_START))
                     val dateEnd = cursor.getString(cursor.getColumnIndex(DATE_END))
 
-                    if(timeOfDay==time)
+                    val current = LocalDateTime.now()
+                    val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                    var dateTodayString =current.format(formatDate)
+
+                   var dateStartFormatDate = LocalDate.parse(dateStart, formatDate)
+                   var dateEndFormatDate = LocalDate.parse(dateEnd, formatDate)
+                   var dateToday = LocalDate.parse(dateTodayString, formatDate)
+                   val compareDateStartWithCurretDate = dateStartFormatDate.compareTo(dateToday)
+                   val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(dateToday)
+                    if(timeOfDay==time && (compareDateStartWithCurretDate<0 || compareDateStartWithCurretDate==0) && (compareDateEndWithCurrentDate>0 || compareDateEndWithCurrentDate==0))
                     {
+                        //if(timeOfDay==time)
+                        //{
                         val takMedOccur = TakeMedicineOccur(idtakeMedOccur,idMedicineType,idmed,dose.toInt(),timeOfDay,beforeAfterMeal,dateStart, dateEnd)
                         takeMedicineOccurAllList.add(takMedOccur)
                     }
@@ -472,6 +486,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val whenbeforeAfterMeal = cursor.getString(cursor.getColumnIndex(WHEN_MEAL_MED_TO_TAKE))
                     val dataToTake = cursor.getString(cursor.getColumnIndex(DATE_MED_TO_TAKE))
                     val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
+
                     if(ifWasTaken == "No" && dataToTake == date && timeOfDay == time ) {
 
                         val medicineToTakeToday = MedicineToTake(
