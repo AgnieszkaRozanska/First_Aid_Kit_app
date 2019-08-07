@@ -57,6 +57,8 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
             val medTakeOccurDoseEdit= takeMedicineOccurList[holder.adapterPosition].dose.toString()
             val medTakeOccurTimeofDayEdit= takeMedicineOccurList[holder.adapterPosition].timeOfDay
             val medTakeOccurBeforAfterMealEdit= takeMedicineOccurList[holder.adapterPosition].beforeAfterMeal
+            val medTakeOccurDateStart= takeMedicineOccurList[holder.adapterPosition].dateStart
+            val medTakeOccurDateEnd= takeMedicineOccurList[holder.adapterPosition].dateEnd
             val idTakeOccurEdit= takeMedicineOccurList[holder.adapterPosition].iD
 
             intentEdit.putExtra("nameTakeOccur", medTakOccurNameEdit)
@@ -64,6 +66,8 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
             intentEdit.putExtra("IDMedicine_TakeOccur", idTakeOccurEdit)
             intentEdit.putExtra("timeOfDay", medTakeOccurTimeofDayEdit)
             intentEdit.putExtra("afterBeforeMeal", medTakeOccurBeforAfterMealEdit)
+            intentEdit.putExtra("dateStart", medTakeOccurDateStart)
+            intentEdit.putExtra("dateEnd", medTakeOccurDateEnd)
             context.startActivity(intentEdit)
         }
     }

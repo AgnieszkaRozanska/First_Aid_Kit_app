@@ -1,11 +1,13 @@
 package com.example.agnieszka.ar_apteczka.takeMedicineOccur.updateRmoveTakeMedicineOccur
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
+import com.example.agnieszka.ar_apteczka.ChangeTimePeriodOfTakenMedicine
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
@@ -13,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_update_remove_menu_take_medicin_o
 
 class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
 
+    private var dateStartOfPeriodTaken = ""
+    private var dateEndOfPeriodTaken = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_remove_menu_take_medicin_occur)
@@ -26,6 +30,10 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         button_UpdateDoseTakeMedicineOccur.setOnClickListener {
             downloadDataUpdateDose()
         }
+        button_ChangeTakePeriod.setOnClickListener {
+            val activityChangeTimePEriod = Intent(applicationContext, ChangeTimePeriodOfTakenMedicine::class.java)
+            startActivity(activityChangeTimePEriod)
+        }
 
     }
 
@@ -34,11 +42,24 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         startActivity(activity)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setData(){
         if (intent.hasExtra("nameTakeOccur")) UpdateRemoveTakeMedicineOccur_MedicineName.text = intent.getStringExtra("nameTakeOccur")
         if (intent.hasExtra("dose")) updateRemoveTakeMedicineOccur_Dose.text = intent.getStringExtra("dose")
         if (intent.hasExtra("timeOfDay")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.text = intent.getStringExtra("timeOfDay")
         if (intent.hasExtra("afterBeforeMeal")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("afterBeforeMeal")
+        //    val output = str.replace(oldValue, newValue)
+        //
+        if (intent.hasExtra("dateStart")) {
+            var dateStart = intent.getStringExtra("dateStart")
+             dateStartOfPeriodTaken= dateStart.replace("-", ".")
+        }
+        if (intent.hasExtra("dateEnd")) {
+           var dateEnd = intent.getStringExtra("dateEnd")
+            dateEndOfPeriodTaken = dateEnd.replace("-", ".")
+        }
+
+        updateRemoveTakeMedicineOccur_DateStart.text = "$dateStartOfPeriodTaken  -  $dateEndOfPeriodTaken"
     }
 
     private fun alertDialogRemoveTakeMedOccur(){

@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
+        <activity android:name=".ChangeTimePeriodOfTakenMedicine">
+        </activity>
     </application>
 
 </manifest>
