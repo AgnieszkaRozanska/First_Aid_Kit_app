@@ -296,6 +296,32 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return takeMedicineOccurAllList
     }
 
+    fun getTakeMedicieOccur(idTakeMedOccur : String, timeOfDay : String) : TakeMedicineOccur{
+        var allTakeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedicineOccur(timeOfDay)
+        var idtakeMedOccur = ""
+        var idMedicineType = ""
+        var idmedName = ""
+        var dose = 0
+        var timeOfDay = ""
+        var beforeAfterMeal = ""
+        var dateStart = ""
+        var dateEnd = ""
+        for (i:TakeMedicineOccur in allTakeMedOccurList){
+            if(i.iD == idTakeMedOccur)
+            idtakeMedOccur = i.iD
+            idMedicineType = i.iD_MedicineType
+            idmedName = i.medicineType_Name
+            dose = i.dose
+             timeOfDay = i.timeOfDay
+            beforeAfterMeal = i.beforeAfterMeal
+             dateStart = i.dateStart
+             dateEnd = i.dateEnd
+
+        }
+        var takeMedOccur =  TakeMedicineOccur(idtakeMedOccur, idMedicineType, idmedName, dose, timeOfDay, beforeAfterMeal, dateStart, dateEnd)
+            return  takeMedOccur
+    }
+
     fun removeTakeMedicineOccur(id: String): Boolean
     {
 
@@ -318,6 +344,23 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             val db = this.writableDatabase
             val cv = ContentValues()
             cv.put(DOSE, unitInStock)
+            db.update(MEDICINE_ONCE_TABLE_NAME, cv, "IDMedicine =?", arrayOf(id))
+            db.close()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            return false
+        }
+
+        return true
+    }
+
+    fun updateTakeMedicineOccurDateEnd(id:String, dateEnd: String):Boolean
+    {
+        try {
+            val db = this.writableDatabase
+            val cv = ContentValues()
+            cv.put(DATE_END, dateEnd)
             db.update(MEDICINE_ONCE_TABLE_NAME, cv, "IDMedicine =?", arrayOf(id))
             db.close()
         }

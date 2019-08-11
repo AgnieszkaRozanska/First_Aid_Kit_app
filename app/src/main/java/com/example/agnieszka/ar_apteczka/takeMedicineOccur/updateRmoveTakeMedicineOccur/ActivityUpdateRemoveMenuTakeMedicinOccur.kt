@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
-import com.example.agnieszka.ar_apteczka.ChangeTimePeriodOfTakenMedicine
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
@@ -31,8 +30,7 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
             downloadDataUpdateDose()
         }
         button_ChangeTakePeriod.setOnClickListener {
-            val activityChangeTimePEriod = Intent(applicationContext, ChangeTimePeriodOfTakenMedicine::class.java)
-            startActivity(activityChangeTimePEriod)
+            downloadDataToChangeTimePeriod(dateStartOfPeriodTaken, dateEndOfPeriodTaken)
         }
 
     }
@@ -99,5 +97,26 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         }
         startActivity(intentRemove)
     }
+
+    private fun downloadDataToChangeTimePeriod(dateStart : String, dateEnd : String){
+        val intentEdit = Intent(applicationContext, ChangeTimePeriodOfTakenMedicine::class.java)
+        val medicneName=UpdateRemoveTakeMedicineOccur_MedicineName.text
+        var timeOfDay = ""
+        var dateStart = dateStart
+        var dateEnd = dateEnd
+        var idTakeMedOccur=""
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
+
+        intentEdit.putExtra("nameMedTakeOcur", medicneName)
+        intentEdit.putExtra("IDMedicine_TakeOccur", idTakeMedOccur)
+        intentEdit.putExtra("dateStart", dateStart)
+        intentEdit.putExtra("dateEnd", dateEnd)
+        intentEdit.putExtra("timeOfDay", timeOfDay)
+        startActivity(intentEdit)
+
+    }
+
+
 
 }
