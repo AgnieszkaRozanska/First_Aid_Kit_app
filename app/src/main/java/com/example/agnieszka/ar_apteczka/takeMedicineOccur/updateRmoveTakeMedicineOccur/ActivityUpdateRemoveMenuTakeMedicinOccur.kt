@@ -101,13 +101,14 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
     private fun downloadDataToChangeTimePeriod(dateStart : String, dateEnd : String){
         val intentEdit = Intent(applicationContext, ChangeTimePeriodOfTakenMedicine::class.java)
         val medicneName=UpdateRemoveTakeMedicineOccur_MedicineName.text
+        var whenDiuringDay = updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text
         var timeOfDay = ""
         var dateStart = dateStart
         var dateEnd = dateEnd
         var idTakeMedOccur=""
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
         if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
-
+        intentEdit.putExtra("afterBeforeMeal", whenDiuringDay)
         intentEdit.putExtra("nameMedTakeOcur", medicneName)
         intentEdit.putExtra("IDMedicine_TakeOccur", idTakeMedOccur)
         intentEdit.putExtra("dateStart", dateStart)

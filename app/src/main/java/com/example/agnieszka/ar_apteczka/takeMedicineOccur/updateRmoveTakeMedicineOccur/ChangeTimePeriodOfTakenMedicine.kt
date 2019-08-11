@@ -25,6 +25,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
     private var dateEndOfPeriodTaken = ""
     private var idTakeMedOccur = ""
     private var timeOfDay = ""
+    private var afterBeforeMeal = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +105,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         var newDateEnd = buttonChooseNewDateEnd.text
         var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
         val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
-        if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine()
+        if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
         if(compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
         if(compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
     }
@@ -112,16 +113,15 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
     private fun extendPeriodOfTakingMedicine(dateEndFormatDateOld : LocalDate, newdateEndFormatDate :LocalDate){
         if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        if (intent.hasExtra("afterBeforeMeal")) afterBeforeMeal = intent.getStringExtra("afterBeforeMeal")
         val dbHelper = SQLConector(this)
         dbHelper.updateTakeMedicineOccurDateEnd(idTakeMedOccur, newdateEndFormatDate.toString())
         var dateEndFormatDate = LocalDate.parse(dateEndFormatDateOld.toString(), formatDate)
-        var takeMedOccur = dbHelper.getTakeMedicieOccur(idTakeMedOccur, timeOfDay)
+        var takeMedOccur = dbHelper.getTakeMedicieOccur(idTakeMedOccur, timeOfDay, afterBeforeMeal)
         do{
-
             var period = Period.of(0, 0, 1)
             var modifiedDate = dateEndFormatDate.plus(period)
             var dateString  = modifiedDate.toString()
-
 
             var id= UUID.randomUUID().toString()
                 var medicineToTake= MedicineToTake(
@@ -141,20 +141,33 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         }while(compareDateEndWithCurrentDate < 0 )
 
         Toast.makeText(applicationContext, "Wydłużono okres żażywania leku", Toast.LENGTH_SHORT).show()
-
         var activity = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         startActivity(activity)
 
     }
 
-    private fun shortenPertiodOfTakingMedicine(){
+    private fun shortenPertiodOfTakingMedicine(dateEndFormatDateOld : LocalDate, newdateEndFormatDate :LocalDate){
+        if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        if (intent.hasExtra("afterBeforeMeal")) afterBeforeMeal = intent.getStringExtra("afterBeforeMeal")
+        val dbHelper = SQLConector(this)
+        dbHelper.updateTakeMedicineOccurDateEnd(idTakeMedOccur, newdateEndFormatDate.toString())
+        var takeMedOccur = dbHelper.getTakeMedicieOccur(idTakeMedOccur, timeOfDay, afterBeforeMeal)
 
+        var listOfTakeMedicineTodayTheSameType= dbHelper.takeAllInstancesOfTheSameDrug(takeMedOccur)
+        var success = dbHelper.removeSingleInstanceTakeTodayMedicie(newdateEndFormatDate, listOfTakeMedicineTodayTheSameType)
+        val intentRemove = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
+        if(success)
+        {
+            Toast.makeText(applicationContext, "Skrócono czas zażywania lekarstwa", Toast.LENGTH_SHORT).show()
+        }
+        startActivity(intentRemove)
     }
 
     private fun alertDialogTheSameDate(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Wybrana data jest nieprawidłowa")
-        builder.setMessage("Nowa data nie rónżi się od obecej daty zakończeia brania leku")
+        builder.setMessage("Nowa data nie rónżni się od obecnej daty zakończeia brania leku")
         builder.setNeutralButton("Wróć"){_,_ ->
 
         }

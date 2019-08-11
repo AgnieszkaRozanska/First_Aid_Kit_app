@@ -296,8 +296,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return takeMedicineOccurAllList
     }
 
-    fun getTakeMedicieOccur(idTakeMedOccur : String, timeOfDay : String) : TakeMedicineOccur{
-        var allTakeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedicineOccur(timeOfDay)
+    fun getTakeMedicieOccur(idTakeMedOccur : String, timeOfDayParm : String, afterBeforeMealParm : String) : TakeMedicineOccur{
+        var allTakeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedicineOccur(timeOfDayParm)
         var idtakeMedOccur = ""
         var idMedicineType = ""
         var idmedName = ""
@@ -307,7 +307,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         var dateStart = ""
         var dateEnd = ""
         for (i:TakeMedicineOccur in allTakeMedOccurList){
-            if(i.iD == idTakeMedOccur)
+            if(i.iD == idTakeMedOccur && i.timeOfDay == timeOfDayParm && i.beforeAfterMeal == afterBeforeMealParm)
             idtakeMedOccur = i.iD
             idMedicineType = i.iD_MedicineType
             idmedName = i.medicineType_Name
@@ -654,6 +654,85 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
             return true
         }
+
+    fun takeAllInstancesOfTheSameDrug(takeMedOccur : TakeMedicineOccur):ArrayList<MedicineToTake>{
+        val takeMedicineTodayTheSameTypeList= ArrayList<MedicineToTake>()
+        val db= readableDatabase
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINES_TO_TAKE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do {
+                    val idTakeMedicinesToday = cursor.getString(cursor.getColumnIndex(ID_MEDICINES_TO_TAKE))
+                    val idtakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_TAKE_MED_OCCUR))
+                    val idMedicineType = cursor.getString(cursor.getColumnIndex(ID_MEDICINE_TYPE))
+                    val medName = cursor.getString(cursor.getColumnIndex(NAME_MED_TO_TAKE))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE_MED_TO_TAKE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY_MED_TO_TAKE))
+                    val whenbeforeAfterMeal = cursor.getString(cursor.getColumnIndex(WHEN_MEAL_MED_TO_TAKE))
+                    val dataToTake = cursor.getString(cursor.getColumnIndex(DATE_MED_TO_TAKE))
+                    val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
+
+                    if(idtakeMedOccur == takeMedOccur.iD && medName == takeMedOccur.medicineType_Name && dose.toInt() == takeMedOccur.dose && timeOfDay == takeMedOccur.timeOfDay && whenbeforeAfterMeal == takeMedOccur.beforeAfterMeal && ifWasTaken == "No") {
+                        val medicineToTakeToday = MedicineToTake(
+                            idTakeMedicinesToday,
+                            idtakeMedOccur,
+                            idMedicineType,
+                            medName,
+                            dose.toInt(),
+                            timeOfDay,
+                            whenbeforeAfterMeal,
+                            dataToTake,
+                            ifWasTaken
+                        )
+                        takeMedicineTodayTheSameTypeList.add(medicineToTakeToday)
+                    }
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return takeMedicineTodayTheSameTypeList
+    }
+
+    fun removeSingleInstanceTakeTodayMedicie( newDateEnd : LocalDate, listOfTakeMedicineToday : ArrayList<MedicineToTake>): Boolean {
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        for (i: MedicineToTake in listOfTakeMedicineToday) {
+            var dateToTakeString = i.dateSMedToTake
+            var currentDate = LocalDate.parse(dateToTakeString, formatDate)
+            var compareOldDateEndNewDateEnd = currentDate.compareTo(newDateEnd)
+            if(compareOldDateEndNewDateEnd > 0)
+                try {
+                    val db = this.writableDatabase
+                    db.delete(MEDICINES_TO_TAKE_TABLE_NAME, "$ID_MEDICINES_TO_TAKE=?", arrayOf(i.iD))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+        }
+        return true
+    }
+
+ /*   fun shortenPertiodOfTakeTodayMedicie(idTakeMedOccur: String, newDateEnd : LocalDate): Boolean {
+        val allMediciesToTake= getAllTakeMedicinesTodayAllDrugs()
+        for (i: MedicineToTake in allMediciesToTake) {
+
+            if(i.iDTakeMedOccur == idTakeMedOccur)
+                try {
+                    val db = this.writableDatabase
+                    db.delete(MEDICINES_TO_TAKE_TABLE_NAME, "$ID_TAKE_MED_OCCUR=?", arrayOf(idTakeMedOccur))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+        }
+        return true
+    }
+*/
+
 
     fun updateTakeTodayMedicineDoses(idTakeMedOccur:String, unitInStock: Int):Boolean
     {
