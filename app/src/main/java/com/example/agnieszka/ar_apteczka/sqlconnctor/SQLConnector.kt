@@ -222,6 +222,16 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun canRemoveMedicine(idMedicineType : String) : Boolean{
+        var listOfAllTakeMedicies = getAllTakeMedicinesTodayAllDrugs()
+        for (i: MedicineToTake in listOfAllTakeMedicies) {
+            if(i.iD_MedicineType ==idMedicineType) {
+               return false
+            }
+            }
+        return true
+    }
+
     fun checkIfDrugAlreadyExists(name : String, activeDose : String) : Boolean{
         var result = false
         var medicineTypeList: ArrayList<MedicineType> = getAllMedicineTypes()
@@ -281,7 +291,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                    var dateToday = LocalDate.parse(dateTodayString, formatDate)
                    val compareDateStartWithCurretDate = dateStartFormatDate.compareTo(dateToday)
                    val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(dateToday)
-                    if(timeOfDay==time && (compareDateStartWithCurretDate<0 || compareDateStartWithCurretDate==0) && (compareDateEndWithCurrentDate>0 || compareDateEndWithCurrentDate==0))
+                    if(timeOfDay==time &&  (compareDateEndWithCurrentDate>0 || compareDateEndWithCurrentDate==0))
                     {
                         //if(timeOfDay==time)
                         //{
@@ -714,25 +724,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
         return true
     }
-
- /*   fun shortenPertiodOfTakeTodayMedicie(idTakeMedOccur: String, newDateEnd : LocalDate): Boolean {
-        val allMediciesToTake= getAllTakeMedicinesTodayAllDrugs()
-        for (i: MedicineToTake in allMediciesToTake) {
-
-            if(i.iDTakeMedOccur == idTakeMedOccur)
-                try {
-                    val db = this.writableDatabase
-                    db.delete(MEDICINES_TO_TAKE_TABLE_NAME, "$ID_TAKE_MED_OCCUR=?", arrayOf(idTakeMedOccur))
-                    db.close()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    return false
-                }
-        }
-        return true
-    }
-*/
-
 
     fun updateTakeTodayMedicineDoses(idTakeMedOccur:String, unitInStock: Int):Boolean
     {

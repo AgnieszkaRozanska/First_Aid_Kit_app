@@ -90,14 +90,18 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         val dbHelper = SQLConector(applicationContext)
         var idToRemoveMed=""
         if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
+        var ifCanRemoveMed = dbHelper.canRemoveMedicine(idToRemoveMed)
+        if(ifCanRemoveMed){
+            val success = dbHelper.removeMedicineType(idToRemoveMed)
+            dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
+            if(success)
+            {
+                Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()
+            }
+            startActivity(intentRemove)
+        } else alertDialogCannotRemoveMedicie()
 
-        val success = dbHelper.removeMedicineType(idToRemoveMed)
-        dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
-        if(success)
-        {
-            Toast.makeText(applicationContext, getString(R.string.AttentionToRemoveMedicine), Toast.LENGTH_SHORT).show()
-        }
-        startActivity(intentRemove)
+
     }
 
     private fun alertDialogRemoveNotification(){
@@ -131,7 +135,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         builder.setTitle("Nie można usunąć przypomnienia")
         builder.setMessage("Ten lek nie posiada przypomnienia")
         builder.setNeutralButton("Wróć"){_,_ ->
-
         }
         builder.show()
     }
@@ -150,8 +153,15 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         intentEdit.putExtra("whichAction", whichAction)
 
         startActivity(intentEdit)
-
     }
 
+    private fun alertDialogCannotRemoveMedicie(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Nie można usunąć leku")
+        builder.setMessage("Ten lek aktualnie zażywasz. Nie możesz go usunąć.")
+        builder.setNeutralButton("Wróć"){_,_ ->
+        }
+        builder.show()
+    }
 
 }
