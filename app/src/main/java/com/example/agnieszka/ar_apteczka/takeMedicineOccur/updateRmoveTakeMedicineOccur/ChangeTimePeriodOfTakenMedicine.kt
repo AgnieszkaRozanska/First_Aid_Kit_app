@@ -27,6 +27,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
     private var timeOfDay = ""
     private var afterBeforeMeal = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_time_period_of_taken_medicine)
@@ -37,7 +38,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         }
 
         buttonChooseNewDateEnd.setOnClickListener {
-            datePikerStart()
+            datePikerNewDataEnd()
         }
     }
 
@@ -55,7 +56,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
        textViewTimePeriodCurrent.text = "$dateStartOfPeriodTaken  -  $dateEndOfPeriodTaken"
    }
 
-    private fun datePikerStart(){
+    private fun datePikerNewDataEnd(){
         val c = Calendar.getInstance()
         val day = c.get(Calendar.DAY_OF_MONTH)
         val month = c.get(Calendar.MONTH)
@@ -99,15 +100,18 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         if (intent.hasExtra("dateEnd")) dateEndOfPeriodTaken = intent.getStringExtra("dateEnd")
         dateEndOfPeriodTaken = dateEndOfPeriodTaken.replace(".", "-")
         val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        //parsedDate = LocalDate.parse("14/02/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         var dateEndFormatDate = LocalDate.parse(dateEndOfPeriodTaken, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-
         var newDateEnd = buttonChooseNewDateEnd.text
         var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
-        val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
-        if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
-        if(compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
-        if(compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
+        var todayDateLocalDate = takeTodayDate()
+        val compareDateEndWithTodayDate = todayDateLocalDate.compareTo(newdateEndFormatDate)
+        if(compareDateEndWithTodayDate>0) alertDialogWrongNewDate()
+        else{
+            val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
+            if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
+            if(compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
+            if(compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
+        }
     }
 
     private fun extendPeriodOfTakingMedicine(dateEndFormatDateOld : LocalDate, newdateEndFormatDate :LocalDate){
@@ -169,9 +173,28 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         builder.setTitle("Wybrana data jest nieprawidłowa")
         builder.setMessage("Nowa data nie rónżni się od obecnej daty zakończeia brania leku")
         builder.setNeutralButton("Wróć"){_,_ ->
-
         }
         builder.show()
     }
+
+    private fun alertDialogWrongNewDate(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Wybrana data jest nieprawidłowa")
+        builder.setMessage("Nowa data zażywania leku jest mniejsza od dzisiejszej daty")
+        builder.setNeutralButton("Wróć"){_,_ ->
+        }
+        builder.show()
+    }
+
+
+    private fun takeTodayDate() : LocalDate{
+        val current = LocalDateTime.now()
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        var currenDateString= current.format(formatDate)
+        return LocalDate.parse(currenDateString, formatDate)
+
+    }
+
+
 
 }
