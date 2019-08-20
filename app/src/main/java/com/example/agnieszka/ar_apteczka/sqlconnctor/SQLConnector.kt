@@ -48,6 +48,15 @@ const  val DATABASE_NAME = "FirstAidKit.db"
     const val DATE_MED_TO_TAKE  = "DateMedToTake"
     const val IF_MED_WAS_TAKEN = "IfMedWasTaken"
 
+    const val REMINDER_TABLE_NAME = "Reminder"
+    const val REMINDER_ID= "ReminderID"
+    const val MEDICINE_TO_TAKE_ID = "MedicineToTakeID"
+    const val MEDICINE_OCCUR_ID = "MedicieOccurID"
+    const val MEDICINE_ID = "MedicieID"
+    const val REMINDER_DATE = "ReminderDate"
+    const val REMINDER_TIME = "ReminderTime"
+
+
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
             NAME + " TEXT NOT NULL,"+
@@ -85,10 +94,20 @@ const val SQL_CREATE_TABLE_MED_NOTIFICATION = ("CREATE TABLE IF NOT EXISTS "  + 
         IF_MED_WAS_TAKEN + " TEXT NOT NULL);")
 
 
+const val SQL_CREATE_TABLE_REMINDER = ("CREATE TABLE IF NOT EXISTS "  + REMINDER_TABLE_NAME + " (" +
+        REMINDER_ID + " TEXT PRIMARY KEY," +
+        MEDICINE_TO_TAKE_ID + " TEXT NOT NULL," +
+        MEDICINE_OCCUR_ID + " TEXT NOT NULL," +
+        MEDICINE_ID + " TEXT NOT NULL," +
+        REMINDER_DATE + " TEXT NOT NULL," +
+        REMINDER_TIME + " TEXT NOT NULL);")
+
+
 const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_NOTIFICATION = "DROP TABLE IF EXISTS $NOTIFICATION_MED_COUNT_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_TO_TAKE = "DROP TABLE IF EXISTS $MEDICINES_TO_TAKE_TABLE_NAME"
+const val SQL_DELETE_TABLE_REMINDER = "DROP TABLE IF EXISTS $REMINDER_TABLE_NAME"
 
 class SQLConector(context: Context):SQLiteOpenHelper(context,
     DATABASE_NAME, null, 1)
@@ -98,6 +117,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.execSQL(SQL_CREATE_TABLE_MEDICINE_ONE)
         db.execSQL(SQL_CREATE_TABLE_MED_NOTIFICATION)
         db.execSQL(SQL_CREATE_TABLE_MEDICINES_TO_TAKE)
+        db.execSQL(SQL_CREATE_TABLE_REMINDER)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -105,6 +125,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_ONCE)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_NOTIFICATION)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_TO_TAKE)
+        db.execSQL(SQL_DELETE_TABLE_REMINDER)
         onCreate(db)
     }
 
