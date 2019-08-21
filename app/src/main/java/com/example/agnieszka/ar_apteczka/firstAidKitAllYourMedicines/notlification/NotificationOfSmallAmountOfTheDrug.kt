@@ -21,7 +21,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         setContentView(R.layout.activity_notification_of_small_amount_of_the_drug)
 
         NotificationCount_SaveButton.setOnClickListener {
-
             var alarmUnitInStock= Notification_UnitInStock.text.toString()
             if(alarmUnitInStock.isEmpty() || alarmUnitInStock.toInt()<=0 ) alertDialogNullAmout()
             else {

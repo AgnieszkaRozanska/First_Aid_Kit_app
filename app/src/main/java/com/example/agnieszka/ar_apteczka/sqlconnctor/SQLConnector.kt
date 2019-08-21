@@ -8,6 +8,7 @@ import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.Reminder
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -765,6 +766,20 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun addReminder(reminder: Reminder ):Boolean
+    {
+        val db=this.writableDatabase
+        val cv = ContentValues()
+        cv.put(REMINDER_ID, reminder.idReminder)
+        cv.put(MEDICINE_TO_TAKE_ID, reminder.idTakeMedToday)
+        cv.put(MEDICINE_OCCUR_ID, reminder.idTakeMedOccur)
+        cv.put(MEDICINE_ID, reminder.idMedicineType)
+        cv.put(REMINDER_DATE, reminder.reminderDate)
+        cv.put(REMINDER_TIME, reminder.ReminderTime)
 
+        val result= db.insert(MEDICINE_TABLE_NAME, null, cv)
+        db.close()
+        return !result.equals(-1)
+    }
 
 }

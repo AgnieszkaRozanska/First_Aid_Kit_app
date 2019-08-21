@@ -123,12 +123,9 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         builder.setTitle("Nie można dodać leku")
         builder.setMessage("Lek o podanej nazwie i dawce aktywnej już istnieje")
         builder.setNeutralButton("Wróć"){_,_ ->
-
         }
         builder.show()
     }
-
-
-    }
+}
 
 

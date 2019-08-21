@@ -9,7 +9,7 @@ class Reminder {
     var idReminder : String
     var idTakeMedToday : String
     var idTakeMedOccur : String
-    var iD_MedicineType : String
+    var idMedicineType : String
     var reminderDate : String
     var ReminderTime : String
 
@@ -19,7 +19,7 @@ class Reminder {
         this.idReminder = id
         this.idTakeMedToday = idTakeMedToday
         this.idTakeMedOccur = idTakeMedOccur
-        this.iD_MedicineType = idMedType
+        this.idMedicineType = idMedType
         this.reminderDate = date
         this.ReminderTime = hour
 

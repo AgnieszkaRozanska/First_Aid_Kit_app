@@ -84,7 +84,7 @@
             android:background="@drawable/remindericon"
             android:layout_width="95dp"
             android:layout_height="123dp"
-            android:id="@+id/Add_Med_Occour_Next_Button"
+            android:id="@+id/Button_Add_Med_Occour_Add_Reminder"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +135,7 @@
             android:id="@+id/Button_Save_TakeMedOccur"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/Add_Med_Occour_Next_Button" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/Button_Add_Med_Occour_Add_Reminder" android:layout_marginEnd="8dp"
             android:onClick="addMedOccur"
             app:layout_constraintHorizontal_bias="0.685"
             android:layout_marginBottom="8dp"/>

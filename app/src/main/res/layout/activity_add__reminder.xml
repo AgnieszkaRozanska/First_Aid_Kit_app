@@ -5,12 +5,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".takeMedicineOccur.reminder.ActivityAddReminder">
+        tools:context=".takeMedicineOccur.reminder.AddReminder">
 
     <Button android:background="@drawable/savicon"
             android:layout_width="134dp"
             android:layout_height="169dp"
-            android:id="@+id/Add_Med_Occur_SAVE"
+            android:id="@+id/AddReminder"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,14 +48,14 @@
             android:id="@+id/textViewReminderTimeIform" android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="30dp"
             android:layout_marginBottom="56dp"
-            app:layout_constraintBottom_toTopOf="@+id/Add_Med_Occur_SAVE" android:textColor="@color/colorPrimary"/>
+            app:layout_constraintBottom_toTopOf="@+id/AddReminder" android:textColor="@color/colorPrimary"/>
     <TextView
-            android:text="Wybrana godzina"
+            android:text="..."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewReminderTime"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="30dp" android:textSize="15sp"
-            android:layout_marginBottom="56dp" app:layout_constraintBottom_toTopOf="@+id/Add_Med_Occur_SAVE"
+            android:layout_marginBottom="56dp" app:layout_constraintBottom_toTopOf="@+id/AddReminder"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/buttonReminderChooseTime"
             app:layout_constraintVertical_bias="1.0"/>
 </android.support.constraint.ConstraintLayout>
