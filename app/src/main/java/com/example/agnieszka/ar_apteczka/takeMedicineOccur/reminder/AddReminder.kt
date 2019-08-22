@@ -5,7 +5,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
@@ -31,12 +34,26 @@ class AddReminder : AppCompatActivity() {
             timePiker()
         }
 
+        textViewReminderTime.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                checkTimeWithTimeOfDay()
+            }
+
+        })
+
 
         AddReminder.setOnClickListener {
             if(textViewReminderTime.text=="..."){
                 alertDialogLackOfTime()
             }
            else{
+
+
                 var flaga = true
                 saveMedicineOcc(flaga)
            }
@@ -61,11 +78,11 @@ class AddReminder : AppCompatActivity() {
             selectedTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
             selectedTime.set(Calendar.MINUTE, minute)
             Toast.makeText(this, "Ustawiono: " + timeformat.format(selectedTime.time), Toast.LENGTH_LONG).show()
-
             textViewReminderTime.text=timeformat.format(selectedTime.time)
         },
             now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true)
         timePiker.show()
+
     }
 
     private fun saveMedicineOcc(flaga : Boolean){
@@ -179,5 +196,28 @@ class AddReminder : AppCompatActivity() {
         builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
     }
-    
+
+    private fun checkTimeWithTimeOfDay(){
+        if(textViewReminderTime.text!="...") {
+            var timeOfDay = ""
+            if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
+            var time = textViewReminderTime.text.toString()
+            var timeTab = textViewReminderTime.text.split(':')
+            if(timeOfDay=="Rano" && timeTab[0].toInt()>12) alertDialogTime(timeOfDay, time)
+            if(timeOfDay=="Popołudnie" && (timeTab[0].toInt()<12 || timeTab[0].toInt()>18)) alertDialogTime(timeOfDay, time)
+            if(timeOfDay=="Wieczór" && timeTab[0].toInt()<16) alertDialogTime(timeOfDay, time)
+        }
+    }
+
+    private fun alertDialogTime(timeOfDay :String, time : String){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Czy jesteś pewien wyboru godziny?")
+        builder.setMessage("Lek ma zostać zażyty " + timeOfDay + ", a wybrana godzina to " + time)
+        builder.setNeutralButton("OK"){_,_ ->
+        }
+        builder.show()
+    }
+
+
+
 }
