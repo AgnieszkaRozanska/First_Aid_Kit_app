@@ -284,7 +284,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
     fun downloadDataAndGoToAddReminder()
     {
-
        if(!checkTheCorrectnessOfTheData())
        {
            alertDialogNoData()

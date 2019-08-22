@@ -30,13 +30,14 @@ class AddReminder : AppCompatActivity() {
         buttonReminderChooseTime.setOnClickListener {
             timePiker()
         }
+
+
         AddReminder.setOnClickListener {
             if(textViewReminderTime.text=="..."){
                 alertDialogLackOfTime()
             }
            else{
                 var flaga = true
-                //saveMedicineOccur(flaga)
                 saveMedicineOcc(flaga)
            }
        }
@@ -114,6 +115,7 @@ class AddReminder : AppCompatActivity() {
     private fun AddMediciesToTake(takeMedicineOccour: TakeMedicineOccur, howManyDays : String, dateStart : String, flaga : Boolean){
         val dbHelper = SQLConector(this)
         var date = dateStart
+        var flagaReminder = flaga
         repeat(howManyDays.toInt()){
 
             var id= UUID.randomUUID().toString()
@@ -128,7 +130,7 @@ class AddReminder : AppCompatActivity() {
                 date,
                 "No"
             )
-            if(flaga) addReminder(medicineToTake)
+            if(flagaReminder) addReminder(medicineToTake)
             dbHelper.addMedicineToTake(medicineToTake)
             var dateDate = LocalDate.parse(date)
             var period = Period.of(0, 0, 1)
@@ -138,8 +140,7 @@ class AddReminder : AppCompatActivity() {
     }
 
     private fun addReminder(takeMedToday : MedicineToTake){
-      /*  val dbHelper = SQLConector(this)
-        var time = textViewReminderTime.text
+       val dbHelper = SQLConector(this)
         //TODOO walidacja czy godzinę wybrał, walidacja pory dnia - czy godzina odpowiada i dopiero to
         var id= UUID.randomUUID().toString()
         var reminder= Reminder(
@@ -148,17 +149,10 @@ class AddReminder : AppCompatActivity() {
             takeMedToday.iDTakeMedOccur,
             takeMedToday.iD_MedicineType,
             takeMedToday.dateSMedToTake,
-            time.toString()
+            textViewReminderTime.text.toString()
         )
 
         var success = dbHelper.addReminder(reminder)
-        if (success) {
-            Toast.makeText(applicationContext, "Dodano lek razem z przypominajką", Toast.LENGTH_LONG)
-                .show()
-            val activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
-            startActivity(activity)
-        }
-        */
     }
 
 
@@ -181,9 +175,9 @@ class AddReminder : AppCompatActivity() {
             startActivity(activityGoToMenu)
             Toast.makeText(
                 applicationContext, "Lek został dodany, lecz bez przypominajki", Toast.LENGTH_LONG).show()
-
         }
         builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
     }
+    
 }

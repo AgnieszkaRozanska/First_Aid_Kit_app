@@ -777,7 +777,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cv.put(REMINDER_DATE, reminder.reminderDate)
         cv.put(REMINDER_TIME, reminder.ReminderTime)
 
-        val result= db.insert(MEDICINE_TABLE_NAME, null, cv)
+        val result= db.insert(REMINDER_TABLE_NAME, null, cv)
         db.close()
         return !result.equals(-1)
     }
