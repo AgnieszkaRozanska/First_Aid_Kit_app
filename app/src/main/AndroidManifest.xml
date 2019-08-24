@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.agnieszka.ar_apteczka">
+        package="com.example.agnieszka.ar_apteczka">
 
     <application
             android:allowBackup="true"
@@ -9,46 +9,39 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <service
+                android:name=".takeMedicineOccur.reminder.NotificationService"
+                android:exported="false"></service>
+
         <activity android:name=".todaysMedicines.ShowAllTodaysMedicines">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menu">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.ActivityFirstAidKitMenu">
-        </activity>
-        <activity android:name=".takeMedicineOccur.ActivityMedicinesMenu">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.addMedicine.ActivityAddMedicineFirstAidKit">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines">
-        </activity>
-        <activity android:name=".takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour">
-        </activity>
-        <activity android:name=".takeMedicineOccur.reminder.AddReminder">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateCountofMedicines">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateRemoveMedicine">
-        </activity>
-        <activity android:name=".takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur">
-        </activity>
-        <activity
-                android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur">
-        </activity>
-        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.notlification.NotificationOfSmallAmountOfTheDrug">
-        </activity>
-        <activity android:name=".firstAidKitAllYourMedicines.notlification.AddUpdateNotification">
-        </activity>
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ChangeTimePeriodOfTakenMedicine">
-        </activity>
+        <activity android:name=".Menu"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.ActivityFirstAidKitMenu"></activity>
+        <activity android:name=".takeMedicineOccur.ActivityMedicinesMenu"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.addMedicine.ActivityAddMedicineFirstAidKit"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines"></activity>
+        <activity android:name=".takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour"></activity>
+        <activity android:name=".takeMedicineOccur.reminder.AddReminder"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateCountofMedicines"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateRemoveMedicine"></activity>
+        <activity android:name=".takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur"></activity>
+        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateRemoveMenuTakeMedicinOccur"></activity>
+        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ActivityUpdateDoseTakeMedicineOccur"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.notlification.NotificationOfSmallAmountOfTheDrug"></activity>
+        <activity android:name=".firstAidKitAllYourMedicines.notlification.AddUpdateNotification"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ChangeTimePeriodOfTakenMedicine"></activity>
+
+        <receiver
+                android:name=".takeMedicineOccur.reminder.AlarmReceiver"
+                android:enabled="true" />
+
+
     </application>
 
 </manifest>

@@ -15,10 +15,15 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedi
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.todaysMedicines.NotificationUtils
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.lang.StringBuilder
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Menu : AppCompatActivity() {
+    private val mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time. ////////
+    private var mNotified = false/////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,12 @@ class Menu : AppCompatActivity() {
             createNotification()
         }
 
+        /// powiadomienie
+
+        if (!mNotified) {
+            NotificationUtils().setNotification(mNotificationTime, this@Menu)
+        }
+        /////////////////////
 
     }
 
