@@ -107,10 +107,9 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
 
     private fun alertDialogNullAmout(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Uzupełnij brakujące dane")
-        builder.setMessage("Podaj ilość tabetkek poniżej których ma nastąpić powiadomienie")
-        builder.setNeutralButton("Wróć"){_,_ ->
-
+        builder.setTitle(getString(R.string.alertDialogTitleNullAmount))
+        builder.setMessage(getString(R.string.alertDialogMessageNullAmount))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }

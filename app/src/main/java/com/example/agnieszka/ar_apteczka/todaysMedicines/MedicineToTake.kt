@@ -26,6 +26,4 @@ class MedicineToTake {
         this.ifMedWasTaken=ifMedWasTaken
 
     }
-
-
 }

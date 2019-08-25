@@ -70,15 +70,23 @@
             android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
     />
+
     <TextView
-            android:text="Wszytskie twoje leki"
-            android:layout_width="147dp"
-            android:layout_height="76dp"
-            android:id="@+id/textView_Topis_const" android:textSize="24sp"
-            android:textAlignment="center" android:textColor="@color/colorPrimary" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/TextiewMorning"
-            android:layout_marginBottom="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView" android:layout_marginStart="8dp"/>
+            android:id="@+id/textView_Topis_const"
+            android:layout_width="142dp"
+            android:layout_height="111dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Wszytskie twoje aktualne i planowane leki"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/TextiewMorning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

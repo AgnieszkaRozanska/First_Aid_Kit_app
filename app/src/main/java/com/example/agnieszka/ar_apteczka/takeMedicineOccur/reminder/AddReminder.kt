@@ -45,15 +45,11 @@ class AddReminder : AppCompatActivity() {
             }
 
         })
-
-
         AddReminder.setOnClickListener {
             if(textViewReminderTime.text=="..."){
                 alertDialogLackOfTime()
             }
            else{
-
-
                 var flaga = true
                 saveMedicineOcc(flaga)
            }
@@ -68,7 +64,7 @@ class AddReminder : AppCompatActivity() {
     private fun timePiker(){
         val now = Calendar.getInstance()
         try {
-            if(textViewReminderTime.text !="Wybrana godzina")
+            if(textViewReminderTime.text !=getString(R.string.chooseTime))
             {val date=timeformat.parse(textViewReminderTime.text.toString())
                 now.time =date
             }
@@ -158,13 +154,13 @@ class AddReminder : AppCompatActivity() {
 
     private fun addReminder(takeMedToday : MedicineToTake){
        val dbHelper = SQLConector(this)
-        //TODOO walidacja czy godzinę wybrał, walidacja pory dnia - czy godzina odpowiada i dopiero to
         var id= UUID.randomUUID().toString()
         var reminder= Reminder(
             id,
             takeMedToday.iD,
             takeMedToday.iDTakeMedOccur,
             takeMedToday.iD_MedicineType,
+            takeMedToday.nameMedToTake,
             takeMedToday.dateSMedToTake,
             textViewReminderTime.text.toString()
         )
@@ -175,9 +171,9 @@ class AddReminder : AppCompatActivity() {
 
     private fun alertDialogLackOfTime(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Nie wybrano godziny")
-        builder.setMessage("Naciśnij przycisk ustaw godzinę, aby dodać przypominajkę.")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTitleLackOfTime))
+        builder.setMessage(getString(R.string.alerDialogMessageLackOfTime))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
@@ -185,13 +181,13 @@ class AddReminder : AppCompatActivity() {
     private fun alertDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.alertNotificationBackTitle))
-        builder.setMessage("Jeżeli cofniesz zostanie zapisany lek bez przypominajki")
+        builder.setMessage(getString(R.string.alertDialogTitleBackAddNotification))
         builder.setPositiveButton(getString(R.string.AlertDialogYes)) { dialog: DialogInterface, which: Int ->
             saveMedicineOcc(false)
             val activityGoToMenu = Intent(applicationContext, ActivityMedicinesMenu::class.java)
             startActivity(activityGoToMenu)
             Toast.makeText(
-                applicationContext, "Lek został dodany, lecz bez przypominajki", Toast.LENGTH_LONG).show()
+                applicationContext, getString(R.string.ToastAddMedicineWithoutReminder), Toast.LENGTH_LONG).show()
         }
         builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
@@ -203,21 +199,28 @@ class AddReminder : AppCompatActivity() {
             if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
             var time = textViewReminderTime.text.toString()
             var timeTab = textViewReminderTime.text.split(':')
-            if(timeOfDay=="Rano" && timeTab[0].toInt()>12) alertDialogTime(timeOfDay, time)
-            if(timeOfDay=="Popołudnie" && (timeTab[0].toInt()<12 || timeTab[0].toInt()>18)) alertDialogTime(timeOfDay, time)
-            if(timeOfDay=="Wieczór" && timeTab[0].toInt()<16) alertDialogTime(timeOfDay, time)
+            if(timeOfDay==getString(R.string.Morning) && timeTab[0].toInt()>12) alertDialogTime(timeOfDay, time)
+            if(timeOfDay==getString(R.string.Midday) && (timeTab[0].toInt()<12 || timeTab[0].toInt()>18)) alertDialogTime(timeOfDay, time)
+            if(timeOfDay==getString(R.string.Evening) && timeTab[0].toInt()<16) alertDialogTime(timeOfDay, time)
         }
     }
 
     private fun alertDialogTime(timeOfDay :String, time : String){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Czy jesteś pewien wyboru godziny?")
-        builder.setMessage("Lek ma zostać zażyty " + timeOfDay + ", a wybrana godzina to " + time)
-        builder.setNeutralButton("OK"){_,_ ->
+        var correctFormTimeOfDay = correctFormTimeOfDay(timeOfDay)
+        builder.setTitle(getString(R.string.alertDialogTitleTime))
+        builder.setMessage("Lek ma zostać zażyty $correctFormTimeOfDay, a wybrana godzina to $time")
+        builder.setNeutralButton(getString(R.string.OK)){ _, _ ->
         }
         builder.show()
     }
 
-
+    private fun correctFormTimeOfDay(timeOfDay : String) : String{
+        var result = ""
+        if(timeOfDay == getString(R.string.Morning)) result = getString(R.string.correctFormMorning)
+        if(timeOfDay == getString(R.string.Midday)) result = getString(R.string.correctFormMidday)
+        if(timeOfDay == getString(R.string.Evening)) result = getString(R.string.correctFormEvening)
+        return result
+    }
 
 }

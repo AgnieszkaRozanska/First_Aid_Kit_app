@@ -3,26 +3,30 @@ package com.example.agnieszka.ar_apteczka
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.NotificationCompat
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
-import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
-import com.example.agnieszka.ar_apteczka.todaysMedicines.NotificationUtils
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.NotificationUtils
+import kotlinx.android.synthetic.main.activity_add_update_notification.*
 import kotlinx.android.synthetic.main.activity_menu.*
-import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class Menu : AppCompatActivity() {
-    private val mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time. ////////
+    private val mNotificationTime = Calendar.getInstance().timeInMillis + 1000 //Set after 5 seconds from the current time. ////////
+    /*private val mNotificationTime = Calendar.getInstance().apply {
+        timeInMillis = System.currentTimeMillis()
+        set(Calendar.HOUR_OF_DAY, 15)
+        set(Calendar.MINUTE, 50)
+    } ////////
+*/
     private var mNotified = false/////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +50,12 @@ class Menu : AppCompatActivity() {
         }
 
         /// powiadomienie
-
         if (!mNotified) {
-            NotificationUtils().setNotification(mNotificationTime, this@Menu)
+          NotificationUtils()
+                .setNotification(mNotificationTime, this@Menu)
         }
         /////////////////////
+
 
     }
 

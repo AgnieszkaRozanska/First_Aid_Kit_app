@@ -10,16 +10,18 @@ class Reminder {
     var idTakeMedToday : String
     var idTakeMedOccur : String
     var idMedicineType : String
+    var medicineName : String
     var reminderDate : String
     var ReminderTime : String
 
 
-    constructor(id : String, idTakeMedToday : String, idTakeMedOccur : String, idMedType : String, date : String,  hour : String)
+    constructor(id : String, idTakeMedToday : String, idTakeMedOccur : String, idMedType : String, name : String, date : String,  hour : String)
     {
         this.idReminder = id
         this.idTakeMedToday = idTakeMedToday
         this.idTakeMedOccur = idTakeMedOccur
         this.idMedicineType = idMedType
+        this.medicineName = name
         this.reminderDate = date
         this.ReminderTime = hour
 

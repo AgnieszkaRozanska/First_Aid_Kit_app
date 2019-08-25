@@ -8,23 +8,26 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
+import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.todaysMedicines.ShowAllTodaysMedicines
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 class NotificationService : IntentService("NotificationService") {
     private lateinit var mNotification: Notification
     private val mNotificationId: Int = 1000
+    var timeformat = SimpleDateFormat("HH:mm", Locale.US)
 
     @SuppressLint("NewApi")
     private fun createChannel() {
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            // Create the NotificationChannel, but only on API 26+ because
-            // the NotificationChannel class is new and not in the support library
-
             val context = this.applicationContext
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -37,8 +40,8 @@ class NotificationService : IntentService("NotificationService") {
             notificationChannel.description = "Alaaa"
             notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             notificationManager.createNotificationChannel(notificationChannel)
+            Log.d("Menu", "Działa ")
         }
-
     }
 
     companion object {
@@ -46,7 +49,6 @@ class NotificationService : IntentService("NotificationService") {
         const val CHANNEL_ID = "samples.notification.devdeeds.com.CHANNEL_ID"
         const val CHANNEL_NAME = "Sample Notification"
     }
-
 
     override fun onHandleIntent(intent: Intent?) {
 
@@ -59,22 +61,18 @@ class NotificationService : IntentService("NotificationService") {
             timestamp = intent.extras!!.getLong("timestamp")
         }
 
-
-
-
         if (timestamp > 0) {
-
-
             val context = this.applicationContext
             var notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val notifyIntent = Intent(this, ShowAllTodaysMedicines::class.java)
 
-            //val title = "Sample Notification"
-            //val message = "You have received a sample notification. This notification will take you to the details page."
-
-           // notifyIntent.putExtra("title", title)
-           // notifyIntent.putExtra("message", message)
-           // notifyIntent.putExtra("notification", true)
+            var message : String = "Nadszedł czas by zażyć: "
+            var listOfReminders = reminderForNow()
+            if(listOfReminders.count() > 0){
+                for (i: Reminder in listOfReminders) {
+                    message += i.medicineName + ", "
+                }
+            }
 
             notifyIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
@@ -95,7 +93,7 @@ class NotificationService : IntentService("NotificationService") {
                     .setSmallIcon(R.drawable.pills)
                     .setLargeIcon(BitmapFactory.decodeResource(res, R.mipmap.ic_launcher))
                     .setAutoCancel(true)
-                    .setContentTitle("Weż leki")
+                    .setContentTitle("Weź leki")
                     .setStyle(
                         Notification.BigTextStyle()
                             .bigText("Duży tekst"))
@@ -118,13 +116,50 @@ class NotificationService : IntentService("NotificationService") {
 
             }
 
-
-
             notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            // mNotificationId is a unique int for each notification that you must define
             notificationManager.notify(mNotificationId, mNotification)
         }
+    }
 
+    fun reminderForNow() : ArrayList<Reminder> {
+        var listOfReminder : ArrayList<Reminder> = ArrayList()
+        var timetoday = takeTimeNow()
+        var dateToday = takeTodayDate()
+
+        val dbHelper = SQLConector(this)
+        val allRemindersList = dbHelper.getAllReminders()
+        for (i: Reminder in allRemindersList) {
+
+            if (i.reminderDate == dateToday && i.ReminderTime == timetoday) {
+                var reminder = Reminder(
+                    i.idReminder,
+                    i.idTakeMedToday,
+                    i.idTakeMedOccur,
+                    i.idMedicineType,
+                    i.medicineName,
+                    i.reminderDate,
+                    i.ReminderTime
+                )
+                listOfReminder.add(reminder)
+            }
+        }
+
+        return listOfReminder
+    }
+
+
+    private fun takeTodayDate():String{
+        val current = LocalDateTime.now()
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        var dateResult = current.format(formatDate).toString()
+        return  dateResult
+    }
+
+    private fun takeTimeNow() : String{
+        val current = LocalDateTime.now()
+        val formatTime = DateTimeFormatter.ofPattern("HH:mm")
+        var timeResult = current.format(formatTime).toString()
+        return  timeResult
 
     }
 }

@@ -54,6 +54,7 @@ const  val DATABASE_NAME = "FirstAidKit.db"
     const val MEDICINE_TO_TAKE_ID = "MedicineToTakeID"
     const val MEDICINE_OCCUR_ID = "MedicieOccurID"
     const val MEDICINE_ID = "MedicieID"
+    const val MEDICINE_NAME = "MedicieName"
     const val REMINDER_DATE = "ReminderDate"
     const val REMINDER_TIME = "ReminderTime"
 
@@ -100,6 +101,7 @@ const val SQL_CREATE_TABLE_REMINDER = ("CREATE TABLE IF NOT EXISTS "  + REMINDER
         MEDICINE_TO_TAKE_ID + " TEXT NOT NULL," +
         MEDICINE_OCCUR_ID + " TEXT NOT NULL," +
         MEDICINE_ID + " TEXT NOT NULL," +
+        MEDICINE_NAME + " TEXT NOT NULL," +
         REMINDER_DATE + " TEXT NOT NULL," +
         REMINDER_TIME + " TEXT NOT NULL);")
 
@@ -774,6 +776,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cv.put(MEDICINE_TO_TAKE_ID, reminder.idTakeMedToday)
         cv.put(MEDICINE_OCCUR_ID, reminder.idTakeMedOccur)
         cv.put(MEDICINE_ID, reminder.idMedicineType)
+        cv.put(MEDICINE_NAME, reminder.medicineName)
         cv.put(REMINDER_DATE, reminder.reminderDate)
         cv.put(REMINDER_TIME, reminder.ReminderTime)
 
@@ -781,5 +784,43 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.close()
         return !result.equals(-1)
     }
+
+    fun getAllReminders(): ArrayList<Reminder>{
+        val allRemindersList = ArrayList<Reminder>()
+        val db= readableDatabase
+        val cursor=db.rawQuery("SELECT * FROM $REMINDER_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do {
+                    val idReminder = cursor.getString(cursor.getColumnIndex(REMINDER_ID))
+                    val idTakeMedToday = cursor.getString(cursor.getColumnIndex(MEDICINE_TO_TAKE_ID))
+                    val idTakeMedOccur = cursor.getString(cursor.getColumnIndex(MEDICINE_OCCUR_ID))
+                    val idMedicineType = cursor.getString(cursor.getColumnIndex(MEDICINE_ID))
+                    val medicineName = cursor.getString(cursor.getColumnIndex(MEDICINE_NAME))
+                    val reminderDate = cursor.getString(cursor.getColumnIndex(REMINDER_DATE))
+                    val reminderTime = cursor.getString(cursor.getColumnIndex(REMINDER_TIME))
+
+                    val reminder = Reminder(
+                        idReminder,
+                        idTakeMedToday,
+                        idTakeMedOccur,
+                        idMedicineType,
+                        medicineName,
+                        reminderDate,
+                        reminderTime
+                    )
+                    allRemindersList.add(reminder)
+
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return allRemindersList
+    }
+
+
 
 }

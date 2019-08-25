@@ -19,14 +19,4 @@ class MedicineType {
 
     override fun toString(): String = name + " " + activedoses
 
-/*
-    fun getItemId(): String {
-        return iDMedicine
-    }
-
-    fun getItemName() : String{
-        return name + " " + activedoses
-    }
-*/
-
 }

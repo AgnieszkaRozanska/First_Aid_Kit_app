@@ -78,9 +78,7 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         return dateTodayString.toString()
     }
 
-    fun takeMedToday(){
 
-    }
 
 
 }

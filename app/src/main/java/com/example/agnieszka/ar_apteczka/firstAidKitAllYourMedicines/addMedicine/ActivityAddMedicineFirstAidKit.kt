@@ -120,9 +120,9 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
 
     private fun alertDialogMedExists(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Nie można dodać leku")
-        builder.setMessage("Lek o podanej nazwie i dawce aktywnej już istnieje")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTileMedExists))
+        builder.setMessage(getString(R.string.alertDialogMessageMedExists))
+        builder.setNeutralButton(getString(R.string.alertDialogBack)){ _, _ ->
         }
         builder.show()
     }

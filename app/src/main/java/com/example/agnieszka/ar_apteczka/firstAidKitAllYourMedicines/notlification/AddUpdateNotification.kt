@@ -3,6 +3,7 @@ package com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlificat
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
@@ -19,8 +20,13 @@ class AddUpdateNotification : AppCompatActivity() {
 
         val whichAction=downloadDataAndSet()
         Button_NotificationSave.setOnClickListener {
-            if(whichAction=="ADD") addNotification()
-            if(whichAction=="UPDATE") updateNotification()
+            if(EditText_NotificationAmount.text.isEmpty()){
+                alertDialogNullAmout()
+            }
+            else {
+                if (whichAction == getString(R.string.whichActionADD)) addNotification()
+                if (whichAction == getString(R.string.whichActionUPDATE)) updateNotification()
+            }
         }
     }
 
@@ -50,7 +56,7 @@ class AddUpdateNotification : AppCompatActivity() {
         val success = dbHelper.addNotification(notification)
 
         if (success) {
-            Toast.makeText(applicationContext, "Dodano powiadomienie", Toast.LENGTH_LONG)
+            Toast.makeText(applicationContext, getString(R.string.ToastAddNotification), Toast.LENGTH_LONG)
                 .show()
             val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
             startActivity(activity)
@@ -65,12 +71,21 @@ class AddUpdateNotification : AppCompatActivity() {
         val dbHelper = SQLConector(this)
         val success = dbHelper.updateNotificationAmount(idMedicine,updateAmount)
         if (success) {
-            Toast.makeText(applicationContext, "Edytowano powiadomienie", Toast.LENGTH_LONG)
+            Toast.makeText(applicationContext, getString(R.string.ToastUpdateNotification), Toast.LENGTH_LONG)
                 .show()
             val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
             startActivity(activity)
         }
 
+    }
+
+    private fun alertDialogNullAmout(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.alertDialogTitleNullAmount))
+        builder.setMessage(getString(R.string.alertDialogMessageNullAmount))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
+        }
+        builder.show()
     }
 
 }

@@ -34,7 +34,8 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         downloadAndSetData()
 
         buttonSaveNewDateEnd.setOnClickListener {
-            SaveChangePeriodOfTakingMedicine()
+                SaveChangePeriodOfTakingMedicine()
+
         }
 
         buttonChooseNewDateEnd.setOnClickListener {
@@ -104,12 +105,15 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         var newDateEnd = buttonChooseNewDateEnd.text
         var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
         var todayDateLocalDate = takeTodayDate()
+        //var dateStartFormatDate = LocalDate.parse(dateStartOfPeriodTaken, formatDate)
         val compareDateEndWithTodayDate = todayDateLocalDate.compareTo(newdateEndFormatDate)
+        //val compareDateStartWithNewDataEnd = dateStartFormatDate.compareTo(newdateEndFormatDate)
         if(compareDateEndWithTodayDate>0) alertDialogWrongNewDate()
         else{
             val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
             if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
             if(compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
+            //if (compareDateStartWithNewDataEnd > 0) alertDialogWrongDateEnd()
             if(compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
         }
     }
@@ -144,7 +148,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
             var compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
         }while(compareDateEndWithCurrentDate < 0 )
 
-        Toast.makeText(applicationContext, "Wydłużono okres żażywania leku", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, getString(R.string.ToastExtendedPeriodOfTakingMed), Toast.LENGTH_SHORT).show()
         var activity = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         startActivity(activity)
 
@@ -163,29 +167,37 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         val intentRemove = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         if(success)
         {
-            Toast.makeText(applicationContext, "Skrócono czas zażywania lekarstwa", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.shortenedExtendedPeriodOfTakigMed), Toast.LENGTH_SHORT).show()
         }
         startActivity(intentRemove)
     }
 
     private fun alertDialogTheSameDate(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Wybrana data jest nieprawidłowa")
-        builder.setMessage("Nowa data nie rónżni się od obecnej daty zakończeia brania leku")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTitleTheSameDate))
+        builder.setMessage(getString(R.string.alertDialogMessageTheSameDate))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
 
     private fun alertDialogWrongNewDate(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Wybrana data jest nieprawidłowa")
-        builder.setMessage("Nowa data zażywania leku jest mniejsza od dzisiejszej daty")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTitleWrongDate))
+        builder.setMessage(getString(R.string.alertDialogMessageWrongDate))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
 
+    private fun alertDialogWrongDateEnd(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.alertDialogTitleWrongDate))
+        builder.setMessage("Nowa data końcowa nie może być któtsza od daty rozpoczącia zażywania leku")
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
+        }
+        builder.show()
+    }
 
     private fun takeTodayDate() : LocalDate{
         val current = LocalDateTime.now()

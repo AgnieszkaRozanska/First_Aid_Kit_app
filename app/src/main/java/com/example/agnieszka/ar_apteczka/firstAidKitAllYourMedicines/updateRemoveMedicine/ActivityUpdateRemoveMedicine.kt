@@ -107,7 +107,7 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
     private fun alertDialogRemoveNotification(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.AlertDialogAttentionAreYouSure))
-        builder.setMessage("Czy chcesz usunąć przypomnienie")
+        builder.setMessage(getString(R.string.alertDialogTitleRemoveNotification))
         builder.setPositiveButton(getString(R.string.AlertDialogYes)) { dialog: DialogInterface, which: Int ->
             removeNotification()
         }
@@ -124,7 +124,7 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         val success = dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
         if(success)
         {
-            Toast.makeText(applicationContext, "Usunięto przypomnienie", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, getString(R.string.ToastRemoveNotification), Toast.LENGTH_SHORT).show()
         }
         startActivity(intentRemove)
     }
@@ -132,9 +132,9 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
 
     private fun alertDialogLackNotification(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Nie można usunąć przypomnienia")
-        builder.setMessage("Ten lek nie posiada przypomnienia")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTitleLackOfNotification))
+        builder.setMessage(getString(R.string.alertDialogMessageLackOfNotification))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
@@ -157,9 +157,9 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
 
     private fun alertDialogCannotRemoveMedicie(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Nie można usunąć leku")
-        builder.setMessage("Ten lek aktualnie zażywasz. Nie możesz go usunąć.")
-        builder.setNeutralButton("Wróć"){_,_ ->
+        builder.setTitle(getString(R.string.alertDialogTitleCannotRemoveMed))
+        builder.setMessage(getString(R.string.alertDialogMessageCannotRemoveMedicine))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
