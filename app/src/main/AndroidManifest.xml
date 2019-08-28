@@ -39,7 +39,7 @@
 
         <receiver
                 android:name=".takeMedicineOccur.reminder.AlarmReceiver"
-                android:enabled="true" />
+                android:process=":remote" />
 
 
     </application>

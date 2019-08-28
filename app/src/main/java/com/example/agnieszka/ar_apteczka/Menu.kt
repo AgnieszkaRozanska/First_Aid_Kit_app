@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 class Menu : AppCompatActivity() {
-    private val mNotificationTime = Calendar.getInstance().timeInMillis + 1000 //Set after 5 seconds from the current time. ////////
+    private val mNotificationTime = Calendar.getInstance().timeInMillis//Set after 1 seconds from the current time. ////////
     /*private val mNotificationTime = Calendar.getInstance().apply {
         timeInMillis = System.currentTimeMillis()
         set(Calendar.HOUR_OF_DAY, 15)
