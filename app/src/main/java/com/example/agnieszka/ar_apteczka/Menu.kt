@@ -8,25 +8,28 @@ import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.widget.Button
+import android.widget.EditText
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.MyService
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.NotificationUtils
 import kotlinx.android.synthetic.main.activity_add_update_notification.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 class Menu : AppCompatActivity() {
-    private val mNotificationTime = Calendar.getInstance().timeInMillis//Set after 1 seconds from the current time. ////////
-    /*private val mNotificationTime = Calendar.getInstance().apply {
-        timeInMillis = System.currentTimeMillis()
-        set(Calendar.HOUR_OF_DAY, 15)
-        set(Calendar.MINUTE, 50)
-    } ////////
-*/
+    // private val mNotificationTime =
+    // Calendar.getInstance().timeInMillis//Set after 1 seconds from the current time. ////////
+
     private var mNotified = false/////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,27 +38,66 @@ class Menu : AppCompatActivity() {
 
 
         Button_FirstAidKit.setOnClickListener {
-            val activityToFirstAidKit = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+            val activityToFirstAidKit =
+                Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
             startActivity(activityToFirstAidKit)
         }
 
         Button_YourAllMedicines.setOnClickListener {
-            val activityToMEdicinesMenu = Intent(applicationContext, ActivityMedicinesMenu::class.java)
+            val activityToMEdicinesMenu =
+                Intent(applicationContext, ActivityMedicinesMenu::class.java)
             startActivity(activityToMEdicinesMenu)
         }
 
-        var textNotification=createTextToNotification()
-        if(!textNotification.isEmpty()){
+        var textNotification = createTextToNotification()
+        if (!textNotification.isEmpty()) {
             createNotification()
         }
 
         /// powiadomienie
-        if (!mNotified) {
-          NotificationUtils()
-                .setNotification(mNotificationTime, this@Menu)
-        }
+        // if (!mNotified) {
+        //  NotificationUtils()
+        //          .setNotification(mNotificationTime, this@Menu)
+        //   }
         /////////////////////
 
+        // powiadomienie
+
+        //val etTime = findViewById<EditText>(R.id.etTime)
+
+        val cal: Calendar = Calendar.getInstance()
+        cal.add(Calendar.MINUTE, 1)
+        val date: Date = cal.time
+
+        val dateFormat = SimpleDateFormat("HH:mm")
+        val formattedDate = dateFormat.format(date)
+
+
+        // etTime.text = SpannableStringBuilder(formattedDate)
+
+        // val buttonOn = findViewById<Button>(R.id.btnOn)
+        // val buttonOff = findViewById<Button>(R.id.btnOff)
+
+        // buttonOn.setOnClickListener {
+
+        val time = takeTimeNow()
+        //val dateFormat = SimpleDateFormat("HH:mm")
+        val cal2 = Calendar.getInstance()
+        cal2.time = dateFormat.parse(time)
+
+
+        MyService.setServiceAlarm(this@Menu, true, cal2)
+        buttonOff.setOnClickListener()
+        {
+            MyService.setServiceAlarm(this@Menu, false, null)
+        }
+}
+
+    private fun takeTimeNow() : String{
+        val current = LocalDateTime.now()
+        val formatTime = DateTimeFormatter.ofPattern("HH:mm")
+        var timeResult = current.format(formatTime).toString()
+        return  timeResult
 
     }
 

@@ -37,9 +37,8 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ChangeTimePeriodOfTakenMedicine"></activity>
 
-        <receiver
-                android:name=".takeMedicineOccur.reminder.AlarmReceiver"
-                android:process=":remote" />
+        <receiver android:name=".takeMedicineOccur.reminder.MyBroadcastReceiver" >
+        </receiver>
 
 
     </application>

@@ -51,10 +51,8 @@ class NotificationService : IntentService("NotificationService") {
     }
 
     override fun onHandleIntent(intent: Intent?) {
-
         //Create Channel
         createChannel()
-
 
         var timestamp: Long = 0
         if (intent != null && intent.extras != null) {
@@ -96,7 +94,7 @@ class NotificationService : IntentService("NotificationService") {
                     .setContentTitle("Weź leki")
                     .setStyle(
                         Notification.BigTextStyle()
-                            .bigText("Duży tekst"))
+                            .bigText(message))
                     .setContentText("a to wiadomość").build()
             } else {
 
