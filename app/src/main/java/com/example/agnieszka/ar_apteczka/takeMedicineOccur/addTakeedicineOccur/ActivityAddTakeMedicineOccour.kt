@@ -87,30 +87,37 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         var howManyDays = editText_ForHowManyDays.text.toString()
         var dateEnd =textView_DateEnd.text.toString()
         val id_MedType = dbHelper.getMedicieID(choosenMed)
-
+        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString())
         if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" || dateEnd == "@string/InformationAboutDateAndDays" || howManyDays.isEmpty()) {
             alertDialogNoData()
-        } //else if(dateToday>dateDateEnd) alertDialogWrongData()
+        }
         else{
-            val id= UUID.randomUUID().toString()
-            val takeMedOccur= TakeMedicineOccur(
-                id,
-                id_MedType,
-                choosenMed,
-                dose.toInt(),
-                timeOfDay.toString(),
-                beforeAfterMeal.toString(),
-                dateStart,
-                dateEnd
-            )
-            val success= dbHelper.addTakeMedicineOccur(takeMedOccur)
-            AddMediciesToTake(takeMedOccur)
-            if(success)
-            {
-                Toast.makeText(applicationContext, getString(R.string.TakeMedOccurMedAdded), Toast.LENGTH_SHORT).show()
+            if(ifExists == true){
+                alertDialogMedExists()
+            }else {
+                val id = UUID.randomUUID().toString()
+                val takeMedOccur = TakeMedicineOccur(
+                    id,
+                    id_MedType,
+                    choosenMed,
+                    dose.toInt(),
+                    timeOfDay.toString(),
+                    beforeAfterMeal.toString(),
+                    dateStart,
+                    dateEnd
+                )
+                val success = dbHelper.addTakeMedicineOccur(takeMedOccur)
+                AddMediciesToTake(takeMedOccur)
+                if (success) {
+                    Toast.makeText(
+                        applicationContext,
+                        getString(R.string.TakeMedOccurMedAdded),
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                var activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
-                startActivity(activity)
+                    var activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
+                    startActivity(activity)
+                }
             }
 
         }
@@ -162,6 +169,15 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         builder.setTitle(getString(R.string.TakeMedOccurAttention))
         builder.setMessage(getString(R.string.TakeMedOccurInformation))
         builder.setPositiveButton(getString(R.string.TakeMedOccurBack)) { dialog: DialogInterface, which: Int -> }
+        builder.show()
+    }
+
+    private fun alertDialogMedExists(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.alertDialogTileMedExists))
+        builder.setMessage("Wybrany lek o danej porze dnia juz istnieje, jeżeli chcesz edytować dawkę lub okres zażywania leku przejdź do listy wszystkich leków")
+        builder.setNeutralButton(getString(R.string.alertDialogBack)){ _, _ ->
+        }
         builder.show()
     }
 
@@ -266,36 +282,41 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
     fun downloadDataAndGoToAddReminder()
     {
+        val dbHelper = SQLConector(this)
+        val choosenMed= spinner!!.selectedItem.toString()
+        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString())
        if(!checkTheCorrectnessOfTheData())
        {
            alertDialogNoData()
        }
-       else
-       {
-           val dbHelper = SQLConector(this)
-           val choosenMed= spinner!!.selectedItem.toString()
-           val dose = Add_Med_Occour_Dose_EditText.text.toString()
-           val id_MedType = dbHelper.getMedicieID(choosenMed)
-           val timeOfDay = timeOfDay.toString()
-           val beforeAfterMeal = beforeAfterMeal.toString()
-           val dateStart =button_ChooseDate_Start.text.toString()
-           var howManyDays = editText_ForHowManyDays.text.toString()
-           var dateEnd =textView_DateEnd.text.toString()
+       else {
+           if (ifExists == true) {
+               alertDialogMedExists()
+           } else {
+               val dbHelper = SQLConector(this)
+               val choosenMed = spinner!!.selectedItem.toString()
+               val dose = Add_Med_Occour_Dose_EditText.text.toString()
+               val id_MedType = dbHelper.getMedicieID(choosenMed)
+               val timeOfDay = timeOfDay.toString()
+               val beforeAfterMeal = beforeAfterMeal.toString()
+               val dateStart = button_ChooseDate_Start.text.toString()
+               var howManyDays = editText_ForHowManyDays.text.toString()
+               var dateEnd = textView_DateEnd.text.toString()
 
 
-           val activityToAddReminder =
-               Intent(applicationContext, AddReminder::class.java)
-           activityToAddReminder.putExtra("choosenMed", choosenMed)
-           activityToAddReminder.putExtra("dose", dose)
-           activityToAddReminder.putExtra("idMedType", id_MedType)
-           activityToAddReminder.putExtra("timeOfDay", timeOfDay)
-           activityToAddReminder.putExtra("beforeAfterMeal", beforeAfterMeal)
-           activityToAddReminder.putExtra("dateStart", dateStart)
-           activityToAddReminder.putExtra("howManyDays", howManyDays)
-           activityToAddReminder.putExtra("dateEnd", dateEnd)
-           startActivity(activityToAddReminder)
+               val activityToAddReminder =
+                   Intent(applicationContext, AddReminder::class.java)
+               activityToAddReminder.putExtra("choosenMed", choosenMed)
+               activityToAddReminder.putExtra("dose", dose)
+               activityToAddReminder.putExtra("idMedType", id_MedType)
+               activityToAddReminder.putExtra("timeOfDay", timeOfDay)
+               activityToAddReminder.putExtra("beforeAfterMeal", beforeAfterMeal)
+               activityToAddReminder.putExtra("dateStart", dateStart)
+               activityToAddReminder.putExtra("howManyDays", howManyDays)
+               activityToAddReminder.putExtra("dateEnd", dateEnd)
+               startActivity(activityToAddReminder)
+           }
        }
-
             }
 
 

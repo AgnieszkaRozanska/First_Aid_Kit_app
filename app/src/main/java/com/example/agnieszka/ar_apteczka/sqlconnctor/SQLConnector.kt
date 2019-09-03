@@ -330,6 +330,45 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return takeMedicineOccurAllList
     }
 
+    fun getAllTakeMedOccur():ArrayList<TakeMedicineOccur>{
+        val takeMedicineOccurAllList= ArrayList<TakeMedicineOccur>()
+        val db= readableDatabase
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINE_ONCE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do {
+                    val idtakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_MEDICINEONCE))
+                    val idMedicineType = cursor.getString(cursor.getColumnIndex(ID_MEDICINETYPE))
+                    val idmed = cursor.getString(cursor.getColumnIndex(MEDICIETYPE_NAME))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY))
+                    val beforeAfterMeal = cursor.getString(cursor.getColumnIndex(BEFORE_AFTER_MEAL))
+                    val dateStart = cursor.getString(cursor.getColumnIndex(DATE_START))
+                    val dateEnd = cursor.getString(cursor.getColumnIndex(DATE_END))
+
+                    val current = LocalDateTime.now()
+                    val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                    var dateTodayString =current.format(formatDate)
+
+                    var dateStartFormatDate = LocalDate.parse(dateStart, formatDate)
+                    var dateEndFormatDate = LocalDate.parse(dateEnd, formatDate)
+                    var dateToday = LocalDate.parse(dateTodayString, formatDate)
+                    val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(dateToday)
+                    if( compareDateEndWithCurrentDate>=0)
+                    {
+                        val takMedOccur = TakeMedicineOccur(idtakeMedOccur,idMedicineType,idmed,dose.toInt(),timeOfDay,beforeAfterMeal,dateStart, dateEnd)
+                        takeMedicineOccurAllList.add(takMedOccur)
+                    }
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return takeMedicineOccurAllList
+    }
+
     fun getTakeMedicieOccur(idTakeMedOccur : String, timeOfDayParm : String, afterBeforeMealParm : String) : TakeMedicineOccur{
         var allTakeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedicineOccur(timeOfDayParm)
         var idtakeMedOccur = ""
@@ -405,6 +444,25 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
         return true
     }
+
+    fun checkIfTakeMedOccurExists(name: String, timeOfDay : String, beforeAfterMeal : String) : Boolean{
+        var result = false
+        var takeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedOccur()
+        for (i: TakeMedicineOccur in takeMedOccurList) {
+            if(i.medicineType_Name == name){
+                if(i.timeOfDay == timeOfDay){
+                    if(i.beforeAfterMeal == beforeAfterMeal){
+                        result = true
+                    }
+                }
+            }
+        }
+
+        return result
+    }
+
+
+
 
     fun addNotification(notification: NotificationAmountMed):Boolean
     {
