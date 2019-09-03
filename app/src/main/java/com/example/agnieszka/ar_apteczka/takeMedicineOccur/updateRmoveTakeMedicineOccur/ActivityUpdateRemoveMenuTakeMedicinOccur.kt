@@ -16,6 +16,7 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
 
     private var dateStartOfPeriodTaken = ""
     private var dateEndOfPeriodTaken = ""
+    private var idTakeMedOccur = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_remove_menu_take_medicin_occur)
@@ -42,12 +43,15 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setData(){
+        val dbHelper = SQLConector(this)
         if (intent.hasExtra("nameTakeOccur")) UpdateRemoveTakeMedicineOccur_MedicineName.text = intent.getStringExtra("nameTakeOccur")
         if (intent.hasExtra("dose")) updateRemoveTakeMedicineOccur_Dose.text = intent.getStringExtra("dose")
         if (intent.hasExtra("timeOfDay")) updateRemoveTakeMedicineOccur_MedicineTimeofDay.text = intent.getStringExtra("timeOfDay")
         if (intent.hasExtra("afterBeforeMeal")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("afterBeforeMeal")
-        //    val output = str.replace(oldValue, newValue)
-        //
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        var ifHaveReminder = dbHelper.checkIfMedHaveReminder(idTakeMedOccur)
+        if(ifHaveReminder) textView_ReminderInfo.setText("Lek posiada przypominajkę")
+        else textView_ReminderInfo.setText("Lek nie posiada przypominajki")
         if (intent.hasExtra("dateStart")) {
             var dateStart = intent.getStringExtra("dateStart")
              dateStartOfPeriodTaken= dateStart.replace("-", ".")

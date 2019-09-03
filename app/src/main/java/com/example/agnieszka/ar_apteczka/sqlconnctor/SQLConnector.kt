@@ -461,8 +461,16 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return result
     }
 
-
-
+    fun checkIfMedHaveReminder(idTakeMedOccur : String) : Boolean{
+        var result = false
+        var reminderList = getAllReminders()
+        for (i: Reminder in reminderList) {
+            if (i.idTakeMedOccur == idTakeMedOccur) {
+                result = true
+            }
+        }
+        return result
+    }
 
     fun addNotification(notification: NotificationAmountMed):Boolean
     {

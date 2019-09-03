@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -10,141 +9,187 @@
 
 
     <TextView
-            android:text="@string/ActivityTimeDay"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:id="@+id/textView3" android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" android:layout_marginEnd="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ActivityTimeDay"
+            android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/updateRemoveTakeMedicineOccur_MedicineTimeofDay"
-            app:layout_constraintHorizontal_bias="0.055"/>
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
     <TextView
-            android:hint="@string/ActivityCardViewMdicineName"
+            android:id="@+id/UpdateRemoveTakeMedicineOccur_MedicineName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/UpdateRemoveTakeMedicineOccur_MedicineName"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="112dp"
             android:gravity="center_horizontal"
+            android:hint="@string/ActivityCardViewMdicineName"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:textSize="28sp" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="112dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-            android:hint="@string/ActivityDose"
+            android:id="@+id/updateRemoveTakeMedicineOccur_Dose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/updateRemoveTakeMedicineOccur_Dose"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/ActivityDose"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/UpdateRemoveTakeMedicineOccur_MedicineName"
-            android:layout_marginEnd="20dp" app:layout_constraintEnd_toEndOf="parent"
-    />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpdateRemoveTakeMedicineOccur_MedicineName" />
+
     <TextView
-            android:hint="@string/ActivityTimeDay"
+            android:id="@+id/updateRemoveTakeMedicineOccur_MedicineTimeofDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/updateRemoveTakeMedicineOccur_MedicineTimeofDay"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/ActivityTimeDay"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginEnd="20dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_Dose"/>
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_Dose" />
+
     <TextView
-            android:hint="@string/ActivityTimeOfDay"
+            android:id="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal"
             android:layout_width="wrap_content"
             android:layout_height="27dp"
-            android:id="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/ActivityTimeOfDay"
             android:textAlignment="textEnd"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_MedicineTimeofDay"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_MedicineTimeofDay" />
 
 
     <Button
+            android:id="@+id/Button_RemoveTakeMedicineOccur"
             android:layout_width="152dp"
             android:layout_height="153dp"
-            android:background="@drawable/removemed2"
-            android:id="@+id/Button_RemoveTakeMedicineOccur"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/removemed2"
+            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod"
             app:layout_constraintEnd_toStartOf="@+id/button_UpdateDoseTakeMedicineOccur"
-            android:layout_marginEnd="30dp" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod" android:layout_marginBottom="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"/>
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"
+            app:layout_constraintVertical_bias="1.0" />
+
     <Button
+            android:id="@+id/button_UpdateDoseTakeMedicineOccur"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/updatedose"
-            android:id="@+id/button_UpdateDoseTakeMedicineOccur"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod" android:layout_marginEnd="20dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="30dp"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"/>
+            android:background="@drawable/updatedose"
+            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"
+            app:layout_constraintVertical_bias="1.0" />
+
     <TextView
-            android:text="@string/ActivityDosetoTakeText"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:id="@+id/textView2" android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/updateRemoveTakeMedicineOccur_Dose"
-            android:layout_marginEnd="12dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/UpdateRemoveTakeMedicineOccur_MedicineName"
-            app:layout_constraintHorizontal_bias="0.069"/>
-    <TextView
-            android:text="@string/ActivityTimeOfDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView5" android:textSize="18sp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:layout_marginEnd="44dp"
-            app:layout_constraintEnd_toStartOf="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"
+            android:text="@string/ActivityDosetoTakeText"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/updateRemoveTakeMedicineOccur_Dose"
+            app:layout_constraintHorizontal_bias="0.069"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.153"/>
+            app:layout_constraintTop_toBottomOf="@+id/UpdateRemoveTakeMedicineOccur_MedicineName" />
+
     <TextView
-            android:text="Okres zażywania od - do"
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewTakePeriodInfo" android:textSize="18sp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginEnd="44dp"
+            android:text="@string/ActivityTimeOfDay"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal"
+            app:layout_constraintHorizontal_bias="0.153"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     <TextView
-            android:hint="Period"
+            android:id="@+id/textViewTakePeriodInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Okres zażywania od - do"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_ReminderInfo" />
+
+    <TextView
             android:id="@+id/updateRemoveTakeMedicineOccur_DateStart"
-            android:textStyle="bold" android:textAlignment="textEnd" android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Period"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
-            android:layout_marginStart="20dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/textViewTakePeriodInfo"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTakePeriodInfo" />
+
     <Button
+            android:id="@+id/button_ChangeTakePeriod"
             android:layout_width="152dp"
             android:layout_height="153dp"
-            android:background="@drawable/buttonchangetakeperiod"
-            android:id="@+id/button_ChangeTakePeriod"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="55dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/buttonchangetakeperiod"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.53"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:id="@+id/textView_ReminderInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Tekst czy  lek posiada przypominajke czy nie"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.692"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 </android.support.constraint.ConstraintLayout>
