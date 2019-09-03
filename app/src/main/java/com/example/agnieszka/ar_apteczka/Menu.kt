@@ -64,15 +64,7 @@ class Menu : AppCompatActivity() {
         val date: Date = cal.time
 
         val dateFormat = SimpleDateFormat("HH:mm")
-        val formattedDate = dateFormat.format(date)
 
-
-        // etTime.text = SpannableStringBuilder(formattedDate)
-
-        // val buttonOn = findViewById<Button>(R.id.btnOn)
-        // val buttonOff = findViewById<Button>(R.id.btnOff)
-
-        // buttonOn.setOnClickListener {
 
         val time = takeTimeNow()
         //val dateFormat = SimpleDateFormat("HH:mm")

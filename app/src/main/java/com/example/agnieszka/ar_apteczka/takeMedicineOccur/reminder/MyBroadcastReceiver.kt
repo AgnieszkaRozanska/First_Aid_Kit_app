@@ -53,10 +53,10 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         notificationBuilder.setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setWhen(System.currentTimeMillis())
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.pills)
             .setTicker("Hearty365")
             //     .setPriority(Notification.PRIORITY_MAX)
-            .setContentTitle("Default notification")
+            .setContentTitle("Zażyj leki")
             .setContentText(message)
             .setContentInfo("Info")
 
@@ -67,8 +67,8 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 
     fun reminderForNow(context: Context) : ArrayList<Reminder> {
         var listOfReminder : ArrayList<Reminder> = ArrayList()
-        var timetoday = takeTimeNow()
-        var dateToday = takeTodayDate()
+        var timetoday = MyService.takeTimeNow()
+        var dateToday = MyService.takeTodayDate()
 
         val dbHelper = SQLConector(context)
         val allRemindersList = dbHelper.getAllReminders()
@@ -102,7 +102,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
     }
 
 
-    private fun takeTodayDate():String{
+  /*  private fun takeTodayDate():String{
         val current = LocalDateTime.now()
         val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         var dateResult = current.format(formatDate).toString()
@@ -115,5 +115,5 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         var timeResult = current.format(formatTime).toString()
         return  timeResult
 
-    }
+    } */
 }
