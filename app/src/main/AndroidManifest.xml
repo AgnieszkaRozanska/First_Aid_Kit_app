@@ -9,9 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <service
-                android:name=".takeMedicineOccur.reminder.NotificationService"
-                android:exported="false"></service>
+
 
         <activity android:name=".todaysMedicines.ShowAllTodaysMedicines">
             <intent-filter>

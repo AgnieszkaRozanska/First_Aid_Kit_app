@@ -21,7 +21,8 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         setContentView(R.layout.activity_show_all_todays_medicines)
         setTodayDate()
         setStetho()
-
+        val dbHelper = SQLConector(this)
+        dbHelper.removeOldReminders(takeDataToday())
         button_GoToFirstAidKit.setOnClickListener {
             val goToMenu = Intent(applicationContext, Menu::class.java)
             startActivity(goToMenu)

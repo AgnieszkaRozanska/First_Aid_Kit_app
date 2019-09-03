@@ -821,6 +821,25 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return allRemindersList
     }
 
-
+    fun removeOldReminders(todayDate : String)
+    {
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val allRemindersList = getAllReminders()
+        var dateToday = LocalDate.parse(todayDate, formatDate)
+        for (i: Reminder in allRemindersList) {
+            var dateReminder = LocalDate.parse(i.reminderDate, formatDate)
+            val compare = dateToday.compareTo(dateReminder)
+            if(compare>0){
+                try {
+                    val db=this.writableDatabase
+                    db.delete(REMINDER_TABLE_NAME, "$REMINDER_ID=?", arrayOf(i.idReminder))
+                    db.close()
+                }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
 
 }

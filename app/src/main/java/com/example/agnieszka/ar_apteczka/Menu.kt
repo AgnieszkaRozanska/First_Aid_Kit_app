@@ -8,29 +8,23 @@ import android.graphics.Color
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableStringBuilder
-import android.widget.Button
-import android.widget.EditText
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.MyService
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
-import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.NotificationUtils
-import kotlinx.android.synthetic.main.activity_add_update_notification.*
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
 
 class Menu : AppCompatActivity() {
     // private val mNotificationTime =
     // Calendar.getInstance().timeInMillis//Set after 1 seconds from the current time. ////////
 
-    private var mNotified = false/////////////////
+    //private var mNotified = false/////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
