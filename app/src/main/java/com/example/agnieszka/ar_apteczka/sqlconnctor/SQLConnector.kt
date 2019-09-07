@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
@@ -633,16 +633,17 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
                     if(ifWasTaken == "No" && dataToTake == date && timeOfDay == time ) {
 
-                        val medicineToTakeToday = MedicineToTake(
-                            idTakeMedicinesToday,
-                            idtakeMedOccur,
-                            idMedicineType,
-                            medName,
-                            dose.toInt(),
-                            timeOfDay,
-                            whenbeforeAfterMeal,
-                            dataToTake,
-                            ifWasTaken
+                        val medicineToTakeToday =
+                            MedicineToTake(
+                                idTakeMedicinesToday,
+                                idtakeMedOccur,
+                                idMedicineType,
+                                medName,
+                                dose.toInt(),
+                                timeOfDay,
+                                whenbeforeAfterMeal,
+                                dataToTake,
+                                ifWasTaken
                             )
                             takeMedicineTodayAllList.add(medicineToTakeToday)
                     }
@@ -673,17 +674,18 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val dataToTake = cursor.getString(cursor.getColumnIndex(DATE_MED_TO_TAKE))
                     val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
 
-                        val medicineToTakeToday = MedicineToTake(
-                            idTakeMedicinesToday,
-                            idtakeMedOccur,
-                            idMedicineType,
-                            medName,
-                            dose.toInt(),
-                            timeOfDay,
-                            whenbeforeAfterMeal,
-                            dataToTake,
-                            ifWasTaken
-                        )
+                        val medicineToTakeToday =
+                            MedicineToTake(
+                                idTakeMedicinesToday,
+                                idtakeMedOccur,
+                                idMedicineType,
+                                medName,
+                                dose.toInt(),
+                                timeOfDay,
+                                whenbeforeAfterMeal,
+                                dataToTake,
+                                ifWasTaken
+                            )
                         takeMedicineTodayAllList.add(medicineToTakeToday)
 
                 }while (cursor.moveToNext())
@@ -775,17 +777,18 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                     val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
 
                     if(idtakeMedOccur == takeMedOccur.iD && medName == takeMedOccur.medicineType_Name && dose.toInt() == takeMedOccur.dose && timeOfDay == takeMedOccur.timeOfDay && whenbeforeAfterMeal == takeMedOccur.beforeAfterMeal && ifWasTaken == "No") {
-                        val medicineToTakeToday = MedicineToTake(
-                            idTakeMedicinesToday,
-                            idtakeMedOccur,
-                            idMedicineType,
-                            medName,
-                            dose.toInt(),
-                            timeOfDay,
-                            whenbeforeAfterMeal,
-                            dataToTake,
-                            ifWasTaken
-                        )
+                        val medicineToTakeToday =
+                            MedicineToTake(
+                                idTakeMedicinesToday,
+                                idtakeMedOccur,
+                                idMedicineType,
+                                medName,
+                                dose.toInt(),
+                                timeOfDay,
+                                whenbeforeAfterMeal,
+                                dataToTake,
+                                ifWasTaken
+                            )
                         takeMedicineTodayTheSameTypeList.add(medicineToTakeToday)
                     }
                 }while (cursor.moveToNext())

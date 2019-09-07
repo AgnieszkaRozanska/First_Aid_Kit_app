@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +13,7 @@ import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.TakeMedicineOccur
-import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import kotlinx.android.synthetic.main.activity_add__reminder.*
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -132,17 +131,18 @@ class AddReminder : AppCompatActivity() {
         repeat(howManyDays.toInt()){
 
             var id= UUID.randomUUID().toString()
-            var medicineToTake= MedicineToTake(
-                id,
-                takeMedicineOccour.iD,
-                takeMedicineOccour.iD_MedicineType,
-                takeMedicineOccour.medicineType_Name,
-                takeMedicineOccour.dose,
-                takeMedicineOccour.timeOfDay,
-                takeMedicineOccour.beforeAfterMeal,
-                date,
-                "No"
-            )
+            var medicineToTake=
+                MedicineToTake(
+                    id,
+                    takeMedicineOccour.iD,
+                    takeMedicineOccour.iD_MedicineType,
+                    takeMedicineOccour.medicineType_Name,
+                    takeMedicineOccour.dose,
+                    takeMedicineOccour.timeOfDay,
+                    takeMedicineOccour.beforeAfterMeal,
+                    date,
+                    "No"
+                )
             if(flagaReminder) addReminder(medicineToTake)
             dbHelper.addMedicineToTake(medicineToTake)
             var dateDate = LocalDate.parse(date)

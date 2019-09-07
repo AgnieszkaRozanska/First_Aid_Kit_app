@@ -1,12 +1,15 @@
-package com.example.agnieszka.ar_apteczka.todaysMedicines
+package com.example.agnieszka.ar_apteczka.todaysMedicines.showAllMedicinesToday
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.TextView
 import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
+import com.example.agnieszka.ar_apteczka.todaysMedicines.adapter.TakeMedicicnesTodayAdapter
 import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import kotlinx.android.synthetic.main.activity_show_all_todays_medicines.*
@@ -29,13 +32,16 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         }
 
     }
-    override fun onResume() {
+     override fun onResume() {
         super.onResume()
         val sqlConector = SQLConector(this)
         var dataToday = takeDataToday()
         val  takeTodayMedicinesListMORNING=sqlConector.getAllTakeMedicinesToday(getString(R.string.Morning), dataToday)
+
         val  takeTodayMedicinesListMIDDAY=sqlConector.getAllTakeMedicinesToday(getString(R.string.Midday), dataToday)
         val  takeTodayMedicinesListEVENING=sqlConector.getAllTakeMedicinesToday(getString(R.string.Evening), dataToday)
+        if(takeTodayMedicinesListEVENING.isNullOrEmpty()) textViewEveningMedicines.visibility = TextView.VISIBLE
+        else textViewEveningMedicines.visibility = TextView.INVISIBLE
         recyler_view_All_Medicines_To_Take_Today_Morning.layoutManager=
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
         recyler_view_All_Medicines_To_Take_Today_Morning.adapter=
@@ -79,7 +85,9 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         return dateTodayString.toString()
     }
 
-
+    public fun setTextIfListIsEmpty(takeTodayMedicinesListEVENING : ArrayList<MedicineToTake>){
+        if(takeTodayMedicinesListEVENING.isNullOrEmpty()) textViewEveningMedicines.visibility = TextView.VISIBLE
+    }
 
 
 }

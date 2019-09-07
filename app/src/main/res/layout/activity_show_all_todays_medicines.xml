@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".todaysMedicines.ShowAllTodaysMedicines">
+        tools:context=".todaysMedicines.showAllMedicinesToday.ShowAllTodaysMedicines">
 
 
     <TextView
@@ -100,5 +100,16 @@
             app:layout_constraintTop_toBottomOf="@+id/recyler_view_All_take_Medicine_To_Take_Today_Evening"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+
+    <TextView
+            android:id="@+id/textViewEveningMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brak leków na wieczór"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_Medicine_To_Take_Today_Evening"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_Medicine_To_Take_Today_Evening"
+            tools:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>

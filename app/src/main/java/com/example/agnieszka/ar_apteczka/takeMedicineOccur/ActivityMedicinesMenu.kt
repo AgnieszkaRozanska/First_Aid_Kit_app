@@ -7,7 +7,7 @@ import com.example.agnieszka.ar_apteczka.Menu
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.addTakeedicineOccur.ActivityAddTakeMedicineOccour
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
-import com.example.agnieszka.ar_apteczka.todaysMedicines.ShowAllTodaysMedicines
+import com.example.agnieszka.ar_apteczka.todaysMedicines.showAllMedicinesToday.ShowAllTodaysMedicines
 import kotlinx.android.synthetic.main.activity_medicines.*
 
 class ActivityMedicinesMenu : AppCompatActivity() {

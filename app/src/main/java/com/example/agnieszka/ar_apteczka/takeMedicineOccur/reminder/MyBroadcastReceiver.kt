@@ -3,6 +3,7 @@ package com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -12,6 +13,7 @@ import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.todaysMedicines.showAllMedicinesToday.ShowAllTodaysMedicines
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -29,11 +31,15 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         val notificationManager = p0?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
         val NOTIFICATION_CHANNEL_ID = "my_channel_id_01"
 
+        val resultIntent = Intent(p0, ShowAllTodaysMedicines::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(p0, 0, resultIntent, 0)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel =
                 NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH)
 
-            // Configure the notification channel.
             notificationChannel.description = "Channel description"
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
@@ -41,27 +47,20 @@ class MyBroadcastReceiver : BroadcastReceiver() {
             notificationChannel.enableVibration(true)
             notificationManager!!.createNotificationChannel(notificationChannel)
         }
-
-
         val notificationBuilder = NotificationCompat.Builder(p0!!, NOTIFICATION_CHANNEL_ID)
-
-        //
         var message : String = createReminderMessage(p0)
-        //
-
 
         notificationBuilder.setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setWhen(System.currentTimeMillis())
             .setSmallIcon(R.drawable.pills)
             .setTicker("Hearty365")
-            //     .setPriority(Notification.PRIORITY_MAX)
+            .setPriority(Notification.PRIORITY_MAX)
             .setContentTitle("Zażyj leki")
             .setContentText(message)
             .setContentInfo("Info")
-
+            .setContentIntent(pendingIntent)
         notificationManager!!.notify(/*notification id*/1, notificationBuilder.build()
-
         )
     }
 

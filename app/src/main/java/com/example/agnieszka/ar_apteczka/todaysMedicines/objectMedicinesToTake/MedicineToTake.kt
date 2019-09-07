@@ -1,4 +1,4 @@
-package com.example.agnieszka.ar_apteczka.todaysMedicines
+package com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake
 
 class MedicineToTake {
 

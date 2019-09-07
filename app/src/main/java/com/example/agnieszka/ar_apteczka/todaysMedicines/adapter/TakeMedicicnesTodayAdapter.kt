@@ -1,11 +1,8 @@
-package com.example.agnieszka.ar_apteczka.todaysMedicines
+package com.example.agnieszka.ar_apteczka.todaysMedicines.adapter
 
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
-import android.provider.Settings.Global.getString
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -15,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
-import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import kotlinx.android.synthetic.main.card_view_all_tak_medicines_occur.view.*
 
 

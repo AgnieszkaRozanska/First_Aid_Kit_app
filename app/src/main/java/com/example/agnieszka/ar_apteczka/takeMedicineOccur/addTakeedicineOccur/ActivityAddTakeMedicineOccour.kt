@@ -19,11 +19,9 @@ import kotlinx.android.synthetic.main.activity_add__take_medicine_occour.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.widget.ArrayAdapter
-import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.Period
-import java.time.format.DateTimeFormatter
 
 
 class ActivityAddTakeMedicineOccour : AppCompatActivity() {
@@ -209,17 +207,18 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
            repeat(howManyDays.toInt()){
 
            var id= UUID.randomUUID().toString()
-           var medicineToTake= MedicineToTake(
-               id,
-               takeMedicineOccour.iD,
-               takeMedicineOccour.iD_MedicineType,
-               takeMedicineOccour.medicineType_Name,
-               takeMedicineOccour.dose,
-               takeMedicineOccour.timeOfDay,
-               takeMedicineOccour.beforeAfterMeal,
-               date.toString(),
-               "No"
-           )
+           var medicineToTake=
+               MedicineToTake(
+                   id,
+                   takeMedicineOccour.iD,
+                   takeMedicineOccour.iD_MedicineType,
+                   takeMedicineOccour.medicineType_Name,
+                   takeMedicineOccour.dose,
+                   takeMedicineOccour.timeOfDay,
+                   takeMedicineOccour.beforeAfterMeal,
+                   date.toString(),
+                   "No"
+               )
            dbHelper.addMedicineToTake(medicineToTake)
                var dateDate = LocalDate.parse(date)
                var period = Period.of(0, 0, 1)

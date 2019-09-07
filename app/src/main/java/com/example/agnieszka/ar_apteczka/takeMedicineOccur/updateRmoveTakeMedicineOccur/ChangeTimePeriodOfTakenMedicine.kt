@@ -1,7 +1,6 @@
 package com.example.agnieszka.ar_apteczka.takeMedicineOccur.updateRmoveTakeMedicineOccur
 
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +9,7 @@ import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
-import com.example.agnieszka.ar_apteczka.todaysMedicines.MedicineToTake
+import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import kotlinx.android.synthetic.main.activity_change_time_period_of_taken_medicine.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -132,17 +131,18 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
             var dateString  = modifiedDate.toString()
 
             var id= UUID.randomUUID().toString()
-                var medicineToTake= MedicineToTake(
-                id,
-                    takeMedOccur.iD,
-                    takeMedOccur.iD_MedicineType,
-                    takeMedOccur.medicineType_Name,
-                    takeMedOccur.dose,
-                    takeMedOccur.timeOfDay,
-                    takeMedOccur.beforeAfterMeal,
-                    dateString,
-                "No"
-            )
+                var medicineToTake=
+                    MedicineToTake(
+                        id,
+                        takeMedOccur.iD,
+                        takeMedOccur.iD_MedicineType,
+                        takeMedOccur.medicineType_Name,
+                        takeMedOccur.dose,
+                        takeMedOccur.timeOfDay,
+                        takeMedOccur.beforeAfterMeal,
+                        dateString,
+                        "No"
+                    )
             dbHelper.addMedicineToTake(medicineToTake)
              dateEndFormatDate = LocalDate.parse(dateString, formatDate)
             var compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)

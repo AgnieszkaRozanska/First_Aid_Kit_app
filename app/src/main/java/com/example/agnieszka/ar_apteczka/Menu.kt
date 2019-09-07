@@ -9,10 +9,11 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
+import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.MyService
-import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
+import com.example.agnieszka.ar_apteczka.todaysMedicines.showAllMedicinesToday.ShowAllTodaysMedicines
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -73,10 +74,10 @@ class Menu : AppCompatActivity() {
 
 
         MyService.setServiceAlarm(this@Menu, true, cal2)
-        buttonOff.setOnClickListener()
-        {
-            MyService.setServiceAlarm(this@Menu, false, null)
-        }
+       // buttonOff.setOnClickListener()
+       // {
+       //     MyService.setServiceAlarm(this@Menu, false, null)
+       // }
 }
 
     private fun takeTimeNow() : String{
@@ -88,7 +89,7 @@ class Menu : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val activity = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
+        val activity = Intent(applicationContext, ShowAllTodaysMedicines::class.java)
         startActivity(activity)
     }
 
@@ -105,7 +106,7 @@ class Menu : AppCompatActivity() {
 
        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-       val intent = Intent(this, LauncherActivity::class.java)
+       val intent = Intent(this, ActivityShowAllMedicines::class.java)
        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
 
