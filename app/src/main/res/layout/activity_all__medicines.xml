@@ -9,22 +9,29 @@
 
 
     <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyler_view_med"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyler_view_med"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView_informAboutMedicies"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_informAboutMedicies" />
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/TitleOfAllMedcinesRV"
-              app:layout_constraintStart_toStartOf="parent"
-              android:layout_gravity="center_vertical"
-              app:layout_constraintEnd_toEndOf="parent"
-              android:padding="3dp"
-              android:text="@string/ActivityAllYourMedicineTitle" android:textAlignment="center" android:textStyle="bold"
-              android:textColor="@color/colorPrimary" android:textSize="24sp"/>
+    <TextView
+            android:id="@+id/TitleOfAllMedcinesRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="3dp"
+            android:text="@string/ActivityAllYourMedicineTitle"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <TextView
             android:text="@string/informAboutMediciesToshowMoreInformations"
             android:layout_width="wrap_content"
@@ -35,5 +42,21 @@
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"/>
+
+    <TextView
+            android:id="@+id/textViewInformationAboutLackOfMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_med"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/recyler_view_med"
+            app:layout_constraintTop_toBottomOf="@+id/textView_informAboutMedicies"
+            tools:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>
