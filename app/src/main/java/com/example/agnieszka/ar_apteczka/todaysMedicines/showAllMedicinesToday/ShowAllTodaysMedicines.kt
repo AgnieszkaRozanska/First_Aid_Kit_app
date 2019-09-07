@@ -35,6 +35,9 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
             startActivity(goToMenu)
         }
 
+        textViewEveningMedicines.visibility = TextView.INVISIBLE
+        textViewAfternoonMedicines.visibility = TextView.INVISIBLE
+        textViewMorningMedicines.visibility = TextView.INVISIBLE
 
       val handler = Handler()
         val runnable = object : Runnable {
