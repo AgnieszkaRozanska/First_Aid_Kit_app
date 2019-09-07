@@ -88,5 +88,38 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+            android:id="@+id/textViewInformLackOfMorningMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textAboutLackOfMorningMedicines"
+            tools:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_MedOccurMorning"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_MedOccurMorning" />
+
+    <TextView
+            android:id="@+id/textViewInformLackOfAfternoonMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textAboutLackOfAfternoonMedicines"
+            tools:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_MedOccurMidday"
+            app:layout_constraintEnd_toEndOf="@+id/recyler_view_All_take_MedOccurMidday"
+            app:layout_constraintStart_toStartOf="@+id/recyler_view_All_take_MedOccurMidday"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_MedOccurMidday" />
+
+    <TextView
+            android:id="@+id/textViewInformLackOfEveningMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textAboutLackOfEveningMedicines"
+            tools:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_MedOccurEvening"
+            app:layout_constraintEnd_toEndOf="@+id/recyler_view_All_take_MedOccurEvening"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_MedOccurEvening" />
+
 
 </android.support.constraint.ConstraintLayout>

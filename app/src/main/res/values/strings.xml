@@ -114,4 +114,7 @@
     <string name="alertDialogMessageNotEnoughMedicine">Zażywana dawka przekracza sztuki leku w elektronicznej apteczce. Musisz uzupełnić sztuki leku</string>
     <string name="ToastTakeMedicine">Zażyłeś lek</string>
     <string name="LackOfMedicineRecyclerView">Brak leków Przejdź do zakładki dodaj lek.</string>
+    <string name="textAboutLackOfMorningMedicines">Brak porannych leków</string>
+    <string name="textAboutLackOfAfternoonMedicines">Brak popołudniowych leków</string>
+    <string name="textAboutLackOfEveningMedicines">Brak wieczornych leków</string>
 </resources>
