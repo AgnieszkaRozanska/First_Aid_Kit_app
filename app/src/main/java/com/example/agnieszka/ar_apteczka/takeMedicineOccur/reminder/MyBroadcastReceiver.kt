@@ -55,7 +55,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
             .setWhen(System.currentTimeMillis())
             .setSmallIcon(R.drawable.pills)
             .setTicker("Hearty365")
-            .setPriority(Notification.PRIORITY_MAX)
+            //.setPriority(Notification.PRIORITY_MAX)
             .setContentTitle("Zażyj leki")
             .setContentText(message)
             .setContentInfo("Info")
