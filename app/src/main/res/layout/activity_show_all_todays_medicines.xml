@@ -105,11 +105,34 @@
             android:id="@+id/textViewEveningMedicines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Brak leków na wieczór"
+            android:text="Brak wieczornych leków"
             app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_Medicine_To_Take_Today_Evening"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_Medicine_To_Take_Today_Evening"
             tools:visibility="invisible" />
+
+    <TextView
+            android:id="@+id/textViewAfternoonMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brak popołudniowych leków"
+            tools:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_take_Medicines_To_Take_Today_Midday"
+            app:layout_constraintEnd_toEndOf="@+id/recyler_view_All_take_Medicines_To_Take_Today_Midday"
+            app:layout_constraintStart_toStartOf="@+id/recyler_view_All_take_Medicines_To_Take_Today_Midday"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_take_Medicines_To_Take_Today_Midday" />
+
+    <TextView
+            android:id="@+id/textViewMorningMedicines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brak porannych leków"
+            tools:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/recyler_view_All_Medicines_To_Take_Today_Morning"
+            app:layout_constraintEnd_toEndOf="@+id/recyler_view_All_Medicines_To_Take_Today_Morning"
+            app:layout_constraintStart_toStartOf="@+id/recyler_view_All_Medicines_To_Take_Today_Morning"
+            app:layout_constraintTop_toTopOf="@+id/recyler_view_All_Medicines_To_Take_Today_Morning" />
+
 
 </android.support.constraint.ConstraintLayout>
