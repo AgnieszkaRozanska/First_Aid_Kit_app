@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/updatedosebackground"
         tools:context=".firstAidKitAllYourMedicines.updateRemoveMedicine.ActivityUpdateCountofMedicines">
-    <TextView android:layout_width="277dp"
-              android:layout_height="50dp"
-              android:id="@+id/Update_Count_of_Med_Name"
-              android:layout_marginTop="128dp"
-              app:layout_constraintTop_toTopOf="parent"
-              android:textSize="24sp" android:textColor="@color/colorPrimary"
-              android:textAlignment="center"
-              app:layout_constraintStart_toStartOf="parent" android:textStyle="bold"/>
 
-    <EditText android:layout_width="231dp"
-              android:layout_height="48dp"
-              android:background="@drawable/prostokat"
-              android:textAlignment="center"
-              app:layout_constraintEnd_toEndOf="parent"
-              android:id="@+id/Update_Count_of_Med_Count"
-              android:inputType="numberDecimal"
-              app:layout_constraintStart_toStartOf="parent"
-              android:layout_gravity="center_vertical"
-              android:layout_marginTop="44dp"
-              app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+    <TextView
+            android:id="@+id/Update_Count_of_Med_Name"
+            android:layout_width="277dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="128dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+            android:id="@+id/Update_Count_of_Med_Count"
+            android:layout_width="231dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/prostokat"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:background="@drawable/savicon"
-        android:layout_width="134dp"
-        android:layout_height="176dp"
-        android:id="@+id/Update_Count_of_Med_Update"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Count"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_gravity="center_vertical"
+            android:id="@+id/Update_Count_of_Med_Update"
+            android:layout_width="134dp"
+            android:layout_height="176dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/savicon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Count"
 
-        app:layout_constraintVertical_bias="0.926"/>
+            app:layout_constraintVertical_bias="0.926" />
+
     <TextView
-            android:text="@string/ActivityUpdateCountMedicinesInfromation"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4" android:textSize="18sp"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name"
-            android:layout_marginStart="88dp" app:layout_constraintStart_toStartOf="parent"
-            android:textStyle="bold"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ActivityUpdateCountMedicinesInfromation"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Update_Count_of_Med_Name" />
+
     <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="85dp"
             android:layout_height="87dp"
-            app:srcCompat="@drawable/icondrugs"
-            android:id="@+id/imageView3"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="76dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Update_Count_of_Med_Name"
-            android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:srcCompat="@drawable/icondrugs" />
 
 
 </android.support.constraint.ConstraintLayout>
