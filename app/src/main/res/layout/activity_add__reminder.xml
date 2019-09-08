@@ -7,24 +7,29 @@
         android:layout_height="match_parent"
         tools:context=".takeMedicineOccur.reminder.AddReminder">
 
-    <Button android:background="@drawable/savicon"
+    <Button
+            android:id="@+id/AddReminder"
             android:layout_width="134dp"
             android:layout_height="169dp"
-            android:id="@+id/AddReminder"
-            android:layout_marginBottom="8dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/savicon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="center_vertical"/>
+            app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-            android:text="@string/chooseReminder"
+            android:id="@+id/reminder_const"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reminder_const" android:textSize="24sp"
-            android:textStyle="bold|italic" android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/chooseReminder"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <Button
             android:background="@drawable/iconforreminder"
             android:layout_width="134dp"
@@ -49,13 +54,18 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="30dp"
             android:layout_marginBottom="56dp"
             app:layout_constraintBottom_toTopOf="@+id/AddReminder" android:textColor="@color/colorPrimary"/>
+
     <TextView
-            android:text="..."
+            android:id="@+id/textViewReminderTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewReminderTime"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="30dp" android:textSize="15sp"
-            android:layout_marginBottom="56dp" app:layout_constraintBottom_toTopOf="@+id/AddReminder"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/buttonReminderChooseTime"
-            app:layout_constraintVertical_bias="1.0"/>
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="56dp"
+            android:text="..."
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/AddReminder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonReminderChooseTime"
+            app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>

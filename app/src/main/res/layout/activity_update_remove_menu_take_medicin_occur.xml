@@ -82,30 +82,23 @@
 
     <Button
             android:id="@+id/Button_RemoveTakeMedicineOccur"
-            android:layout_width="152dp"
-            android:layout_height="153dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/removemed2"
-            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod"
-            app:layout_constraintEnd_toStartOf="@+id/button_UpdateDoseTakeMedicineOccur"
-            app:layout_constraintHorizontal_bias="0.127"
+            android:layout_width="92dp"
+            android:layout_height="126dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/removemed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart" />
 
     <Button
             android:id="@+id/button_UpdateDoseTakeMedicineOccur"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="30dp"
+            android:layout_width="108dp"
+            android:layout_height="129dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="45dp"
             android:background="@drawable/updatedose"
-            app:layout_constraintBottom_toTopOf="@+id/button_ChangeTakePeriod"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_DateStart" />
 
     <TextView
             android:id="@+id/textView2"
