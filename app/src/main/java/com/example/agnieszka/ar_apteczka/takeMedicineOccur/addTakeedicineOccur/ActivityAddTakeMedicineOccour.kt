@@ -85,7 +85,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         var howManyDays = editText_ForHowManyDays.text.toString()
         var dateEnd =textView_DateEnd.text.toString()
         val id_MedType = dbHelper.getMedicieID(choosenMed)
-        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString())
+        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString(), dateStart , dateEnd)
         if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" || dateEnd == "@string/InformationAboutDateAndDays" || howManyDays.isEmpty()) {
             alertDialogNoData()
         }
@@ -281,9 +281,11 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
 
     fun downloadDataAndGoToAddReminder()
     {
+        var dateStart =button_ChooseDate_Start.text.toString()
+        var dateEnd =textView_DateEnd.text.toString()
         val dbHelper = SQLConector(this)
         val choosenMed= spinner!!.selectedItem.toString()
-        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString())
+        var ifExists = dbHelper.checkIfTakeMedOccurExists(choosenMed, timeOfDay.toString(),beforeAfterMeal.toString(), dateStart, dateEnd)
        if(!checkTheCorrectnessOfTheData())
        {
            alertDialogNoData()

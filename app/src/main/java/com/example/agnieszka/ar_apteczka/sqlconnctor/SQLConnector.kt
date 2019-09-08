@@ -454,15 +454,30 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
-    fun checkIfTakeMedOccurExists(name: String, timeOfDay : String, beforeAfterMeal : String) : Boolean{
+    fun checkIfTakeMedOccurExists(name: String, timeOfDay : String, beforeAfterMeal : String, dateStart : String, dateEnd: String) : Boolean{
         var result = false
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        var newdateStartFormatDate = LocalDate.parse(dateStart, formatDate)
+        var newdateEndFormatDate = LocalDate.parse(dateEnd, formatDate)
         var takeMedOccurList: ArrayList<TakeMedicineOccur> = getAllTakeMedOccur()
         for (i: TakeMedicineOccur in takeMedOccurList) {
-            if(i.medicineType_Name == name){
-                if(i.timeOfDay == timeOfDay){
-                    if(i.beforeAfterMeal == beforeAfterMeal){
-                        result = true
-                    }
+            if(i.medicineType_Name == name && i.timeOfDay == timeOfDay && i.beforeAfterMeal == beforeAfterMeal){
+                var olddateStartFormatDate = LocalDate.parse(i.dateStart, formatDate)
+                var olddateEndFormatDate = LocalDate.parse(i.dateEnd, formatDate)
+                if( (newdateStartFormatDate.compareTo(olddateStartFormatDate)>=0 && newdateStartFormatDate.compareTo(olddateEndFormatDate)<=0)
+                    || (newdateEndFormatDate.compareTo(olddateStartFormatDate) >= 0 && newdateEndFormatDate.compareTo(olddateEndFormatDate)<=0))
+                {
+                    result = true
+                }
+                 else
+                {
+                  if((newdateStartFormatDate.compareTo(olddateStartFormatDate)<0 && newdateEndFormatDate.compareTo(olddateStartFormatDate)<0)){
+                      result = false
+                  }
+                  if((newdateStartFormatDate.compareTo(olddateEndFormatDate)>0 && newdateEndFormatDate.compareTo(olddateEndFormatDate)>0))
+                  {
+                      result = false
+                  }
                 }
             }
         }
@@ -826,6 +841,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
         return true
     }
+
+
 
     fun updateTakeTodayMedicineDoses(idTakeMedOccur:String, unitInStock: Int):Boolean
     {
