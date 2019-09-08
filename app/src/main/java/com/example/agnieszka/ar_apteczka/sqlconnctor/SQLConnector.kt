@@ -246,13 +246,22 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
-    fun canRemoveMedicine(idMedicineType : String) : Boolean{
-        var listOfAllTakeMedicies = getAllTakeMedicinesTodayAllDrugs()
-        for (i: MedicineToTake in listOfAllTakeMedicies) {
+    fun canRemoveMedicine(idMedicineType : String, dataTodayString : String) : Boolean{
+        var listOfAllTakeMedicies = getAllTakeMedOccur()
+        var dateTodayFormatDate = LocalDate.parse(dataTodayString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+        for (i: TakeMedicineOccur in listOfAllTakeMedicies) {
             if(i.iD_MedicineType ==idMedicineType) {
-               return false
+                var dateStartFormatDate = LocalDate.parse(i.dateStart, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                var dateEndFormatDate = LocalDate.parse(i.dateEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                val compareDateTodayWithStartyDate = dateTodayFormatDate.compareTo(dateStartFormatDate) //>=
+                val compareDateTodayWithEndDate = dateTodayFormatDate.compareTo(dateEndFormatDate)      //<=
+                if(compareDateTodayWithStartyDate>=0 && compareDateTodayWithEndDate<=0)
+                {
+                    return false
+                }
             }
-            }
+        }
         return true
     }
 

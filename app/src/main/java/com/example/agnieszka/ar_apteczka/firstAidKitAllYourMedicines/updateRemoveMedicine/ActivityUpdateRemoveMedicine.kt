@@ -12,6 +12,8 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFir
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.AddUpdateNotification
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import kotlinx.android.synthetic.main.activity_update_remove_medicine.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ActivityUpdateRemoveMedicine : AppCompatActivity() {
 
@@ -90,7 +92,7 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         val dbHelper = SQLConector(applicationContext)
         var idToRemoveMed=""
         if (intent.hasExtra("IDMedicine"))  idToRemoveMed= intent.getStringExtra("IDMedicine")
-        var ifCanRemoveMed = dbHelper.canRemoveMedicine(idToRemoveMed)
+        var ifCanRemoveMed = dbHelper.canRemoveMedicine(idToRemoveMed, takeTodayDate())
         if(ifCanRemoveMed){
             val success = dbHelper.removeMedicineType(idToRemoveMed)
             dbHelper.removeNotificationAboutAmountMedicine(idToRemoveMed)
@@ -162,6 +164,13 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
+    }
+
+    private fun takeTodayDate():String{
+        val current = LocalDateTime.now()
+        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        var dateResult = current.format(formatDate).toString()
+        return  dateResult
     }
 
 }
