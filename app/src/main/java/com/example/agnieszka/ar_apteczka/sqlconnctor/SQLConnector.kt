@@ -764,7 +764,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             }
         }
             return true
-        }
+    }
 
     fun takeAllInstancesOfTheSameDrug(takeMedOccur : TakeMedicineOccur):ArrayList<MedicineToTake>{
         val takeMedicineTodayTheSameTypeList= ArrayList<MedicineToTake>()
@@ -918,6 +918,23 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 }
             }
         }
+    }
+
+    fun removeReminder(idTakeMedOccur: String): Boolean {
+        val allReminders= getAllReminders()
+        for (i: Reminder in allReminders) {
+
+            if(i.idTakeMedOccur == idTakeMedOccur)
+                try {
+                    val db = this.writableDatabase
+                    db.delete(REMINDER_TABLE_NAME, "$MEDICINE_OCCUR_ID=?", arrayOf(idTakeMedOccur))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+        }
+        return true
     }
 
 }
