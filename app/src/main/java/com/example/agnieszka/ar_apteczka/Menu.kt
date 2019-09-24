@@ -20,6 +20,10 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
+import android.app.AlarmManager
+import android.app.PendingIntent
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.AlarmReceiver
+
 
 class Menu : AppCompatActivity() {
     // private val mNotificationTime =
@@ -49,16 +53,10 @@ class Menu : AppCompatActivity() {
             createNotification()
         }
 
-        /// powiadomienie
-        // if (!mNotified) {
-        //  NotificationUtils()
-        //          .setNotification(mNotificationTime, this@Menu)
-        //   }
-        /////////////////////
 
-        // powiadomienie
 
-        //val etTime = findViewById<EditText>(R.id.etTime)
+    /*    // powiadomienie
+
 
         val cal: Calendar = Calendar.getInstance()
         cal.add(Calendar.MINUTE, 1)
@@ -78,6 +76,29 @@ class Menu : AppCompatActivity() {
        // {
        //     MyService.setServiceAlarm(this@Menu, false, null)
        // }
+     */
+
+
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, 20)
+        calendar.set(Calendar.MINUTE, 41)
+        calendar.set(Calendar.SECOND, 0)
+        val intent1 = Intent(this@Menu, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this@Menu,
+            0,
+            intent1,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val am = this@Menu.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        am.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            300,
+            pendingIntent
+        )
+
+
 }
 
     private fun takeTimeNow() : String{

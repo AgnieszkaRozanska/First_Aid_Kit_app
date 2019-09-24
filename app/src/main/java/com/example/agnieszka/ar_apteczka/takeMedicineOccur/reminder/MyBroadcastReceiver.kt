@@ -23,11 +23,12 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         //  Toast.makeText(p0, "Powiadomienie",Toast.LENGTH_LONG).show()
 
         var message : String = createReminderMessage(p0)
-        if(message != "Nadszedł czas by zażyć: ") createReminder(p0,p1)
+        if(message != "Nadszedł czas by zażyć: ") createReminder(p0!!)
 
+        //createReminder(p0!!)
     }
 
-    fun createReminder(p0: Context?, p1:Intent?){
+    fun createReminder(p0: Context?){
         val notificationManager = p0?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
         val NOTIFICATION_CHANNEL_ID = "my_channel_id_01"
 
@@ -98,6 +99,39 @@ class MyBroadcastReceiver : BroadcastReceiver() {
             }
         }
         return message
+    }
+
+    private fun showNotification(p0: Context){
+        val notificationManager = p0?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
+        val NOTIFICATION_CHANNEL_ID = "my_channel_id_01"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationChannel =
+                NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_HIGH)
+
+            // Configure the notification channel.
+            notificationChannel.description = "Channel description"
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.RED
+            notificationChannel.vibrationPattern = longArrayOf(0, 1000, 500, 1000)
+            notificationChannel.enableVibration(true)
+            notificationManager!!.createNotificationChannel(notificationChannel)
+        }
+
+
+        val notificationBuilder = NotificationCompat.Builder(p0!!, NOTIFICATION_CHANNEL_ID)
+
+        notificationBuilder.setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_ALL)
+            .setWhen(System.currentTimeMillis())
+            .setSmallIcon(android.R.drawable.ic_dialog_map)
+            .setTicker("Hearty365")
+            //     .setPriority(Notification.PRIORITY_MAX)
+            .setContentTitle("Default notification")
+            .setContentText("Działa co 2 s")
+            .setContentInfo("Info")
+
+        notificationManager!!.notify(/*notification id*/1, notificationBuilder.build())
     }
 
 

@@ -57,6 +57,8 @@
         <receiver android:name=".takeMedicineOccur.reminder.MyBroadcastReceiver" >
         </receiver>
 
+        <receiver android:name=".takeMedicineOccur.reminder.AlarmReceiver"/>
+
 
     </application>
 

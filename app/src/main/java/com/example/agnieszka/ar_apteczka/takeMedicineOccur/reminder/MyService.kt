@@ -13,7 +13,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class MyService {
+class MyService  {
     companion object {
         val TAG = "Info"
 
@@ -38,11 +38,24 @@ class MyService {
 
             val alarmManager: AlarmManager =
                 context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            if (isOn)
+           /* if (isOn)
                 alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     cal!!.timeInMillis,
                     60000,
+                    pi
+                )
+            else {
+                alarmManager.cancel(pi)
+                pi.cancel()
+            }
+
+            */
+            if (isOn)
+                alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    cal!!.time.time,
+                    2000,
                     pi
                 )
             else {
