@@ -22,7 +22,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.support.v4.content.ContextCompat
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.AlarmReceiver
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.ForegroundService
 
 
 class Menu : AppCompatActivity() {
@@ -53,33 +55,36 @@ class Menu : AppCompatActivity() {
             createNotification()
         }
 
+        startService()
+
+        buttonStopServiceTemp.setOnClickListener {
+            stopService()
+        }
+        /*    // powiadomienie
 
 
-    /*    // powiadomienie
+            val cal: Calendar = Calendar.getInstance()
+            cal.add(Calendar.MINUTE, 1)
+            val date: Date = cal.time
+
+            val dateFormat = SimpleDateFormat("HH:mm")
 
 
-        val cal: Calendar = Calendar.getInstance()
-        cal.add(Calendar.MINUTE, 1)
-        val date: Date = cal.time
-
-        val dateFormat = SimpleDateFormat("HH:mm")
-
-
-        val time = takeTimeNow()
-        //val dateFormat = SimpleDateFormat("HH:mm")
-        val cal2 = Calendar.getInstance()
-        cal2.time = dateFormat.parse(time)
+            val time = takeTimeNow()
+            //val dateFormat = SimpleDateFormat("HH:mm")
+            val cal2 = Calendar.getInstance()
+            cal2.time = dateFormat.parse(time)
 
 
-        MyService.setServiceAlarm(this@Menu, true, cal2)
-       // buttonOff.setOnClickListener()
-       // {
-       //     MyService.setServiceAlarm(this@Menu, false, null)
-       // }
-     */
+            MyService.setServiceAlarm(this@Menu, true, cal2)
+           // buttonOff.setOnClickListener()
+           // {
+           //     MyService.setServiceAlarm(this@Menu, false, null)
+           // }
 
+    */
 
-        val calendar = Calendar.getInstance()
+   /*     val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, 20)
         calendar.set(Calendar.MINUTE, 41)
         calendar.set(Calendar.SECOND, 0)
@@ -98,8 +103,20 @@ class Menu : AppCompatActivity() {
             pendingIntent
         )
 
-
+*/
 }
+
+    private fun startService() {
+        val serviceIntent = Intent(this, ForegroundService::class.java)
+        serviceIntent.putExtra("time", 1)
+
+        ContextCompat.startForegroundService(this, serviceIntent)
+    }
+
+    private fun stopService() {
+        val serviceIntent = Intent(this, ForegroundService::class.java)
+        stopService(serviceIntent)
+    }
 
     private fun takeTimeNow() : String{
         val current = LocalDateTime.now()

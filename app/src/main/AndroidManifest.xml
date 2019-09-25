@@ -3,7 +3,7 @@
         package="com.example.agnieszka.ar_apteczka">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
             android:allowBackup="true"
             android:icon="@drawable/pills"
@@ -54,10 +54,10 @@
         <activity android:name=".takeMedicineOccur.updateRmoveTakeMedicineOccur.ChangeTimePeriodOfTakenMedicine"
                 android:screenOrientation="portrait"></activity>
 
-        <receiver android:name=".takeMedicineOccur.reminder.MyBroadcastReceiver" >
-        </receiver>
-
-        <receiver android:name=".takeMedicineOccur.reminder.AlarmReceiver"/>
+        <service
+                android:name=".takeMedicineOccur.reminder.ForegroundService"
+                android:enabled="true"
+                android:exported="true"/>
 
 
     </application>
