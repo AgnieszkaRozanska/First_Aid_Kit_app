@@ -74,6 +74,7 @@ class TakeMedicicnesTodayAdapter(context: Context, var medicinesToTakeTodayList:
                 }else{
                 val success = dbHelper.takingTheTodayMedicine(idTakeMedToday)
                 val successToReduceMedType =dbHelper.reduceAmountOfDrugMedicineTypeByTheTakenDose(idMedicineType,doseToTake)
+                val successRemoveMed = dbHelper.removeReminderMedWasTaken(idTakeMedToday)
                 if(success && successToReduceMedType)
                 {
                     Toast.makeText(context,context.getString(R.string.ToastTakeMedicine), Toast.LENGTH_SHORT).show()

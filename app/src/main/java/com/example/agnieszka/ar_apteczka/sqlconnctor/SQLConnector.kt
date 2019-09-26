@@ -954,4 +954,21 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun removeReminderMedWasTaken(idTakeMedToday : String) : Boolean{
+        val allReminders= getAllReminders()
+        for (i: Reminder in allReminders) {
+
+            if(i.idTakeMedToday == idTakeMedToday)
+                try {
+                    val db = this.writableDatabase
+                    db.delete(REMINDER_TABLE_NAME, "$MEDICINE_TO_TAKE_ID=?", arrayOf(idTakeMedToday))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+        }
+        return true
+    }
+
 }
