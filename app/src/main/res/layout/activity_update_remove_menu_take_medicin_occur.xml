@@ -26,8 +26,9 @@
             android:id="@+id/UpdateRemoveTakeMedicineOccur_MedicineName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="112dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="60dp"
             android:gravity="center_horizontal"
             android:hint="@string/ActivityCardViewMdicineName"
             android:textAlignment="center"
@@ -35,7 +36,7 @@
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.889"
+            app:layout_constraintHorizontal_bias="0.579"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,12 +165,13 @@
             android:layout_height="153dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/buttonchangetakeperiod"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.53"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.921"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_UpdateDoseTakeMedicineOccur" />
 
     <TextView
             android:id="@+id/textView_ReminderInfo"
@@ -185,6 +187,18 @@
             app:layout_constraintHorizontal_bias="0.692"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+            android:id="@+id/buttonUpdateRemoveReminder"
+            android:layout_width="108dp"
+            android:layout_height="147dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/updatereminder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Button_RemoveTakeMedicineOccur"
+            app:layout_constraintVertical_bias="0.564" />
 
 
 </android.support.constraint.ConstraintLayout>
