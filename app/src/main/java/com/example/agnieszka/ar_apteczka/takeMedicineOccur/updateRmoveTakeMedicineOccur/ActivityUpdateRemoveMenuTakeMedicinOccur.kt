@@ -50,8 +50,11 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         if (intent.hasExtra("afterBeforeMeal")) updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal.text = intent.getStringExtra("afterBeforeMeal")
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
         var ifHaveReminder = dbHelper.checkIfMedHaveReminder(idTakeMedOccur)
-        if(ifHaveReminder) textView_ReminderInfo.setText("Lek posiada przypominajkę")
-        else textView_ReminderInfo.setText("Lek nie posiada przypominajki")
+        if(ifHaveReminder) {
+            var time = dbHelper.takeTimeOfReminder(idTakeMedOccur)
+            textView_ReminderInfo.setText("Lek posiada przypominajkę na godzinę: " + time)
+        }else textView_ReminderInfo.setText("Lek nie posiada przypominajki")
+
         if (intent.hasExtra("dateStart")) {
             var dateStart = intent.getStringExtra("dateStart")
              dateStartOfPeriodTaken= dateStart.replace("-", ".")

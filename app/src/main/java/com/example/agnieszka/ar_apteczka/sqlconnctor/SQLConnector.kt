@@ -496,6 +496,17 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return result
     }
 
+    fun takeTimeOfReminder(idTakeMedOccur : String) : String{
+        var result = ""
+        var reminderList = getAllReminders()
+        for (i: Reminder in reminderList) {
+            if (i.idTakeMedOccur == idTakeMedOccur) {
+                result = i.ReminderTime
+            }
+        }
+        return result
+    }
+
     fun addNotification(notification: NotificationAmountMed):Boolean
     {
         val db=this.writableDatabase
