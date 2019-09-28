@@ -12,18 +12,13 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFir
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.showAllMedicines.ActivityShowAllMedicines
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.ActivityMedicinesMenu
-import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.MyService
 import com.example.agnieszka.ar_apteczka.todaysMedicines.showAllMedicinesToday.ShowAllTodaysMedicines
 import kotlinx.android.synthetic.main.activity_menu.*
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
-import android.app.AlarmManager
 import android.app.PendingIntent
 import android.support.v4.content.ContextCompat
-import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.AlarmReceiver
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.ForegroundService
 
 
@@ -60,50 +55,7 @@ class Menu : AppCompatActivity() {
         buttonStopServiceTemp.setOnClickListener {
             stopService()
         }
-        /*    // powiadomienie
 
-
-            val cal: Calendar = Calendar.getInstance()
-            cal.add(Calendar.MINUTE, 1)
-            val date: Date = cal.time
-
-            val dateFormat = SimpleDateFormat("HH:mm")
-
-
-            val time = takeTimeNow()
-            //val dateFormat = SimpleDateFormat("HH:mm")
-            val cal2 = Calendar.getInstance()
-            cal2.time = dateFormat.parse(time)
-
-
-            MyService.setServiceAlarm(this@Menu, true, cal2)
-           // buttonOff.setOnClickListener()
-           // {
-           //     MyService.setServiceAlarm(this@Menu, false, null)
-           // }
-
-    */
-
-   /*     val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 20)
-        calendar.set(Calendar.MINUTE, 41)
-        calendar.set(Calendar.SECOND, 0)
-        val intent1 = Intent(this@Menu, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this@Menu,
-            0,
-            intent1,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
-        val am = this@Menu.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        am.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            300,
-            pendingIntent
-        )
-
-*/
 }
 
     private fun startService() {

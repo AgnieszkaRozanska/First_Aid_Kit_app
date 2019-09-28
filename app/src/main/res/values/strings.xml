@@ -118,4 +118,5 @@
     <string name="textAboutLackOfMorningMedicines">Brak porannych leków</string>
     <string name="textAboutLackOfAfternoonMedicines">Brak popołudniowych leków</string>
     <string name="textAboutLackOfEveningMedicines">Brak wieczornych leków</string>
+    <string name="AddUpdatereminderInfo">Jeżeli chcesz zmienić lub dodać czas przypominajki wpisz nową godzinę</string>
 </resources>

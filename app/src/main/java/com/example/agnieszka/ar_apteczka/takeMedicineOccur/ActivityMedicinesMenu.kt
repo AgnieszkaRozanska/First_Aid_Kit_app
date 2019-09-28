@@ -35,7 +35,7 @@ class ActivityMedicinesMenu : AppCompatActivity() {
             val activityshowAllMedsToday= Intent(applicationContext, ShowAllTodaysMedicines::class.java)
             startActivity(activityshowAllMedsToday)
         }
-        val cal: Calendar = Calendar.getInstance()
+    /*    val cal: Calendar = Calendar.getInstance()
         cal.add(Calendar.MINUTE, 1)
         val date: Date = cal.time
 
@@ -49,7 +49,7 @@ class ActivityMedicinesMenu : AppCompatActivity() {
 
 
         MyService.setServiceAlarm(this@ActivityMedicinesMenu, true, cal2)
-
+*/
     }
 
     override fun onBackPressed() {

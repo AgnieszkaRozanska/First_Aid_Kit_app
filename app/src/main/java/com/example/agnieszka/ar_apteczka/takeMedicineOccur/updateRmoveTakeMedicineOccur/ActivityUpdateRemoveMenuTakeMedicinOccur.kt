@@ -9,7 +9,9 @@ import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.AddUpdateRemoveReminder
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
+import kotlinx.android.synthetic.main.activity_add_update_remove_reminder.*
 import kotlinx.android.synthetic.main.activity_update_remove_menu_take_medicin_occur.*
 
 class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
@@ -32,6 +34,11 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         }
         button_ChangeTakePeriod.setOnClickListener {
             downloadDataToChangeTimePeriod(dateStartOfPeriodTaken, dateEndOfPeriodTaken)
+        }
+
+        buttonUpdateRemoveReminder.setOnClickListener {
+            val activity = Intent(applicationContext, AddUpdateRemoveReminder::class.java)
+            startActivity(activity)
         }
 
     }
