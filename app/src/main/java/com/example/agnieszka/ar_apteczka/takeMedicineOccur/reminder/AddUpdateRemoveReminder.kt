@@ -1,6 +1,8 @@
 package com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder
 
 import android.app.TimePickerDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -9,6 +11,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.R
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
+import com.example.agnieszka.ar_apteczka.takeMedicineOccur.showAllTakeMedicineOccur.ActivityShowAllTakeMedicineOccur
 import kotlinx.android.synthetic.main.activity_add__reminder.*
 import kotlinx.android.synthetic.main.activity_add_update_remove_reminder.*
 import java.lang.Exception
@@ -31,10 +34,8 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         buttonChooseTime.setOnClickListener {
             timePiker()
         }
-
         textViewChoosenNewTime.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -43,7 +44,9 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
             }
 
         })
-
+        buttonRemoveReminder.setOnClickListener {
+            alertDialogRemoveTakeMedOccur()
+        }
     }
 
     private fun setData(){
@@ -106,6 +109,38 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         if(timeOfDay == getString(R.string.Midday)) result = getString(R.string.correctFormMidday)
         if(timeOfDay == getString(R.string.Evening)) result = getString(R.string.correctFormEvening)
         return result
+    }
+
+    private fun alertDialogRemoveTakeMedOccur(){
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.RemoveTakeMedOccurAlertTitle))
+        builder.setMessage("Czy chcesz usunąć przypominajkę dla tego leku")
+        builder.setPositiveButton(getString(R.string.AlertDialogRemoveTakeMedOccurYes)) { dialog: DialogInterface, which: Int ->
+            removeReminder(idTakeMedOccur)
+        }
+        builder.setNegativeButton(getString(R.string.AlertDialogRemoveTakeMedOccurNo)) { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
+    }
+
+    private fun removeReminder(idTakeMedOccur : String){
+        val dbHelper = SQLConector(applicationContext)
+        val intentRemove = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
+        val successRemoveReminders = dbHelper.removeReminder(idTakeMedOccur)
+        if(successRemoveReminders)
+        {
+            Toast.makeText(this, "Usunięto wszystkie przypominajki dla teg leku", Toast.LENGTH_LONG).show()
+        }
+        startActivity(intentRemove)
+
+    }
+
+    private fun updateReminder(idTakeMedOccur : String){
+
+    }
+
+    private fun addReminder(){
+
     }
 
 }
