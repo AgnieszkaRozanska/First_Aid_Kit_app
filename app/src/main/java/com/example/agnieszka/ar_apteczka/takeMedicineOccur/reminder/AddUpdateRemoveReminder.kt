@@ -182,7 +182,6 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
 
     private fun alertDialogTheSameTime(){
         val builder = AlertDialog.Builder(this)
-        var correctFormTimeOfDay = correctFormTimeOfDay(timeOfDay)
         builder.setTitle("Ta sama godzina")
         builder.setMessage("Została wybrana ta sama godzina. Musisz wybrać nową godzinę powiadomienia. Kliknij na przycisk Ustaw czas i wybierz godzinę")
         builder.setNeutralButton(getString(R.string.OK)){ _, _ ->
@@ -191,7 +190,16 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
     }
 
     private fun addReminder(){
-
+        val dbHelper = SQLConector(applicationContext)
+        val intentAdd = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
+        var newTime = textViewChoosenNewTime.text.toString()
+        idTakeMedOccur
+        var successAddReminderDiuringUpdate = dbHelper.addReminderDiuringUpdate(idTakeMedOccur, newTime)
+        if(successAddReminderDiuringUpdate)
+        {
+            Toast.makeText(this, "Przypominajka została dodana", Toast.LENGTH_LONG).show()
+        }
+        startActivity(intentAdd)
     }
 
 }

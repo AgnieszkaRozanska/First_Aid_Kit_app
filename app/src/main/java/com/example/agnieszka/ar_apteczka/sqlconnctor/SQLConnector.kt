@@ -12,6 +12,8 @@ import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.Reminder
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 const  val DATABASE_NAME = "FirstAidKit.db"
 
@@ -1001,9 +1003,66 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
-    fun addReminder(idTakeMedOccur : String, time : String) : Boolean{
+    fun takeListOfMedicineToTakeByIdTkaeMedOccur(idTakeMedOccur : String):ArrayList<MedicineToTake>{
+        val takeMedicineTodayTheSameTypeList= ArrayList<MedicineToTake>()
+        val db= readableDatabase
+        val cursor=db.rawQuery("SELECT * FROM $MEDICINES_TO_TAKE_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do {
+                    val idTakeMedicinesToday = cursor.getString(cursor.getColumnIndex(ID_MEDICINES_TO_TAKE))
+                    val idtakeMedOccur = cursor.getString(cursor.getColumnIndex(ID_TAKE_MED_OCCUR))
+                    val idMedicineType = cursor.getString(cursor.getColumnIndex(ID_MEDICINE_TYPE))
+                    val medName = cursor.getString(cursor.getColumnIndex(NAME_MED_TO_TAKE))
+                    val dose = cursor.getString(cursor.getColumnIndex(DOSE_MED_TO_TAKE))
+                    val timeOfDay = cursor.getString(cursor.getColumnIndex(TIME_OF_DAY_MED_TO_TAKE))
+                    val whenbeforeAfterMeal = cursor.getString(cursor.getColumnIndex(WHEN_MEAL_MED_TO_TAKE))
+                    val dataToTake = cursor.getString(cursor.getColumnIndex(DATE_MED_TO_TAKE))
+                    val ifWasTaken = cursor.getString(cursor.getColumnIndex(IF_MED_WAS_TAKEN))
 
-        return true
+                    if(idtakeMedOccur == idTakeMedOccur) {
+                        val medicineToTakeToday =
+                            MedicineToTake(
+                                idTakeMedicinesToday,
+                                idtakeMedOccur,
+                                idMedicineType,
+                                medName,
+                                dose.toInt(),
+                                timeOfDay,
+                                whenbeforeAfterMeal,
+                                dataToTake,
+                                ifWasTaken
+                            )
+                        takeMedicineTodayTheSameTypeList.add(medicineToTakeToday)
+                    }
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return takeMedicineTodayTheSameTypeList
+    }
+    fun addReminderDiuringUpdate(idTakeMedOccur : String, time : String) : Boolean{
+        val takeMedicineTodayTheSameTypeList : ArrayList<MedicineToTake> = takeListOfMedicineToTakeByIdTkaeMedOccur(idTakeMedOccur)
+        for (i: MedicineToTake in takeMedicineTodayTheSameTypeList) {
+            var id= UUID.randomUUID().toString()
+            var reminder=
+                Reminder(
+                    id,
+                    i.iD,
+                    i.iDTakeMedOccur,
+                    i.iD_MedicineType,
+                    i.nameMedToTake,
+                    i.dateSMedToTake,
+                    time
+                )
+
+            var successAddReminder = addReminder(reminder)
+            if(successAddReminder == false) return false
+        }
+            return true
     }
 
 }
