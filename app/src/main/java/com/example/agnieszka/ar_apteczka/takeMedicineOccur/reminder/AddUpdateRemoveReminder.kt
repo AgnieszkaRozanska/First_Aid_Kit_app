@@ -45,7 +45,7 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
 
         })
         buttonRemoveReminder.setOnClickListener {
-            alertDialogRemoveTakeMedOccur()
+            alertDialogRemoveReminder()
         }
     }
 
@@ -111,7 +111,7 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         return result
     }
 
-    private fun alertDialogRemoveTakeMedOccur(){
+    private fun alertDialogRemoveReminder(){
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.RemoveTakeMedOccurAlertTitle))
