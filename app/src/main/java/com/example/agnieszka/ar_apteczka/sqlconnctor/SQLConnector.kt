@@ -982,4 +982,28 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
+    fun updateReminder(idTakeMedOccur : String, time : String) : Boolean{
+        val allReminders= getAllReminders()
+        for (i: Reminder in allReminders) {
+            if(i.idTakeMedOccur == idTakeMedOccur) {
+                try {
+                    val db = this.writableDatabase
+                    val cv = ContentValues()
+                    cv.put(REMINDER_TIME, time)
+                    db.update(REMINDER_TABLE_NAME, cv, "MedicieOccurID =?", arrayOf(idTakeMedOccur))
+                    db.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    fun addReminder(idTakeMedOccur : String, time : String) : Boolean{
+
+        return true
+    }
+
 }

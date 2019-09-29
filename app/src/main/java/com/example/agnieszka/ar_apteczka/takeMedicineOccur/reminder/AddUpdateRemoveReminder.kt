@@ -47,6 +47,20 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         buttonRemoveReminder.setOnClickListener {
             alertDialogRemoveReminder()
         }
+        ButtonSaveAddUpdateReminder.setOnClickListener {
+            if(textViewChoosenNewTime.text == "Nowy czas"){
+                alertDialogLackOfTime()
+            }else{
+                if(ifHaveReminder){
+                    updateReminder(idTakeMedOccur)
+                }else{
+                    addReminder()
+                }
+            }
+
+
+        }
+
     }
 
     private fun setData(){
@@ -136,7 +150,44 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
     }
 
     private fun updateReminder(idTakeMedOccur : String){
+        val intentUpdate = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
+        var newTimeOfReminder = textViewChoosenNewTime.text.toString()
+        if(newTimeOfReminder == "Nowy czas"){
+            alertDialogLackOfTime()
+        }else{
+            if (intent.hasExtra("time"))  time= intent.getStringExtra("time")
+            if(newTimeOfReminder == time){
+                alertDialogTheSameTime()
+            }else{
+                val dbHelper = SQLConector(applicationContext)
+                var successUpdateReminder = dbHelper.updateReminder(idTakeMedOccur, newTimeOfReminder)
+                if(successUpdateReminder)
+                {
+                    Toast.makeText(this, "Godzina prypominajki została zaktualizowana", Toast.LENGTH_LONG).show()
+                }
+                startActivity(intentUpdate)
+            }
+        }
 
+    }
+
+    private fun alertDialogLackOfTime(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Brak danych!")
+        builder.setMessage("Musisz wybrać nową godzinę powiadomienia. Kliknij na przycisk Ustaw czas i wybierz godzinę")
+        builder.setNeutralButton(getString(R.string.OK)){ _, _ ->
+        }
+        builder.show()
+    }
+
+    private fun alertDialogTheSameTime(){
+        val builder = AlertDialog.Builder(this)
+        var correctFormTimeOfDay = correctFormTimeOfDay(timeOfDay)
+        builder.setTitle("Ta sama godzina")
+        builder.setMessage("Została wybrana ta sama godzina. Musisz wybrać nową godzinę powiadomienia. Kliknij na przycisk Ustaw czas i wybierz godzinę")
+        builder.setNeutralButton(getString(R.string.OK)){ _, _ ->
+        }
+        builder.show()
     }
 
     private fun addReminder(){
