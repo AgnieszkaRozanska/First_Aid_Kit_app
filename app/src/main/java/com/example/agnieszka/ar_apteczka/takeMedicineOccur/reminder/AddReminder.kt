@@ -77,7 +77,6 @@ class AddReminder : AppCompatActivity() {
         },
             now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true)
         timePiker.show()
-
     }
 
     private fun saveMedicineOcc(flaga : Boolean){

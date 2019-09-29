@@ -28,7 +28,7 @@
             android:hint="Medicine Name"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
     <TextView
             android:id="@+id/textViewconstinformation2"
             android:layout_width="370dp"
-            android:layout_height="74dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:layout_marginTop="28dp"
@@ -58,23 +58,11 @@
             android:text="@string/AddUpdatereminderInfo"
             android:textAlignment="center"
             android:textColor="@android:color/darker_gray"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewconstinformation" />
-
-    <EditText
-            android:id="@+id/AddUpdateReminder"
-            android:layout_width="231dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/prostokat"
-            android:inputType="numberDecimal"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewconstinformation2" />
 
     <Button
             android:id="@+id/ButtonSaveAddUpdateReminder"
@@ -85,8 +73,7 @@
             android:background="@drawable/saveaddupdatereminder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AddUpdateReminder"
-            app:layout_constraintVertical_bias="0.407" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonChooseTime" />
 
     <Button
             android:id="@+id/buttonRemoveReminder"
@@ -97,8 +84,44 @@
             android:background="@drawable/removereminder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AddUpdateReminder"
-            app:layout_constraintVertical_bias="0.495" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonChooseTime" />
+
+    <Button
+            android:id="@+id/buttonChooseTime"
+            android:layout_width="103dp"
+            android:layout_height="124dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/iconforreminder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewconstinformation2" />
+
+    <TextView
+            android:id="@+id/textViewChoosenNewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="80dp"
+            android:hint="Nowy czas"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTimeInform" />
+
+    <TextView
+            android:id="@+id/textViewTimeInform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="60dp"
+            android:text="Wybrana godzina:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewconstinformation2" />
 
 
 </android.support.constraint.ConstraintLayout>

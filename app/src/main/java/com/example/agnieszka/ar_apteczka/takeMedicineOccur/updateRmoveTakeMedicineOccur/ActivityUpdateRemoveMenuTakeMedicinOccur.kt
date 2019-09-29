@@ -37,8 +37,7 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         }
 
         buttonUpdateRemoveReminder.setOnClickListener {
-            val activity = Intent(applicationContext, AddUpdateRemoveReminder::class.java)
-            startActivity(activity)
+            donwloadDaataToAddUpdateRemoveMed()
         }
 
     }
@@ -130,9 +129,29 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         intentEdit.putExtra("dateEnd", dateEnd)
         intentEdit.putExtra("timeOfDay", timeOfDay)
         startActivity(intentEdit)
-
     }
 
+    private fun donwloadDaataToAddUpdateRemoveMed(){
+        val dbHelper = SQLConector(this)
+        val intentEdit = Intent(applicationContext, AddUpdateRemoveReminder::class.java)
+        val medicineName=UpdateRemoveTakeMedicineOccur_MedicineName.text
+        var idTakeMedOccur=""
+        var timeOfDay = ""
+        if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
+        if (intent.hasExtra("timeOfDay")) timeOfDay = intent.getStringExtra("timeOfDay")
+
+        var ifHaveReminder = dbHelper.checkIfMedHaveReminder(idTakeMedOccur)
+        var time = ""
+        if(ifHaveReminder) {
+            time = dbHelper.takeTimeOfReminder(idTakeMedOccur)
+        }
+        intentEdit.putExtra("nameMedTakeOcur", medicineName)
+        intentEdit.putExtra("IDMedicine_TakeOccur", idTakeMedOccur)
+        intentEdit.putExtra("ifHaveReminder", ifHaveReminder)
+        intentEdit.putExtra("time", time)
+        intentEdit.putExtra("timeOfDay",timeOfDay)
+        startActivity(intentEdit)
+    }
 
 
 }
