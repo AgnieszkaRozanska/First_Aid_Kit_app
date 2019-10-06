@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.agnieszka.ar_apteczka.drugsDataBase.Drug
 import com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake.MedicineToTake
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationAmountMed
@@ -60,6 +61,14 @@ const  val DATABASE_NAME = "FirstAidKit.db"
     const val REMINDER_DATE = "ReminderDate"
     const val REMINDER_TIME = "ReminderTime"
 
+    const val DRUGS_ALL_TABLE_NAME = "Drugs"
+    const val ID_DATABASE_DRUGS = "IDMedDataBase"
+    const val NAME_DRUGS = "NameDrug"
+    const val POWER = "MedicinePowerActiveDose"
+    const val KIND_DRUG = "KindDrug"
+    const val ACTIVEDOSE_DRUGS = "UnitInStock"
+
+
 
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
@@ -108,11 +117,21 @@ const val SQL_CREATE_TABLE_REMINDER = ("CREATE TABLE IF NOT EXISTS "  + REMINDER
         REMINDER_TIME + " TEXT NOT NULL);")
 
 
+const val SQL_CREATE_TABLE_ALL_DRUGS = ("CREATE TABLE IF NOT EXISTS "  + DRUGS_ALL_TABLE_NAME + " (" +
+        ID_DATABASE_DRUGS + " TEXT PRIMARY KEY," +
+        NAME_DRUGS + " TEXT NOT NULL,"+
+        POWER + " TEXT," +
+        KIND_DRUG + " TEXT NOT NULL,"+
+        ACTIVEDOSE_DRUGS + " TEXT);")
+
 const val SQL_DELETE_TABLE_MEDICINE = "DROP TABLE IF EXISTS $MEDICINE_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_ONCE = "DROP TABLE IF EXISTS $MEDICINE_ONCE_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_NOTIFICATION = "DROP TABLE IF EXISTS $NOTIFICATION_MED_COUNT_TABLE_NAME"
 const val SQL_DELETE_TABLE_MEDICINE_TO_TAKE = "DROP TABLE IF EXISTS $MEDICINES_TO_TAKE_TABLE_NAME"
 const val SQL_DELETE_TABLE_REMINDER = "DROP TABLE IF EXISTS $REMINDER_TABLE_NAME"
+const val SQL_DELETE_TABLE_ALL_DRUGS = "DROP TABLE IF EXISTS $DRUGS_ALL_TABLE_NAME"
+
+
 
 class SQLConector(context: Context):SQLiteOpenHelper(context,
     DATABASE_NAME, null, 1)
@@ -123,6 +142,8 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.execSQL(SQL_CREATE_TABLE_MED_NOTIFICATION)
         db.execSQL(SQL_CREATE_TABLE_MEDICINES_TO_TAKE)
         db.execSQL(SQL_CREATE_TABLE_REMINDER)
+        db.execSQL(SQL_CREATE_TABLE_ALL_DRUGS)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -131,6 +152,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_NOTIFICATION)
         db.execSQL(SQL_DELETE_TABLE_MEDICINE_TO_TAKE)
         db.execSQL(SQL_DELETE_TABLE_REMINDER)
+        db.execSQL(SQL_DELETE_TABLE_ALL_DRUGS)
         onCreate(db)
     }
 
@@ -1063,6 +1085,30 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             if(successAddReminder == false) return false
         }
             return true
+    }
+
+    fun checkIfTableHaveRecords() : Int {
+        var howMany = 0
+        val db= readableDatabase
+        try {
+            var cursor=db.rawQuery("SELECT * FROM $REMINDER_TABLE_NAME", null).count
+            return cursor
+        } catch (e: Exception) {
+            return 0
+        }
+        return howMany
+    }
+
+    fun addDrug(drug: Drug) {
+        val db=this.writableDatabase
+        val cv = ContentValues()
+        cv.put(ID_DATABASE_DRUGS, drug.idDrug)
+        cv.put(NAME_DRUGS, drug.nameDrug)
+        cv.put(POWER, drug.power)
+        cv.put(KIND_DRUG, drug.kind)
+        cv.put(ACTIVEDOSE_DRUGS, drug.activeDose)
+        val result= db.insert(DRUGS_ALL_TABLE_NAME, null, cv)
+        db.close()
     }
 
 }

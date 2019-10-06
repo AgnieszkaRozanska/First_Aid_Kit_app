@@ -32,6 +32,9 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
+        val dbHelper = SQLConector(this)
+        var howMach = dbHelper.checkIfTableHaveRecords()
+        var howMath2 = howMach
 
         Button_FirstAidKit.setOnClickListener {
             val activityToFirstAidKit =
