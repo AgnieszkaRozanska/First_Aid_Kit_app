@@ -52,7 +52,7 @@
     <string name="ActivityTimeOfDay">Pora posiłku</string>
     <string name="ActivityDosetoTakeText">Zażywana dawka tabletek</string>
     <string name="ActivityTimeDay">Pora dnia</string>
-    <string name="ActivityNoDescrpition">Brak opisu</string>
+    <string name="ActivityNoDescrpition">Brak</string>
     <string name="ActivityInformationAbotCountMedicine">Ilość posiadanych sztuk</string>
     <string name="ActivityActiveDoseInformation">Możesz podać dawke czynną</string>
     <string name="ActivityDescriptionInformation">Możesz podać opis</string>

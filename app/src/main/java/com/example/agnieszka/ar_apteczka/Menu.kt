@@ -19,7 +19,13 @@ import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 import android.app.PendingIntent
 import android.support.v4.content.ContextCompat
+import android.widget.Toast
+import com.example.agnieszka.ar_apteczka.drugsDataBase.Drug
 import com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder.ForegroundService
+import java.io.BufferedReader
+import java.io.DataInputStream
+import java.io.IOException
+import java.io.InputStreamReader
 
 
 class Menu : AppCompatActivity() {
@@ -32,9 +38,13 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        val dbHelper = SQLConector(this)
-        var howMach = dbHelper.checkIfTableHaveRecords()
-        var howMath2 = howMach
+       // val dbHelper = SQLConector(this)
+      //  var howMach = dbHelper.checkIfTableHaveRecords()
+       // if(howMach<=0){
+      //      var listOfLines = readTxtFiles()
+      //      var listOfDrugs = splitAndCreateListofDrugs(listOfLines)
+     //       addDrugToDatabase(listOfDrugs)
+     //   }
 
         Button_FirstAidKit.setOnClickListener {
             val activityToFirstAidKit =
@@ -139,4 +149,93 @@ class Menu : AppCompatActivity() {
         return  textNotification
     }
 
+    private fun readTxtFiles(): ArrayList<String> {
+        val outputArrayList = ArrayList<String>()
+        val inputStream = applicationContext.resources.openRawResource(R.raw.writeparse)
+
+        try {
+
+            val input = DataInputStream(inputStream)
+            val br = BufferedReader(InputStreamReader(input))
+
+            var strLine: String?
+
+            val listOfEntries = br.readLines()
+            for(i in listOfEntries){
+                outputArrayList.add(i)
+            }
+
+            br.close()
+            input.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return outputArrayList
+    }
+
+    //  0               1    2   3        4     5                  6                   7
+    //Nalgesin Forte|ludzki|moc|550 mg|postac|tabletki powlekane|substancjaCzynna|Naproxenum natricum,
+
+    private fun splitAndCreateListofDrugs(listOfLines : ArrayList<String>) : ArrayList<Drug>{
+        val arrayListOfDrugs = ArrayList<Drug>()
+        var id = 1
+        for (i  in listOfLines){
+            var drugName = ""
+            var drugPower = ""
+            var drugKind = ""
+            var activeSubstance = ""
+            var tempTab = i.split('|')
+            drugName += tempTab[0]
+
+            var sizeOfTempTab = tempTab.size
+            for (j in 0..sizeOfTempTab - 1){
+
+                if(tempTab[j] == "moc") drugPower += tempTab[j+1]
+                if(tempTab[j] == "postac") drugKind += tempTab[j+1]
+                if(tempTab[j] == "substancjaCzynna") activeSubstance += tempTab[j+1]
+            }
+
+            var drug =
+                Drug(
+                    id.toString(),
+                    drugName,
+                    drugPower,
+                    drugKind,
+                    activeSubstance
+                )
+            arrayListOfDrugs.add(drug)
+
+            id +=1
+        }
+        return arrayListOfDrugs
+    }
+
+    private fun addDrugToDatabase(listOfDrugs : ArrayList<Drug>){
+        val dbHelper = SQLConector(this)
+        for(i: Drug in listOfDrugs){
+            var id = ""
+            var nameOfDrug = ""
+            var power = ""
+            var kind = ""
+            var activedose = ""
+
+             id += i.idDrug
+             nameOfDrug += i.nameDrug
+             power += i.power
+             kind += i.kind
+             activedose += i.activeDose
+
+            var drug =
+                Drug(
+                    id,
+                    nameOfDrug,
+                    power,
+                    kind,
+                    activedose
+            )
+            dbHelper.addDrug(drug)
+        }
+
+    }
 }

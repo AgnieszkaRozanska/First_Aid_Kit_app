@@ -1091,7 +1091,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         var howMany = 0
         val db= readableDatabase
         try {
-            var cursor=db.rawQuery("SELECT * FROM $REMINDER_TABLE_NAME", null).count
+            var cursor=db.rawQuery("SELECT * FROM $DRUGS_ALL_TABLE_NAME", null).count
             return cursor
         } catch (e: Exception) {
             return 0
@@ -1110,5 +1110,35 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         val result= db.insert(DRUGS_ALL_TABLE_NAME, null, cv)
         db.close()
     }
+
+    fun getAllDrugs(): ArrayList<Drug>
+    {
+        val allDrugsList = ArrayList<Drug>()
+        val db= readableDatabase
+
+        val cursor=db.rawQuery("SELECT * FROM $DRUGS_ALL_TABLE_NAME", null)
+        if(cursor!= null)
+        {
+            if(cursor.moveToNext())
+            {
+                do{
+                    val id= cursor.getString(cursor.getColumnIndex(ID_DATABASE_DRUGS))
+                    val name=cursor.getString(cursor.getColumnIndex(NAME_DRUGS))
+                    val kind=cursor.getString(cursor.getColumnIndex(KIND_DRUG))
+                    val power=cursor.getString(cursor.getColumnIndex(POWER))
+                    val activeDose=cursor.getString(cursor.getColumnIndex(ACTIVEDOSE_DRUGS))
+
+                    val drug= Drug(id,name, power, kind, activeDose)
+                    allDrugsList.add(drug)
+                }while (cursor.moveToNext())
+            }
+        }
+        cursor.close()
+        db.close()
+        return allDrugsList
+    }
+
+
+
 
 }

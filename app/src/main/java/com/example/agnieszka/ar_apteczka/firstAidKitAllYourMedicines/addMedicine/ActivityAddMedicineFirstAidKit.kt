@@ -5,16 +5,21 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationOfSmallAmountOfTheDrug
 import com.example.agnieszka.ar_apteczka.R
+import com.example.agnieszka.ar_apteczka.drugsDataBase.Drug
 import com.example.agnieszka.ar_apteczka.sqlconnctor.SQLConector
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFirstAidKitMenu
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.validationDataSoThatTheAreNotZero
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
 
@@ -25,6 +30,35 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         validationDataSoThatTheAreNotZero(Med_Name_editText, warm_informations_MedName)
         validationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
         validationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
+
+        var dbHelper = SQLConector(this)
+        var listOfDrugs =  dbHelper.getAllDrugs()
+
+        //
+        var list = onlyNamesOfDrugs(listOfDrugs)
+        var adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list)
+        Med_Name_editText.setAdapter(adapter)
+        Med_Name_editText.threshold = 1
+
+
+        Med_Name_editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var drug = ifExists(Med_Name_editText.text.toString(), listOfDrugs)
+                if(drug.nameDrug == Med_Name_editText.text.toString()){
+                    Med_Kind_editText.setText(drug.kind)
+                    Med_Active_Dose_editText.setText(drug.power)
+                    Med_Description_editText.setText("Substancje czynne: " + drug.activeDose)
+                }
+            }
+
+        })
+        //
+
+
 
     }
 
@@ -126,6 +160,27 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         }
         builder.show()
     }
+
+    private  fun onlyNamesOfDrugs(listOfDrugs : ArrayList<Drug>) : ArrayList<String>{
+        val arrayListOfNamesDrugs = ArrayList<String>()
+
+        for(i: Drug in listOfDrugs){
+            arrayListOfNamesDrugs.add(i.nameDrug)
+        }
+        return arrayListOfNamesDrugs
+    }
+
+    private fun ifExists(nameDrug : String, listOfDrugs : ArrayList<Drug>) : Drug{
+        var drug = Drug("", "","","","")
+        for(i: Drug in listOfDrugs){
+            if(i.nameDrug == nameDrug){
+                var drugExists = Drug(i.idDrug, i.nameDrug, i.power, i.kind, i.activeDose)
+                return drugExists
+            }
+        }
+        return drug
+    }
+
 }
 
 

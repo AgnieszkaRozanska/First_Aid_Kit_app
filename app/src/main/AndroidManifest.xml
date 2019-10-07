@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-            android:allowBackup="true"
+            android:allowBackup="false"
             android:icon="@drawable/pills"
             android:label="@string/nameOfApplications"
             android:roundIcon="@drawable/pills"
