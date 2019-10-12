@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -18,6 +19,7 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.ActivityFir
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineType
 import com.example.agnieszka.ar_apteczka.validationDataSoThatTheAreNotZero
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
+import kotlinx.android.synthetic.main.custom_alert_other_informations.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -56,7 +58,41 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
             }
 
         })
-        //
+
+        buttonAddOtherInformations.setOnClickListener {
+            //Inflate the dialog with custom view
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_alert_other_informations, null)
+            //AlertDialogBuilder
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+            //show dialog
+            val  mAlertDialog = mBuilder.show()
+            //login button click of custom layout
+            mDialogView.buttonSave.setOnClickListener {
+                mAlertDialog.dismiss()
+                var msg = ""
+
+
+                    if (mDialogView.checkBoxCarPermission.isChecked) msg += "nie można prowadzić samochodu, "
+                    if (mDialogView.checkBoxAlcoholPermission.isChecked) msg += "nie można spożywać alkoholu, "
+                    if (mDialogView.checkBoxPregnantPermission.isChecked) msg += "nie zażywać w ciąży, "
+                    if (mDialogView.checkBoxFeedPermission.isChecked) msg += "nie karmic piersią, "
+                    if (mDialogView.checkBoxLocateColdPermission.isChecked) msg += "przechowywać w chłodnym miejscu, "
+                    if (mDialogView.checkBoxLocatedPermission.isChecked) msg += "przechowywać w temp. pokojowej, "
+                    if (mDialogView.checkBoxOtherMedicinesrPermission.isChecked) {
+                        msg += "nie łączyć z: " + mDialogView.EditTextOtherMedicines.text + ", "
+                    }
+                    if (mDialogView.checkBoxOtherPermission.isChecked) msg += mDialogView.editTextOther.text
+                var tempText = Med_Description_editText.text.toString()
+                Med_Description_editText.setText(tempText + msg)
+
+            }
+            //cancel button click of custom layout
+            mDialogView.dialogCancelBtn.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
+            }
+        }
 
 
 
