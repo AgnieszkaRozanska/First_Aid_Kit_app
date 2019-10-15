@@ -46,7 +46,7 @@
     <Spinner
             android:id="@+id/Add_Med_Occour_Medicine_Spinner"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
@@ -57,7 +57,7 @@
     <EditText
             android:id="@+id/Add_Med_Occour_Dose_EditText"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="39dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
@@ -110,11 +110,13 @@
             android:layout_width="108dp"
             android:layout_height="151dp"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/remindericon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_DateEnd" />
 
     <TextView
             android:id="@+id/chooseMedOccur_const"
@@ -170,11 +172,13 @@
             android:layout_width="124dp"
             android:layout_height="162dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/savicon"
             android:onClick="addMedOccur"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_DateEnd" />
 
     <TextView
             android:id="@+id/ChooseDate_const"
@@ -199,7 +203,7 @@
             android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="44dp"
             android:fontFamily="sans-serif-condensed"
             android:text="Wybierz datę"
@@ -214,7 +218,7 @@
             android:layout_width="23dp"
             android:layout_height="22dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="22dp"
             android:layout_marginEnd="30dp"
             android:text="Od"
             android:textColor="@android:color/holo_blue_dark"
@@ -228,7 +232,7 @@
             android:id="@+id/textView_ForHowMayDays_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="32dp"
             android:text="Przez ile dni"
             android:textColor="@android:color/holo_blue_dark"
@@ -240,7 +244,7 @@
             android:id="@+id/editText_ForHowManyDays"
             android:layout_width="42dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:inputType="number"
@@ -252,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:text="Do"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="18sp"
@@ -263,7 +267,7 @@
             android:id="@+id/textView_DateEnd"
             android:layout_width="264dp"
             android:layout_height="37dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
             android:text="Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową"
             android:textColor="@android:color/holo_blue_dark"

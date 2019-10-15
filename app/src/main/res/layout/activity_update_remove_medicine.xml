@@ -11,7 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/ActivityCardViewMdicineName"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
@@ -53,7 +53,7 @@
     <TextView
             android:id="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal"
             android:layout_width="331dp"
-            android:layout_height="21dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
             android:hint="@string/ActivityNoDescrpition"
@@ -82,19 +82,23 @@
             android:id="@+id/Button_RemoveMedicine"
             android:layout_width="99dp"
             android:layout_height="140dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/removemed"
+            app:layout_constraintBottom_toTopOf="@+id/Button_RemoveNotification"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewHeadlineDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal" />
 
     <Button
             android:id="@+id/button_UpdateDoseTakeMedicineOccur"
             android:layout_width="160dp"
             android:layout_height="148dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/updatemed"
+            app:layout_constraintBottom_toTopOf="@+id/Button_addUNotificatio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/updateRemoveTakeMedicineOccur_MedicineAfterBeforeMeal" />
 
@@ -124,21 +128,21 @@
             android:id="@+id/Button_RemoveNotification"
             android:layout_width="152dp"
             android:layout_height="164dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/butttonremovenotificatio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Button_RemoveMedicine" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <Button
             android:id="@+id/Button_addUNotificatio"
             android:layout_width="141dp"
             android:layout_height="164dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/buttonaddupdatenotification"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_UpdateDoseTakeMedicineOccur" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
             android:id="@+id/textViewHeadlineType"
