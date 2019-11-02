@@ -38,14 +38,14 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         dbHelper.removeOldReminders(takeDataToday())
 
 
-         var howMach = dbHelper.checkIfTableHaveRecords()
+    /*    var howMach = dbHelper.checkIfTableHaveRecords()
         if(howMach<=0){
              Toast.makeText(this, "Następuje wczytywanie bazy leków", Toast.LENGTH_LONG).show()
              var listOfLines = readTxtFiles()
              var listOfDrugs = splitAndCreateListofDrugs(listOfLines)
              addDrugToDatabase(listOfDrugs)
           }
-
+*/
 
         button_GoToFirstAidKit.setOnClickListener {
             val goToMenu = Intent(applicationContext, Menu::class.java)

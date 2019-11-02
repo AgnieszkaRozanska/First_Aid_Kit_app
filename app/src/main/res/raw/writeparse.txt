@@ -5280,7 +5280,6 @@ Diaprel MR|ludzki|moc|30 mg|postac|tabletki o zmodyfikowanym uwalnianiu|substanc
 SimvaHexal 40|ludzki|moc|40 mg|postac|tabletki powlekane|substancjaCzynna|
 Broncho-Vaxom|ludzki|moc|7 mg|postac|kapsułki twarde|substancjaCzynna|
 Etibral|ludzki|moc|500 mg|postac|tabletki powlekane|substancjaCzynna|Levetiracetamum, 
-Amlozek|ludzki|moc|10 mg|postac|tabletki|substancjaCzynna|
 Betaloc ZOK 100|ludzki|moc|95 mg|postac|tabletki o przedłużonym uwalnianiu|substancjaCzynna|
 Yasminelle|ludzki|moc|3 mg + 0,02 mg|postac|tabletki powlekane|substancjaCzynna|
 Yasmin|ludzki|moc|0,03 mg + 3 mg|postac|tabletki powlekane|substancjaCzynna|
@@ -5641,7 +5640,6 @@ Peritol|ludzki|moc|4 mg|postac|tabletki|substancjaCzynna|
 Hygroton|ludzki|moc|50 mg|postac|tabletki|substancjaCzynna|
 Artilla|ludzki|moc|0,075 mg + 0,02 mg|postac|tabletki drażowane|substancjaCzynna|
 Lescol|ludzki|moc|20 mg|postac|kapsułki twarde|substancjaCzynna|
-Amlozek|ludzki|moc|10 mg|postac|tabletki|substancjaCzynna|
 Calcium-Sandoz Forte|ludzki|moc|500 mg Ca2+|postac|tabletki musujące|substancjaCzynna|
 Inlyta|ludzki|moc|1 mg|postac|tabletki powlekane|substancjaCzynna|Axitinibum, 
 Inlyta|ludzki|moc|5 mg|postac|tabletki powlekane|substancjaCzynna|Axitinibum, 

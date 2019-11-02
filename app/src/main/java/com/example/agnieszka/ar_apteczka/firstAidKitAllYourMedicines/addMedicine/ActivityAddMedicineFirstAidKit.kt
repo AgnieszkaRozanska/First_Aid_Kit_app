@@ -20,10 +20,16 @@ import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.MedicineTyp
 import com.example.agnieszka.ar_apteczka.validationDataSoThatTheAreNotZero
 import kotlinx.android.synthetic.main.activity_add__medicine__first_aid_kit.*
 import kotlinx.android.synthetic.main.custom_alert_other_informations.view.*
+import java.io.BufferedReader
+import java.io.DataInputStream
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
+ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +39,17 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         validationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
         validationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
 
-        var dbHelper = SQLConector(this)
-        var listOfDrugs =  dbHelper.getAllDrugs()
+        //var dbHelper = SQLConector(this)
+       // var listOfDrugs =  dbHelper.getAllDrugs()
 
-        //
-        var list = onlyNamesOfDrugs(listOfDrugs)
-        var adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list)
-        Med_Name_editText.setAdapter(adapter)
-        Med_Name_editText.threshold = 1
+
+       var listOfLines = readTxtFiles()
+        var listOfDrugs  = splitAndCreateListofDrugs(listOfLines)
+
+         var list = onlyNamesOfDrugs(listOfDrugs)
+         var adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list)
+         Med_Name_editText.setAdapter(adapter)
+         Med_Name_editText.threshold = 1
 
 
         Med_Name_editText.addTextChangedListener(object : TextWatcher {
@@ -50,14 +59,20 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var drug = ifExists(Med_Name_editText.text.toString(), listOfDrugs)
-                if(drug.nameDrug == Med_Name_editText.text.toString()){
+                if(drug.nameDrug + "," + drug.power+ ";" + drug.kind== Med_Name_editText.text.toString()){
                     Med_Kind_editText.setText(drug.kind)
                     Med_Active_Dose_editText.setText(drug.power)
                     Med_Description_editText.setText("Substancje czynne: " + drug.activeDose)
+                }else{
+                    Med_Kind_editText.setText("")
+                    Med_Active_Dose_editText.setText("")
+                    Med_Description_editText.setText("")
                 }
             }
 
         })
+
+
 
         buttonAddOtherInformations.setOnClickListener {
             //Inflate the dialog with custom view
@@ -197,21 +212,97 @@ class ActivityAddMedicineFirstAidKit : AppCompatActivity() {
         builder.show()
     }
 
+    private fun readTxtFiles(): ArrayList<String> {
+        val outputArrayList = ArrayList<String>()
+        val inputStream = applicationContext.resources.openRawResource(R.raw.writeparse)
+
+        try {
+
+            val input = DataInputStream(inputStream)
+            val br = BufferedReader(InputStreamReader(input))
+
+            var strLine: String?
+
+            val listOfEntries = br.readLines()
+            for(i in listOfEntries){
+                outputArrayList.add(i)
+            }
+
+            br.close()
+            input.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return outputArrayList
+    }
+
+
+    //  0               1    2   3        4     5                  6                   7
+    //Nalgesin Forte|ludzki|moc|550 mg|postac|tabletki powlekane|substancjaCzynna|Naproxenum natricum,
+
+    private fun splitAndCreateListofDrugs(listOfLines : ArrayList<String>) : ArrayList<Drug>{
+        val arrayListOfDrugs = ArrayList<Drug>()
+        var id = 1
+        for (i  in listOfLines){
+            var drugName = ""
+            var drugPower = ""
+            var drugKind = ""
+            var activeSubstance = ""
+            var tempTab = i.split('|')
+            drugName += tempTab[0]
+
+            var sizeOfTempTab = tempTab.size
+            for (j in 0..sizeOfTempTab - 1){
+
+                if(tempTab[j] == "moc") {
+                    if(tempTab[j + 1].contains(',')){
+                        var powerReplace = tempTab[j + 1].replace(',', '.')
+                        drugPower += powerReplace
+                    }else{
+                        drugPower += tempTab[j + 1]
+
+                    }
+                }
+                if(tempTab[j] == "postac") drugKind += tempTab[j+1]
+                if(tempTab[j] == "substancjaCzynna") activeSubstance += tempTab[j+1]
+            }
+
+            var drug =
+                Drug(
+                    id.toString(),
+                    drugName,
+                    drugPower,
+                    drugKind,
+                    activeSubstance
+                )
+            arrayListOfDrugs.add(drug)
+
+            id +=1
+        }
+        return arrayListOfDrugs
+    }
+
     private  fun onlyNamesOfDrugs(listOfDrugs : ArrayList<Drug>) : ArrayList<String>{
         val arrayListOfNamesDrugs = ArrayList<String>()
 
         for(i: Drug in listOfDrugs){
-            arrayListOfNamesDrugs.add(i.nameDrug)
+            arrayListOfNamesDrugs.add(i.nameDrug +","+ i.power + ";" + i.kind)
         }
         return arrayListOfNamesDrugs
     }
 
     private fun ifExists(nameDrug : String, listOfDrugs : ArrayList<Drug>) : Drug{
         var drug = Drug("", "","","","")
-        for(i: Drug in listOfDrugs){
-            if(i.nameDrug == nameDrug){
-                var drugExists = Drug(i.idDrug, i.nameDrug, i.power, i.kind, i.activeDose)
-                return drugExists
+        if(nameDrug.contains(',') && nameDrug.contains(';')) {
+            // if(nameDrug == "Amlozek,10 mg"){
+            var tempTab = nameDrug.split(',')
+            var tempTab2 = tempTab[1].split(';')
+            for (i: Drug in listOfDrugs) {
+                if (i.nameDrug == tempTab[0] && i.power == tempTab2[0]&& i.kind == tempTab2[1]) {
+                    var drugExists = Drug(i.idDrug, i.nameDrug, i.power, i.kind, i.activeDose)
+                    return drugExists
+                }
             }
         }
         return drug
