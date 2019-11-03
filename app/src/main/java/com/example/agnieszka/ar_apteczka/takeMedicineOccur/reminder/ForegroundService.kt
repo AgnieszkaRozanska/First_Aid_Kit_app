@@ -41,7 +41,9 @@ class ForegroundService : Service() {
             .setContentTitle("Twoja Elektroniczna Apteczka")
             .setContentText("Dbamy o Twoje zdrowie")
             .setSmallIcon(com.example.agnieszka.ar_apteczka.R.drawable.pills)
+            .setOnlyAlertOnce(true)
             //.setContentIntent(pendingIntent)
+            //.setSound(null)
             .build()
 
         startForeground(1, notification)
@@ -98,12 +100,15 @@ class ForegroundService : Service() {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID,
                 "Foreground Service Channel",
+                //NotificationManager.IMPORTANCE_DEFAULT
                 NotificationManager.IMPORTANCE_DEFAULT
+
             )
             val serviceChannel2 = NotificationChannel(
                 CHANNEL_ID_CHILD,
                 "Foreground Service ChannelChild ",
                 NotificationManager.IMPORTANCE_DEFAULT
+                //NotificationManager.IMPORTANCE_LOW
             )
 
             val manager = getSystemService(NotificationManager::class.java)

@@ -29,22 +29,13 @@ import java.io.InputStreamReader
 
 
 class Menu : AppCompatActivity() {
-    // private val mNotificationTime =
-    // Calendar.getInstance().timeInMillis//Set after 1 seconds from the current time. ////////
 
-    //private var mNotified = false/////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-       // val dbHelper = SQLConector(this)
-      //  var howMach = dbHelper.checkIfTableHaveRecords()
-       // if(howMach<=0){
-      //      var listOfLines = readTxtFiles()
-      //      var listOfDrugs = splitAndCreateListofDrugs(listOfLines)
-     //       addDrugToDatabase(listOfDrugs)
-     //   }
+
 
         Button_FirstAidKit.setOnClickListener {
             val activityToFirstAidKit =
@@ -65,9 +56,9 @@ class Menu : AppCompatActivity() {
 
         startService()
 
-        buttonStopServiceTemp.setOnClickListener {
-            stopService()
-        }
+       // buttonStopServiceTemp.setOnClickListener {
+       //     stopService()
+      //  }
 
 }
 
@@ -105,8 +96,11 @@ class Menu : AppCompatActivity() {
        val channelID = "com.example.agnieszka.ar_apteczka"
        val description = " description"
 
-       var textNotification=createTextToNotification()
-
+       var textNotification=createTextToNotification().toString()
+       if(textNotification.contains('[') && textNotification.contains(']')){
+           textNotification = textNotification.replace('[', ' ')
+           textNotification = textNotification.replace(']', ' ')
+       }
        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
        val intent = Intent(this, ActivityShowAllMedicines::class.java)

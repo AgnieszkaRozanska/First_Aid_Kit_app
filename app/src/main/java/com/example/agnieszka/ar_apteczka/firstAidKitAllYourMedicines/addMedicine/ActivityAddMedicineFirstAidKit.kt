@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.firstAidKitAllYourMedicines.notlification.NotificationOfSmallAmountOfTheDrug
 import com.example.agnieszka.ar_apteczka.R
@@ -35,6 +36,8 @@ import kotlin.collections.ArrayList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
 
+
+
         validationDataSoThatTheAreNotZero(Med_Name_editText, warm_informations_MedName)
         validationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
         validationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
@@ -51,6 +54,11 @@ import kotlin.collections.ArrayList
          Med_Name_editText.setAdapter(adapter)
          Med_Name_editText.threshold = 1
 
+
+        var listKind = arrayOf("tabletki", "kapsułki", "tabletki musujące", "tabletki podjęzykowe", "tabletki drażowane","kapsułki miękkie", "pastylki", "czopki", "tabletki powlekane", "kapsułki twarde", "tabletki do ssania", "tabletki o przedłużonym uwalnianiu")
+        var adapterKind = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listKind)
+        Med_Kind_editText.setAdapter(adapterKind)
+        Med_Kind_editText.threshold = 1
 
         Med_Name_editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -119,10 +127,23 @@ import kotlin.collections.ArrayList
     }
 
 
+
+
         fun addMed(view: View){
             val dbHelper = SQLConector(this)
             val id= UUID.randomUUID().toString()
-            val name: String = Med_Name_editText.text.toString()
+            var name = ""
+            var nameDrug = Med_Name_editText.text.toString()
+            if(nameDrug.contains(',') && nameDrug.contains(';')) {
+                // if(nameDrug == "Amlozek,10 mg"){
+                var tempTab = nameDrug.split(',')
+                name = tempTab[0]
+            }else
+            {
+                name = Med_Name_editText.text.toString()
+            }
+
+
             val kind: String = Med_Kind_editText.text.toString()
             val count: String = Med_Count_editText.text.toString()
             val description: String = Med_Description_editText.text.toString()
@@ -165,7 +186,16 @@ import kotlin.collections.ArrayList
     fun downloadData(view: View) {
         val dbHelper = SQLConector(this)
         val id = UUID.randomUUID().toString()
-        val name: String = Med_Name_editText.text.toString()
+        var name = ""
+        var nameDrug = Med_Name_editText.text.toString()
+        if(nameDrug.contains(',') && nameDrug.contains(';')) {
+            // if(nameDrug == "Amlozek,10 mg"){
+            var tempTab = nameDrug.split(',')
+            name = tempTab[0]
+        }else
+        {
+            name = Med_Name_editText.text.toString()
+        }
         val kind: String = Med_Kind_editText.text.toString()
         val count: String = Med_Count_editText.text.toString()
         val description: String = Med_Description_editText.text.toString()
