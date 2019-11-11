@@ -141,11 +141,20 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         val dbHelper = SQLConector(applicationContext)
         val intentRemove = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
         val successRemoveReminders = dbHelper.removeReminder(idTakeMedOccur)
-        if(successRemoveReminders)
-        {
-            Toast.makeText(this, "Usunięto wszystkie przypominajki dla teg leku", Toast.LENGTH_LONG).show()
+
+        if(textViewconstinformation.text != "Lek nie posiada przypominajki"){
+            if(successRemoveReminders)
+            {
+                Toast.makeText(this, "Usunięto wszystkie przypominajki dla tego leku", Toast.LENGTH_LONG).show()
+            }
+            startActivity(intentRemove)
+        }else{
+            alertDialogLackNotification()
         }
-        startActivity(intentRemove)
+
+
+
+
 
     }
 
@@ -188,6 +197,17 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         }
         builder.show()
     }
+
+    private fun alertDialogLackNotification(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.alertDialogTitleLackOfNotification))
+        builder.setMessage(getString(R.string.alertDialogMessageLackOfNotification))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
+        }
+        builder.show()
+    }
+
+
 
     private fun addReminder(){
         val dbHelper = SQLConector(applicationContext)

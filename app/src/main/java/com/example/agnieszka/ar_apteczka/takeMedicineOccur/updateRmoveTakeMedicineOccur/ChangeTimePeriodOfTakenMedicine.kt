@@ -97,24 +97,37 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
     }
 
     private fun SaveChangePeriodOfTakingMedicine(){
-        if (intent.hasExtra("dateEnd")) dateEndOfPeriodTaken = intent.getStringExtra("dateEnd")
-        dateEndOfPeriodTaken = dateEndOfPeriodTaken.replace(".", "-")
-        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var dateEndFormatDate = LocalDate.parse(dateEndOfPeriodTaken, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        var newDateEnd = buttonChooseNewDateEnd.text
-        var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
-        var todayDateLocalDate = takeTodayDate()
-        //var dateStartFormatDate = LocalDate.parse(dateStartOfPeriodTaken, formatDate)
-        val compareDateEndWithTodayDate = todayDateLocalDate.compareTo(newdateEndFormatDate)
-        //val compareDateStartWithNewDataEnd = dateStartFormatDate.compareTo(newdateEndFormatDate)
-        if(compareDateEndWithTodayDate>0) alertDialogWrongNewDate()
-        else{
-            val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
-            if(compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
-            if(compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
-            //if (compareDateStartWithNewDataEnd > 0) alertDialogWrongDateEnd()
-            if(compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(dateEndFormatDate, newdateEndFormatDate)
-        }
+
+       if(buttonChooseNewDateEnd.text.toString() == "Wybierz datę "){
+           noData()
+       }else {
+
+           if (intent.hasExtra("dateEnd")) dateEndOfPeriodTaken = intent.getStringExtra("dateEnd")
+           dateEndOfPeriodTaken = dateEndOfPeriodTaken.replace(".", "-")
+           val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+           var dateEndFormatDate =
+               LocalDate.parse(dateEndOfPeriodTaken, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+           var newDateEnd = buttonChooseNewDateEnd.text
+           var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
+           var todayDateLocalDate = takeTodayDate()
+           //var dateStartFormatDate = LocalDate.parse(dateStartOfPeriodTaken, formatDate)
+           val compareDateEndWithTodayDate = todayDateLocalDate.compareTo(newdateEndFormatDate)
+           //val compareDateStartWithNewDataEnd = dateStartFormatDate.compareTo(newdateEndFormatDate)
+           if (compareDateEndWithTodayDate > 0) alertDialogWrongNewDate()
+           else {
+               val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
+               if (compareDateEndWithCurrentDate > 0) shortenPertiodOfTakingMedicine(
+                   dateEndFormatDate,
+                   newdateEndFormatDate
+               )
+               if (compareDateEndWithCurrentDate == 0) alertDialogTheSameDate()
+               //if (compareDateStartWithNewDataEnd > 0) alertDialogWrongDateEnd()
+               if (compareDateEndWithCurrentDate < 0) extendPeriodOfTakingMedicine(
+                   dateEndFormatDate,
+                   newdateEndFormatDate
+               )
+           }
+       }
     }
 
     private fun extendPeriodOfTakingMedicine(dateEndFormatDateOld : LocalDate, newdateEndFormatDate :LocalDate){
@@ -194,6 +207,16 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.alertDialogTitleWrongDate))
         builder.setMessage("Nowa data końcowa nie może być któtsza od daty rozpoczącia zażywania leku")
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
+        }
+        builder.show()
+    }
+
+
+    private fun noData(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Brak danych")
+        builder.setMessage("Najpierw należy wybrać datę")
         builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
