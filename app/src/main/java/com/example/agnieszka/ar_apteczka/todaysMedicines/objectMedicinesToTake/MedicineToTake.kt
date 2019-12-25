@@ -2,7 +2,6 @@ package com.example.agnieszka.ar_apteczka.todaysMedicines.objectMedicinesToTake
 
 class MedicineToTake {
 
-
     var iD:String
     var iDTakeMedOccur:String
     var iD_MedicineType : String
@@ -24,6 +23,5 @@ class MedicineToTake {
         this.WhenMedToTake=whenMedToTake
         this.dateSMedToTake=date
         this.ifMedWasTaken=ifMedWasTaken
-
     }
 }

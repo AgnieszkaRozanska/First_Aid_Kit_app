@@ -74,17 +74,8 @@ class ForegroundService : Service() {
                 }
             }
         }
-
-        //do heavy work on a background thread
-
-
-        //stopSelf();
-
         return START_NOT_STICKY
     }
-
-
-
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -102,7 +93,6 @@ class ForegroundService : Service() {
                 "Foreground Service Channel",
                 //NotificationManager.IMPORTANCE_DEFAULT
                 NotificationManager.IMPORTANCE_DEFAULT
-
             )
             val serviceChannel2 = NotificationChannel(
                 CHANNEL_ID_CHILD,
@@ -110,7 +100,6 @@ class ForegroundService : Service() {
                 NotificationManager.IMPORTANCE_DEFAULT
                 //NotificationManager.IMPORTANCE_LOW
             )
-
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(serviceChannel)
             manager.createNotificationChannel(serviceChannel2)
@@ -167,5 +156,4 @@ class ForegroundService : Service() {
         return  timeResult
 
     }
-
 }

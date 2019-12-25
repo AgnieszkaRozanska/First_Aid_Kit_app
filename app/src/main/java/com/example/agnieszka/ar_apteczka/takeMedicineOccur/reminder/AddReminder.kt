@@ -35,7 +35,6 @@ class AddReminder : AppCompatActivity() {
 
         textViewReminderTime.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -53,7 +52,6 @@ class AddReminder : AppCompatActivity() {
                 saveMedicineOcc(flaga)
            }
        }
-
     }
 
     override fun onBackPressed() {
@@ -121,8 +119,6 @@ class AddReminder : AppCompatActivity() {
         }
     }
 
-
-
     private fun AddMediciesToTake(takeMedicineOccour: TakeMedicineOccur, howManyDays : String, dateStart : String, flaga : Boolean){
         val dbHelper = SQLConector(this)
         var date = dateStart
@@ -163,8 +159,6 @@ class AddReminder : AppCompatActivity() {
             takeMedToday.dateSMedToTake,
             textViewReminderTime.text.toString()
         )
-
-        var success = dbHelper.addReminder(reminder)
     }
 
 

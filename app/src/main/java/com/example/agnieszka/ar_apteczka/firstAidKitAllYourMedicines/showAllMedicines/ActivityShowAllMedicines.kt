@@ -29,7 +29,6 @@ class ActivityShowAllMedicines : AppCompatActivity() {
             }
         }
         handler.postDelayed(runnable, 300)
-
     }
 
 

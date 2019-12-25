@@ -26,13 +26,11 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
 
 
     private fun upgradeMed(id:String) {
-
         val dbHelper = SQLConector(this)
         val count = Update_Count_of_Med_Count.text.toString()
 
         if( count.isEmpty() || count.toInt()==0)
         {
-
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
             builder.setMessage(getString(R.string.UpdateCountMedicinesMessageAlert))
@@ -58,6 +56,4 @@ class ActivityUpdateCountofMedicines : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
         return id
     }
-
-
 }

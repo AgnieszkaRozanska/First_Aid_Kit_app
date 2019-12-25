@@ -112,12 +112,10 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
                         getString(R.string.TakeMedOccurMedAdded),
                         Toast.LENGTH_SHORT
                     ).show()
-
                     var activity = Intent(applicationContext, ActivityMedicinesMenu::class.java)
                     startActivity(activity)
                 }
             }
-
         }
     }
 
@@ -260,7 +258,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
                     warm_informations.visibility= TextView.VISIBLE
                 }
             }
-
         })
     }
 
@@ -274,7 +271,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
         if(dose.isEmpty() || dose.toInt() ==0 || Add_Med_Occour_TimeOfDay_radioGroup.checkedRadioButtonId == -1 ||Add_Med_Occour_BeforeAfterMeal_radioGroup.checkedRadioButtonId == -1 || dateStart=="Wybierz datę" || dateEnd == "@string/InformationAboutDateAndDays" || howManyDays.isEmpty()) {
             result = false
         }
-
         return result
     }
 
@@ -304,7 +300,6 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
                var howManyDays = editText_ForHowManyDays.text.toString()
                var dateEnd = textView_DateEnd.text.toString()
 
-
                val activityToAddReminder =
                    Intent(applicationContext, AddReminder::class.java)
                activityToAddReminder.putExtra("choosenMed", choosenMed)
@@ -319,6 +314,4 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
            }
        }
             }
-
-
 }

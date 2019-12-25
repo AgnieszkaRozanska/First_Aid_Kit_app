@@ -69,7 +69,6 @@ const  val DATABASE_NAME = "FirstAidKit.db"
     const val ACTIVEDOSE_DRUGS = "UnitInStock"
 
 
-
     const val SQL_CREATE_TABLE_MEDICINE = ("CREATE TABLE IF NOT EXISTS "  + MEDICINE_TABLE_NAME + " (" +
             ID_MEDICINE + " TEXT PRIMARY KEY," +
             NAME + " TEXT NOT NULL,"+
@@ -252,7 +251,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
            e.printStackTrace()
            return false
         }
-
         return true
     }
 
@@ -430,7 +428,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
 
     fun removeTakeMedicineOccur(id: String): Boolean
     {
-
         try {
             val db=this.writableDatabase
             db.delete(MEDICINE_ONCE_TABLE_NAME, "$ID_MEDICINE=?", arrayOf(id))
@@ -474,7 +471,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             e.printStackTrace()
             return false
         }
-
         return true
     }
 
@@ -505,7 +501,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 }
             }
         }
-
         return result
     }
 
@@ -538,7 +533,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         cv.put(ID_NOTIFICATION, notification.iDNotification)
         cv.put(ID_MEDICINE_NOTIFICATION, notification.iDMedicineNotification)
         cv.put(AMOUNT_MED_BELOW_TO_ALARM, notification.AmountBelowToAlarm)
-
 
         val result= db.insert(NOTIFICATION_MED_COUNT_TABLE_NAME, null, cv)
         db.close()
@@ -573,7 +567,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.close()
         return notificationsAllList
     }
-
 
     fun downloadMedsForLowAmountNotification(): ArrayList<String>{
 
@@ -650,7 +643,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         return true
     }
 
-
     fun addMedicineToTake(medicineToTake: MedicineToTake):Boolean
     {
         val db=this.writableDatabase
@@ -669,7 +661,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         db.close()
         return !result.equals(-1)
     }
-
 
     fun getAllTakeMedicinesToday(time : String, date : String):ArrayList<MedicineToTake>{
         val takeMedicineTodayAllList= ArrayList<MedicineToTake>()
@@ -876,8 +867,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         }
         return true
     }
-
-
 
     fun updateTakeTodayMedicineDoses(idTakeMedOccur:String, unitInStock: Int):Boolean
     {
@@ -1087,18 +1076,6 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
             return true
     }
 
-    fun checkIfTableHaveRecords() : Int {
-        var howMany = 0
-        val db= readableDatabase
-        try {
-            var cursor=db.rawQuery("SELECT * FROM $DRUGS_ALL_TABLE_NAME", null).count
-            return cursor
-        } catch (e: Exception) {
-            return 0
-        }
-        return howMany
-    }
-
     fun addDrug(drug: Drug) {
         val db=this.writableDatabase
         val cv = ContentValues()
@@ -1110,35 +1087,5 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
         val result= db.insert(DRUGS_ALL_TABLE_NAME, null, cv)
         db.close()
     }
-
-    fun getAllDrugs(): ArrayList<Drug>
-    {
-        val allDrugsList = ArrayList<Drug>()
-        val db= readableDatabase
-
-        val cursor=db.rawQuery("SELECT * FROM $DRUGS_ALL_TABLE_NAME", null)
-        if(cursor!= null)
-        {
-            if(cursor.moveToNext())
-            {
-                do{
-                    val id= cursor.getString(cursor.getColumnIndex(ID_DATABASE_DRUGS))
-                    val name=cursor.getString(cursor.getColumnIndex(NAME_DRUGS))
-                    val kind=cursor.getString(cursor.getColumnIndex(KIND_DRUG))
-                    val power=cursor.getString(cursor.getColumnIndex(POWER))
-                    val activeDose=cursor.getString(cursor.getColumnIndex(ACTIVEDOSE_DRUGS))
-
-                    val drug= Drug(id,name, power, kind, activeDose)
-                    allDrugsList.add(drug)
-                }while (cursor.moveToNext())
-            }
-        }
-        cursor.close()
-        db.close()
-        return allDrugsList
-    }
-
-
-
 
 }

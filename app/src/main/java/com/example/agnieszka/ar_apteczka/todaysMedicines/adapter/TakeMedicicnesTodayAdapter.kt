@@ -23,7 +23,6 @@ class TakeMedicicnesTodayAdapter(context: Context, var medicinesToTakeTodayList:
         return MyViewHolderTakeMedToday(
             cardViewMedidicnesToTakeToday
         )
-
     }
 
     override fun getItemCount(): Int {
@@ -82,23 +81,15 @@ class TakeMedicicnesTodayAdapter(context: Context, var medicinesToTakeTodayList:
                     notifyItemRemoved(holder.adapterPosition)
                 }
                 }
-
             }
             builder.setNegativeButton(context.getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
             builder.show()
-
         }
-
     }
-
-
 }
-
 
 class MyViewHolderTakeMedToday(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView = view.findViewById(R.id.MedicineName_cardView)
     var medDose: TextView = view.findViewById(R.id.MedicineDose_cardView)
     var medAfterBeforeMeal: TextView = view.findViewById(R.id.MedicineMeal_cardView)
-
-
 }

@@ -25,7 +25,6 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         var message : String = createReminderMessage(p0)
         if(message != "Nadszedł czas by zażyć: ") createReminder(p0!!)
 
-        //createReminder(p0!!)
     }
 
     fun createReminder(p0: Context?){
@@ -118,7 +117,6 @@ class MyBroadcastReceiver : BroadcastReceiver() {
             notificationManager!!.createNotificationChannel(notificationChannel)
         }
 
-
         val notificationBuilder = NotificationCompat.Builder(p0!!, NOTIFICATION_CHANNEL_ID)
 
         notificationBuilder.setAutoCancel(true)
@@ -134,19 +132,4 @@ class MyBroadcastReceiver : BroadcastReceiver() {
         notificationManager!!.notify(/*notification id*/1, notificationBuilder.build())
     }
 
-
-  /*  private fun takeTodayDate():String{
-        val current = LocalDateTime.now()
-        val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var dateResult = current.format(formatDate).toString()
-        return  dateResult
-    }
-
-    private fun takeTimeNow() : String{
-        val current = LocalDateTime.now()
-        val formatTime = DateTimeFormatter.ofPattern("HH:mm")
-        var timeResult = current.format(formatTime).toString()
-        return  timeResult
-
-    } */
 }

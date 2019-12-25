@@ -18,7 +18,6 @@ class ActivityUpdateDoseTakeMedicineOccur : AppCompatActivity() {
         setContentView(R.layout.activity_update_dose_take_medicine_occur)
         val idToUprageDoses:String=setData()
 
-
         Button_SaveUpdateDose_TakeMedOccur.setOnClickListener {
             uprageTakeMedOccurDoses(idToUprageDoses)
         }
@@ -31,7 +30,6 @@ class ActivityUpdateDoseTakeMedicineOccur : AppCompatActivity() {
         val count = UpdateDose_TakeMedicineOccur_Dose.text.toString()
         if( count.isEmpty() || count.toInt()==0)
         {
-
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
             builder.setMessage(getString(R.string.UpdateCountMedicinesMessageAlert))

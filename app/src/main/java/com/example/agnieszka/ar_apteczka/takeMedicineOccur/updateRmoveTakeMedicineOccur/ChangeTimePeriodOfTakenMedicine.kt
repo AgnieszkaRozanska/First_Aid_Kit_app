@@ -34,7 +34,6 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
 
         buttonSaveNewDateEnd.setOnClickListener {
                 SaveChangePeriodOfTakingMedicine()
-
         }
 
         buttonChooseNewDateEnd.setOnClickListener {
@@ -110,9 +109,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
            var newDateEnd = buttonChooseNewDateEnd.text
            var newdateEndFormatDate = LocalDate.parse(newDateEnd, formatDate)
            var todayDateLocalDate = takeTodayDate()
-           //var dateStartFormatDate = LocalDate.parse(dateStartOfPeriodTaken, formatDate)
            val compareDateEndWithTodayDate = todayDateLocalDate.compareTo(newdateEndFormatDate)
-           //val compareDateStartWithNewDataEnd = dateStartFormatDate.compareTo(newdateEndFormatDate)
            if (compareDateEndWithTodayDate > 0) alertDialogWrongNewDate()
            else {
                val compareDateEndWithCurrentDate = dateEndFormatDate.compareTo(newdateEndFormatDate)
@@ -206,17 +203,16 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
     private fun alertDialogWrongDateEnd(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.alertDialogTitleWrongDate))
-        builder.setMessage("Nowa data końcowa nie może być któtsza od daty rozpoczącia zażywania leku")
+        builder.setMessage(getString(R.string.AlertIformationShortenData))
         builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
     }
 
-
     private fun noData(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Brak danych")
-        builder.setMessage("Najpierw należy wybrać datę")
+        builder.setTitle(getString(R.string.TitleAlertNoData))
+        builder.setMessage(getString(R.string.AlertMessageChooseDataFirst))
         builder.setNeutralButton(getString(R.string.back)){_,_ ->
         }
         builder.show()
@@ -229,7 +225,4 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
         return LocalDate.parse(currenDateString, formatDate)
 
     }
-
-
-
 }

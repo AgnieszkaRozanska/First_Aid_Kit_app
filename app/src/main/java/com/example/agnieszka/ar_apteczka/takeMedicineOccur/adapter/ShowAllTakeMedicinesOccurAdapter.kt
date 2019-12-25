@@ -21,7 +21,6 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
         return MyViewHolderTakeMedOccur(
             cardViewTakeMedicineOccur
         )
-
     }
 
     override fun getItemCount(): Int {
@@ -71,7 +70,6 @@ class ShowAllTakeMedicinesOccurAdapter(context: Context, var takeMedicineOccurLi
             context.startActivity(intentEdit)
         }
     }
-
 }
 
 
@@ -79,6 +77,4 @@ class MyViewHolderTakeMedOccur(val view: View) : RecyclerView.ViewHolder(view) {
     var medName : TextView = view.findViewById(R.id.MedicineName_cardView)
     var medDose: TextView = view.findViewById(R.id.MedicineDose_cardView)
     var medAfterBeforeMeal: TextView = view.findViewById(R.id.MedicineMeal_cardView)
-
-
 }

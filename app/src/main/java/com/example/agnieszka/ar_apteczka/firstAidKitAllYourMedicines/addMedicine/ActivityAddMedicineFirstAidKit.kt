@@ -36,27 +36,22 @@ import kotlin.collections.ArrayList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add__medicine__first_aid_kit)
 
-
-
         validationDataSoThatTheAreNotZero(Med_Name_editText, warm_informations_MedName)
         validationDataSoThatTheAreNotZero(Med_Kind_editText, warm_informations_MedKind)
         validationDataSoThatTheAreNotZero(Med_Count_editText, warm_informations_MedCount)
-
-        //var dbHelper = SQLConector(this)
-       // var listOfDrugs =  dbHelper.getAllDrugs()
 
 
        var listOfLines = readTxtFiles()
         var listOfDrugs  = splitAndCreateListofDrugs(listOfLines)
 
          var list = onlyNamesOfDrugs(listOfDrugs)
-         var adapter = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list)
+         var adapter = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, list)
          Med_Name_editText.setAdapter(adapter)
          Med_Name_editText.threshold = 1
 
 
         var listKind = arrayOf("tabletki", "kapsułki", "tabletki musujące", "tabletki podjęzykowe", "tabletki drażowane","kapsułki miękkie", "pastylki", "czopki", "tabletki powlekane", "kapsułki twarde", "tabletki do ssania", "tabletki o przedłużonym uwalnianiu")
-        var adapterKind = ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listKind)
+        var adapterKind = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, listKind)
         Med_Kind_editText.setAdapter(adapterKind)
         Med_Kind_editText.threshold = 1
 
@@ -80,22 +75,15 @@ import kotlin.collections.ArrayList
 
         })
 
-
-
         buttonAddOtherInformations.setOnClickListener {
-            //Inflate the dialog with custom view
+
             val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_alert_other_informations, null)
-            //AlertDialogBuilder
             val mBuilder = AlertDialog.Builder(this)
                 .setView(mDialogView)
-            //show dialog
             val  mAlertDialog = mBuilder.show()
-            //login button click of custom layout
             mDialogView.buttonSave.setOnClickListener {
                 mAlertDialog.dismiss()
                 var msg = ""
-
-
                     if (mDialogView.checkBoxCarPermission.isChecked) msg += "nie można prowadzić samochodu, "
                     if (mDialogView.checkBoxAlcoholPermission.isChecked) msg += "nie można spożywać alkoholu, "
                     if (mDialogView.checkBoxPregnantPermission.isChecked) msg += "nie zażywać w ciąży, "
@@ -108,17 +96,11 @@ import kotlin.collections.ArrayList
                     if (mDialogView.checkBoxOtherPermission.isChecked) msg += mDialogView.editTextOther.text
                 var tempText = Med_Description_editText.text.toString()
                 Med_Description_editText.setText(tempText + msg)
-
             }
-            //cancel button click of custom layout
             mDialogView.dialogCancelBtn.setOnClickListener {
-                //dismiss dialog
                 mAlertDialog.dismiss()
             }
         }
-
-
-
     }
 
     override fun onBackPressed() {
@@ -126,23 +108,18 @@ import kotlin.collections.ArrayList
         startActivity(activityGoToMenu)
     }
 
-
-
-
         fun addMed(view: View){
             val dbHelper = SQLConector(this)
             val id= UUID.randomUUID().toString()
             var name = ""
             var nameDrug = Med_Name_editText.text.toString()
             if(nameDrug.contains(',') && nameDrug.contains(';')) {
-                // if(nameDrug == "Amlozek,10 mg"){
                 var tempTab = nameDrug.split(',')
                 name = tempTab[0]
             }else
             {
                 name = Med_Name_editText.text.toString()
             }
-
 
             val kind: String = Med_Kind_editText.text.toString()
             val count: String = Med_Count_editText.text.toString()
@@ -189,7 +166,6 @@ import kotlin.collections.ArrayList
         var name = ""
         var nameDrug = Med_Name_editText.text.toString()
         if(nameDrug.contains(',') && nameDrug.contains(';')) {
-            // if(nameDrug == "Amlozek,10 mg"){
             var tempTab = nameDrug.split(',')
             name = tempTab[0]
         }else
@@ -210,7 +186,6 @@ import kotlin.collections.ArrayList
             }else {
                 val activityToAddNotificatioCount =
                     Intent(applicationContext, NotificationOfSmallAmountOfTheDrug::class.java)
-
 
                 activityToAddNotificatioCount.putExtra("idMEd", id)
                 activityToAddNotificatioCount.putExtra("name", name)
@@ -266,7 +241,6 @@ import kotlin.collections.ArrayList
 
         return outputArrayList
     }
-
 
     //  0               1    2   3        4     5                  6                   7
     //Nalgesin Forte|ludzki|moc|550 mg|postac|tabletki powlekane|substancjaCzynna|Naproxenum natricum,
@@ -325,7 +299,6 @@ import kotlin.collections.ArrayList
     private fun ifExists(nameDrug : String, listOfDrugs : ArrayList<Drug>) : Drug{
         var drug = Drug("", "","","","")
         if(nameDrug.contains(',') && nameDrug.contains(';')) {
-            // if(nameDrug == "Amlozek,10 mg"){
             var tempTab = nameDrug.split(',')
             var tempTab2 = tempTab[1].split(';')
             for (i: Drug in listOfDrugs) {

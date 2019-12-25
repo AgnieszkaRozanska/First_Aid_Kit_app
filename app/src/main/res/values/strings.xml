@@ -119,4 +119,7 @@
     <string name="textAboutLackOfAfternoonMedicines">Brak popołudniowych leków</string>
     <string name="textAboutLackOfEveningMedicines">Brak wieczornych leków</string>
     <string name="AddUpdatereminderInfo">Jeżeli chcesz zmienić lub dodać czas przypominajki kliknij na przycisk i wybierz godzinę</string>
+    <string name="AlertIformationShortenData">Nowa data końcowa nie może być któtsza od daty rozpoczącia zażywania leku</string>
+    <string name="TitleAlertNoData">Brak danych</string>
+    <string name="AlertMessageChooseDataFirst">Najpierw należy wybrać datę</string>
 </resources>

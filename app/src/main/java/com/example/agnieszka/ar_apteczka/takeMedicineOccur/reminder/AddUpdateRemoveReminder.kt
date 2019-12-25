@@ -57,10 +57,7 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
                     addReminder()
                 }
             }
-
-
         }
-
     }
 
     private fun setData(){
@@ -151,11 +148,6 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         }else{
             alertDialogLackNotification()
         }
-
-
-
-
-
     }
 
     private fun updateReminder(idTakeMedOccur : String){
@@ -177,7 +169,6 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
                 startActivity(intentUpdate)
             }
         }
-
     }
 
     private fun alertDialogLackOfTime(){
@@ -207,8 +198,6 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         builder.show()
     }
 
-
-
     private fun addReminder(){
         val dbHelper = SQLConector(applicationContext)
         val intentAdd = Intent(applicationContext, ActivityShowAllTakeMedicineOccur::class.java)
@@ -221,5 +210,4 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         }
         startActivity(intentAdd)
     }
-
 }

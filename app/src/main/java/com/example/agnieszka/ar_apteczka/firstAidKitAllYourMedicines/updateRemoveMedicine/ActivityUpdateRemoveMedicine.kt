@@ -53,12 +53,10 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         var id=""
         if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
 
-
         intentEdit.putExtra("name", medNameCountEdit)
         intentEdit.putExtra("count", medCountCountEdit)
         intentEdit.putExtra("IDMedicine", id)
         startActivity(intentEdit)
-
     }
 
     private fun setVaues(){
@@ -73,7 +71,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         var amount :String= dbHelper.takeNotificatioMedCount(id)
         if(!amount.isEmpty()) updateRemoveMedicieNotification.text=amount + " tabletek"
         else updateRemoveMedicieNotification.text=amount
-
     }
 
     private fun alertDialogRemoveMedicine(){
@@ -102,8 +99,6 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
             }
             startActivity(intentRemove)
         } else alertDialogCannotRemoveMedicie()
-
-
     }
 
     private fun alertDialogRemoveNotification(){

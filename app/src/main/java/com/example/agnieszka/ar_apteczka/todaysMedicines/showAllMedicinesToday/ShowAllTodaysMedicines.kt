@@ -27,8 +27,6 @@ import java.time.format.DateTimeFormatter
 
 class ShowAllTodaysMedicines : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_all_todays_medicines)
@@ -36,16 +34,6 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
         setStetho()
         val dbHelper = SQLConector(this)
         dbHelper.removeOldReminders(takeDataToday())
-
-
-    /*    var howMach = dbHelper.checkIfTableHaveRecords()
-        if(howMach<=0){
-             Toast.makeText(this, "Następuje wczytywanie bazy leków", Toast.LENGTH_LONG).show()
-             var listOfLines = readTxtFiles()
-             var listOfDrugs = splitAndCreateListofDrugs(listOfLines)
-             addDrugToDatabase(listOfDrugs)
-          }
-*/
 
         button_GoToFirstAidKit.setOnClickListener {
             val goToMenu = Intent(applicationContext, Menu::class.java)
@@ -66,8 +54,6 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
             }
         }
         handler.postDelayed(runnable, 300)
-
-
 
     }
      override fun onResume() {
@@ -102,9 +88,7 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
     private fun setTodayDate(){
         val current = LocalDateTime.now()
         val formatDate = DateTimeFormatter.ofPattern("dd.MM.yyy")
-
         TextView_DataToday.text=current.format(formatDate)
-
      }
 
     private fun setStetho(){
@@ -140,7 +124,6 @@ class ShowAllTodaysMedicines : AppCompatActivity() {
     private fun readTxtFiles(): ArrayList<String> {
         val outputArrayList = ArrayList<String>()
         val inputStream = applicationContext.resources.openRawResource(R.raw.writeparse)
-
         try {
 
             val input = DataInputStream(inputStream)

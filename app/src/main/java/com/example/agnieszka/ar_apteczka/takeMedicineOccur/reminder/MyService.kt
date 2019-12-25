@@ -38,19 +38,6 @@ class MyService  {
 
             val alarmManager: AlarmManager =
                 context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-           /* if (isOn)
-                alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    cal!!.timeInMillis,
-                    60000,
-                    pi
-                )
-            else {
-                alarmManager.cancel(pi)
-                pi.cancel()
-            }
-
-            */
             if (isOn)
                 alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,

@@ -69,7 +69,6 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
            var dateEnd = intent.getStringExtra("dateEnd")
             dateEndOfPeriodTaken = dateEnd.replace("-", ".")
         }
-
         updateRemoveTakeMedicineOccur_DateStart.text = "$dateStartOfPeriodTaken  -  $dateEndOfPeriodTaken"
     }
 
@@ -152,6 +151,4 @@ class ActivityUpdateRemoveMenuTakeMedicinOccur : AppCompatActivity() {
         intentEdit.putExtra("timeOfDay",timeOfDay)
         startActivity(intentEdit)
     }
-
-
 }

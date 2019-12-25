@@ -28,7 +28,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
                 saveNotification()
             }
         }
-
     }
 
     override fun onBackPressed() {
@@ -44,7 +43,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
             val activityGoToMenu = Intent(applicationContext, Menu::class.java)
             startActivity(activityGoToMenu)
             Toast.makeText(applicationContext, getString(R.string.ToastMedicineAddedWithoutNotification), Toast.LENGTH_LONG).show()
-
         }
         builder.setNegativeButton(getString(R.string.AlertDialogNo)) { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
@@ -52,7 +50,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
 
 
     private fun saveMed(){
-
         var idMed=""
         if (intent.hasExtra("idMEd"))  idMed= intent.getStringExtra("idMEd")
         var nameMed=""
@@ -66,7 +63,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         var activedose=""
         if (intent.hasExtra("activeDoses"))  activedose= intent.getStringExtra("activeDoses")
 
-
         val dbHelper = SQLConector(this)
         val medicine = MedicineType(
             idMed,
@@ -77,7 +73,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
             activedose
         )
         dbHelper.addMedicine(medicine)
-
    }
 
     private fun saveNotification(){
@@ -85,7 +80,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         if (intent.hasExtra("idMEd"))  idMed= intent.getStringExtra("idMEd")
         val idNotification= UUID.randomUUID().toString()
         var alarmUnitInStock= Notification_UnitInStock.text.toString().toInt()
-
 
             val notification =
                 NotificationAmountMed(
@@ -102,7 +96,6 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
                 val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
                 startActivity(activity)
             }
-
        }
 
     private fun alertDialogNullAmout(){
@@ -113,7 +106,4 @@ class NotificationOfSmallAmountOfTheDrug : AppCompatActivity() {
         }
         builder.show()
     }
-
-
-
 }
