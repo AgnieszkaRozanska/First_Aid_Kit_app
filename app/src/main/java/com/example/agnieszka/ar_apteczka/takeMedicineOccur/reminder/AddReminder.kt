@@ -159,6 +159,7 @@ class AddReminder : AppCompatActivity() {
             takeMedToday.dateSMedToTake,
             textViewReminderTime.text.toString()
         )
+        var success = dbHelper.addReminder(reminder)
     }
 
 

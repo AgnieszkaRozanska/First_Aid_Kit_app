@@ -131,6 +131,10 @@ import kotlin.collections.ArrayList
             {
                 alertDialogLackOfData()
             }
+            else if(count.toInt()<1)
+            {
+                alertDialogIncorrectOfCount()
+            }
             else{
                 if(ifExists == true){
                     alertDialogMedExists()
@@ -180,7 +184,12 @@ import kotlin.collections.ArrayList
         if(name.isEmpty() || kind.isEmpty() || count.isEmpty())
         {
             alertDialogLackOfData()
-        } else{
+        }
+        else if(count.toInt()<1)
+        {
+            alertDialogIncorrectOfCount()
+        }
+        else{
             if(ifExists == true) {
                 alertDialogMedExists()
             }else {
@@ -206,6 +215,14 @@ import kotlin.collections.ArrayList
         builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
         builder.show()
     }
+
+     private fun alertDialogIncorrectOfCount(){
+         val builder = AlertDialog.Builder(this)
+         builder.setTitle(getString(R.string.attentiontoAddMedicine))
+         builder.setMessage(getString(R.string.alertDialogMessageIncorectOfCount))
+         builder.setPositiveButton(getString(R.string.back)) { dialog: DialogInterface, which: Int -> }
+         builder.show()
+     }
 
 
     private fun alertDialogMedExists(){

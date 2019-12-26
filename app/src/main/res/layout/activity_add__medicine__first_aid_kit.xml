@@ -57,7 +57,7 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/prostokat"
             android:hint="@string/ActivityAddMedicineWriteCount"
-            android:inputType="numberDecimal"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

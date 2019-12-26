@@ -122,4 +122,5 @@
     <string name="AlertIformationShortenData">Nowa data końcowa nie może być któtsza od daty rozpoczącia zażywania leku</string>
     <string name="TitleAlertNoData">Brak danych</string>
     <string name="AlertMessageChooseDataFirst">Najpierw należy wybrać datę</string>
+    <string name="alertDialogMessageIncorectOfCount">Wpisz poprawną wartość ilości sztuk leku</string>
 </resources>
