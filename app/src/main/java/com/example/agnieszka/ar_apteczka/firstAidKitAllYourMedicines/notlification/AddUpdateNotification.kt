@@ -45,21 +45,28 @@ class AddUpdateNotification : AppCompatActivity() {
         val idNotification= UUID.randomUUID().toString()
         var alarmUnitInStock= EditText_NotificationAmount.text.toString().toInt()
 
+        if(alarmUnitInStock == 0){
+            alertDialogWrogAmout()
+        }else {
+            val notification =
+                NotificationAmountMed(
+                    idNotification,
+                    idMed,
+                    alarmUnitInStock
+                )
+            val dbHelper = SQLConector(this)
+            val success = dbHelper.addNotification(notification)
 
-        val notification =
-            NotificationAmountMed(
-                idNotification,
-                idMed,
-                alarmUnitInStock
-            )
-        val dbHelper = SQLConector(this)
-        val success = dbHelper.addNotification(notification)
-
-        if (success) {
-            Toast.makeText(applicationContext, getString(R.string.ToastAddNotification), Toast.LENGTH_LONG)
-                .show()
-            val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-            startActivity(activity)
+            if (success) {
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.ToastAddNotification),
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+                startActivity(activity)
+            }
         }
     }
 
@@ -68,15 +75,22 @@ class AddUpdateNotification : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  idMedicine= intent.getStringExtra("IDMedicine")
         var updateAmount=  EditText_NotificationAmount.text.toString().toInt()
 
-        val dbHelper = SQLConector(this)
-        val success = dbHelper.updateNotificationAmount(idMedicine,updateAmount)
-        if (success) {
-            Toast.makeText(applicationContext, getString(R.string.ToastUpdateNotification), Toast.LENGTH_LONG)
-                .show()
-            val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
-            startActivity(activity)
+        if(updateAmount == 0){
+            alertDialogWrogAmout()
+        }else {
+            val dbHelper = SQLConector(this)
+            val success = dbHelper.updateNotificationAmount(idMedicine, updateAmount)
+            if (success) {
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.ToastUpdateNotification),
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                val activity = Intent(applicationContext, ActivityFirstAidKitMenu::class.java)
+                startActivity(activity)
+            }
         }
-
     }
 
     private fun alertDialogNullAmout(){
@@ -88,4 +102,12 @@ class AddUpdateNotification : AppCompatActivity() {
         builder.show()
     }
 
+    private fun alertDialogWrogAmout(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.UpdateCountMedicinesTitleAlert))
+        builder.setMessage(getString(R.string.AlertDialogMessageZeroVlue))
+        builder.setNeutralButton(getString(R.string.back)){_,_ ->
+        }
+        builder.show()
+    }
 }
