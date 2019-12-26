@@ -26,7 +26,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="20dp"
             android:background="@drawable/prostokat"
-            android:inputType="numberDecimal"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
