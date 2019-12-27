@@ -69,7 +69,7 @@ class ActivityUpdateRemoveMedicine : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine"))  id= intent.getStringExtra("IDMedicine")
         val dbHelper = SQLConector(applicationContext)
         var amount :String= dbHelper.takeNotificatioMedCount(id)
-        if(!amount.isEmpty()) updateRemoveMedicieNotification.text=amount + " tabletek"
+        if(!amount.isEmpty()) updateRemoveMedicieNotification.text=amount + " sztuk"
         else updateRemoveMedicieNotification.text=amount
     }
 

@@ -31,10 +31,10 @@
     <string name="Morning">Rano</string>
     <string name="Midday">Popołudnie</string>
     <string name="Evening">Wieczór</string>
-    <string name="ActivityAddMedicineTypeCountAttention">Musisz podać ilość posiadanych sztuk tabletek</string>
+    <string name="ActivityAddMedicineTypeCountAttention">Musisz podać ilość posiadanych sztuk leku</string>
     <string name="ActivityAddMedicineWriteMedName">Wpisz nazwę leku</string>
     <string name="ActivityAddMedcineAddKind">Wpisz rodzaj leku</string>
-    <string name="ActivityAddMedicineWriteCount">Ilość tabletek</string>
+    <string name="ActivityAddMedicineWriteCount">Ilość sztuk leku</string>
     <string name="ActivityAddMedicineWriteDescription">Informacje</string>
     <string name="ActivityAddMedicineNameInformation">Musisz podać nazwę leku</string>
     <string name="ActivityAddMedicineKidInformation">Musisz podać rodzaj leku</string>
