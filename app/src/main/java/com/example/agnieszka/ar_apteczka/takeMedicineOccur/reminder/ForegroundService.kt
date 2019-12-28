@@ -54,13 +54,11 @@ class ForegroundService : Service() {
         doAsync {
             while(true)
             {
-                var message : String = createReminderMessage(context)
+                var message= createReminderMessage(context)
 
-                //SystemClock.sleep(input * 10_000L)
-                SystemClock.sleep(50000)
                 uiThread {
                         //if(true) {
-                        if(true && (message != "Nadszedł czas by zażyć: ")) {
+                        if(message != "Nadszedł czas by zażyć: ") {
                         val notification = NotificationCompat.Builder(context, CHANNEL_ID_CHILD)
                             .setContentTitle("Zażyj leki")
                             .setContentText(message)
@@ -73,6 +71,8 @@ class ForegroundService : Service() {
                         }
                     }
                 }
+
+                SystemClock.sleep(60000)
                // SystemClock.sleep(50000)
             }
         }
@@ -135,7 +135,7 @@ class ForegroundService : Service() {
     }
 
     private fun createReminderMessage(p0: Context) : String{
-        var message : String = "Nadszedł czas by zażyć: "
+        var message = "Nadszedł czas by zażyć: "
         var listOfReminders = reminderForNow(p0)
         if(listOfReminders.count() > 0){
             for (i: Reminder in listOfReminders) {
@@ -148,15 +148,12 @@ class ForegroundService : Service() {
  private fun takeTodayDate():String{
         val current = LocalDateTime.now()
         val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var dateResult = current.format(formatDate).toString()
-        return  dateResult
+        return current.format(formatDate).toString()
     }
 
     private fun takeTimeNow() : String{
         val current = LocalDateTime.now()
         val formatTime = DateTimeFormatter.ofPattern("HH:mm")
-        var timeResult = current.format(formatTime).toString()
-        return  timeResult
-
+        return current.format(formatTime).toString()
     }
 }
