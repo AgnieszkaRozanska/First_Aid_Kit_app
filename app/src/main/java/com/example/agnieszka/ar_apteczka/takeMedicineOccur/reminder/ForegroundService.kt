@@ -25,7 +25,7 @@ class ForegroundService : Service() {
     companion object {
         val CHANNEL_ID = "ForegroundServiceChannel"
         val CHANNEL_ID_CHILD = "ForegroundServiceChannelCHILD"
-        private var  isRunning = false
+        private var isRunning = false
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -52,14 +52,15 @@ class ForegroundService : Service() {
         val intent = Intent(this, ShowAllTodaysMedicines::class.java)
         val pendingIntentNotification = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         doAsync {
-            while(isRunning)
+            while(true)
             {
                 var message : String = createReminderMessage(context)
 
                 //SystemClock.sleep(input * 10_000L)
                 SystemClock.sleep(50000)
                 uiThread {
-                    if(isRunning && (message != "Nadszedł czas by zażyć: ")) {
+                        //if(true) {
+                        if(true && (message != "Nadszedł czas by zażyć: ")) {
                         val notification = NotificationCompat.Builder(context, CHANNEL_ID_CHILD)
                             .setContentTitle("Zażyj leki")
                             .setContentText(message)
@@ -72,6 +73,7 @@ class ForegroundService : Service() {
                         }
                     }
                 }
+               // SystemClock.sleep(50000)
             }
         }
         return START_NOT_STICKY
@@ -94,6 +96,7 @@ class ForegroundService : Service() {
                 //NotificationManager.IMPORTANCE_DEFAULT
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+            //serviceChannel.setSound(null, null) //
             val serviceChannel2 = NotificationChannel(
                 CHANNEL_ID_CHILD,
                 "Foreground Service ChannelChild ",
