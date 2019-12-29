@@ -1,6 +1,7 @@
 package com.example.agnieszka.ar_apteczka.takeMedicineOccur.reminder
 
 import android.R
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -20,6 +21,9 @@ import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.uiThread
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import android.os.PowerManager
+
+
 
 class ForegroundService : Service() {
     companion object {
@@ -37,6 +41,15 @@ class ForegroundService : Service() {
             0, notificationIntent, 0
         )
 
+     /*   val wakeLock: PowerManager.WakeLock =
+            (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
+                newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::AR_Apteczka").apply {
+                    acquire()
+                }
+            }
+*/
+
+
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Twoja Elektroniczna Apteczka")
             .setContentText("Dbamy o Twoje zdrowie")
@@ -45,6 +58,8 @@ class ForegroundService : Service() {
             //.setContentIntent(pendingIntent)
             //.setSound(null)
             .build()
+
+
 
         startForeground(1, notification)
         isRunning = true
@@ -73,9 +88,9 @@ class ForegroundService : Service() {
                             }
                         }
                 }
-
-                SystemClock.sleep(60000)
-               // SystemClock.sleep(50000)
+                SystemClock.sleep(10000)
+                //SystemClock.sleep(60*1000-SystemClock.elapsedRealtime()%1000)
+               // SystemClock.sleep(50000) //10*1000-SystemClock.elapsedRealtime()%1000
             }
         }
         return START_NOT_STICKY

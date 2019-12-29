@@ -18,6 +18,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 import android.app.PendingIntent
+import android.os.PowerManager
+import android.os.SystemClock
 import android.support.v4.content.ContextCompat
 import android.widget.Toast
 import com.example.agnieszka.ar_apteczka.drugsDataBase.Drug
@@ -26,10 +28,14 @@ import java.io.BufferedReader
 import java.io.DataInputStream
 import java.io.IOException
 import java.io.InputStreamReader
+import java.util.*
+import android.app.AlarmManager
+import org.jetbrains.anko.alarmManager
 
 
 class Menu : AppCompatActivity() {
-
+    private var alarmMgr: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +60,46 @@ class Menu : AppCompatActivity() {
             createNotification()
         }
 
-        startService()
+        var alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        var alarmIntent = PendingIntent.getForegroundService(applicationContext,0,
+            Intent(applicationContext, ForegroundService::class.java),0)
+
+        alarmManager.setInexactRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime(),
+            60 * 1000,
+            alarmIntent
+        )
+
+       // startService(this)
+
+     /*   alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(this, ForegroundService::class.java).let { intent ->
+            PendingIntent.getBroadcast(this, 0, intent, 0)
+        }
+
+
+        alarmMgr?.setInexactRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime(),
+            10 * 60,
+            alarmIntent
+        )
+*/
+        //startService()
 
        // buttonStopServiceTemp.setOnClickListener {
        //     stopService()
       //  }
 
+}
+
+    fun startService(context: Context) {
+        val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+          val intent = Intent(context, ForegroundService::class.java)
+    intent.putExtra("time",java.lang.Boolean.TRUE)
+    val pi = PendingIntent.getForegroundService(context, 0, intent, 0)
+    am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pi)
 }
 
     private fun startService() {
