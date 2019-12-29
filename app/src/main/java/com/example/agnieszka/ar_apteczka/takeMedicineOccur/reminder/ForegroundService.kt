@@ -25,7 +25,7 @@ class ForegroundService : Service() {
     companion object {
         val CHANNEL_ID = "ForegroundServiceChannel"
         val CHANNEL_ID_CHILD = "ForegroundServiceChannelCHILD"
-        private var isRunning = false
+        private var isRunning = true
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -57,19 +57,21 @@ class ForegroundService : Service() {
                 var message= createReminderMessage(context)
 
                 uiThread {
-                        //if(true) {
-                        if(message != "Nadszedł czas by zażyć: ") {
-                        val notification = NotificationCompat.Builder(context, CHANNEL_ID_CHILD)
-                            .setContentTitle("Zażyj leki")
-                            .setContentText(message)
-                            .setSmallIcon(com.example.agnieszka.ar_apteczka.R.drawable.pills)
-                            .setContentIntent(pendingIntentNotification)
-                            .setAutoCancel(true)
-                            .build()
-                        with(NotificationManagerCompat.from(context)) {
-                            notificationManager.notify(2, notification)
+                        if(true) {
+                            if (message != "Nadszedł czas by zażyć: ") {
+                                val notification =
+                                    NotificationCompat.Builder(context, CHANNEL_ID_CHILD)
+                                        .setContentTitle("Zażyj leki")
+                                        .setContentText(message)
+                                        .setSmallIcon(com.example.agnieszka.ar_apteczka.R.drawable.pills)
+                                        .setContentIntent(pendingIntentNotification)
+                                        .setAutoCancel(true)
+                                        .build()
+                                with(NotificationManagerCompat.from(context)) {
+                                    notificationManager.notify(2, notification)
+                                }
+                            }
                         }
-                    }
                 }
 
                 SystemClock.sleep(60000)
@@ -148,7 +150,8 @@ class ForegroundService : Service() {
  private fun takeTodayDate():String{
         val current = LocalDateTime.now()
         val formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        return current.format(formatDate).toString()
+     var currentDate = current.format(formatDate).toString()
+        return  currentDate
     }
 
     private fun takeTimeNow() : String{
