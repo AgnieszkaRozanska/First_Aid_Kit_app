@@ -73,25 +73,6 @@ class Menu : AppCompatActivity() {
 
        // startService(this)
 
-     /*   alarmMgr = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmIntent = Intent(this, ForegroundService::class.java).let { intent ->
-            PendingIntent.getBroadcast(this, 0, intent, 0)
-        }
-
-
-        alarmMgr?.setInexactRepeating(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime(),
-            10 * 60,
-            alarmIntent
-        )
-*/
-        //startService()
-
-       // buttonStopServiceTemp.setOnClickListener {
-       //     stopService()
-      //  }
-
 }
 
     fun startService(context: Context) {
