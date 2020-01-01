@@ -268,7 +268,7 @@
             android:layout_height="37dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="20dp"
-            android:text="Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową"
+            android:text="Musisz wybrać datę początkową i okres brania, aby obliczyć datę końcową"
             android:textColor="@android:color/holo_blue_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_ChooseDate_Start" />

@@ -221,7 +221,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
     private fun alertDialogMedExists(){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.alertDialogTileMedExists))
-        builder.setMessage("Wybrany lek o danej porze dnia juz istnieje, jeżeli chcesz edytować dawkę lub okres zażywania leku przejdź do listy wszystkich leków")
+        builder.setMessage(getString(R.string.alertDialogMedExistsMessage))
         builder.setNeutralButton(getString(R.string.alertDialogBack)){ _, _ ->
         }
         builder.show()

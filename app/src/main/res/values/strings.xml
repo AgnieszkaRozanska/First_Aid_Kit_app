@@ -53,12 +53,12 @@
     <string name="ActivityDosetoTakeText">Zażywana dawka tabletek</string>
     <string name="ActivityTimeDay">Pora dnia</string>
     <string name="ActivityNoDescrpition">Brak</string>
-    <string name="ActivityInformationAbotCountMedicine">Ilość posiadanych sztuk</string>
+    <string name="ActivityInformationAbotCountMedicine">Ilość posiadanych sztuk:</string>
     <string name="ActivityActiveDoseInformation">Możesz podać dawke czynną</string>
     <string name="ActivityDescriptionInformation">Możesz podać opis</string>
     <string name="ActivityAllYourMedicineTitle">Wszystkie twoje leki</string>
-    <string name="informAboutMediciesToshowMoreInformations">Naciśnij na lek aby edytować</string>
-    <string name="notificationCount_information">Podaj ilość leku poniżej której zostaie zgłoszone powiadomienie
+    <string name="informAboutMediciesToshowMoreInformations">Naciśnij na lek, aby edytować</string>
+    <string name="notificationCount_information">Podaj ilość leku, poniżej której zostanie zgłoszone powiadomienie
     </string>
     <string name="NotificationSuccessToast">Dodano lek oraz powiadomienie o małej ilości leku</string>
     <string name="TitleNotificationAmoundMed">Mała ilość lekarstw</string>
@@ -78,8 +78,8 @@
     <string name="ToastAddNotification">Dodano powiadomienie</string>
     <string name="ToastUpdateNotification">Edytowano powiadomienie</string>
     <string name="alertDialogTitleNullAmount">Uzupełnij brakujące dane</string>
-    <string name="alertDialogMessageNullAmount">Podaj ilość tabetkek poniżej których ma nastąpić powiadomienie</string>
-    <string name="alertDialogTitleRemoveNotification">Czy chcesz usunąć przypomnienie</string>
+    <string name="alertDialogMessageNullAmount">Podaj ilość sztuk leku, poniżej których ma nastąpić powiadomienie</string>
+    <string name="alertDialogTitleRemoveNotification">Czy chcesz usunąć przypomnienie?</string>
     <string name="ToastRemoveNotification">Usunięto przypomnienie</string>
     <string name="alertDialogTitleLackOfNotification">Nie można usunąć przypomnienia</string>
     <string name="alertDialogMessageLackOfNotification">Ten lek nie posiada przypomnienia</string>
@@ -87,16 +87,16 @@
     <string name="alertDialogMessageCannotRemoveMedicine">Ten lek aktualnie zażywasz. Nie możesz go usunąć.</string>
     <string name="alertDialogTitleNoDataStart">Nieprawidłowa data</string>
     <string name="alertDialogMessageNoDataStart">Musisz podać datę początkową oraz ilość dni przez które dany lek będzie zażywany</string>
-    <string name="validationDataDateAndPeriodOfTaken">Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową</string>
-    <string name="validationDataPeriodOfTaken">Musisz wybrać okres brania aby obliczyć datę końcową</string>
-    <string name="validationDataDateStart">Musisz wybrać datę początkową aby obliczyć datę końcową</string>
-    <string name="onTextChangedDateAndPeriogOfTaken">Musisz wybrać datę początkową i okres brania aby obliczyć datę końcową</string>
-    <string name="onTextChangedDateStart">Musisz wybrać datę początkową aby obliczyć datę końcową</string>
+    <string name="validationDataDateAndPeriodOfTaken">Musisz wybrać datę początkową i okres brania, aby obliczyć datę końcową</string>
+    <string name="validationDataPeriodOfTaken">Musisz wybrać okres brania, aby obliczyć datę końcową</string>
+    <string name="validationDataDateStart">Musisz wybrać datę początkową, aby obliczyć datę końcową</string>
+    <string name="onTextChangedDateAndPeriogOfTaken">Musisz wybrać datę początkową i okres brania, aby obliczyć datę końcową</string>
+    <string name="onTextChangedDateStart">Musisz wybrać datę początkową, aby obliczyć datę końcową</string>
     <string name="chooseDate">Wybierz datę</string>
     <string name="alertDialogTitleTime">Czy jesteś pewien wyboru godziny?</string>
     <string name="OK">OK</string>
     <string name="correctFormMorning">rano</string>
-    <string name="correctFormMidday">popołudniu</string>
+    <string name="correctFormMidday">po południu</string>
     <string name="correctFormEvening">wieczorem</string>
     <string name="ToastAddMedicineWithoutReminder">Lek został dodany, lecz bez przypominajki</string>
     <string name="alertDialogTitleBackAddNotification">Jeżeli cofniesz zostanie zapisany lek bez przypominajki</string>
@@ -124,4 +124,5 @@
     <string name="AlertMessageChooseDataFirst">Najpierw należy wybrać datę</string>
     <string name="alertDialogMessageIncorectOfCount">Wpisz poprawną wartość ilości sztuk leku</string>
     <string name="AlertDialogMessageZeroVlue">Podana wartość musi być różna od zera</string>
+    <string name="alertDialogMedExistsMessage">Wybrany lek o danej porze dnia już istnieje. Jeżeli chcesz edytować dawkę lub okres zażywania leku, przejdź do listy wszystkich leków</string>
 </resources>

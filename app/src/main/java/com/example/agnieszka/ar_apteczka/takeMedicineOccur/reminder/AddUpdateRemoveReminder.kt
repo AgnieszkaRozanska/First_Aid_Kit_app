@@ -126,7 +126,7 @@ class AddUpdateRemoveReminder : AppCompatActivity() {
         if (intent.hasExtra("IDMedicine_TakeOccur"))  idTakeMedOccur= intent.getStringExtra("IDMedicine_TakeOccur")
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.RemoveTakeMedOccurAlertTitle))
-        builder.setMessage("Czy chcesz usunąć przypominajkę dla tego leku")
+        builder.setMessage("Czy chcesz usunąć przypominajkę dla tego leku?")
         builder.setPositiveButton(getString(R.string.AlertDialogRemoveTakeMedOccurYes)) { dialog: DialogInterface, which: Int ->
             removeReminder(idTakeMedOccur)
         }

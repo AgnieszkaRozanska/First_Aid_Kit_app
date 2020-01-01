@@ -176,7 +176,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            android:text="Wpisując nazwę leku możesz skorzystać z wbudowanego katalogu leków co spowoduje autouzupełnianie. W przeciwnym razie musisz sam uzupełnić obowiązkowe pola"
+            android:text="Wpisując nazwę leku możesz skorzystać z wbudowanego katalogu leków, co spowoduje autouzupełnianie. W przeciwnym razie musisz sam uzupełnić obowiązkowe pola"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
