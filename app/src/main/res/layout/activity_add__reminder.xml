@@ -38,7 +38,7 @@
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toTopOf="@+id/textViewReminderTimeIform" android:layout_marginBottom="56dp"/>
     <TextView
-            android:text="Kilinj na przycisk aby wybrać godzinę przypomnienia"
+            android:text="Kliknij na przycisk aby wybrać godzinę przypomnienia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewReminderInform" android:textSize="15sp"

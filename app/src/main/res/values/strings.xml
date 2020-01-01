@@ -6,7 +6,7 @@
     <string name="chooseTimeOfDay">Proszę wybrać porę dnia</string>
     <string name="chooseAterBeforeMeal">Proszę wpisać porę posiłku</string>
     <string name="choosehourReminder">Proszę wpisać godzinę przypomnienia</string>
-    <string name="chooseReminder">Ustaw przypomniene</string>
+    <string name="chooseReminder">Ustaw przypomnienie</string>
     <string name="attention">Uwaga!</string>
     <string name="attentiontoAddMedicine">Uwaga</string>
     <string name="fillTheData">Uzupełnij brakujące dane!</string>
