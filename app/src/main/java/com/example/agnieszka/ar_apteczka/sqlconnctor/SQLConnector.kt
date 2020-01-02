@@ -485,7 +485,10 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                 var olddateStartFormatDate = LocalDate.parse(i.dateStart, formatDate)
                 var olddateEndFormatDate = LocalDate.parse(i.dateEnd, formatDate)
                 if( (newdateStartFormatDate.compareTo(olddateStartFormatDate)>=0 && newdateStartFormatDate.compareTo(olddateEndFormatDate)<=0)
-                    || (newdateEndFormatDate.compareTo(olddateStartFormatDate) >= 0 && newdateEndFormatDate.compareTo(olddateEndFormatDate)<=0))
+                    || (newdateEndFormatDate.compareTo(olddateStartFormatDate) >= 0 && newdateEndFormatDate.compareTo(olddateEndFormatDate)<=0)
+                    || (newdateStartFormatDate.compareTo(olddateEndFormatDate)<0 && newdateEndFormatDate.compareTo(olddateEndFormatDate)>=0)
+                    || (newdateStartFormatDate.compareTo(olddateEndFormatDate) == 0  || newdateEndFormatDate.compareTo(olddateEndFormatDate) ==0 )
+                    ||  (newdateStartFormatDate.compareTo(olddateEndFormatDate) > 0 && newdateEndFormatDate.compareTo(olddateEndFormatDate) <=0))
                 {
                     result = true
                 }
@@ -498,6 +501,7 @@ class SQLConector(context: Context):SQLiteOpenHelper(context,
                   {
                       result = false
                   }
+
                 }
             }
         }

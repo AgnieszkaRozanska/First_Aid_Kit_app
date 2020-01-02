@@ -186,6 +186,7 @@ class ActivityAddTakeMedicineOccour : AppCompatActivity() {
             var dateDate= LocalDate.parse(dataString)
             button_ChooseDate_Start.text=dateDate.toString()
         }, year, month, day)
+        datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
 

@@ -72,6 +72,7 @@ class ChangeTimePeriodOfTakenMedicine : AppCompatActivity() {
             var dateDate= LocalDate.parse(dataString)
             buttonChooseNewDateEnd.text=dateDate.toString()
         }, year, month, day)
+        datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
 
