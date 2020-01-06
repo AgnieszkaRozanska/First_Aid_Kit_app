@@ -41,13 +41,7 @@ class ForegroundService : Service() {
             0, notificationIntent, 0
         )
 
-     /*   val wakeLock: PowerManager.WakeLock =
-            (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
-                newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::AR_Apteczka").apply {
-                    acquire()
-                }
-            }
-*/
+
 
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -156,7 +150,7 @@ class ForegroundService : Service() {
         var listOfReminders = reminderForNow(p0)
         if(listOfReminders.count() > 0){
             for (i: Reminder in listOfReminders) {
-                message += i.medicineName + ", "
+                message +=  i.medicineName + ", "
             }
         }
         return message
